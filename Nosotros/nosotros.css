@@ -37,6 +37,7 @@ body {
     background: var(--white);
     color: var(--black);
     overflow-x: hidden;
+    max-width: 100vw;
 }
 
 img { max-width: 100%; display: block; }
@@ -1168,8 +1169,8 @@ footer {
     .nav-links { display: none; }
     .hamburger { display: flex; }
 
-    .hero-content { padding: 120px 5% 80px; }
-    .hero-title   { font-size: clamp(3rem, 12vw, 5.5rem); }
+    .hero-content { padding: 120px 5% 80px; overflow: hidden; max-width: 100%; }
+    .hero-title   { font-size: clamp(2.4rem, 10vw, 4rem); }
 
     .quienes { padding: 80px 5%; gap: 48px; }
     .quienes-media { height: 420px; }
@@ -1220,7 +1221,8 @@ footer {
    RESPONSIVE — 480px
 ============================================= */
 @media (max-width: 480px) {
-    .hero-title { font-size: clamp(2.8rem, 14vw, 4.5rem); }
+    .hero-title { font-size: clamp(2rem, 10vw, 3.2rem); }
+    .hero-content { max-width: 100%; overflow: hidden; }
     .hero-actions { flex-direction: column; }
     .hero-actions .btn-primary,
     .hero-actions .btn-ghost { width: 100%; justify-content: center; }
