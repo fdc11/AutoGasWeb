@@ -1543,11 +1543,6 @@ a {
 
 }
 
-
-.ticker-track:hover {
-    animation-play-state: paused;
-}
-
 @keyframes tickerMove {
 
     0% {
