@@ -49,11 +49,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ----------------------------------------------- */
     const heroBg = document.querySelector('.hero-bg');
     if (heroBg) {
-        // Trigger the slow zoom-out once page is ready
         setTimeout(() => heroBg.classList.add('loaded'), 100);
     }
 
-    // Staggered fade-in of hero elements
     const heroAnims = [
         '.hero-badge--anim',
         '.hero-title--anim',
@@ -80,12 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target); // fire once
+                revealObserver.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0,
+        rootMargin: '0px 0px 0px 0px'
     });
 
     revealEls.forEach(el => revealObserver.observe(el));
@@ -98,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function animateCounter(el) {
         const target = parseInt(el.getAttribute('data-target'), 10);
-        const duration = 1800; // ms
+        const duration = 1800;
         const start = performance.now();
 
         function easeOutExpo(t) {
@@ -145,10 +143,8 @@ document.addEventListener('DOMContentLoaded', () => {
     tlDots.forEach(dot => dotObserver.observe(dot));
 
 
-
     /* -----------------------------------------------
-       8. MARQUEE — pause on hover (handled via CSS,
-          but add keyboard accessibility here)
+       8. MARQUEE — accessibility
     ----------------------------------------------- */
     const marqueeTrack = document.querySelector('.marquee-track');
     if (marqueeTrack) {

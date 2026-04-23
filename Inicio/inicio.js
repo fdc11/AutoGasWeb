@@ -42,7 +42,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             entry.target.classList.add('visible');
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
 
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
     .forEach(el => revealObserver.observe(el));
@@ -154,4 +154,80 @@ function calcularAhorro() {
     
     const recovery = document.getElementById('resRecovery');
     recovery.textContent = `🚀 Recuperas la inversión del equipo en solo ${mesesRecupero} meses. ¡Después es pura ganancia!`;
-}
+}
+
+// =============================================
+// TICKER — swipe táctil en móvil
+// =============================================
+(function () {
+    const track = document.getElementById('tickerTrack');
+    if (!track) return;
+
+    let touchStartX = 0;
+    let currentOffset = 0;
+    let resumeTimer = null;
+    let isSwiping = false;
+
+    // Obtener el offset actual de la animación CSS antes de pausar
+    function getCurrentCSSOffset() {
+        const style = window.getComputedStyle(track);
+        const matrix = new DOMMatrix(style.transform);
+        return matrix.m41; // translateX actual
+    }
+
+    function pauseAnimation() {
+        const offset = getCurrentCSSOffset();
+        track.style.animation = 'none';
+        track.style.transform = `translateX(${offset}px)`;
+        currentOffset = offset;
+    }
+
+    function resumeAnimation() {
+        // Calcular qué porcentaje del recorrido llevamos para reanudar desde ahí
+        const halfWidth = track.scrollWidth / 2;
+        // Normalizar offset al rango [0, -halfWidth]
+        let normalized = currentOffset % -halfWidth;
+        if (normalized > 0) normalized -= halfWidth;
+
+        const progress = Math.abs(normalized) / halfWidth; // 0 a 1
+        const remainingTime = 32 * (1 - progress);
+
+        track.style.transform = `translateX(${normalized}px)`;
+
+        // Reanudar desde la posición actual con el tiempo restante
+        track.style.animation = `tickerMove ${remainingTime}s linear 1 forwards`;
+
+        // Cuando termine ese tramo, volver al loop normal
+        track.addEventListener('animationend', function onEnd() {
+            track.removeEventListener('animationend', onEnd);
+            track.style.animation = 'tickerMove 32s linear infinite';
+        }, { once: true });
+    }
+
+    track.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        isSwiping = false;
+        clearTimeout(resumeTimer);
+        pauseAnimation();
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+        const dx = e.touches[0].clientX - touchStartX;
+        if (Math.abs(dx) > 5) isSwiping = true;
+        currentOffset += dx * 1.5; // multiplicador para que se sienta más fluido
+        track.style.transform = `translateX(${currentOffset}px)`;
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+        if (!isSwiping) {
+            // Fue un tap, no un swipe — reanudar inmediatamente
+            resumeAnimation();
+            return;
+        }
+        // Fue swipe — esperar 1.5s y reanudar
+        resumeTimer = setTimeout(() => {
+            resumeAnimation();
+        }, 1500);
+    });
+})();
