@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros | AutoGas — Red Nacional de Conversiones GNV/GLP</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="nosotros.css">
+</head>
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="navbar" id="navbar">
+        <img src="Imagenes/AutoGasLogo2.png" alt="AutoGas Logo" class="logo">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/AutoGasWeb/Inicio/inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html" class="nav-link active">NOSOTROS</a></li>
+                <li><a href="/AutoGasWeb/Servicios/servicios.html">Servicios</a></li>
+                <li><a href="/AutoGasWeb/Sedes/sedes.html">Sedes</a></li>
+                <li><a href="/AutoGasWeb/Publicaciones/publicacion.html">Publicaciones</a></li>
+                <li><a href="/AutoGasWeb/Contacto/contacto.html" class="nav-cta">Cotizar</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="/AutoGasWeb/Inicio/inicio.html" onclick="toggleMenu()">Inicio</a>
+        <a href="/AutoGasWeb/Nosotros/nosotros.html" onclick="toggleMenu()">Nosotros</a>
+        <a href="/AutoGasWeb/Servicios/servicios.html" onclick="toggleMenu()">Servicios</a>
+        <a href="/AutoGasWeb/Publicaciones/publicacion.html" onclick="toggleMenu()">Publicaciones</a>
+        <a href="/AutoGasWeb/Contacto/contacto.html" onclick="toggleMenu()">Cotizar</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <!-- Diagonal line accent -->
+
+
+        <!-- Background watermark -->
+        <div class="hero-watermark">AG</div>
+
+        <div class="hero-content">
+            <div class="hero-badge hero-badge--anim">
+                <span class="hero-badge-dot"></span>
+                Red Nacional · GNV / GLP
+            </div>
+            <h1 class="hero-title hero-title--anim">
+                MOVEMOS<br>
+                AL PERÚ<br>
+                <span class="accent">HACIA ADELANTE</span>
+            </h1>
+            <p class="hero-sub hero-sub--anim">
+                Más de 15 años convirtiendo vehículos con tecnología, rigor y compromiso real.
+            </p>
+            <div class="hero-actions hero-actions--anim">
+                <a href="/AutoGasWeb/Contacto/contacto.html" class="btn-primary">
+                    Agenda tu servicio
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#historia" class="btn-ghost">
+                    Nuestra historia
+                </a>
+            </div>
+        </div>
+       <div class="scroll-indicator">
+            
+            <span class="scroll-text"></span>
+        </div>
+    </section>
+    <!-- ==================== IMPACTO / COUNTERS ==================== -->
+    <section class="impacto">
+        <div class="impacto-inner">
+            <div class="impacto-item reveal delay-1">
+                <div class="impacto-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
+                </div>
+                <div class="impacto-num-wrap">
+                    <span class="impacto-prefix">+</span>
+                    <span class="impacto-num" data-target="2000">0</span>
+                </div>
+                <span class="impacto-lbl">Clientes satisfechos</span>
+            </div>
+            <div class="impacto-divider"></div>
+            <div class="impacto-item reveal delay-2">
+                <div class="impacto-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+                <div class="impacto-num-wrap">
+                    <span class="impacto-prefix">+</span>
+                    <span class="impacto-num" data-target="15">0</span>
+                </div>
+                <span class="impacto-lbl">Años de experiencia</span>
+            </div>
+            <div class="impacto-divider"></div>
+            <div class="impacto-item reveal delay-3">
+                <div class="impacto-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                </div>
+                <div class="impacto-num-wrap">
+                    <span class="impacto-num" data-target="7">0</span>
+                </div>
+                <span class="impacto-lbl">Sedes a nivel nacional</span>
+            </div>
+            <div class="impacto-divider"></div>
+            <div class="impacto-item reveal delay-4">
+                <div class="impacto-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <div class="impacto-num-wrap">
+                    <span class="impacto-num" data-target="100">0</span>
+                    <span class="impacto-suffix">%</span>
+                </div>
+                <span class="impacto-lbl">Respaldo FISE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== QUIÉNES SOMOS ==================== -->
+    <section class="quienes">
+        <div class="quienes-media reveal-left">
+            <!-- IMG PRINCIPAL: Imagenes/Taller1.jpg -->
+            <img src="Imagenes/Taller1.jpg" alt="Taller AutoGas" class="q-img-main">
+            <!-- IMG SECUNDARIA: Imagenes/Taller2.jpg -->
+            <img src="Imagenes/Taller2.jpg" alt="Equipo AutoGas" class="q-img-secondary">
+            <div class="q-badge">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span>Taller autorizado FISE</span>
+            </div>
+        </div>
+
+        <div class="quienes-text reveal-right">
+            <div class="section-tag">Quiénes Somos</div>
+            <h2 class="section-title dark">
+                EL TALLER QUE<br>
+                TU AUTO<br>
+                <span class="red-text">MERECE</span>
+            </h2>
+            <p class="section-desc dark">
+                AutoGas nació en Ica con una sola convicción: darle al peruano acceso real a tecnología de conversión vehicular de primer nivel. Hoy somos presencia nacional, con 8 sedes y un equipo de técnicos certificados que garantizan cada instalación.
+            </p>
+            <p class="section-desc dark" style="margin-top:14px;">
+                Somos taller autorizado por el Fondo de Inclusión Social Energético, lo que nos permite ofrecer financiamiento accesible y garantizar los más altos estándares en cada conversión.
+            </p>
+            <div class="quienes-tags">
+                <span class="q-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    GNV &amp; GLP
+                </span>
+                <span class="q-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Mantenimiento preventivo
+                </span>
+                <span class="q-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Diagnóstico computarizado
+                </span>
+                <span class="q-tag">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    Financiamiento FISE
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TIMELINE / HISTORIA ==================== -->
+    <section class="historia" id="historia">
+        <div class="historia-header reveal">
+            <div class="section-tag light-tag">Nuestra Historia</div>
+            <h2 class="section-title light">DE ICA<br>AL <span class="red-text">PERÚ</span></h2>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item timeline-item--left reveal-left">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <span class="tl-year">2009</span>
+                    <p class="tl-text">Fundación en Ica, primer taller de conversión GNV en la región.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item timeline-item--right reveal-right delay-1">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <span class="tl-year">2013</span>
+                    <p class="tl-text">Certificación oficial FISE — respaldo del Estado Peruano.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item timeline-item--left reveal-left delay-1">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <span class="tl-year">2016</span>
+                    <p class="tl-text">Expansión a Lima y Arequipa. 500 conversiones completadas.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item timeline-item--right reveal-right delay-2">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <span class="tl-year">2019</span>
+                    <p class="tl-text">Nuevas sedes en Trujillo, Huancayo y Nasca.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item timeline-item--left reveal-left delay-2">
+                <div class="tl-dot"></div>
+                <div class="tl-card">
+                    <span class="tl-year">2022</span>
+                    <p class="tl-text">Incorporación de diagnóstico computarizado y tecnología GLP Fase 2.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item timeline-item--right reveal-right delay-3">
+                <div class="tl-dot tl-dot--active"></div>
+                <div class="tl-card tl-card--highlight">
+                    <span class="tl-year red-text">2025</span>
+                    <p class="tl-text">8 sedes activas. +2,000 clientes. Red nacional consolidada.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== VALORES ==================== -->
+    <section class="valores">
+        <div class="valores-header reveal">
+            <div class="section-tag">Nuestros Pilares</div>
+            <h2 class="section-title dark">LO QUE NOS<br><span class="red-text">DEFINE</span></h2>
+        </div>
+
+        <div class="valores-grid">
+            <div class="valor-card reveal delay-1">
+                <div class="valor-icon-wrap">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <span class="valor-word">Confianza</span>
+            </div>
+            <div class="valor-card reveal delay-2">
+                <div class="valor-icon-wrap">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <span class="valor-word">Calidad</span>
+            </div>
+            <div class="valor-card reveal delay-3">
+                <div class="valor-icon-wrap">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                </div>
+                <span class="valor-word">Innovación</span>
+            </div>
+            <div class="valor-card reveal delay-4">
+                <div class="valor-icon-wrap">
+                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </div>
+                <span class="valor-word">Seguridad</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== EQUIPO ==================== -->
+    <section class="equipo">
+        <div class="equipo-header reveal">
+            <div class="section-tag light-tag">Las personas detrás</div>
+            <h2 class="section-title light">NUESTRO<br><span class="red-text">EQUIPO</span></h2>
+        </div>
+
+        <div class="equipo-grid">
+            <div class="team-card reveal delay-1">
+                <div class="team-photo">
+                    <!-- FOTO: Imagenes/Equipo1.jpg -->
+                    <img src="Imagenes/Equipo1.jpg" alt="Gerente General AutoGas" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="team-photo-placeholder" style="display:none">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-overlay">
+                        <span class="team-overlay-text">Ver perfil</span>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <span class="team-name">Gerencia General</span>
+                    <span class="team-role">Fundador &amp; Director</span>
+                </div>
+            </div>
+
+            <div class="team-card reveal delay-2">
+                <div class="team-photo">
+                    <img src="Imagenes/Equipo2.jpg" alt="Jefe Técnico AutoGas" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="team-photo-placeholder" style="display:none">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-overlay">
+                        <span class="team-overlay-text">Ver perfil</span>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <span class="team-name">Jefe Técnico</span>
+                    <span class="team-role">Especialista GNV / GLP</span>
+                </div>
+            </div>
+
+            <div class="team-card reveal delay-3">
+                <div class="team-photo">
+                    <img src="Imagenes/Equipo3.jpg" alt="Coordinadora Comercial AutoGas" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="team-photo-placeholder" style="display:none">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-overlay">
+                        <span class="team-overlay-text">Ver perfil</span>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <span class="team-name">Coordinación Comercial</span>
+                    <span class="team-role">Atención al Cliente</span>
+                </div>
+            </div>
+
+            <div class="team-card reveal delay-4">
+                <div class="team-photo">
+                    <img src="Imagenes/Equipo4.jpg" alt="Técnico Senior AutoGas" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="team-photo-placeholder" style="display:none">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    </div>
+                    <div class="team-overlay">
+                        <span class="team-overlay-text">Ver perfil</span>
+                    </div>
+                </div>
+                <div class="team-info">
+                    <span class="team-name">Técnico Senior</span>
+                    <span class="team-role">Diagnóstico &amp; Mantenimiento</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CERTIFICACIONES / MARQUEE ==================== -->
+    <section class="certs">
+        <div class="certs-header reveal">
+            <div class="section-tag">Certificaciones &amp; Alianzas</div>
+            <h2 class="section-title dark">RESPALDADOS POR<br><span class="red-text">LOS MEJORES</span></h2>
+        </div>
+
+        <div class="marquee-wrap">
+            <div class="marquee-track">
+                <!-- Partner logos — usando SVG inline como placeholders para partners reales -->
+                <div class="cert-logo">
+                    <img src="Imagenes/MEI_Logo.jpg" alt="MEM" onerror="this.style.display='none'; this.parentElement.querySelector('.cert-fallback').style.display='block'">
+                    <span class="cert-fallback" style="display:none">FISE</span>
+                </div>
+                <div class="cert-logo">
+                    <img src="Imagenes/FISE.png" alt="FISE" onerror="this.style.display='none'; this.parentElement.querySelector('.cert-fallback').style.display='block'">
+                    <span class="cert-fallback" style="display:none">FISE</span>
+                </div>
+                <div class="cert-logo">
+                    <img src="Imagenes/AhorroGNV.png" alt="MTC" onerror="this.style.display='none'; this.parentElement.querySelector('.cert-fallback').style.display='block'">
+                    <span class="cert-fallback" style="display:none">FISE</span>
+                </div>
+                <div class="cert-logo">
+                    <img src="Imagenes/MTC_Logo.png" alt="MTC" onerror="this.style.display='none'; this.parentElement.querySelector('.cert-fallback').style.display='block'">
+                    <span class="cert-fallback" style="display:none">FISE</span>
+                </div>
+                
+        </div>
+    </section>
+
+    <!-- ==================== CTA SEDES ==================== -->
+    <section class="cta-sedes reveal">
+        <div class="cta-sedes-bg"></div>
+        <div class="cta-sedes-overlay"></div>
+        <div class="cta-sedes-content">
+            <div class="section-tag light-tag">Crecemos contigo</div>
+            <h2 class="cta-title">CONOCE NUESTRA<br>RED DE <span class="red-text">SEDES</span></h2>
+            <p class="cta-desc">Ica · Lima · Arequipa · Trujillo · Huancayo · Nasca · Chincha</p>
+            <a href="/AutoGasWeb/Sedes/sedes.html" class="btn-primary btn-primary--lg">
+                Ver todas las sedes
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="Imagenes/AutoGasLogo2.png" alt="AutoGas" class="footer-logo">
+                <p class="footer-copy">© 2026 <span>AutoGas</span> · Taller Automotriz · Perú</p>
+            </div>
+           
+            <div class="footer-social">
+                <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" aria-label="Facebook">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/autogasica" target="_blank" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@autogas_ica" target="_blank" aria-label="TikTok">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.86a8.24 8.24 0 004.82 1.56V7a4.86 4.86 0 01-1.05-.31z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="nosotros.js"></script>
+</body>
+</html>

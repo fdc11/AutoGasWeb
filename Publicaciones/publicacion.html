@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publicaciones | AutoGas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="publicacion.css">
+</head>
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <header class="navbar" id="navbar">
+        <img src="../Inicio/Imagenes/AutoGasLogo2.png" alt="AutoGas Logo" class="logo">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/AutoGasWeb/Inicio/inicio.html">Inicio</a></li>
+                <li><a href="/AutoGasWeb/Nosotros/nosotros.html">Nosotros</a></li>
+                <li><a href="/AutoGasWeb/Servicios/servicios.html">Servicios</a></li>
+                <li><a href="/AutoGasWeb/Sedes/sedes.html">Sedes</a></li>
+                <li><a href="/AutoGasWeb/Publicaciones/publicacion.html" class="active">Publicaciones</a></li>
+                <li><a href="/AutoGasWeb/Contacto/contacto.html" class="nav-cta">Cotizar</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="/AutoGasWeb/Inicio/inicio.html" onclick="toggleMenu()">Inicio</a>
+        <a href="/AutoGasWeb/Nosotros/nosotros.html" onclick="toggleMenu()">Nosotros</a>
+        <a href="/AutoGasWeb/Servicios/servicios.html" onclick="toggleMenu()">Servicios</a>
+        <a href="/AutoGasWeb/Sedes/sedes.html" onclick="toggleMenu()">Sedes</a>
+        <a href="/AutoGasWeb/Publicaciones/publicacion.html" onclick="toggleMenu()">Publicaciones</a>
+        <a href="/AutoGasWeb/Contacto/contacto.html" onclick="toggleMenu()">Cotizar</a>
+    </div>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="pub-hero">
+        <div class="pub-hero-bg"></div>
+        <div class="pub-hero-overlay"></div>
+        <div class="pub-hero-content">
+            <div class="section-tag light-tag">AutoGas — Contenido oficial</div>
+            <h1 class="pub-hero-title">NUESTRAS<br><span class="accent-red">PUBLICACIONES</span></h1>
+            <p class="pub-hero-sub">Fotos, videos y noticias del taller. Todo lo que hacemos y lo que necesitas saber sobre conversiones GNV/GLP.</p>
+            <div class="pub-hero-btns">
+                <a href="#feed" class="btn-primary">Ver feed</a>
+                <a href="#noticias" class="btn-ghost">Ver noticias</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FEED REDES SOCIALES ==================== -->
+    <section class="feed-section" id="feed">
+
+        <div class="pub-section-head">
+            <div class="section-tag">Feed de Redes Sociales</div>
+            <h2 class="section-title dark">LO QUE<br>COMPARTIMOS</h2>
+            <p class="section-desc dark">Fotos y videos del taller, conversiones y equipo — lo mismo que publicamos en Instagram, Facebook y TikTok.</p>
+        </div>
+
+        <!-- Filtros -->
+        <div class="feed-filters">
+            <button class="feed-pill active" data-tipo="todos">Todo</button>
+            <button class="feed-pill" data-tipo="foto">Fotos</button>
+            <button class="feed-pill" data-tipo="video">Videos</button>
+        </div>
+
+        <!-- GRID
+             Para agregar una FOTO, copia este bloque:
+
+             <div class="feed-item" data-tipo="foto">
+               <div class="feed-media">
+                 <img src="Imagenes/Publicaciones/tu-foto.jpg" alt="Descripción">
+               </div>
+             </div>
+
+             Para un VIDEO:
+
+             <div class="feed-item" data-tipo="video">
+               <div class="feed-media">
+                 <video muted loop preload="none" poster="Imagenes/Publicaciones/preview.jpg">
+                   <source src="Imagenes/Publicaciones/tu-video.mp4" type="video/mp4">
+                 </video>
+               </div>
+             </div>
+        -->
+        <div class="feed-grid" id="feedGrid">
+
+            <div class="feed-item" data-tipo="foto">
+                <div class="feed-media">
+                    <img src="../Inicio/Imagenes/Taller11.jpg" alt="Conversión GNV AutoGas">
+                </div>
+            </div>
+
+            <div class="feed-item" data-tipo="video">
+                <div class="feed-media">
+                    <video muted loop preload="none" poster="../Inicio/Imagenes/Taller3.jpg">
+                        <source src="Imagenes/Publicaciones/Therian.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="feed-item" data-tipo="foto">
+                <div class="feed-media">
+                    <img src="Imagenes/Publicaciones/DiaMecanico.jpg" alt="Día del Mecánico AutoGas">
+                </div>
+            </div>
+
+            <div class="feed-item" data-tipo="foto">
+                <div class="feed-media">
+                    <img src="Imagenes/Comunicados/RequierePersonal.jpg" alt="AutoGas busca personal">
+                </div>
+            </div>
+
+            <div class="feed-item" data-tipo="video">
+                <div class="feed-media">
+                    <video muted loop preload="none" poster="../Inicio/Imagenes/Taller4.jpg">
+                        <source src="" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="feed-item" data-tipo="foto">
+                <div class="feed-media">
+                    <img src="../Inicio/Imagenes/Taller16.jpg" alt="Taller AutoGas">
+                </div>
+            </div>
+
+            <div class="feed-item" data-tipo="foto">
+                <div class="feed-media">
+                    <img src="../Inicio/Imagenes/Taller13.jpg" alt="Equipo AutoGas">
+                </div>
+            </div>
+
+            <div class="feed-item" data-tipo="video">
+                <div class="feed-media">
+                    <video muted loop preload="none" poster="../Inicio/Imagenes/Taller12.jpg">
+                        <source src="" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+            <div class="feed-item" data-tipo="foto">
+                <div class="feed-media">
+                    <img src="../Inicio/Imagenes/Taller14.jpg" alt="Mantenimiento AutoGas">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="feed-empty" id="feedEmpty">
+            <p>No hay publicaciones en esta categoría.</p>
+        </div>
+
+        <!-- Seguir en redes -->
+        <div class="redes-row">
+            <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" class="red-btn red-btn--fb">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                Seguir en Facebook
+            </a>
+            <a href="https://www.instagram.com/autogasica" target="_blank" class="red-btn red-btn--ig">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                Seguir en Instagram
+            </a>
+            <a href="https://www.tiktok.com/@autogas_ica" target="_blank" class="red-btn red-btn--tk">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.86a8.24 8.24 0 004.82 1.56V7a4.86 4.86 0 01-1.05-.31z"/></svg>
+                Seguir en TikTok
+            </a>
+        </div>
+
+    </section>
+
+    <!-- ==================== NOTICIAS ==================== -->
+    <section class="noticias-section" id="noticias">
+
+        <div class="pub-section-head">
+            <div class="section-tag">Blog y Noticias</div>
+            <h2 class="section-title dark">TODO SOBRE<br>AUTOGAS</h2>
+            <p class="section-desc dark">Guías de conversión, tips de mantenimiento y novedades de la empresa.</p>
+        </div>
+
+        <div class="noticias-filters">
+            <button class="feed-pill active" data-cat="todos">Todos</button>
+            <button class="feed-pill" data-cat="gnv">GNV</button>
+            <button class="feed-pill" data-cat="glp">GLP</button>
+            <button class="feed-pill" data-cat="mantenimiento">Mantenimiento</button>
+            <button class="feed-pill" data-cat="noticias">Noticias</button>
+            <button class="feed-pill" data-cat="tips">Tips</button>
+        </div>
+
+        <div class="noticias-grid" id="noticiasGrid"></div>
+
+        <div class="noticias-empty" id="noticiasEmpty">
+            <p>No hay artículos en esta categoría.</p>
+        </div>
+
+    </section>
+
+    <!-- ==================== LÍNEA ROJA ==================== -->
+    <div class="red-line-divider"></div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <div class="red-line-divider"></div>
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="../Inicio/Imagenes/AutoGasLogo2.png" alt="AutoGas" class="footer-logo">
+                <p class="footer-copy">© 2026 <span>AutoGas</span> · Taller Automotriz · Perú</p>
+            </div>
+            
+            <div class="footer-social">
+                <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" aria-label="Facebook">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/autogasica" target="_blank" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@autogas_ica" target="_blank" aria-label="TikTok">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.86a8.24 8.24 0 004.82 1.56V7a4.86 4.86 0 01-1.05-.31z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="noticias-data.js"></script>
+    <script src="publicacion.js"></script>
+</body>
+</html>
