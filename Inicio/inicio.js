@@ -42,7 +42,7 @@ const revealObserver = new IntersectionObserver((entries) => {
             entry.target.classList.add('visible');
         }
     });
-}, { threshold: 0.1 });
+}, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
 
 document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
     .forEach(el => revealObserver.observe(el));
@@ -154,4 +154,4 @@ function calcularAhorro() {
     
     const recovery = document.getElementById('resRecovery');
     recovery.textContent = `🚀 Recuperas la inversión del equipo en solo ${mesesRecupero} meses. ¡Después es pura ganancia!`;
-}
+}
