@@ -108,7 +108,7 @@ a { text-decoration: none; }
     align-items: center;
     justify-content: space-between;
     height: 80px;
-    background: rgba(8,8,8,0.97);
+    background: transparent;
     backdrop-filter: blur(12px);
     box-shadow: 0 2px 30px rgba(0,0,0,0.5);
     transition: background var(--transition), box-shadow var(--transition);
@@ -1131,4 +1131,12 @@ footer {
     .success-box { padding: 40px 28px; }
     .footer-brand { flex-direction: column; align-items: flex-start; }
     .pstep-label { display: none; }
+
+    .sedes-cta-section { padding: 48px 5%; }
+    .cta-fc-title { font-size: clamp(2.4rem, 10vw, 4rem); }
+    .cta-fc-btns { flex-direction: column; }
+    .cta-fc-btns .btn-primary, .cta-fc-btns .btn-ghost { width: 100%; justify-content: center; }
+    .map-section { padding: 48px 5% 0; }
+    .map-footer-note { font-size: 0.75rem; padding: 14px 16px; }
 }
+

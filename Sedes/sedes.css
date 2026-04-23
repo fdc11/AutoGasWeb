@@ -1405,12 +1405,22 @@ footer {
 @media (max-width: 480px) {
     .hero-title { font-size: clamp(3rem, 14vw, 5rem); }
     .hero-actions { flex-direction: column; }
+    .hero-actions .btn-primary, .hero-actions .btn-ghost { width: 100%; justify-content: center; }
 
     .filters-wrap { gap: 8px; }
     .filter-pill  { font-size: 0.7rem; padding: 9px 14px; }
 
+    .sedes-section { padding: 60px 5% 80px; }
+    .mapa-section { padding: 60px 5% 0; }
+    #leafletMap { height: 300px; }
+    .sede-card-body { padding: 16px 16px 20px; }
+
     .cta-title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
 
+    .modal { padding: 28px 20px; }
+    .modal-title { font-size: 1.5rem; }
+
     .modal-actions { flex-direction: column; }
-    .modal-actions .btn-ghost { text-align: center; justify-content: center; }
+    .modal-actions .btn-ghost, .modal-actions .btn-primary { width: 100%; text-align: center; justify-content: center; }
 }
+

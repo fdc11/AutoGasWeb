@@ -1487,14 +1487,20 @@ footer {
 @media (max-width: 480px) {
     .hero-title    { font-size: clamp(2.8rem, 14vw, 4.5rem); }
     .hero-actions  { flex-direction: column; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost { width: 100%; justify-content: center; }
 
-    .servicios-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-    .repuestos-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .servicios-grid { grid-template-columns: 1fr; gap: 12px; }
+    .repuestos-grid { grid-template-columns: 1fr; gap: 12px; }
 
     .impacto-num { font-size: 2.4rem; }
 
     .resena-form-wrap { padding: 24px 20px; }
     .form-row-two     { grid-template-columns: 1fr; }
+
+    .cta-sedes { min-height: 360px; }
+    .cta-sedes-content { padding: 60px 6%; }
+    .cta-title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
 }
 
 /* =============================================
@@ -1870,3 +1876,4 @@ footer {
     opacity: 1;
     transform: translateY(0);
 }
+

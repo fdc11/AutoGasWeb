@@ -1196,7 +1196,39 @@ footer {
     .hero-content { padding: 120px 6% 80px; }
     .hero-title   { font-size: clamp(3rem, 12vw, 5.5rem); }
 
+    .quienes { padding: 80px 6%; gap: 48px; }
+    .quienes-media { height: 420px; }
+
+    .impacto { padding: 48px 5%; }
+    .impacto-inner { flex-direction: column; gap: 24px; }
+    .impacto-divider { width: 60px; height: 1px; }
+    .impacto-item { min-width: auto; width: 100%; }
+
     .historia { padding: 80px 6%; }
+
+    /* Timeline → single column for mobile */
+    .timeline-line {
+        left: 20px;
+        transform: none;
+    }
+    .timeline-item {
+        width: 100%;
+        padding-left: 52px;
+    }
+    .timeline-item--left {
+        margin-right: 0;
+        text-align: left;
+    }
+    .timeline-item--right {
+        margin-left: 0;
+        text-align: left;
+    }
+    .timeline-item--left .tl-dot,
+    .timeline-item--right .tl-dot {
+        left: 14px;
+        right: auto;
+    }
+
     .valores  { padding: 80px 6%; }
     .equipo   { padding: 80px 6%; }
     .certs    { padding: 60px 6%; }
@@ -1205,6 +1237,8 @@ footer {
     .equipo-grid  { grid-template-columns: repeat(2, 1fr); gap: 16px; }
 
     .section-title { font-size: clamp(2.4rem, 8vw, 3.2rem); }
+
+    .scroll-indicator { display: none; }
 }
 
 /* =============================================
@@ -1213,16 +1247,38 @@ footer {
 @media (max-width: 480px) {
     .hero-title { font-size: clamp(2.8rem, 14vw, 4.5rem); }
     .hero-actions { flex-direction: column; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost { width: 100%; justify-content: center; }
 
     .valores-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
     .equipo-grid  { grid-template-columns: 1fr 1fr; gap: 12px; }
 
     .valor-card { padding: 32px 16px 24px; }
+    .valor-icon-wrap { width: 56px; height: 56px; margin-bottom: 20px; }
+    .valor-word { font-size: 1.2rem; }
 
     .impacto-num { font-size: 2.4rem; }
 
-    .cta-title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+    .certs { padding: 48px 4%; }
+    .marquee-wrap { display: block !important; width: 100%; min-height: 80px; }
+    .marquee-track { display: flex !important; flex-wrap: wrap !important; justify-content: center; gap: 20px; width: 100%; }
+    .cert-logo { padding: 10px 15px; flex: 0 0 auto; display: flex !important; align-items: center; justify-content: center; visibility: visible !important; opacity: 1 !important; }
+    .cert-logo img { height: 45px !important; width: auto !important; max-width: 120px; display: block !important; object-fit: contain; visibility: visible !important; opacity: 1 !important; }
+    .cert-fallback { display: block; font-size: 1.2rem !important; color: var(--gray-muted) !important; visibility: visible !important; opacity: 1 !important; }
 
-    .quienes-media { height: 320px; }
+    .cta-title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+    .cta-sedes { min-height: 360px; }
+    .cta-sedes-content { padding: 60px 6%; }
+
+    .quienes-media { height: 280px; }
     .q-img-secondary { display: none; }
+    .q-badge { display: none; }
+
+    .team-name { font-size: 0.95rem; }
+    .team-role { font-size: 0.72rem; }
+    .team-info { padding: 10px 2px 0; }
+
+    .footer-brand { flex-direction: column; align-items: flex-start; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
 }
+
