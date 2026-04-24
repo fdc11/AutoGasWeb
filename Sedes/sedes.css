@@ -1,4 +1,64 @@
 /* =============================================
+   FUENTES LOCALES — Barlow & Barlow Condensed
+============================================= */
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-300.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-500.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-700.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-600.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-700.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2') format('woff2');
+}
+
+/* =============================================
    VARIABLES — Sistema de diseño AutoGas
 ============================================= */
 :root {
@@ -1425,3 +1485,15 @@ footer {
     .modal-actions .btn-ghost, .modal-actions .btn-primary { width: 100%; text-align: center; justify-content: center; }
 }
 
+/* =============================================
+   BLOQUEO MODO OSCURO — forzar light siempre
+============================================= */
+@media (prefers-color-scheme: dark) {
+    html, body, * {
+        color-scheme: light only !important;
+    }
+    html, body {
+        background: #ffffff !important;
+        color: #080808 !important;
+    }
+}
