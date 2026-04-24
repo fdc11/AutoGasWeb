@@ -315,12 +315,14 @@ img { max-width: 100%; display: block; }
 }
 
 .btn-whatsapp {
-    background: #25D366;
+    background: #25D366 !important;
+    border-color: #25D366 !important;
 }
 
 .btn-whatsapp:hover {
-    background: #1ebe5d;
-    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
+    background: #1ebe5d !important;
+    border-color: #1ebe5d !important;
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35) !important;
 }
 
 .btn-ghost {
