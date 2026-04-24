@@ -314,6 +314,15 @@ img { max-width: 100%; display: block; }
     padding: 16px 36px;
 }
 
+.btn-whatsapp {
+    background: #25D366;
+}
+
+.btn-whatsapp:hover {
+    background: #1ebe5d;
+    box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
+}
+
 .btn-ghost {
     display: inline-flex;
     align-items: center;
