@@ -646,15 +646,8 @@ a   { text-decoration: none; }
 }
 
 /* =============================================
-   FOOTER — copiado exacto de inicio.css
+   FOOTER
 ============================================= */
-.red-line-divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #df0415, transparent);
-    box-shadow: 0 0 20px rgba(223,4,21,0.4);
-}
-
-
 footer {
     background: var(--black-mid);
     border-top: 1px solid var(--border-dark);
@@ -716,7 +709,11 @@ footer {
 @media (max-width: 480px) {
     .feed-grid { grid-template-columns: 1fr; }
     .pub-hero-btns { flex-direction: column; }
+    .pub-hero-btns .btn-primary,
+    .pub-hero-btns .btn-ghost { width: 100%; justify-content: center; min-height: 44px; }
     .redes-row { flex-direction: column; }
+    .red-btn { min-height: 44px; }
+    .feed-pill { min-height: 44px; }
 }
 
 /* =============================================

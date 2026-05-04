@@ -1,0 +1,55 @@
+# =============================================
+#  .gitignore — AutoGas Web (vanilla HTML/CSS/JS)
+# =============================================
+
+# ── OS artifacts ────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ── Editor / IDE ─────────────────────────────
+.vscode/
+.idea/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+
+# ── Developer utility scripts ────────────────
+# PowerShell and SQL files at the project root
+# are internal tooling and not part of the web app
+*.ps1
+*.sql
+*.bat
+
+# ── Logs & temp files ────────────────────────
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# ── Node (if tooling is ever added) ──────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# ── Build output (if a bundler is added later) ─
+dist/
+build/
+.cache/
+
+# ── Environment secrets ──────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── PHP backend files (excluded from web repo) ─
+# Keep .php source files tracked but ignore
+# any generated output or config with credentials
+config.php
+db_config.php
+*.sqlite
+*.db

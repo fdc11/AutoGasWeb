@@ -25,6 +25,10 @@ window.addEventListener('load', () => {
 // =============================================
 // MENÚ MÓVIL
 // =============================================
+/**
+ * Toggles the mobile navigation menu open/close state.
+ * Also prevents background scrolling when the menu is open.
+ */
 function toggleMenu() {
     const hamburger = document.getElementById('hamburger');
     const mobileNav  = document.getElementById('mobileNav');
@@ -50,6 +54,14 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
 // =============================================
 // COUNTER ANIMATION
 // =============================================
+/**
+ * Animates a numerical counter from 0 to the target value.
+ * Appends 'K' for values >= 1000.
+ * 
+ * @param {HTMLElement} el - The DOM element where the number is displayed.
+ * @param {number} target - The final numerical value to reach.
+ * @param {number} [duration=1800] - Total duration of the animation in ms.
+ */
 function animateCounter(el, target, duration = 1800) {
     const isLarge = target >= 1000;
     const step    = target / (duration / 16);
@@ -105,6 +117,10 @@ document.querySelectorAll('.area-card').forEach(card => {
 // =============================================
 let esTaxista = false;
 
+/**
+ * Toggles the calculator between Taxi driver mode and Personal use mode.
+ * Updates the informational tip and recalculates savings.
+ */
 function toggleTipo() {
     esTaxista = document.getElementById('switchTipo').checked;
     const tip = document.getElementById('calc-tip');
@@ -118,6 +134,13 @@ function toggleTipo() {
     calcularAhorro();
 }
 
+/**
+ * Animates a numerical value increasing smoothly to the target end value.
+ * Used for the savings calculator results.
+ * 
+ * @param {HTMLElement} el - The DOM element where the number will be displayed.
+ * @param {number} valor - The target end value.
+ */
 function animarNumero(el, valor) {
     const start = 0;
     const end = valor;
@@ -133,6 +156,10 @@ function animarNumero(el, valor) {
     requestAnimationFrame(update);
 }
 
+/**
+ * Calculates the monthly savings based on current fuel expense and the selected driver profile.
+ * Updates the UI with the animated results and investment recovery time.
+ */
 function calcularAhorro() {
     const gasto = parseFloat(document.getElementById('gastoActual').value) || 0;
     if (gasto <= 0) {

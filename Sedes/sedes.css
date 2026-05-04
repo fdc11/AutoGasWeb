@@ -1386,53 +1386,6 @@ footer {
 }
 
 /* =============================================
-   RESPONSIVE
-============================================= */
-@media (max-width: 1100px) {
-    .quienes          { grid-template-columns: 1fr; gap: 60px; }
-    .quienes-images   { height: 380px; }
-    .elegirnos-grid   { grid-template-columns: repeat(2, 1fr); }
-    .sedes-grid       { grid-template-columns: repeat(3, 1fr); }
-    .fise-banner      { flex-direction: column; }
-    .stats-band-inner { gap: 0; }
-    .sband-item       { padding: 20px 30px; }
-}
-
-@media (max-width: 900px) {
-    .galeria              { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
-    .galeria-item.tall    { grid-row: span 1; }
-    .servicios            { padding-left: 5%; }
-    .serv-card            { min-width: 280px; height: 380px; }
-}
-
-@media (max-width: 768px) {
-    .nav-links        { display: none; }
-    .hamburger        { display: flex; }
-    .hero-stats       { display: none; }
-    .hero-line-v      { display: none; }
-    .hero-content     { padding-left: 5%; }
-    .scroll-cue       { left: 5%; }
-    .elegirnos-grid   { grid-template-columns: repeat(2, 1fr); }
-    .sedes-grid       { grid-template-columns: repeat(2, 1fr); }
-    .stats-band-inner { flex-direction: column; gap: 32px; }
-    .sband-sep        { display: none; }
-    .footer-inner     { flex-direction: column; align-items: flex-start; }
-    .servicios-header { flex-direction: column; align-items: flex-start; gap: 20px; padding-right: 5%; }
-}
-
-@media (max-width: 480px) {
-    .hero-ctas        { flex-direction: column; }
-    .btn-primary,
-    .btn-ghost        { justify-content: center; }
-    .hero-title       { font-size: 3.5rem; }
-    .elegirnos-grid   { grid-template-columns: 1fr; }
-    .sedes-grid       { grid-template-columns: repeat(2, 1fr); }
-    .galeria          { grid-template-columns: 1fr; }
-    .cta-final-btns   { flex-direction: column; align-items: center; }
-    .quienes-features { grid-template-columns: 1fr; }
-    .footer-brand     { flex-direction: column; align-items: flex-start; }
-}
-/* =============================================
    RESPONSIVE — 1100px
 ============================================= */
 @media (max-width: 1100px) {
