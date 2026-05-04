@@ -1207,19 +1207,6 @@ footer {
 ============================================= */
 @media (max-width: 1100px) {
     .quienes          { grid-template-columns: 1fr; gap: 60px; }
-    .quienes-images   { height: 380px; }
-    .elegirnos-grid   { grid-template-columns: repeat(2, 1fr); }
-    .sedes-grid       { grid-template-columns: repeat(3, 1fr); }
-    .fise-banner      { flex-direction: column; }
-    .stats-band-inner { gap: 0; }
-    .sband-item       { padding: 20px 30px; }
-}
-
-@media (max-width: 900px) {
-    .galeria              { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
-    .galeria-item.tall    { grid-row: span 1; }
-    .servicios            { padding-left: 5%; }
-    .serv-card            { min-width: 280px; height: 380px; }
 }
 
 /* =============================================

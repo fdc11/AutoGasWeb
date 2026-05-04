@@ -1998,334 +1998,7 @@ footer {
     color: var(--red);
 }
 
-/* =============================================
-   RESPONSIVE
-============================================= */
-@media (max-width: 1100px) {
-    .quienes {
-        grid-template-columns: 1fr;
-        gap: 60px;
-    }
 
-    .quienes-images {
-        height: 380px;
-    }
-
-    .elegirnos-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .sedes-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .fise-banner {
-        flex-direction: column;
-    }
-
-    .stats-band-inner {
-        gap: 0;
-    }
-
-    .sband-item {
-        padding: 20px 30px;
-    }
-
-    .cred-item {
-        padding: 0 30px;
-    }
-}
-
-@media (max-width: 900px) {
-    .galeria {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 200px 200px 200px;
-    }
-
-    .galeria-item.tall {
-        grid-row: span 1;
-    }
-
-    .servicios {
-        padding-left: 5%;
-    }
-
-    .serv-card {
-        min-width: 280px;
-        height: 380px;
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .hero {
-        min-height: 100dvh;
-    }
-
-    .hero-stats {
-        display: none;
-    }
-
-    .hero-line-v {
-        display: none;
-    }
-
-    .hero-content {
-        padding-left: 5%;
-        padding-right: 5%;
-    }
-
-    .scroll-cue {
-        left: 5%;
-    }
-
-    .quienes {
-        padding: 80px 5%;
-        gap: 40px;
-    }
-
-    .quienes-badge {
-        left: auto;
-        right: 10px;
-        top: auto;
-        bottom: 10px;
-        transform: none;
-    }
-
-    .proceso-cards {
-        grid-template-columns: 1fr;
-    }
-
-    .elegirnos {
-        padding: 80px 5%;
-    }
-
-    .elegirnos-header {
-        margin-bottom: 48px;
-    }
-
-    .elegirnos-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .sedes-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .stats-band {
-        padding: 48px 5%;
-    }
-
-    .stats-band-inner {
-        flex-direction: column;
-        gap: 32px;
-    }
-
-    .sband-sep {
-        display: none;
-    }
-
-    .areas-section {
-        padding: 64px 5% 72px;
-    }
-
-    .sedes {
-        padding: 80px 5%;
-    }
-
-    .calculadora-section {
-        padding: 72px 24px;
-    }
-
-    .credenciales {
-        padding: 56px 5%;
-    }
-
-    .cta-final {
-        padding: 80px 5%;
-    }
-
-    .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .servicios-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-        padding-right: 5%;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        min-height: auto;
-        height: auto;
-    }
-
-    .hero-title {
-        font-size: clamp(2rem, 10vw, 3.2rem);
-    }
-
-    .hero-content {
-        padding-top: 120px;
-        padding-bottom: 60px;
-        max-width: 100%;
-        overflow: hidden;
-    }
-
-    .hero-sub {
-        font-size: 0.9rem;
-        margin-bottom: 32px;
-    }
-
-    .sband-num {
-        font-size: 2.8rem;
-    }
-
-    .sband-item {
-        padding: 16px 20px;
-    }
-
-    .quienes-images {
-        height: 260px;
-    }
-
-    .quienes-img-secondary {
-        width: 45%;
-        height: 50%;
-    }
-
-    .section-title {
-        font-size: clamp(1.8rem, 7vw, 2.8rem);
-    }
-
-    .section-desc {
-        font-size: 0.9rem;
-    }
-
-    .area-card {
-        height: 300px;
-    }
-
-    .area-title {
-        font-size: 1.5rem;
-    }
-
-    .area-card-front,
-    .area-card-back {
-        padding: 28px 24px;
-    }
-
-    .elegirnos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .razon-card {
-        padding: 36px 24px 32px;
-    }
-
-    .sedes-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .galeria {
-        grid-template-columns: 1fr;
-        grid-template-rows: 180px;
-    }
-
-    .galeria-item.tall {
-        grid-row: span 1;
-    }
-
-    .cobertura-wrap {
-        gap: 28px;
-        padding: 0;
-    }
-
-    .peru-svg {
-        max-width: 160px;
-    }
-
-    .calc-switch-wrap {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .calc-switch-label {
-        font-size: 0.78rem;
-    }
-
-    .calc-input {
-        width: 140px;
-        font-size: 1.4rem;
-    }
-
-    .cred-grid {
-        gap: 28px;
-    }
-
-    .cred-item {
-        padding: 0 10px;
-        gap: 16px;
-    }
-
-    .cred-logo-wrap {
-        width: 60px;
-        height: 60px;
-    }
-
-    .cred-name {
-        font-size: 1.3rem;
-    }
-
-    .cred-desc {
-        font-size: 0.72rem;
-    }
-
-    .marcas-section {
-        padding: 48px 0;
-    }
-
-    .marca-item {
-        padding: 0 24px;
-        height: 70px;
-    }
-
-    .marca-item img {
-        max-height: 32px;
-        max-width: 80px;
-    }
-
-    .cta-final-btns {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .cta-final-btns .btn-primary,
-    .cta-final-btns .btn-ghost {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .quienes-features {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-brand {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
 
 /* =============================================
    ÁREAS — 3 cards con flip hover
@@ -2873,6 +2546,197 @@ footer {
     margin-top: 8px;
 }
 
+
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 1100px) {
+    .quienes {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .quienes-images {
+        height: 380px;
+    }
+
+    .elegirnos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sedes-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .fise-banner {
+        flex-direction: column;
+    }
+
+    .stats-band-inner {
+        gap: 0;
+    }
+
+    .sband-item {
+        padding: 20px 30px;
+    }
+
+    .cred-item {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 900px) {
+    .galeria {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px 200px;
+    }
+
+    .galeria-item.tall {
+        grid-row: span 1;
+    }
+
+    .servicios {
+        padding-left: 5%;
+    }
+
+    .serv-card {
+        min-width: 280px;
+        height: 380px;
+    }
+    .areas-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+    }
+
+    .area-card {
+        height: 340px;
+    }
+}
+
+
+@media (max-width: 860px) {
+    .cobertura-wrap {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .peru-svg {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        min-height: 100dvh;
+    }
+
+    .hero-stats {
+        display: none;
+    }
+
+    .hero-line-v {
+        display: none;
+    }
+
+    .hero-content {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .scroll-cue {
+        left: 5%;
+    }
+
+    .quienes {
+        padding: 80px 5%;
+        gap: 40px;
+    }
+
+    .quienes-badge {
+        left: auto;
+        right: 10px;
+        top: auto;
+        bottom: 10px;
+        transform: none;
+    }
+
+    .proceso-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .elegirnos {
+        padding: 80px 5%;
+    }
+
+    .elegirnos-header {
+        margin-bottom: 48px;
+    }
+
+    .elegirnos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sedes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stats-band {
+        padding: 48px 5%;
+    }
+
+    .stats-band-inner {
+        flex-direction: column;
+        gap: 32px;
+    }
+
+    .sband-sep {
+        display: none;
+    }
+
+    .areas-section {
+        padding: 64px 5% 72px;
+    }
+
+    .sedes {
+        padding: 80px 5%;
+    }
+
+    .calculadora-section {
+        padding: 72px 24px;
+    }
+
+    .credenciales {
+        padding: 56px 5%;
+    }
+
+    .cta-final {
+        padding: 80px 5%;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .servicios-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding-right: 5%;
+    }
+}
+
+
 @media (max-width: 600px) {
     .calc-result-grid {
         grid-template-columns: 1fr;
@@ -2885,6 +2749,171 @@ footer {
 
     .calculadora-section {
         padding: 64px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: auto;
+        height: auto;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 10vw, 3.2rem);
+    }
+
+    .hero-content {
+        padding-top: 120px;
+        padding-bottom: 60px;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .hero-sub {
+        font-size: 0.9rem;
+        margin-bottom: 32px;
+    }
+
+    .sband-num {
+        font-size: 2.8rem;
+    }
+
+    .sband-item {
+        padding: 16px 20px;
+    }
+
+    .quienes-images {
+        height: 260px;
+    }
+
+    .quienes-img-secondary {
+        width: 45%;
+        height: 50%;
+    }
+
+    .section-title {
+        font-size: clamp(1.8rem, 7vw, 2.8rem);
+    }
+
+    .section-desc {
+        font-size: 0.9rem;
+    }
+
+    .area-card {
+        height: 300px;
+    }
+
+    .area-title {
+        font-size: 1.5rem;
+    }
+
+    .area-card-front,
+    .area-card-back {
+        padding: 28px 24px;
+    }
+
+    .elegirnos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .razon-card {
+        padding: 36px 24px 32px;
+    }
+
+    .sedes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .galeria {
+        grid-template-columns: 1fr;
+        grid-template-rows: 180px;
+    }
+
+    .galeria-item.tall {
+        grid-row: span 1;
+    }
+
+    .cobertura-wrap {
+        gap: 28px;
+        padding: 0;
+    }
+
+    .peru-svg {
+        max-width: 160px;
+    }
+
+    .calc-switch-wrap {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .calc-switch-label {
+        font-size: 0.78rem;
+    }
+
+    .calc-input {
+        width: 140px;
+        font-size: 1.4rem;
+    }
+
+    .cred-grid {
+        gap: 28px;
+    }
+
+    .cred-item {
+        padding: 0 10px;
+        gap: 16px;
+    }
+
+    .cred-logo-wrap {
+        width: 60px;
+        height: 60px;
+    }
+
+    .cred-name {
+        font-size: 1.3rem;
+    }
+
+    .cred-desc {
+        font-size: 0.72rem;
+    }
+
+    .marcas-section {
+        padding: 48px 0;
+    }
+
+    .marca-item {
+        padding: 0 24px;
+        height: 70px;
+    }
+
+    .marca-item img {
+        max-height: 32px;
+        max-width: 80px;
+    }
+
+    .cta-final-btns {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .cta-final-btns .btn-primary,
+    .cta-final-btns .btn-ghost {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .quienes-features {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .cobertura-lista {
+        grid-template-columns: 1fr;
     }
 }
 

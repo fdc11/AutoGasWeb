@@ -7,6 +7,12 @@
 /* -----------------------------------------------
    TOGGLE GRUPOS DE SERVICIOS
 ----------------------------------------------- */
+/**
+ * Toggles the visibility of service groups (Mecánica, Conversión, Repuestos).
+ * Collapses all other open groups before expanding the selected one.
+ * 
+ * @param {string} id - The ID of the service group to toggle.
+ */
 function toggleGrupo(id) {
     const todos = ['mecanica', 'conversion', 'repuestos'];
     const colapsable = document.getElementById('grupo-' + id);
@@ -52,7 +58,12 @@ function toggleGrupo(id) {
     }
 }
 
-
+/**
+ * Toggles an accordion item open or closed.
+ * Closes all other accordion items first.
+ * 
+ * @param {string} id - The ID of the accordion to toggle.
+ */
 function toggleAcordeon(id) {
     const acordeon = document.getElementById(id);
     const body = acordeon.querySelector('.acordeon-body');

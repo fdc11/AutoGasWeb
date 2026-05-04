@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* -----------------------------------------------
-       8. MARQUEE — accessibility
+       7. MARQUEE — accessibility
     ----------------------------------------------- */
     const marqueeTrack = document.querySelector('.marquee-track');
     if (marqueeTrack) {

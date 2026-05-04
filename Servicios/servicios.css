@@ -1449,120 +1449,41 @@ footer {
 /* =============================================
    RESPONSIVE
 ============================================= */
-@media (max-width: 1100px) {
-    .quienes          { grid-template-columns: 1fr; gap: 60px; }
-    .quienes-images   { height: 380px; }
-    .elegirnos-grid   { grid-template-columns: repeat(2, 1fr); }
-    .sedes-grid       { grid-template-columns: repeat(3, 1fr); }
-    .fise-banner      { flex-direction: column; }
-    .stats-band-inner { gap: 0; }
-    .sband-item       { padding: 20px 30px; }
-}
 
-@media (max-width: 900px) {
-    .galeria              { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
-    .galeria-item.tall    { grid-row: span 1; }
-    .servicios            { padding-left: 5%; }
-    .serv-card            { min-width: 280px; height: 380px; }
-}
 
-@media (max-width: 768px) {
-    .nav-links        { display: none; }
-    .hamburger        { display: flex; }
-    .hero-stats       { display: none; }
-    .hero-line-v      { display: none; }
-    .hero-content     { padding-left: 5%; }
-    .scroll-cue       { left: 5%; }
-    .elegirnos-grid   { grid-template-columns: repeat(2, 1fr); }
-    .sedes-grid       { grid-template-columns: repeat(2, 1fr); }
-    .stats-band-inner { flex-direction: column; gap: 32px; }
-    .sband-sep        { display: none; }
-    .footer-inner     { flex-direction: column; align-items: flex-start; }
-    .servicios-header { flex-direction: column; align-items: flex-start; gap: 20px; padding-right: 5%; }
-}
 
-@media (max-width: 480px) {
-    .hero-ctas        { flex-direction: column; }
-    .btn-primary,
-    .btn-ghost        { justify-content: center; }
-    .hero-title       { font-size: 3.5rem; }
-    .elegirnos-grid   { grid-template-columns: 1fr; }
-    .sedes-grid       { grid-template-columns: repeat(2, 1fr); }
-    .galeria          { grid-template-columns: 1fr; }
-    .cta-final-btns   { flex-direction: column; align-items: center; }
-    .quienes-features { grid-template-columns: 1fr; }
-    .footer-brand     { flex-direction: column; align-items: flex-start; }
-}
+
+
+
+
+
+
+
+
 
 /* =============================================
    RESPONSIVE — 1100px
 ============================================= */
-@media (max-width: 1100px) {
-    .servicios-grid { grid-template-columns: repeat(2, 1fr); }
-    .repuestos-grid  { grid-template-columns: repeat(2, 1fr); }
-    .grupo-intro     { grid-template-columns: 1fr; gap: 40px; padding: 80px 8%; }
-    .grupo-num-bg    { font-size: clamp(4rem, 8vw, 6rem); }
-    .resena-inner    { grid-template-columns: 1fr; gap: 48px; }
-}
+
+
 
 /* =============================================
    RESPONSIVE — 900px
 ============================================= */
-@media (max-width: 900px) {
-    .impacto-divider { display: none; }
-    .impacto-inner   { justify-content: center; gap: 32px; }
-    .impacto-item    { min-width: 140px; }
-    .resena-form-wrap { padding: 32px 28px; }
-    .form-row-two    { grid-template-columns: 1fr; }
-}
+
+
 
 /* =============================================
    RESPONSIVE — 768px
 ============================================= */
-@media (max-width: 768px) {
-    .nav-links  { display: none; }
-    .hamburger  { display: flex; }
 
-    .hero-content { padding: 120px 6% 80px; }
-    .hero-title   { font-size: clamp(3rem, 12vw, 5.5rem); }
 
-    .subgrupo,
-    .subgrupo.subgrupo-alt,
-    .subgrupo.subgrupo-dark { padding: 48px 6%; }
-
-    .grupo-intro { padding: 64px 6%; }
-
-    .servicios-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .repuestos-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-
-    .testimonios-section { padding: 72px 6%; }
-    .resena-section      { padding: 72px 6%; }
-    .resena-inner        { gap: 40px; }
-
-    .cta-title { font-size: clamp(2.8rem, 8vw, 4rem); }
-}
 
 /* =============================================
    RESPONSIVE — 480px
 ============================================= */
-@media (max-width: 480px) {
-    .hero-title    { font-size: clamp(2.8rem, 14vw, 4.5rem); }
-    .hero-actions  { flex-direction: column; }
-    .hero-actions .btn-primary,
-    .hero-actions .btn-ghost { width: 100%; justify-content: center; }
 
-    .servicios-grid { grid-template-columns: 1fr; gap: 12px; }
-    .repuestos-grid { grid-template-columns: 1fr; gap: 12px; }
 
-    .impacto-num { font-size: 2.4rem; }
-
-    .resena-form-wrap { padding: 24px 20px; }
-    .form-row-two     { grid-template-columns: 1fr; }
-
-    .cta-sedes { min-height: 360px; }
-    .cta-sedes-content { padding: 60px 6%; }
-    .cta-title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
-}
 
 /* =============================================
    ACORDEONES — BLOQUE PRINCIPAL
@@ -1793,14 +1714,8 @@ footer {
 .ac-ver-mas:hover { gap: 12px; }
 
 /* Responsive */
-@media (max-width: 640px) {
-    .acordeon-grid { grid-template-columns: 1fr; padding: 0 20px; }
-    .ac-item:nth-child(even) { padding-left: 0; border-left: none; }
-    .acordeon-trigger { padding: 18px 20px; }
-    .acordeon-count { display: none; }
-    .acordeon-nombre { font-size: 1.05rem; }
-    .ac-ver-mas { margin: 14px 20px 18px; }
-}
+
+
 
 /* =============================================
    TOGGLE GRUPOS — botón + colapsable
@@ -1907,18 +1822,8 @@ footer {
     color: var(--white);
 }
 
-@media (max-width: 640px) {
-    .grupo-toggle-btn {
-        min-width: 0;
-        width: 100%;
-        padding: 16px 20px;
-        gap: 14px;
-    }
-    .grupo-toggle-chevron {
-        width: 34px;
-        height: 34px;
-    }
-}
+
+
 
 /* =============================================
    ANIMACIÓN INTERNA DE GRUPOS (reemplaza reveal)
@@ -1936,6 +1841,119 @@ footer {
 .grupo-colapsable .repuesto-card.grupo-visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* =============================================
+   RESPONSIVE CONSOLIDATED
+============================================= */
+@media (max-width: 1100px) {
+    .quienes          { grid-template-columns: 1fr; gap: 60px; }
+    .quienes-images   { height: 380px; }
+    .elegirnos-grid   { grid-template-columns: repeat(2, 1fr); }
+    .sedes-grid       { grid-template-columns: repeat(3, 1fr); }
+    .fise-banner      { flex-direction: column; }
+    .stats-band-inner { gap: 0; }
+    .sband-item       { padding: 20px 30px; }
+    .servicios-grid { grid-template-columns: repeat(2, 1fr); }
+    .repuestos-grid  { grid-template-columns: repeat(2, 1fr); }
+    .grupo-intro     { grid-template-columns: 1fr; gap: 40px; padding: 80px 8%; }
+    .grupo-num-bg    { font-size: clamp(4rem, 8vw, 6rem); }
+    .resena-inner    { grid-template-columns: 1fr; gap: 48px; }
+}
+
+@media (max-width: 900px) {
+    .galeria              { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px 200px; }
+    .galeria-item.tall    { grid-row: span 1; }
+    .servicios            { padding-left: 5%; }
+    .serv-card            { min-width: 280px; height: 380px; }
+    .impacto-divider { display: none; }
+    .impacto-inner   { justify-content: center; gap: 32px; }
+    .impacto-item    { min-width: 140px; }
+    .resena-form-wrap { padding: 32px 28px; }
+    .form-row-two    { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .nav-links        { display: none; }
+    .hamburger        { display: flex; }
+    .hero-stats       { display: none; }
+    .hero-line-v      { display: none; }
+    .hero-content     { padding-left: 5%; }
+    .scroll-cue       { left: 5%; }
+    .elegirnos-grid   { grid-template-columns: repeat(2, 1fr); }
+    .sedes-grid       { grid-template-columns: repeat(2, 1fr); }
+    .stats-band-inner { flex-direction: column; gap: 32px; }
+    .sband-sep        { display: none; }
+    .footer-inner     { flex-direction: column; align-items: flex-start; }
+    .servicios-header { flex-direction: column; align-items: flex-start; gap: 20px; padding-right: 5%; }
+    .nav-links  { display: none; }
+    .hamburger  { display: flex; }
+
+    .hero-content { padding: 120px 6% 80px; }
+    .hero-title   { font-size: clamp(3rem, 12vw, 5.5rem); }
+
+    .subgrupo,
+    .subgrupo.subgrupo-alt,
+    .subgrupo.subgrupo-dark { padding: 48px 6%; }
+
+    .grupo-intro { padding: 64px 6%; }
+
+    .servicios-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .repuestos-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+    .testimonios-section { padding: 72px 6%; }
+    .resena-section      { padding: 72px 6%; }
+    .resena-inner        { gap: 40px; }
+
+    .cta-title { font-size: clamp(2.8rem, 8vw, 4rem); }
+}
+
+@media (max-width: 480px) {
+    .hero-ctas        { flex-direction: column; }
+    .btn-primary,
+    .btn-ghost        { justify-content: center; }
+    .hero-title       { font-size: 3.5rem; }
+    .elegirnos-grid   { grid-template-columns: 1fr; }
+    .sedes-grid       { grid-template-columns: repeat(2, 1fr); }
+    .galeria          { grid-template-columns: 1fr; }
+    .cta-final-btns   { flex-direction: column; align-items: center; }
+    .quienes-features { grid-template-columns: 1fr; }
+    .footer-brand     { flex-direction: column; align-items: flex-start; }
+    .hero-title    { font-size: clamp(2.8rem, 14vw, 4.5rem); }
+    .hero-actions  { flex-direction: column; }
+    .hero-actions .btn-primary,
+    .hero-actions .btn-ghost { width: 100%; justify-content: center; }
+
+    .servicios-grid { grid-template-columns: 1fr; gap: 12px; }
+    .repuestos-grid { grid-template-columns: 1fr; gap: 12px; }
+
+    .impacto-num { font-size: 2.4rem; }
+
+    .resena-form-wrap { padding: 24px 20px; }
+    .form-row-two     { grid-template-columns: 1fr; }
+
+    .cta-sedes { min-height: 360px; }
+    .cta-sedes-content { padding: 60px 6%; }
+    .cta-title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+}
+
+@media (max-width: 640px) {
+    .acordeon-grid { grid-template-columns: 1fr; padding: 0 20px; }
+    .ac-item:nth-child(even) { padding-left: 0; border-left: none; }
+    .acordeon-trigger { padding: 18px 20px; }
+    .acordeon-count { display: none; }
+    .acordeon-nombre { font-size: 1.05rem; }
+    .ac-ver-mas { margin: 14px 20px 18px; }
+    .grupo-toggle-btn {
+        min-width: 0;
+        width: 100%;
+        padding: 16px 20px;
+        gap: 14px;
+    }
+    .grupo-toggle-chevron {
+        width: 34px;
+        height: 34px;
+    }
 }
 
 /* =============================================
