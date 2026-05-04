@@ -37,6 +37,9 @@ const state = {
 /* =========================================
    NAVBAR — scroll + hamburguesa
 ========================================= */
+/**
+ * Toggles the visibility of the mobile navigation menu.
+ */
 function toggleMenu() {
     const nav = document.getElementById('mobileNav');
     nav.classList.toggle('open');
@@ -129,6 +132,8 @@ function validateField(fieldId) {
 
 /**
  * Valida todos los campos de un step y retorna true si todo OK
+ * @param {number} step - Step number to validate (1, 2, or 3)
+ * @returns {boolean} True if the step is valid, false otherwise.
  */
 function validateStep(step) {
     let valid = true;
@@ -190,6 +195,9 @@ function validateStep(step) {
 /* =========================================
    NAVEGACIÓN ENTRE STEPS
 ========================================= */
+/**
+ * Validates the current step and advances to the next step if valid.
+ */
 function nextStep() {
     if (!validateStep(state.currentStep)) return;
 
@@ -200,12 +208,19 @@ function nextStep() {
     }
 }
 
+/**
+ * Returns to the previous step without validating.
+ */
 function prevStep() {
     if (state.currentStep > 1) {
         goToStep(state.currentStep - 1);
     }
 }
 
+/**
+ * Handles the transition animation between steps.
+ * @param {number} targetStep - The step to transition to.
+ */
 function goToStep(targetStep) {
     const currentEl = document.getElementById(`step${state.currentStep}`);
     const targetEl  = document.getElementById(`step${targetStep}`);
@@ -252,6 +267,10 @@ function saveStepData(step) {
 /* =========================================
    ACTUALIZAR BARRA DE PROGRESO
 ========================================= */
+/**
+ * Updates the visual progress bar and step indicators.
+ * Also controls the visibility of navigation buttons based on current step.
+ */
 function updateProgress() {
     const pct = (state.currentStep / state.totalSteps) * 100;
     document.getElementById('progressFill').style.width = `${pct}%`;
@@ -376,6 +395,11 @@ const HORAS_TALLER = [
 ];
 
 // ✅ FIX 1: función ahora recibe sede_id y lo envía al PHP
+/**
+ * Fetches available time slots for a given date and headquarters.
+ * @param {string} fecha - The selected date (YYYY-MM-DD).
+ * @param {string} sedeId - The ID of the selected headquarters.
+ */
 async function cargarDisponibilidad(fecha, sedeId) {
     const horasWrap = document.getElementById('horasWrap');
     const horasGrid = document.getElementById('horasGrid');
@@ -415,6 +439,10 @@ async function cargarDisponibilidad(fecha, sedeId) {
 /* =========================================
    GRID DE CONFIRMACIÓN (STEP 4)
 ========================================= */
+/**
+ * Builds the HTML grid to show the user a summary of all entered information
+ * before final confirmation.
+ */
 function buildConfirmationGrid() {
     const d = state.data;
     const grid = document.getElementById('confirmGrid');

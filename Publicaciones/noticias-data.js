@@ -160,10 +160,20 @@ const NOTICIAS = [
 /* ─────────────────────────────────────────────
    No modifiques nada debajo de esta línea
 ───────────────────────────────────────────── */
+/**
+ * Retrieves a news article object by its unique ID.
+ * @param {number|string} id - The unique identifier of the article.
+ * @returns {Object|null} The article object if found, otherwise null.
+ */
 function getNoticiaById(id) {
     return NOTICIAS.find(n => n.id === parseInt(id)) || null;
 }
 
+/**
+ * Retrieves a list of news articles matching a specific category.
+ * @param {string} cat - The category to filter by (e.g. 'gnv', 'glp'). Use 'todos' to get all articles.
+ * @returns {Array} An array of article objects matching the category.
+ */
 function getNoticiasByCategoria(cat) {
     if (cat === 'todos') return NOTICIAS;
     return NOTICIAS.filter(n => n.categoria === cat);

@@ -237,6 +237,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalOverlay = document.getElementById('modalOverlay');
     const modalClose   = document.getElementById('modalClose');
 
+    /**
+     * Builds the content of the modal with data from the specified sede.
+     * @param {string} sedeKey - The key of the sede in SEDES_DATA.
+     */
     function buildModalContent(sedeKey) {
         const data = SEDES_DATA[sedeKey];
         if (!data) return;
@@ -268,12 +272,19 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
+    /**
+     * Opens the sede details modal and disables body scrolling.
+     * @param {string} sedeKey - The key of the sede in SEDES_DATA.
+     */
     function openModal(sedeKey) {
         buildModalContent(sedeKey);
         modalOverlay.classList.add('open');
         document.body.style.overflow = 'hidden';
     }
 
+    /**
+     * Closes the sede details modal and restores body scrolling.
+     */
     function closeModal() {
         modalOverlay.classList.remove('open');
         document.body.style.overflow = '';
@@ -303,6 +314,9 @@ document.addEventListener('DOMContentLoaded', () => {
     ----------------------------------------------- */
     initLeafletMap();
 
+    /**
+     * Initializes the Leaflet map, adds tile layers, and places markers for each sede.
+     */
     function initLeafletMap() {
         if (typeof L === 'undefined') return;
 
@@ -407,6 +421,10 @@ document.addEventListener('DOMContentLoaded', () => {
     /* -----------------------------------------------
        9. HIGHLIGHT CARD desde mapa
     ----------------------------------------------- */
+    /**
+     * Highlights the corresponding sede card in the DOM and scrolls it into view.
+     * @param {string} sedeKey - The key of the sede in SEDES_DATA.
+     */
     function highlightCard(sedeKey) {
         document.querySelectorAll('.sede-card').forEach(c => c.classList.remove('highlighted'));
 

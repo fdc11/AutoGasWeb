@@ -49,6 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ──────────────────────────────────────────
    RENDER ARTÍCULO
 ────────────────────────────────────────── */
+/**
+ * Renders the full article details onto the page.
+ * Updates the meta title, hero background, badges, and article body.
+ * 
+ * @param {Object} n - The article data object.
+ */
 function renderArticulo(n) {
     // Meta título
     document.title = `${n.titulo} | AutoGas`;
@@ -80,6 +86,12 @@ function renderArticulo(n) {
 /* ──────────────────────────────────────────
    RELACIONADOS (misma categoría, excluyendo actual)
 ────────────────────────────────────────── */
+/**
+ * Renders related articles below the main article.
+ * Prioritizes articles from the same category, falling back to other categories to fill 2 slots.
+ * 
+ * @param {Object} actual - The current article data object to exclude from results.
+ */
 function renderRelacionados(actual) {
     const data = typeof NOTICIAS !== 'undefined' ? NOTICIAS : [];
     const rel  = data
@@ -121,6 +133,10 @@ function renderRelacionados(actual) {
 /* ──────────────────────────────────────────
    NO ENCONTRADO
 ────────────────────────────────────────── */
+/**
+ * Displays a 404 "Not Found" message when an article ID is invalid or missing.
+ * Clears out existing meta fields.
+ */
 function mostrarNoEncontrado() {
     document.getElementById('artHero').style.minHeight = '40vh';
     document.getElementById('artTitle').textContent    = 'Artículo no encontrado';
