@@ -2517,17 +2517,7 @@ footer {
     gap: 12px;
 }
 
-@media (max-width: 900px) {
-    .areas-grid {
-        grid-template-columns: 1fr;
-        max-width: 480px;
-        margin: 0 auto;
-    }
 
-    .area-card {
-        height: 340px;
-    }
-}
 
 /* =============================================
    COBERTURA — MAPA SVG REAL + LISTA ORDENADA
@@ -2679,22 +2669,7 @@ footer {
     white-space: nowrap;
 }
 
-@media (max-width: 860px) {
-    .cobertura-wrap {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
 
-    .peru-svg {
-        max-width: 200px;
-    }
-}
-
-@media (max-width: 480px) {
-    .cobertura-lista {
-        grid-template-columns: 1fr;
-    }
-}
 
 /* improve body text readability on dark backgrounds */
 .section-desc,
