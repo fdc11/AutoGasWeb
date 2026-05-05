@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -7,39 +7,39 @@
     <style>html{color-scheme:light only;}@media(prefers-color-scheme:dark){html,body{background:#fff!important;color:#080808!important;}}</style>
     <title>Nosotros | AutoGas Perú</title>
     <link rel="preload" as="image" href="Imagenes/BannerNosotros.jpg">
-    <link rel="stylesheet" href="nosotros.css">
+    <link rel="stylesheet" href="nosotros.css?v=202605051818">
 </head>
 <body>
 
     <!-- ==================== NAVBAR ==================== -->
-    <header class="navbar" id="navbar">
-        <a href="/AutoGasWeb/Inicio/inicio.html" style="display:inline-flex; align-items:center;">
-        <img src="Imagenes/AutoGasLogo2.png" alt="AutoGas Logo" class="logo">
-    </a>
-        <nav>
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="../Inicio/inicio.html" class="nav-logo">
+                <img src="../Inicio/Imagenes/AutoGasLogo2.png" alt="AutoGas Logo" />
+            </a>
             <ul class="nav-links">
-                <li><a href="/AutoGasWeb/Inicio/inicio.html">Inicio</a></li>
-                <li><a href="nosotros.html" class="nav-link active">NOSOTROS</a></li>
-                <li><a href="/AutoGasWeb/Servicios/servicios.html">Servicios</a></li>
-                <li><a href="/AutoGasWeb/Sedes/sedes.html">Sedes</a></li>
-                <li><a href="/AutoGasWeb/Publicaciones/publicacion.html">Publicaciones</a></li>
-                <li><a href="/AutoGasWeb/Contacto/contacto.html" class="nav-cta">Cotizar</a></li>
+                <li><a href="../Inicio/inicio.html">INICIO</a></li>
+                <li><a href="nosotros.html" class="nav-active">Nosotros</a></li>
+                <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                <li><a href="../Tienda/tienda.html">Tienda</a></li>
+                <li><a href="../Contacto/contacto.html" class="nav-cta">Cotizar</a></li>
             </ul>
-        </nav>
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </header>
-    <div class="mobile-nav" id="mobileNav">
-        <a href="/AutoGasWeb/Inicio/inicio.html" onclick="toggleMenu()">Inicio</a>
-        <a href="/AutoGasWeb/Nosotros/nosotros.html" onclick="toggleMenu()">Nosotros</a>
-        <a href="/AutoGasWeb/Servicios/servicios.html" onclick="toggleMenu()">Servicios</a>
-        <a href="/AutoGasWeb/Sedes/sedes.html" onclick="toggleMenu()">Sedes</a>
-        <a href="/AutoGasWeb/Publicaciones/publicacion.html" onclick="toggleMenu()">Publicaciones</a>
-        <a href="/AutoGasWeb/Contacto/contacto.html" onclick="toggleMenu()">Cotizar</a>
-    </div>
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="../Inicio/inicio.html" onclick="toggleMenu()">INICIO</a></li>
+                <li><a href="nosotros.html" onclick="toggleMenu()">NOSOTROS</a></li>
+                <li><a href="../Servicios/servicios.html" onclick="toggleMenu()">SERVICIOS</a></li>
+                <li><a href="../Sedes/sedes.html" onclick="toggleMenu()">SEDES</a></li>
+                <li><a href="../Tienda/tienda.html" onclick="toggleMenu()">TIENDA</a></li>
+                <li><a href="../Contacto/contacto.html" onclick="toggleMenu()">COTIZAR</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- ==================== HERO ==================== -->
     <section class="hero" id="hero">

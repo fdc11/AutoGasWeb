@@ -1968,3 +1968,32 @@ footer {
         color: #080808 !important;
     }
 }
+
+/* =============================================
+   NAVBAR — nav-inner / nav-logo (STANDARDIZED)
+============================================= */
+.nav-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+.nav-logo img {
+    height: 48px;
+    width: auto;
+}
+
+.nav-links a.nav-active {
+    color: var(--red);
+}
+.nav-links a.nav-active::after { width: 100%; }
+
+.mobile-nav ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

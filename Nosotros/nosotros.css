@@ -109,11 +109,6 @@ img { max-width: 100%; display: block; }
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 1000;
-    padding: 0 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 80px;
     background: transparent;
     transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
 }
@@ -123,6 +118,29 @@ img { max-width: 100%; display: block; }
     backdrop-filter: blur(12px);
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }
+
+/* nav-inner: contenedor interno del navbar */
+.nav-inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+/* nav-logo: logo dentro del nav */
+.nav-logo img {
+    height: 48px;
+    width: auto;
+}
+
+/* Estado activo */
+.nav-links a.nav-active {
+    color: var(--red);
+}
+.nav-links a.nav-active::after { width: 100%; }
 
 .navbar .logo {
     height: 52px;
