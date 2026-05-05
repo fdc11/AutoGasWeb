@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoGas | Tienda — Repuestos y Productos Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="tienda.css" />
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="../Inicio/inicio.html" class="nav-logo">
+                <img src="../Inicio/Imagenes/AutoGasLogo2.png" alt="AutoGas Logo" />
+            </a>
+            <ul class="nav-links">
+                <li><a href="../Inicio/inicio.html">INICIO</a></li>
+                <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                <li><a href="tienda.html" class="nav-active">Tienda</a></li>
+                <li><a href="../Contacto/contacto.html" class="nav-cta">Cotizar</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <ul>
+                <li><a href="../Inicio/inicio.html" onclick="toggleMenu()">INICIO</a></li>
+                <li><a href="../Nosotros/nosotros.html" onclick="toggleMenu()">NOSOTROS</a></li>
+                <li><a href="../Servicios/servicios.html" onclick="toggleMenu()">SERVICIOS</a></li>
+                <li><a href="../Sedes/sedes.html" onclick="toggleMenu()">SEDES</a></li>
+                <li><a href="tienda.html" onclick="toggleMenu()">TIENDA</a></li>
+                <li><a href="../Contacto/contacto.html" onclick="toggleMenu()">COTIZAR</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-tienda">
+        <div class="hero-bg">
+            <!-- IMAGEN: foto premium productos automotrices, fondo oscuro industrial -->
+            <!-- Sugerencia prompt Gemini: "premium automotive products flat lay, motor oil bottles, 
+                 car parts, dark industrial background, dramatic studio lighting, cinematic" -->
+            <img src="Imagenes/tienda-hero-bg.jpg" alt="AutoGas Tienda" class="hero-bg-img" />
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <span class="hero-badge hero-badge--anim">
+                <span class="badge-dot"></span>
+                Aceites · Repuestos · Refrigerantes · Filtros
+            </span>
+            <h1 class="hero-title hero-title--anim">
+                PRODUCTOS<br /><em>QUE TU AUTO</em><br />MERECE.
+            </h1>
+            <p class="hero-sub hero-sub--anim">
+                Marcas líderes. Precios directos. A un mensaje de tu sede más cercana.
+            </p>
+            <div class="hero-actions hero-actions--anim">
+                <a href="#store" class="btn-primary">Ver Productos</a>
+                <a href="../Contacto/contacto.html" class="btn-ghost">Cotizar Conversión</a>
+            </div>
+        </div>
+        <div class="hero-scroll"><span></span></div>
+    </section>
+
+    <!-- STORE SECTION -->
+    <section class="store-section" id="store">
+
+        <!-- Breadcrumb (oculto al inicio) -->
+        <div class="breadcrumb" id="breadcrumb">
+            <button class="bc-back" onclick="volverCategorias()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Tienda
+            </button>
+            <span class="bc-sep">/</span>
+            <span class="bc-current" id="bcNombre"></span>
+        </div>
+
+        <!-- Header categorías -->
+        <div class="store-header" id="headerCats">
+            <span class="section-label">Nuestra Tienda</span>
+            <h2 class="section-title">LO QUE TU AUTO<br /><strong>NECESITA</strong></h2>
+            <p class="section-desc">Selecciona una categoría y encuentra el producto ideal.</p>
+        </div>
+
+        <!-- Header productos (oculto al inicio) -->
+        <div class="store-header" id="headerProds" style="display:none">
+            <span class="section-label" id="prodLabel">Categoría</span>
+            <h2 class="section-title" id="prodTitle">PRODUCTOS</h2>
+        </div>
+
+        <!-- GRID CATEGORÍAS -->
+        <div class="cats-grid" id="viewCats">
+
+            <div class="cat-card reveal" onclick="verCategoria('aceites')">
+                <div class="cat-img">
+                    <!-- IMAGEN: aceites motor iluminación dramática fondo negro, botellas Shell/Castrol -->
+                    <!-- Prompt: "motor oil bottles premium studio shot, Shell Castrol, dramatic black background,
+                         golden oil splash, automotive luxury photography" -->
+                    <img src="Imagenes/cat-aceites.jpg" alt="Aceites y Lubricantes" />
+                    <div class="cat-overlay"></div>
+                    <span class="cat-num">01</span>
+                </div>
+                <div class="cat-info">
+                    <h3>Aceites y<br />Lubricantes</h3>
+                    <p>Shell, Castrol, Mobil, Valvoline. Motor protegido, rendimiento al tope.</p>
+                    <span class="cat-arrow">
+                        Ver productos
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <div class="cat-card reveal" onclick="verCategoria('repuestos')">
+                <div class="cat-img">
+                    <!-- IMAGEN: piezas mecánicas premium sobre superficie metálica oscura, iluminación lateral -->
+                    <!-- Prompt: "car parts and auto spares premium product photography, dark metallic surface,
+                         dramatic side lighting, cinematic automotive" -->
+                    <img src="Imagenes/cat-repuestos.jpg" alt="Repuestos" />
+                    <div class="cat-overlay"></div>
+                    <span class="cat-num">02</span>
+                </div>
+                <div class="cat-info">
+                    <h3>Repuestos</h3>
+                    <p>Piezas originales para todas las marcas del mercado peruano.</p>
+                    <span class="cat-arrow">
+                        Ver productos
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <div class="cat-card reveal" onclick="verCategoria('refrigerantes')">
+                <div class="cat-img">
+                    <!-- IMAGEN: líquido refrigerante azul/verde brillante, gotas, fondo negro oscuro -->
+                    <!-- Prompt: "automotive coolant liquid blue green neon, product photography,
+                         dark background, macro drops, studio premium lighting" -->
+                    <img src="Imagenes/cat-refrigerantes.jpg" alt="Refrigerantes" />
+                    <div class="cat-overlay"></div>
+                    <span class="cat-num">03</span>
+                </div>
+                <div class="cat-info">
+                    <h3>Refrigerantes</h3>
+                    <p>Fórmulas de larga duración. Tu motor a la temperatura ideal siempre.</p>
+                    <span class="cat-arrow">
+                        Ver productos
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <div class="cat-card reveal" onclick="verCategoria('filtros')">
+                <div class="cat-img">
+                    <!-- IMAGEN: filtros de motor y aire apilados, fondo negro, luz roja/blanca dramática -->
+                    <!-- Prompt: "car oil air filters stacked premium product shot, black background,
+                         red white dramatic lighting, automotive parts photography" -->
+                    <img src="Imagenes/cat-filtros.jpg" alt="Filtros y Componentes" />
+                    <div class="cat-overlay"></div>
+                    <span class="cat-num">04</span>
+                </div>
+                <div class="cat-info">
+                    <h3>Filtros y<br />Componentes</h3>
+                    <p>Aceite, aire, combustible y habitáculo. Tu auto respira diferente.</p>
+                    <span class="cat-arrow">
+                        Ver productos
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- GRID PRODUCTOS -->
+        <div class="prods-section" id="viewProds" style="display:none">
+            <div class="prods-meta">
+                <span id="prodsCount" class="prods-count"></span>
+                <select id="ordenSelect" onchange="ordenarProductos()" class="prods-order">
+                    <option value="default">Relevancia</option>
+                    <option value="asc">Precio: menor a mayor</option>
+                    <option value="desc">Precio: mayor a menor</option>
+                </select>
+            </div>
+            <div class="prods-grid" id="prodsGrid"></div>
+        </div>
+
+    </section>
+
+    <!-- BRANDS TICKER -->
+    <section class="brands-section">
+        <div class="brands-header">
+            <span class="section-label">Marcas Originales</span>
+            <h2 class="section-title">MARCAS QUE<br /><strong>TRABAJAMOS</strong></h2>
+        </div>
+        <div class="ticker-wrap">
+            <div class="ticker-track" id="tickerTrack">
+                <!-- Añade los logos que ya tienes en inicio. Se duplican para el loop -->
+                <div class="t-item"><img src="../Inicio/Imagenes/Shell.png" alt="Shell" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Castrol.png" alt="Castrol" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Valvoline.png" alt="Valvoline" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Mobil.png" alt="Mobil" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Chevron.png" alt="Chevron" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Bosch.png" alt="Bosch" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/NGK.png" alt="NGK" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Mann.png" alt="Mann" /></div>
+                <!-- Duplicado -->
+                <div class="t-item"><img src="../Inicio/Imagenes/Shell.png" alt="Shell" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Castrol.png" alt="Castrol" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Valvoline.png" alt="Valvoline" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Mobil.png" alt="Mobil" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Chevron.png" alt="Chevron" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Bosch.png" alt="Bosch" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/NGK.png" alt="NGK" /></div>
+                <div class="t-item"><img src="../Inicio/Imagenes/Mann.png" alt="Mann" /></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="../Inicio/inicio.html">
+                    <img src="../Inicio/Imagenes/AutoGasLogo2.png" alt="AutoGas" class="footer-logo" />
+                </a>
+                <p class="footer-tagline">Convierte. Ahorra. Domina.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Instagram">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="TikTok">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                    <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                    <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                    <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                    <li><a href="tienda.html">Tienda</a></li>
+                    <li><a href="../Contacto/contacto.html">Cotizar</a></li>
+                </ul>
+            </div>
+            <div class="footer-nav">
+                <h4>Tienda</h4>
+                <ul>
+                    <li><a href="#" onclick="verCategoria('aceites');return false;">Aceites y Lubricantes</a></li>
+                    <li><a href="#" onclick="verCategoria('repuestos');return false;">Repuestos</a></li>
+                    <li><a href="#" onclick="verCategoria('refrigerantes');return false;">Refrigerantes</a></li>
+                    <li><a href="#" onclick="verCategoria('filtros');return false;">Filtros y Componentes</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contacto</h4>
+                <ul>
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                        7 Sedes en todo el Perú
+                    </li>
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92z" />
+                        </svg>
+                        WhatsApp por sede
+                    </li>
+                    <li>
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                            <polyline points="22,6 12,13 2,6" />
+                        </svg>
+                        contacto@autogas.pe
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 AutoGas Perú. Todos los derechos reservados.</p>
+            <p>Diseñado para quienes exigen lo mejor.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL PEDIR POR WHATSAPP -->
+    <div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="cerrarModalBtn()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+
+            <div class="modal-preview" id="modalPreview">
+                <!-- JS lo llena -->
+            </div>
+
+            <div class="modal-form">
+                <h3 class="modal-title">Selecciona cantidad y sede</h3>
+
+                <div class="modal-field">
+                    <label>Cantidad</label>
+                    <div class="qty-ctrl">
+                        <button onclick="cambiarCantidad(-1)">−</button>
+                        <span id="qtyDisplay">1</span>
+                        <button onclick="cambiarCantidad(1)">+</button>
+                    </div>
+                </div>
+
+                <div class="modal-field">
+                    <label>Tu sede AutoGas</label>
+                    <div class="sedes-grid">
+                        <div class="sede-opt" data-id="1" onclick="elegirSede(this)">Ica</div>
+                        <div class="sede-opt" data-id="2" onclick="elegirSede(this)">Lima</div>
+                        <div class="sede-opt" data-id="3" onclick="elegirSede(this)">Trujillo</div>
+                        <div class="sede-opt" data-id="4" onclick="elegirSede(this)">Chincha</div>
+                        <div class="sede-opt" data-id="5" onclick="elegirSede(this)">Huancayo</div>
+                        <div class="sede-opt" data-id="6" onclick="elegirSede(this)">Nasca</div>
+                        <div class="sede-opt" data-id="7" onclick="elegirSede(this)">Arequipa</div>
+                    </div>
+                </div>
+
+                <div class="modal-total" id="modalTotal"></div>
+
+                <button class="btn-wsp" id="btnWsp" onclick="enviarWsp()" disabled>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                        <path
+                            d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.525 5.845L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.003-1.368l-.359-.214-3.722.976.994-3.636-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
+                    </svg>
+                    Pedir por WhatsApp
+                </button>
+                <p class="modal-note">Solo dale enviar en WhatsApp. 🚀</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="tienda.js"></script>
+</body>
+
+</html>
