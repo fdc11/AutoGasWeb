@@ -69,22 +69,26 @@
    VARIABLES — Sistema de diseño AutoGas
 ============================================= */
 :root {
-    --red: #df0415;
+    --red: #e30613;
     --red-dark: #a80310;
-    --red-glow: rgba(223, 4, 21, 0.25);
-    --red-soft: rgba(223, 4, 21, 0.10);
+    --red-glow: rgba(227, 6, 19, 0.45);
+    --red-soft: rgba(227, 6, 19, 0.10);
     --black: #080808;
     --black-mid: #0f0f0f;
     --black-soft: #161616;
     --black-card: #1c1c1c;
     --white: #ffffff;
+    --dark: #1a1a1a;
+    --dark2: #111111;
+    --gray: #888888;
     --gray-light: #f4f4f4;
     --gray-mid: #e8e8e8;
     --gray-text: #999;
     --gray-muted: #555;
+    --border: rgba(255, 255, 255, 0.08);
     --border-dark: rgba(255, 255, 255, 0.07);
     --border-red: rgba(223, 4, 21, 0.3);
-    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition: 0.3s cubic-bezier(.4, 0, .2, 1);
     --transition-fast: 0.22s ease;
     --nav-h: 80px;
     --font-body: 'Barlow', sans-serif;
@@ -1453,6 +1457,28 @@ img {
     align-items: center;
     font-size: .8rem;
     color: #555;
+}
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 1024px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center;
+    }
 }
 
 /* =============================================

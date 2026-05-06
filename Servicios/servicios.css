@@ -69,23 +69,29 @@
    VARIABLES — Sistema de diseño AutoGas
 ============================================= */
 :root {
-    --red: #df0415;
+    --red: #e30613;
     --red-dark: #a80310;
-    --red-glow: rgba(223, 4, 21, 0.25);
-    --red-soft: rgba(223, 4, 21, 0.10);
+    --red-glow: rgba(227, 6, 19, 0.45);
+    --red-soft: rgba(227, 6, 19, 0.10);
     --black: #080808;
     --black-mid: #0f0f0f;
     --black-soft: #161616;
     --black-card: #1c1c1c;
     --white: #ffffff;
+    --dark: #1a1a1a;
+    --dark2: #111111;
+    --gray: #888888;
     --gray-light: #f4f4f4;
     --gray-mid: #e8e8e8;
     --gray-text: #999;
     --gray-muted: #555;
+    --border: rgba(255, 255, 255, 0.08);
     --border-dark: rgba(255, 255, 255, 0.07);
     --border-red: rgba(223, 4, 21, 0.3);
-    --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition: 0.3s cubic-bezier(.4, 0, .2, 1);
     --transition-fast: 0.22s ease;
+    --font-body: 'Barlow', sans-serif;
+    --font-cond: 'Barlow Condensed', sans-serif;
 }
 
 /* =============================================
@@ -2556,23 +2562,9 @@ img {
    FOOTER (STANDARDIZED — TIENDA VERSION)
  ============================================= */
 .footer {
-    background: #1a1a1a;
-    /* var(--dark) in tienda */
+    background: var(--dark);
     border-top: 1px solid rgba(255, 255, 255, .06);
     padding: 5rem 2rem 0;
-    color: #ffffff;
-}
-
-.footer a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease;
-}
-
-.footer ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
 }
 
 .footer-inner {
@@ -2591,13 +2583,12 @@ img {
 }
 
 .footer-tagline {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: var(--font-cond);
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: #e30613;
-    /* var(--red) in tienda */
+    color: var(--red);
     margin-bottom: 1.5rem;
 }
 
@@ -2614,24 +2605,23 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #888888;
-    /* var(--gray) in tienda */
-    transition: border-color 0.3s ease, color 0.3s ease;
+    color: var(--gray);
+    transition: border-color var(--transition), color var(--transition);
 }
 
 .footer-socials a:hover {
-    border-color: #e30613;
-    color: #e30613;
+    border-color: var(--red);
+    color: var(--red);
 }
 
 .footer-nav h4,
 .footer-contact h4 {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: var(--font-cond);
     font-size: .8rem;
     font-weight: 700;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: #ffffff;
+    color: var(--white);
     margin-bottom: 1.2rem;
 }
 
@@ -2644,12 +2634,12 @@ img {
 
 .footer-nav a {
     font-size: .9rem;
-    color: #888888;
-    transition: color 0.3s ease, padding-left 0.3s ease;
+    color: var(--gray);
+    transition: color var(--transition), padding-left var(--transition);
 }
 
 .footer-nav a:hover {
-    color: #e30613;
+    color: var(--red);
     padding-left: .3rem;
 }
 
@@ -2658,13 +2648,13 @@ img {
     align-items: center;
     gap: .6rem;
     font-size: .88rem;
-    color: #888888;
+    color: var(--gray);
     line-height: 1.4;
 }
 
 .footer-contact svg {
     flex-shrink: 0;
-    color: #e30613;
+    color: var(--red);
 }
 
 .footer-bottom {

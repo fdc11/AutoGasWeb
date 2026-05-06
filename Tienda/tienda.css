@@ -11,17 +11,29 @@
 
 :root {
     --red: #e30613;
+    --red-dark: #a80310;
     --red-glow: rgba(227, 6, 19, 0.45);
+    --red-soft: rgba(227, 6, 19, 0.10);
+    --black: #080808;
+    --black-mid: #0f0f0f;
+    --black-soft: #161616;
+    --black-card: #1c1c1c;
     --white: #ffffff;
     --dark: #1a1a1a;
     --dark2: #111111;
     --gray: #888888;
-    --light: #f5f5f5;
+    --gray-light: #f4f4f4;
+    --gray-mid: #e8e8e8;
+    --gray-text: #999;
+    --gray-muted: #555;
     --border: rgba(255, 255, 255, 0.08);
-    --font-cond: 'Barlow Condensed', sans-serif;
+    --border-dark: rgba(255, 255, 255, 0.07);
+    --border-red: rgba(223, 4, 21, 0.3);
+    --transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+    --transition-fast: 0.22s ease;
     --font-body: 'Barlow', sans-serif;
+    --font-cond: 'Barlow Condensed', sans-serif;
     --nav-h: 80px;
-    --transition: .3s cubic-bezier(.4, 0, .2, 1);
 }
 
 html {
