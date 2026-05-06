@@ -1490,3 +1490,30 @@ footer {
     flex-direction: column;
     width: 100%;
 }
+
+
+/* TIENDA — caja blanca, texto rojo, mismo efecto glow */
+.nav-links .nav-highlight {
+    background: var(--white);
+    color: var(--red) !important;
+    padding: 9px 20px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.nav-links .nav-highlight::after {
+    display: none;
+}
+
+.nav-links .nav-highlight:hover {
+    background: #eeeeee;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    color: var(--red) !important;
+}
+
+.mobile-nav .mobile-nav-highlight {
+    color: var(--red);
+}
