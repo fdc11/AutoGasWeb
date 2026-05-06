@@ -8,6 +8,7 @@
     font-display: swap;
     src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-300.woff2') format('woff2');
 }
+
 @font-face {
     font-family: 'Barlow';
     font-style: normal;
@@ -15,6 +16,7 @@
     font-display: swap;
     src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2') format('woff2');
 }
+
 @font-face {
     font-family: 'Barlow';
     font-style: normal;
@@ -22,6 +24,7 @@
     font-display: swap;
     src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-500.woff2') format('woff2');
 }
+
 @font-face {
     font-family: 'Barlow';
     font-style: normal;
@@ -29,6 +32,7 @@
     font-display: swap;
     src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2') format('woff2');
 }
+
 @font-face {
     font-family: 'Barlow';
     font-style: normal;
@@ -36,6 +40,7 @@
     font-display: swap;
     src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-700.woff2') format('woff2');
 }
+
 @font-face {
     font-family: 'Barlow Condensed';
     font-style: normal;
@@ -43,6 +48,7 @@
     font-display: swap;
     src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-600.woff2') format('woff2');
 }
+
 @font-face {
     font-family: 'Barlow Condensed';
     font-style: normal;
@@ -50,6 +56,7 @@
     font-display: swap;
     src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-700.woff2') format('woff2');
 }
+
 @font-face {
     font-family: 'Barlow Condensed';
     font-style: normal;
@@ -818,7 +825,7 @@ a {
 
 .impact-item:hover {
     border-color: rgba(223, 4, 21, 0.3);
-    box-shadow: 0 12px 40px rgba(223, 4, 21, 0.08), 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 12px 40px rgba(223, 4, 21, 0.08), 0 2px 8px rgba(0, 0, 0, 0.05);
     transform: translateX(6px);
 }
 
@@ -918,7 +925,7 @@ a {
     bottom: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, var(--red), rgba(223,4,21,0.3));
+    background: linear-gradient(90deg, var(--red), rgba(223, 4, 21, 0.3));
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -947,8 +954,8 @@ a {
     padding: 24px 20px 22px;
     overflow: hidden;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.35s ease,
-                border-color 0.35s ease;
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
 }
 
 .proceso-card::before {
@@ -966,7 +973,7 @@ a {
 
 .proceso-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(223, 4, 21, 0.1), 0 4px 16px rgba(0,0,0,0.06);
+    box-shadow: 0 20px 50px rgba(223, 4, 21, 0.1), 0 4px 16px rgba(0, 0, 0, 0.06);
     border-color: rgba(223, 4, 21, 0.25);
 }
 
@@ -1040,7 +1047,8 @@ a {
 
 /* Conector entre cards (línea punteada) */
 .proceso-connector {
-    display: none; /* Se activa solo en desktop si se quiere */
+    display: none;
+    /* Se activa solo en desktop si se quiere */
 }
 
 /* Responsive */
@@ -2604,6 +2612,7 @@ footer {
         min-width: 280px;
         height: 380px;
     }
+
     .areas-grid {
         grid-template-columns: 1fr;
         max-width: 480px;
@@ -2912,6 +2921,7 @@ footer {
         flex-direction: column;
         align-items: flex-start;
     }
+
     .cobertura-lista {
         grid-template-columns: 1fr;
     }
@@ -2921,14 +2931,20 @@ footer {
    BLOQUEO MODO OSCURO — forzar light siempre
 ============================================= */
 @media (prefers-color-scheme: dark) {
-    html, body, * {
+
+    html,
+    body,
+    * {
         color-scheme: light only !important;
     }
-    html, body {
+
+    html,
+    body {
         background: #ffffff !important;
         color: #080808 !important;
     }
 }
+
 /* =============================================
    NAV-INNER / NAV-LOGO (STANDARDIZED)
 ============================================= */
@@ -2950,19 +2966,16 @@ footer {
 .nav-links a.nav-active {
     color: var(--red);
 }
-.nav-links a.nav-active::after { width: 100%; }
 
-/* =============================================
-   FOOTER (STANDARDIZED)
-============================================= */
-:root {
-    --f-red: #e30613;
-    --f-dark: #1a1a1a;
-    --f-gray: #888888;
+.nav-links a.nav-active::after {
+    width: 100%;
 }
 
+/* =============================================
+   FOOTER
+============================================= */
 .footer {
-    background: var(--f-dark);
+    background: var(--dark);
     border-top: 1px solid rgba(255, 255, 255, .06);
     padding: 5rem 2rem 0;
 }
@@ -2983,12 +2996,12 @@ footer {
 }
 
 .footer-tagline {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: var(--font-cond);
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--f-red);
+    color: var(--red);
     margin-bottom: 1.5rem;
 }
 
@@ -3005,23 +3018,23 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--f-gray);
-    transition: border-color 0.3s ease, color 0.3s ease;
+    color: var(--gray);
+    transition: border-color var(--transition), color var(--transition);
 }
 
 .footer-socials a:hover {
-    border-color: var(--f-red);
-    color: var(--f-red);
+    border-color: var(--red);
+    color: var(--red);
 }
 
 .footer-nav h4,
 .footer-contact h4 {
-    font-family: 'Barlow Condensed', sans-serif;
+    font-family: var(--font-cond);
     font-size: .8rem;
     font-weight: 700;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: #ffffff;
+    color: var(--white);
     margin-bottom: 1.2rem;
 }
 
@@ -3030,17 +3043,16 @@ footer {
     display: flex;
     flex-direction: column;
     gap: .7rem;
-    list-style: none;
 }
 
 .footer-nav a {
     font-size: .9rem;
-    color: var(--f-gray);
-    transition: color 0.3s ease, padding-left 0.3s ease;
+    color: var(--gray);
+    transition: color var(--transition), padding-left var(--transition);
 }
 
 .footer-nav a:hover {
-    color: var(--f-red);
+    color: var(--red);
     padding-left: .3rem;
 }
 
@@ -3049,13 +3061,13 @@ footer {
     align-items: center;
     gap: .6rem;
     font-size: .88rem;
-    color: var(--f-gray);
+    color: var(--gray);
     line-height: 1.4;
 }
 
 .footer-contact svg {
     flex-shrink: 0;
-    color: var(--f-red);
+    color: var(--red);
 }
 
 .footer-bottom {
@@ -3070,24 +3082,6 @@ footer {
     color: #555;
 }
 
-@media (max-width: 1024px) {
-    .footer-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    .footer-bottom {
-        flex-direction: column;
-        gap: .5rem;
-        text-align: center;
-    }
-}
 
 
 /* TIENDA — caja blanca, texto rojo, mismo efecto glow */
