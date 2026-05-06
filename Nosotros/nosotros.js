@@ -25,23 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
     /* -----------------------------------------------
        2. HAMBURGER / MOBILE MENU
     ----------------------------------------------- */
-    const hamburger  = document.getElementById('hamburger');
-    const mobileNav  = document.getElementById('mobileNav');
-
-    window.toggleMenu = function () {
-        const isOpen = mobileNav.classList.toggle('open');
-        hamburger.classList.toggle('active', isOpen);
+    window.toggleMenu = function() {
+        const h = document.getElementById('hamburger');
+        const m = document.getElementById('mobileNav');
+        h.classList.toggle('open');
+        m.classList.toggle('open');
+        document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
     };
-
-    // Close menu on outside click
-    document.addEventListener('click', (e) => {
-        if (mobileNav.classList.contains('open') &&
-            !mobileNav.contains(e.target) &&
-            !hamburger.contains(e.target)) {
-            mobileNav.classList.remove('open');
-            hamburger.classList.remove('active');
-        }
-    });
 
 
     /* -----------------------------------------------

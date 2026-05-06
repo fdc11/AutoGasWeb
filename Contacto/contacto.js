@@ -37,12 +37,15 @@ const state = {
 /* =========================================
    NAVBAR — scroll + hamburguesa
 ========================================= */
-/**
- * Toggles the visibility of the mobile navigation menu.
- */
+/* =========================================
+   NAVBAR — scroll + hamburguesa
+========================================= */
 function toggleMenu() {
-    const nav = document.getElementById('mobileNav');
-    nav.classList.toggle('open');
+    const h = document.getElementById('hamburger');
+    const m = document.getElementById('mobileNav');
+    h.classList.toggle('open');
+    m.classList.toggle('open');
+    document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
 }
 
 window.addEventListener('scroll', () => {

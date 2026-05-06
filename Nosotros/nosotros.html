@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -11,15 +11,15 @@
 </head>
 <body>
 
-        <!-- ==================== NAVBAR ==================== -->
+    <!-- ==================== NAVBAR ==================== -->
     <header class="navbar" id="navbar">
-        <a href="../Inicio/inicio.html" style="display:inline-flex; align-items:center;">
-            <img src="../Inicio/Imagenes/AutoGasLogo2.png" alt="AutoGas Logo" class="logo">
+        <a href="../Inicio/inicio.html" class="nav-logo">
+            <img src="../Inicio/Imagenes/AutoGasLogo2.png" alt="AutoGas Logo" />
         </a>
         <nav>
             <ul class="nav-links">
                 <li><a href="../Inicio/inicio.html">INICIO</a></li>
-                <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                <li><a href="../Nosotros/nosotros.html" class="nav-active">Nosotros</a></li>
                 <li><a href="../Servicios/servicios.html">Servicios</a></li>
                 <li><a href="../Sedes/sedes.html">Sedes</a></li>
                 <li><a href="../Tienda/tienda.html" class="nav-highlight">Tienda</a></li>
@@ -34,11 +34,11 @@
     </header>
     <div class="mobile-nav" id="mobileNav">
         <a href="../Inicio/inicio.html" onclick="toggleMenu()">Inicio</a>
-        <a href="../Nosotros/nosotros.html" onclick="toggleMenu()">Nosotros</a>
+        <a href="../Nosotros/nosotros.html" onclick="toggleMenu()" class="mobile-nav-highlight">Nosotros</a>
         <a href="../Servicios/servicios.html" onclick="toggleMenu()">Servicios</a>
         <a href="../Sedes/sedes.html" onclick="toggleMenu()">Sedes</a>
-        <a href="../Tienda/tienda.html" onclick="toggleMenu()" class="mobile-nav-highlight">Tienda</a>
-        <a href="../Contacto/contacto.html" onclick="toggleMenu()">Cotizar</a>
+        <a href="../Tienda/tienda.html" onclick="toggleMenu()">Tienda</a>
+        <a href="../Contacto/contacto.html" onclick="toggleMenu()" class="mobile-nav-cta">Cotizar</a>
     </div>
     <!-- ==================== HERO ==================== -->
     <section class="hero" id="hero">

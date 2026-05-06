@@ -86,6 +86,9 @@
     --border-red:  rgba(223, 4, 21, 0.3);
     --transition:  0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     --transition-fast: 0.22s ease;
+    --nav-h: 80px;
+    --font-body: 'Barlow', sans-serif;
+    --font-cond: 'Barlow Condensed', sans-serif;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -158,11 +161,13 @@ a { text-decoration: none; }
 .accent-text { color: var(--red); }
 
 /* =============================================
-   NAVBAR — idéntico
+   NAVBAR
 ============================================= */
 .navbar {
     position: fixed;
-    top: 0; left: 0; right: 0;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000;
     padding: 0 5%;
     display: flex;
@@ -170,107 +175,190 @@ a { text-decoration: none; }
     justify-content: space-between;
     height: 80px;
     background: transparent;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 2px 30px rgba(0,0,0,0.5);
-    transition: background var(--transition), box-shadow var(--transition);
+    transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
 }
+
 .navbar.scrolled {
-    background: rgba(8,8,8,0.99);
+    background: rgba(8, 8, 8, 0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }
-.navbar .logo {
+
+.nav-logo img {
     height: 52px;
+    width: auto;
     object-fit: contain;
+    display: block;
 }
+
 .nav-links {
     display: flex;
     list-style: none;
     gap: 36px;
     align-items: center;
 }
+
 .nav-links a {
+    text-decoration: none;
     color: var(--white);
-    font-family: 'Barlow', sans-serif;
+    font-family: var(--font-body);
     font-size: 0.82rem;
     font-weight: 500;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     position: relative;
     padding-bottom: 4px;
-    transition: color var(--transition-fast);
+    transition: color 0.22s ease;
 }
+
 .nav-links a::after {
     content: '';
     position: absolute;
-    bottom: -2px; left: 50%;
-    width: 0; height: 2px;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
     background: var(--red);
     border-radius: 2px;
     transform: translateX(-50%);
     transition: width 0.35s cubic-bezier(0.65, 0, 0.35, 1);
 }
+
 .nav-links a:hover,
-.nav-links a.active { color: var(--red); }
+.nav-links a.nav-active {
+    color: var(--red);
+}
+
 .nav-links a:hover::after,
-.nav-links a.active::after { width: 100%; }
+.nav-links a.nav-active::after {
+    width: 100%;
+}
+
+/* COTIZAR — fondo rojo sólido */
 .nav-links .nav-cta {
     background: var(--red);
     color: var(--white) !important;
     padding: 9px 20px;
     border-radius: 3px;
     letter-spacing: 0.06em;
-    transition: background var(--transition-fast), transform var(--transition-fast);
+    font-weight: 700;
+    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
 }
-.nav-links .nav-cta::after { display: none; }
-.nav-links .nav-cta:hover { background: var(--red-dark); transform: translateY(-2px); }
 
+.nav-links .nav-cta::after {
+    display: none;
+}
+
+.nav-links .nav-cta:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--red-glow);
+    color: var(--white) !important;
+}
+
+/* TIENDA — caja blanca, texto rojo */
+.nav-links .nav-highlight {
+    background: var(--white);
+    color: var(--red) !important;
+    padding: 9px 20px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.nav-links .nav-highlight::after {
+    display: none;
+}
+
+.nav-links .nav-highlight:hover {
+    background: #eeeeee;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
+    color: var(--red) !important;
+}
+
+/* Hamburger */
 .hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
+    background: none;
+    border: none;
     cursor: pointer;
-    padding: 6px;
+    padding: .5rem;
 }
+
 .hamburger span {
-    width: 24px; height: 2px;
+    display: block;
+    width: 26px;
+    height: 2px;
     background: var(--white);
-    border-radius: 2px;
-    transition: var(--transition-fast);
+    transition: transform .3s, opacity .3s;
 }
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile nav */
 .mobile-nav {
     display: none;
-    flex-direction: column;
     position: fixed;
-    top: 80px; left: 0; right: 0;
-    background: rgba(8,8,8,0.98);
-    backdrop-filter: blur(16px);
-    padding: 24px 5%;
-    gap: 4px;
+    inset: 0;
+    background: var(--black-mid);
     z-index: 999;
-    border-top: 1px solid var(--border-dark);
-    transform: translateY(-10px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    padding-top: 80px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
 }
+
 .mobile-nav.open {
     display: flex;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: all;
 }
+
 .mobile-nav a {
+    font-family: var(--font-cond);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: .1em;
     color: var(--white);
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border-dark);
-    transition: color var(--transition-fast);
+    transition: color var(--transition);
+    padding: 0.6rem 0;
+    text-decoration: none;
+    border-bottom: none;
 }
-.mobile-nav a:last-child { border-bottom: none; }
-.mobile-nav a:hover { color: var(--red); }
+
+.mobile-nav a:hover {
+    color: var(--red);
+}
+
+.mobile-nav .mobile-nav-highlight {
+    color: var(--red);
+}
+
+.mobile-nav .mobile-nav-cta {
+    margin-top: 1rem;
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 0.6rem 2rem;
+    border-radius: 3px;
+}
+
+.mobile-nav .mobile-nav-cta:hover {
+    background: var(--red-dark);
+    color: var(--white) !important;
+}
 
 /* =============================================
    HERO CONTACTO
