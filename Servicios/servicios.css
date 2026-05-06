@@ -2025,19 +2025,27 @@ footer {
     color: var(--red);
 }
 
-/* =============================================
-   FOOTER (STANDARDIZED)
- ============================================= */
-:root {
-    --f-red: #e30613;
-    --f-dark: #1a1a1a;
-    --f-gray: #888888;
-}
 
+/* =============================================
+   FOOTER (STANDARDIZED — TIENDA VERSION)
+ ============================================= */
 .footer {
-    background: var(--f-dark);
+    background: #1a1a1a; /* var(--dark) in tienda */
     border-top: 1px solid rgba(255, 255, 255, .06);
     padding: 5rem 2rem 0;
+    color: #ffffff;
+}
+
+.footer a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .footer-inner {
@@ -2061,7 +2069,7 @@ footer {
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--f-red);
+    color: #e30613; /* var(--red) in tienda */
     margin-bottom: 1.5rem;
 }
 
@@ -2078,13 +2086,13 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--f-gray);
+    color: #888888; /* var(--gray) in tienda */
     transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .footer-socials a:hover {
-    border-color: var(--f-red);
-    color: var(--f-red);
+    border-color: #e30613;
+    color: #e30613;
 }
 
 .footer-nav h4,
@@ -2094,7 +2102,7 @@ footer {
     font-weight: 700;
     letter-spacing: .18em;
     text-transform: uppercase;
-    color: var(--white);
+    color: #ffffff;
     margin-bottom: 1.2rem;
 }
 
@@ -2103,17 +2111,16 @@ footer {
     display: flex;
     flex-direction: column;
     gap: .7rem;
-    list-style: none;
 }
 
 .footer-nav a {
     font-size: .9rem;
-    color: var(--f-gray);
+    color: #888888;
     transition: color 0.3s ease, padding-left 0.3s ease;
 }
 
 .footer-nav a:hover {
-    color: var(--f-red);
+    color: #e30613;
     padding-left: .3rem;
 }
 
@@ -2122,13 +2129,13 @@ footer {
     align-items: center;
     gap: .6rem;
     font-size: .88rem;
-    color: var(--f-gray);
+    color: #888888;
     line-height: 1.4;
 }
 
 .footer-contact svg {
     flex-shrink: 0;
-    color: var(--f-red);
+    color: #e30613;
 }
 
 .footer-bottom {
@@ -2162,3 +2169,4 @@ footer {
         text-align: center;
     }
 }
+
