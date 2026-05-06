@@ -116,9 +116,10 @@ img { max-width: 100%; display: block; }
     z-index: 1000;
     padding: 0 5%;
     display: flex;
+    flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-    height: var(--nav-h);
+    height: 80px;
     background: transparent;
     transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
 }
@@ -129,7 +130,7 @@ img { max-width: 100%; display: block; }
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }
 
-.nav-logo img {
+.navbar .logo {
     height: 52px;
     width: auto;
     object-fit: contain;
@@ -228,18 +229,18 @@ img { max-width: 100%; display: block; }
     display: none;
     flex-direction: column;
     gap: 5px;
+    cursor: pointer;
+    padding: 6px;
     background: none;
     border: none;
-    cursor: pointer;
-    padding: .5rem;
 }
 
 .hamburger span {
-    display: block;
-    width: 26px;
+    width: 24px;
     height: 2px;
     background: var(--white);
-    transition: transform .3s, opacity .3s;
+    border-radius: 2px;
+    transition: var(--transition-fast);
 }
 
 .hamburger.open span:nth-child(1) {
@@ -1365,28 +1366,3 @@ img { max-width: 100%; display: block; }
 }
 
 
-/* TIENDA — caja blanca, texto rojo, mismo efecto glow */
-.nav-links .nav-highlight {
-    background: var(--white);
-    color: var(--red) !important;
-    padding: 9px 20px;
-    border-radius: 3px;
-    letter-spacing: 0.06em;
-    font-weight: 700;
-    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
-}
-
-.nav-links .nav-highlight::after {
-    display: none;
-}
-
-.nav-links .nav-highlight:hover {
-    background: #eeeeee;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
-    color: var(--red) !important;
-}
-
-.mobile-nav .mobile-nav-highlight {
-    color: var(--red);
-}
