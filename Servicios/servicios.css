@@ -1577,7 +1577,7 @@ img {
    FOOTER
 ============================================= */
 .footer {
-    background: var(--dark);
+    background: #1a1a1a;
     border-top: 1px solid rgba(255, 255, 255, .06);
     padding: 5rem 2rem 0;
 }
@@ -2562,7 +2562,7 @@ img {
    FOOTER (STANDARDIZED — TIENDA VERSION)
  ============================================= */
 .footer {
-    background: var(--dark);
+    background: #1a1a1a;
     border-top: 1px solid rgba(255, 255, 255, .06);
     padding: 5rem 2rem 0;
 }
