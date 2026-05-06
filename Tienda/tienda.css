@@ -58,6 +58,11 @@ ul {
     left: 0;
     right: 0;
     z-index: 1000;
+    padding: 0 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
     background: transparent;
     transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
 }
@@ -68,20 +73,11 @@ ul {
     box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }
 
-.nav-inner {
-    max-width: 1320px;
-    margin: 0 auto;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 5%;
-}
-
 .nav-logo img {
     height: 52px;
     width: auto;
     object-fit: contain;
+    display: block;
 }
 
 .nav-links {
@@ -125,7 +121,7 @@ ul {
     width: 100%;
 }
 
-/* Cotizar — fondo rojo sólido */
+/* COTIZAR — fondo rojo sólido, igual que inicio */
 .nav-links .nav-cta {
     background: var(--red);
     color: var(--white) !important;
@@ -134,8 +130,6 @@ ul {
     letter-spacing: 0.06em;
     font-weight: 700;
     transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
-    position: relative;
-    overflow: hidden;
 }
 
 .nav-links .nav-cta::after {
@@ -145,11 +139,11 @@ ul {
 .nav-links .nav-cta:hover {
     background: #a80310;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(223, 4, 21, 0.45);
+    box-shadow: 0 6px 20px var(--red-glow);
     color: var(--white) !important;
 }
 
-/* Tienda — cuadro blanco con texto rojo, mismo efecto glow */
+/* TIENDA — caja blanca, texto rojo, mismo efecto glow */
 .nav-links .nav-highlight {
     background: var(--white);
     color: var(--red) !important;
@@ -158,8 +152,6 @@ ul {
     letter-spacing: 0.06em;
     font-weight: 700;
     transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
-    position: relative;
-    overflow: hidden;
 }
 
 .nav-links .nav-highlight::after {
@@ -167,9 +159,9 @@ ul {
 }
 
 .nav-links .nav-highlight:hover {
-    background: #f0f0f0;
+    background: #eeeeee;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3);
     color: var(--red) !important;
 }
 
@@ -230,6 +222,7 @@ ul {
     color: var(--white);
     transition: color var(--transition);
     padding: 0.6rem 0;
+    text-decoration: none;
 }
 
 .mobile-nav a:hover {
@@ -243,15 +236,14 @@ ul {
 .mobile-nav .mobile-nav-cta {
     margin-top: 1rem;
     background: var(--red);
-    color: var(--white);
+    color: var(--white) !important;
     padding: 0.6rem 2rem;
     border-radius: 3px;
-    font-size: 1.6rem;
 }
 
 .mobile-nav .mobile-nav-cta:hover {
     background: #a80310;
-    color: var(--white);
+    color: var(--white) !important;
 }
 
 /* =============================================
