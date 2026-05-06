@@ -2402,9 +2402,6 @@ img {
 
 
 /* =============================================
-   FOOTER (STANDARDIZED — TIENDA VERSION)
- ============================================= */
-/* =============================================
    FOOTER
 ============================================= */
 .footer {
@@ -2513,36 +2510,4 @@ img {
     align-items: center;
     font-size: .8rem;
     color: #555;
-}
-
-/* Footer extra reset to be safe */
-.footer a {
-    text-decoration: none;
-    color: inherit;
-}
-
-.footer ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-@media (max-width: 1024px) {
-    .footer-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: .5rem;
-        text-align: center;
-    }
 }
