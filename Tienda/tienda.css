@@ -11,6 +11,7 @@
 
 :root {
     --red: #e30613;
+    --red-glow: rgba(227, 6, 19, 0.45);
     --white: #ffffff;
     --dark: #1a1a1a;
     --dark2: #111111;
@@ -19,7 +20,7 @@
     --border: rgba(255, 255, 255, 0.08);
     --font-cond: 'Barlow Condensed', sans-serif;
     --font-body: 'Barlow', sans-serif;
-    --nav-h: 72px;
+    --nav-h: 80px;
     --transition: .3s cubic-bezier(.4, 0, .2, 1);
 }
 
@@ -49,70 +50,127 @@ ul {
 }
 
 /* =============================================
-   NAVBAR
+   NAVBAR — idéntico a inicio
 ============================================= */
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     z-index: 1000;
-    transition: background var(--transition), box-shadow var(--transition);
+    background: transparent;
+    transition: background var(--transition), box-shadow var(--transition), backdrop-filter var(--transition);
 }
 
 .navbar.scrolled {
-    background: rgba(17, 17, 17, .97);
-    box-shadow: 0 2px 24px rgba(0, 0, 0, .5);
+    background: rgba(8, 8, 8, 0.97);
     backdrop-filter: blur(12px);
+    box-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
 }
 
 .nav-inner {
     max-width: 1320px;
     margin: 0 auto;
-    height: var(--nav-h);
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0 5%;
 }
 
 .nav-logo img {
-    height: 40px;
+    height: 52px;
     width: auto;
+    object-fit: contain;
 }
 
 .nav-links {
     display: flex;
+    list-style: none;
+    gap: 36px;
     align-items: center;
-    gap: 2rem;
 }
 
 .nav-links a {
-    font-family: var(--font-cond);
-    font-size: .9rem;
-    font-weight: 600;
-    letter-spacing: .12em;
+    text-decoration: none;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, .8);
-    transition: color var(--transition);
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.22s ease;
 }
 
-.nav-links a:hover,
-.nav-links a.nav-active {
-    color: var(--red);
-}
-
-.nav-links .nav-cta {
-    padding: .45rem 1.4rem;
-    border: 2px solid var(--red);
-    color: var(--red);
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--red);
     border-radius: 2px;
-    transition: background var(--transition), color var(--transition);
+    transform: translateX(-50%);
+    transition: width 0.35s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.nav-links a:hover {
+    color: var(--red);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Cotizar — fondo rojo sólido */
+.nav-links .nav-cta {
+    background: var(--red);
+    color: var(--white) !important;
+    padding: 9px 20px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links .nav-cta::after {
+    display: none;
 }
 
 .nav-links .nav-cta:hover {
-    background: var(--red);
-    color: var(--white);
+    background: #a80310;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(223, 4, 21, 0.45);
+    color: var(--white) !important;
+}
+
+/* Tienda — cuadro blanco con texto rojo, mismo efecto glow */
+.nav-links .nav-highlight {
+    background: var(--white);
+    color: var(--red) !important;
+    padding: 9px 20px;
+    border-radius: 3px;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    transition: background 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links .nav-highlight::after {
+    display: none;
+}
+
+.nav-links .nav-highlight:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+    color: var(--red) !important;
 }
 
 /* Hamburger */
@@ -153,21 +211,15 @@ ul {
     inset: 0;
     background: var(--dark2);
     z-index: 999;
-    padding-top: var(--nav-h);
+    padding-top: 80px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 0;
 }
 
 .mobile-nav.open {
     display: flex;
-}
-
-.mobile-nav ul {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    text-align: center;
 }
 
 .mobile-nav a {
@@ -177,10 +229,29 @@ ul {
     letter-spacing: .1em;
     color: var(--white);
     transition: color var(--transition);
+    padding: 0.6rem 0;
 }
 
 .mobile-nav a:hover {
     color: var(--red);
+}
+
+.mobile-nav .mobile-nav-highlight {
+    color: var(--red);
+}
+
+.mobile-nav .mobile-nav-cta {
+    margin-top: 1rem;
+    background: var(--red);
+    color: var(--white);
+    padding: 0.6rem 2rem;
+    border-radius: 3px;
+    font-size: 1.6rem;
+}
+
+.mobile-nav .mobile-nav-cta:hover {
+    background: #a80310;
+    color: var(--white);
 }
 
 /* =============================================
