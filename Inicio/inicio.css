@@ -1935,83 +1935,6 @@ a {
     box-shadow: 0 0 20px rgba(223, 4, 21, 0.4);
 }
 
-footer {
-    background: var(--black-mid);
-    border-top: 1px solid var(--border-dark);
-    padding: 40px 5%;
-}
-
-.footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 24px;
-}
-
-.footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.footer-logo {
-    height: 40px;
-    object-fit: contain;
-}
-
-.footer-copy {
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.25);
-}
-
-.footer-copy span {
-    color: var(--red);
-}
-
-.footer-links {
-    display: flex;
-    gap: 28px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.25);
-    transition: color 0.2s;
-}
-
-.footer-links a:hover {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.footer-social {
-    display: flex;
-    gap: 12px;
-}
-
-.footer-social a {
-    width: 38px;
-    height: 38px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.4);
-    transition: all var(--transition-fast);
-}
-
-.footer-social a:hover {
-    background: var(--red-soft);
-    border-color: var(--border-red);
-    color: var(--red);
-}
-
 
 
 /* =============================================
@@ -2600,12 +2523,6 @@ footer {
     }
 }
 
-@media (max-width: 1024px) {
-    .footer-inner {
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5rem;
-    }
-}
 
 @media (max-width: 900px) {
     .galeria {
@@ -2745,15 +2662,6 @@ footer {
         padding: 80px 5%;
     }
 
-    .footer-inner {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    .footer-bottom {
-        flex-direction: column;
-        gap: .5rem;
-        text-align: center;
-    }
 
     .servicios-header {
         flex-direction: column;
@@ -2935,11 +2843,6 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .footer-brand {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
     .cobertura-lista {
         grid-template-columns: 1fr;
     }
@@ -3100,7 +3003,37 @@ footer {
     color: #555;
 }
 
+/* Footer extra reset to be safe */
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}
 
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 1024px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center;
+    }
+}
 
 /* TIENDA — caja blanca, texto rojo, mismo efecto glow */
 .nav-links .nav-highlight {

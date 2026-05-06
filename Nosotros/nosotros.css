@@ -1459,9 +1459,18 @@ img {
     color: #555;
 }
 
-/* =============================================
-   RESPONSIVE
-============================================= */
+/* Footer extra reset to be safe */
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
 @media (max-width: 1024px) {
     .footer-inner {
         grid-template-columns: 1fr 1fr;
@@ -1474,6 +1483,7 @@ img {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
+
     .footer-bottom {
         flex-direction: column;
         gap: .5rem;

@@ -1573,155 +1573,6 @@ img {
     margin-bottom: 36px;
 }
 
-/* =============================================
-   FOOTER
-============================================= */
-.footer {
-    background: #1a1a1a;
-    border-top: 1px solid rgba(255, 255, 255, .06);
-    padding: 5rem 2rem 0;
-}
-
-.footer-inner {
-    max-width: 1320px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 3rem;
-    padding-bottom: 4rem;
-}
-
-.footer-logo {
-    height: 36px;
-    width: auto;
-    margin-bottom: 1rem;
-}
-
-.footer-tagline {
-    font-family: var(--font-cond);
-    font-size: 1rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 1.5rem;
-}
-
-.footer-socials {
-    display: flex;
-    gap: 1rem;
-}
-
-.footer-socials a {
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(255, 255, 255, .15);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--gray);
-    transition: border-color var(--transition), color var(--transition);
-}
-
-.footer-socials a:hover {
-    border-color: var(--red);
-    color: var(--red);
-}
-
-.footer-nav h4,
-.footer-contact h4 {
-    font-family: var(--font-cond);
-    font-size: .8rem;
-    font-weight: 700;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--white);
-    margin-bottom: 1.2rem;
-}
-
-.footer-nav ul,
-.footer-contact ul {
-    display: flex;
-    flex-direction: column;
-    gap: .7rem;
-}
-
-.footer-nav a {
-    font-size: .9rem;
-    color: var(--gray);
-    transition: color var(--transition), padding-left var(--transition);
-}
-
-.footer-nav a:hover {
-    color: var(--red);
-    padding-left: .3rem;
-}
-
-.footer-contact ul li {
-    display: flex;
-    align-items: center;
-    gap: .6rem;
-    font-size: .88rem;
-    color: var(--gray);
-    line-height: 1.4;
-}
-
-.footer-contact svg {
-    flex-shrink: 0;
-    color: var(--red);
-}
-
-.footer-bottom {
-    max-width: 1320px;
-    margin: 0 auto;
-    border-top: 1px solid rgba(255, 255, 255, .06);
-    padding: 1.5rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: .8rem;
-    color: #555;
-}
-
-/* =============================================
-   RESPONSIVE
-============================================= */
-
-
-
-
-
-
-
-
-
-
-
-
-/* =============================================
-   RESPONSIVE — 1100px
-============================================= */
-
-
-
-/* =============================================
-   RESPONSIVE — 900px
-============================================= */
-
-
-
-/* =============================================
-   RESPONSIVE — 768px
-============================================= */
-
-
-
-/* =============================================
-   RESPONSIVE — 480px
-============================================= */
-
-
 
 /* =============================================
    ACORDEONES — BLOQUE PRINCIPAL
@@ -2286,10 +2137,7 @@ img {
         display: none;
     }
 
-    .footer-inner {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+
 
     .servicios-header {
         flex-direction: column;
@@ -2384,11 +2232,6 @@ img {
 
     .quienes-features {
         grid-template-columns: 1fr;
-    }
-
-    .footer-brand {
-        flex-direction: column;
-        align-items: flex-start;
     }
 
     .hero-title {
@@ -2561,6 +2404,9 @@ img {
 /* =============================================
    FOOTER (STANDARDIZED — TIENDA VERSION)
  ============================================= */
+/* =============================================
+   FOOTER
+============================================= */
 .footer {
     background: #1a1a1a;
     border-top: 1px solid rgba(255, 255, 255, .06);
@@ -2667,6 +2513,18 @@ img {
     align-items: center;
     font-size: .8rem;
     color: #555;
+}
+
+/* Footer extra reset to be safe */
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 @media (max-width: 1024px) {
