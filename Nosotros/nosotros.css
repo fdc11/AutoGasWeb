@@ -1395,7 +1395,7 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--gray);
+    color: var(--white);
     transition: border-color var(--transition), color var(--transition);
 }
 
