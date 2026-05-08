@@ -27,37 +27,37 @@ const CATALOGO = {
                 id: 'ac01', marca: 'Shell', nombre: 'Helix Ultra 5W-40',
                 desc: 'Aceite sintético de última generación. Protección máxima del motor.',
                 precio: 89.90, badge: 'Más vendido',
-                img: 'Imagenes/prod-shell-helix-5w40.png'
+                img: 'Imagenes/AceiteShellEjemplo.jpg'
             },
             {
                 id: 'ac02', marca: 'Castrol', nombre: 'Edge 5W-30',
                 desc: 'Tecnología de titanio FST. Para motores modernos exigentes.',
                 precio: 94.90, badge: null,
-                img: 'Imagenes/prod-castrol-edge-5w30.png'
+                img: 'Imagenes/AceiteShellEjemplo.jpg'
             },
             {
                 id: 'ac03', marca: 'Mobil', nombre: 'Super 3000 X1 5W-40',
                 desc: 'Fórmula avanzada para motores gasolina y GNV. Alto desempeño.',
                 precio: 79.90, badge: null,
-                img: 'Imagenes/prod-mobil-super3000.png'
+                img: 'Imagenes/AceiteShellEjemplo.jpg'
             },
             {
                 id: 'ac04', marca: 'Valvoline', nombre: 'Advanced Full Synthetic 5W-30',
                 desc: 'Protección superior contra desgaste, depósitos y sludge.',
                 precio: 84.90, badge: 'Nuevo',
-                img: 'Imagenes/prod-valvoline-adv5w30.png'
+                img: 'Imagenes/AceiteShellEjemplo.jpg'
             },
             {
                 id: 'ac05', marca: 'Chevron', nombre: 'Havoline 20W-50',
                 desc: 'Para motores con alto kilometraje. Rendimiento garantizado.',
                 precio: 52.90, badge: null,
-                img: 'Imagenes/prod-chevron-havoline.png'
+                img: 'Imagenes/AceiteShellEjemplo.jpg'
             },
             {
                 id: 'ac06', marca: 'Shell', nombre: 'Rimula R4 X 15W-40',
                 desc: 'Aceite mineral para motores diésel de trabajo pesado.',
                 precio: 64.90, badge: null,
-                img: 'Imagenes/prod-shell-rimula.png'
+                img: 'Imagenes/AceiteShellEjemplo.jpg'
             },
         ]
     },
