@@ -68,25 +68,25 @@ const CATALOGO = {
                 id: 're01', marca: 'Bosch', nombre: 'Bujía Super 4',
                 desc: 'Bujía de encendido de alto rendimiento para todo tipo de motor.',
                 precio: 18.90, badge: 'Original',
-                img: 'Imagenes/prod-bosch-bujia.png'
+                img: 'Imagenes/PastillasDeFreno.jpg'
             },
             {
                 id: 're02', marca: 'NGK', nombre: 'Bujía Iridium IX',
                 desc: 'Punta de iridio ultrafina. Mayor durabilidad y ahorro de combustible.',
                 precio: 29.90, badge: null,
-                img: 'Imagenes/prod-ngk-iridium.png'
+                img: 'Imagenes/PastillasDeFreno.jpg'
             },
             {
                 id: 're03', marca: 'Bosch', nombre: 'Pastillas de Freno BP456',
                 desc: 'Sistema de frenado preciso y silencioso para uso urbano y carretera.',
                 precio: 95.00, badge: null,
-                img: 'Imagenes/prod-bosch-pastillas.png'
+                img: 'Imagenes/PastillasDeFreno.jpg'
             },
             {
                 id: 're04', marca: 'Gates', nombre: 'Correa de Distribución K025605XS',
                 desc: 'Alta resistencia a temperaturas extremas. Para motores Toyota/Kia.',
                 precio: 145.00, badge: null,
-                img: 'Imagenes/prod-gates-correa.png'
+                img: 'Imagenes/PastillasDeFreno.jpg'
             },
         ]
     },
@@ -97,25 +97,25 @@ const CATALOGO = {
                 id: 'rf01', marca: 'Prestone', nombre: 'All Vehicles Antifreeze 1L',
                 desc: 'Fórmula universal. Compatible con todos los sistemas de refrigeración.',
                 precio: 32.90, badge: 'Universal',
-                img: 'Imagenes/prod-prestone-1l.png'
+                img: 'Imagenes/RefrigerantePreston.jpg'
             },
             {
                 id: 'rf02', marca: 'Prestone', nombre: 'All Vehicles Antifreeze 4L',
                 desc: 'Pack familiar de larga duración. Protege hasta -37°C.',
                 precio: 95.00, badge: null,
-                img: 'Imagenes/prod-prestone-4l.png'
+                img: 'Imagenes/RefrigerantePreston.jpg'
             },
             {
                 id: 'rf03', marca: 'Shell', nombre: 'Coolant Premium 1L',
                 desc: 'Refrigerante premium OAT. Larga vida útil, sin silicatos.',
                 precio: 38.90, badge: null,
-                img: 'Imagenes/prod-shell-coolant.png'
+                img: 'Imagenes/RefrigerantePreston.jpg'
             },
             {
                 id: 'rf04', marca: 'Toyota', nombre: 'Long Life Coolant 1L',
                 desc: 'Refrigerante original Toyota. Para Toyota, Kia, Mazda y Subaru.',
                 precio: 45.00, badge: 'Original',
-                img: 'Imagenes/prod-toyota-coolant.png'
+                img: 'Imagenes/RefrigerantePreston.jpg'
             },
         ]
     },
@@ -126,25 +126,25 @@ const CATALOGO = {
                 id: 'fi01', marca: 'Mann', nombre: 'Filtro de Aceite W712/75',
                 desc: 'Filtración de alta eficiencia para motores gasolina y GNV.',
                 precio: 22.90, badge: null,
-                img: 'Imagenes/prod-mann-aceite.png'
+                img: 'Imagenes/FiltroDeAceiteEjemplo.jpg'
             },
             {
                 id: 'fi02', marca: 'Bosch', nombre: 'Filtro de Aire S0073',
                 desc: 'Captura el 99.9% de partículas. Más potencia, menos consumo.',
                 precio: 38.90, badge: 'Best Seller',
-                img: 'Imagenes/prod-bosch-aire.png'
+                img: 'Imagenes/FiltroDeAceiteEjemplo.jpg'
             },
             {
                 id: 'fi03', marca: 'Mann', nombre: 'Filtro de Combustible WK842/2',
                 desc: 'Protege el sistema de inyección. Compatible con múltiples marcas.',
                 precio: 29.90, badge: null,
-                img: 'Imagenes/prod-mann-combustible.png'
+                img: 'Imagenes/FiltroDeAceiteEjemplo.jpg'
             },
             {
                 id: 'fi04', marca: 'Bosch', nombre: 'Filtro de Habitáculo 1987432362',
                 desc: 'Con carbón activado. Elimina polvo, bacterias y olores del habitáculo.',
                 precio: 45.00, badge: null,
-                img: 'Imagenes/prod-bosch-habitaculo.png'
+                img: 'Imagenes/FiltroDeAceiteEjemplo.jpg'
             },
         ]
     }
