@@ -1584,6 +1584,26 @@ img {
     color: #555;
 }
 
+@media (max-width: 1024px) {
+    .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: .5rem;
+        text-align: center;
+    }
+}
+
 
 /* =============================================
    RESPONSIVE — 1100px
