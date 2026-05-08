@@ -133,17 +133,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const mobileNav = document.getElementById('mobileNav');
 
-    window.toggleMenu = function () {
-        const isOpen = mobileNav.classList.toggle('open');
-        hamburger.classList.toggle('active', isOpen);
+    window.toggleMenu = function toggleMenu() {
+        const nav = document.getElementById('mobileNav');
+        const h = document.getElementById('hamburger');
+        const isOpen = nav.classList.contains('open');
+
+        if (isOpen) {
+            nav.classList.remove('open');
+            h.classList.remove('is-open');
+            document.body.style.overflow = '';
+            nav.querySelectorAll('.mnav-item').forEach(el => el.classList.remove('visible'));
+        } else {
+            nav.classList.add('open');
+            h.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+            nav.querySelectorAll('.mnav-item').forEach((el, i) => {
+                setTimeout(() => el.classList.add('visible'), 60 + i * 60);
+            });
+        }
     };
 
-    document.addEventListener('click', (e) => {
-        if (mobileNav.classList.contains('open') &&
-            !mobileNav.contains(e.target) &&
-            !hamburger.contains(e.target)) {
-            mobileNav.classList.remove('open');
-            hamburger.classList.remove('active');
+    // Cerrar con Escape
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            const nav = document.getElementById('mobileNav');
+            if (nav && nav.classList.contains('open')) window.toggleMenu();
         }
     });
 

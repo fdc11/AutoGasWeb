@@ -25,13 +25,33 @@ document.addEventListener('DOMContentLoaded', () => {
     /* -----------------------------------------------
        2. HAMBURGER / MOBILE MENU
     ----------------------------------------------- */
-    window.toggleMenu = function() {
-        const h = document.getElementById('hamburger');
-        const m = document.getElementById('mobileNav');
-        h.classList.toggle('open');
-        m.classList.toggle('open');
-        document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+    window.toggleMenu = function toggleMenu() {
+        const nav = document.getElementById('mobileNav');
+        const hamburger = document.getElementById('hamburger');
+        const isOpen = nav.classList.contains('open');
+
+        if (isOpen) {
+            nav.classList.remove('open');
+            hamburger.classList.remove('is-open');
+            document.body.style.overflow = '';
+            nav.querySelectorAll('.mnav-item').forEach(el => el.classList.remove('visible'));
+        } else {
+            nav.classList.add('open');
+            hamburger.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+            nav.querySelectorAll('.mnav-item').forEach((el, i) => {
+                setTimeout(() => el.classList.add('visible'), 60 + i * 60);
+            });
+        }
     };
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            const nav = document.getElementById('mobileNav');
+            if (nav && nav.classList.contains('open')) window.toggleMenu();
+        }
+    });
 
 
     /* -----------------------------------------------

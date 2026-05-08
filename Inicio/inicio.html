@@ -18,6 +18,32 @@
                 color: #080808 !important;
             }
         }
+
+        /* Critical CSS (pre-paint) — prevent CLS/FOUC */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            height: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
     </style>
     <title>AutoGas | Conversiones GNV/GLP Premium — Perú</title>
     <link rel="preload" as="image" href="Imagenes/AutoGasBanner.jpg">
@@ -47,13 +73,32 @@
             <span></span>
         </div>
     </header>
-    <div class="mobile-nav" id="mobileNav">
-        <a href="../Inicio/inicio.html" onclick="toggleMenu()">Inicio</a>
-        <a href="../Nosotros/nosotros.html" onclick="toggleMenu()">Nosotros</a>
-        <a href="../Servicios/servicios.html" onclick="toggleMenu()">Servicios</a>
-        <a href="../Sedes/sedes.html" onclick="toggleMenu()">Sedes</a>
-        <a href="../Tienda/tienda.html" onclick="toggleMenu()" class="mobile-nav-highlight">Tienda</a>
-        <a href="../Contacto/contacto.html" onclick="toggleMenu()">Cotizar</a>
+    <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+        <img src="../Inicio/Imagenes/AutoGasLogo2.png" alt="AutoGas" class="mnav-logo">
+        <div class="mnav-close" onclick="toggleMenu()" aria-label="Cerrar menú"></div>
+        <ul class="mnav-list">
+            <li class="mnav-item">
+                <span class="mnav-num">01</span>
+                <a href="../Inicio/inicio.html" class="mnav-link" onclick="toggleMenu()">Inicio</a>
+            </li>
+            <li class="mnav-item">
+                <span class="mnav-num">02</span>
+                <a href="../Nosotros/nosotros.html" class="mnav-link" onclick="toggleMenu()">Nosotros</a>
+            </li>
+            <li class="mnav-item">
+                <span class="mnav-num">03</span>
+                <a href="../Servicios/servicios.html" class="mnav-link" onclick="toggleMenu()">Servicios</a>
+            </li>
+            <li class="mnav-item">
+                <span class="mnav-num">04</span>
+                <a href="../Sedes/sedes.html" class="mnav-link" onclick="toggleMenu()">Sedes</a>
+            </li>
+            <li class="mnav-item">
+                <span class="mnav-num">05</span>
+                <a href="../Tienda/tienda.html" class="mnav-link mnav-highlight" onclick="toggleMenu()">Tienda</a>
+            </li>
+        </ul>
+        <a href="../Contacto/contacto.html" class="mnav-cta mnav-item" onclick="toggleMenu()">Cotizar ahora</a>
     </div>
 
     <!-- ==================== HERO ==================== -->
