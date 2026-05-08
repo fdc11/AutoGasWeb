@@ -1498,6 +1498,9 @@ img {
 
 .footer-nav ul,
 .footer-contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     flex-direction: column;
     gap: .7rem;
