@@ -155,11 +155,34 @@ const CATALOGO = {
 // =============================================
 let estadoTienda = {
     categoriaActual: null,
-    productoActual: null,
-    cantidad: 1,
+    productoActual: null,       // legacy, ya no se usa
+    cantidad: 1,                // legacy
     sedeId: null,
     productosOrdenados: []
 };
+
+// =============================================
+// CARRITO — Estado y persistencia (localStorage)
+// =============================================
+let carritoItems = [];          // [{id, marca, nombre, precio, img, qty}]
+let carritoSedeId = null;
+
+function cargarCarritoStorage() {
+    try {
+        const raw = localStorage.getItem('autogas_carrito');
+        if (raw) carritoItems = JSON.parse(raw);
+        const sede = localStorage.getItem('autogas_sede');
+        if (sede) carritoSedeId = sede;
+    } catch (e) { carritoItems = []; }
+}
+
+function guardarCarritoStorage() {
+    try {
+        localStorage.setItem('autogas_carrito', JSON.stringify(carritoItems));
+        if (carritoSedeId) localStorage.setItem('autogas_sede', carritoSedeId);
+        else localStorage.removeItem('autogas_sede');
+    } catch (e) { }
+}
 
 // =============================================
 // NAVBAR — scroll
@@ -180,12 +203,6 @@ window.addEventListener('load', () => {
         });
     iniciarReveal();
 
-    // Event listeners para campos de nombre — habilitan/deshabilitan botón en tiempo real
-    const inputNombre = document.getElementById('clienteNombre');
-    const inputApellido = document.getElementById('clienteApellido');
-    if (inputNombre) inputNombre.addEventListener('input', actualizarTotal);
-    if (inputApellido) inputApellido.addEventListener('input', actualizarTotal);
-
     // Search input
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
@@ -204,6 +221,25 @@ window.addEventListener('load', () => {
             renderizarProductos(filtrados);
         });
     }
+
+    // Cargar carrito guardado y restaurar sede si había
+    cargarCarritoStorage();
+    renderizarCarrito();
+    actualizarFabCount();
+
+    // Restaurar sede seleccionada visualmente
+    if (carritoSedeId) {
+        document.querySelectorAll('.cart-sede').forEach(s => {
+            s.classList.toggle('selected', s.dataset.id === carritoSedeId);
+        });
+        actualizarInfoSede(carritoSedeId);
+    }
+
+    // Habilitar/deshabilitar botón al escribir
+    ['cartNombre', 'cartApellido'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', actualizarBtnWsp);
+    });
 });
 
 // =============================================
@@ -237,21 +273,17 @@ function verCategoria(catId) {
     estadoTienda.categoriaActual = catId;
     estadoTienda.productosOrdenados = [...cat.productos];
 
-    // Ocultar vista categorías
     document.getElementById('viewCats').style.display = 'none';
     document.getElementById('headerCats').style.display = 'none';
     document.getElementById('headerProds').style.display = 'block';
 
-    // Actualizar headers
     document.getElementById('prodLabel').textContent = 'Tienda / ' + cat.label;
     document.getElementById('prodTitle').textContent = cat.label.toUpperCase();
 
-    // Breadcrumb
     const bc = document.getElementById('breadcrumb');
     bc.classList.add('visible');
     document.getElementById('bcNombre').textContent = cat.label;
 
-    // Mostrar y limpiar el buscador
     const searchWrap = document.getElementById('searchWrap');
     if (searchWrap) {
         searchWrap.style.display = 'block';
@@ -261,7 +293,6 @@ function verCategoria(catId) {
         if (searchClear) searchClear.style.display = 'none';
     }
 
-    // Mostrar productos con animación fluida
     const viewProds = document.getElementById('viewProds');
     viewProds.style.display = 'block';
     viewProds.style.opacity = '0';
@@ -275,7 +306,6 @@ function verCategoria(catId) {
         setTimeout(() => { viewProds.style.transition = ''; }, 450);
     });
 
-    // Scroll al store
     document.getElementById('store').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -291,7 +321,6 @@ function volverCategorias() {
     document.getElementById('viewCats').style.display = 'grid';
     document.getElementById('headerCats').style.display = 'block';
 
-    // Ocultar buscador
     const searchWrap = document.getElementById('searchWrap');
     if (searchWrap) searchWrap.style.display = 'none';
 
@@ -307,17 +336,18 @@ function renderizarProductos(productos) {
     count.textContent = productos.length + ' producto' + (productos.length !== 1 ? 's' : '');
 
     grid.innerHTML = productos.map(p => `
-        <div class="prod-card" data-id="${p.id}" onclick="abrirModal('${p.id}')">
-            <div class="prod-img">
+        <div class="prod-card" data-id="${p.id}">
+            <div class="prod-img" onclick="abrirModal('${p.id}')">
                 <img src="${p.img}" alt="${p.nombre}" loading="lazy"
                      onerror="this.style.padding='2rem';this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
                 ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
-                <div class="prod-img-overlay">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.525 5.845L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.003-1.368l-.359-.214-3.722.976.994-3.636-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+                <div class="prod-img-overlay" onclick="event.stopPropagation();agregarAlCarrito('${p.id}')">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                        <line x1="3" y1="6" x2="21" y2="6"/>
+                        <path d="M16 10a4 4 0 01-8 0"/>
                     </svg>
-                    Pedir por WhatsApp
+                    Agregar al carrito
                 </div>
             </div>
             <div class="prod-info">
@@ -329,6 +359,13 @@ function renderizarProductos(productos) {
                         ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
                         <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
                     </div>
+                    <button class="prod-add-btn" onclick="agregarAlCarrito('${p.id}')">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <line x1="12" y1="5" x2="12" y2="19"/>
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                        </svg>
+                        Agregar
+                    </button>
                 </div>
             </div>
         </div>
@@ -413,144 +450,253 @@ function limpiarBusqueda() {
 }
 
 // =============================================
-// MODAL WHATSAPP — REDISEÑADO
+// abrirModal — ahora solo agrega al carrito
+// (mantenemos el nombre para no romper onclick en HTML de productos)
 // =============================================
-
-// Validación centralizada
-function puedeEnviar() {
-    const nombre = document.getElementById('clienteNombre');
-    const apellido = document.getElementById('clienteApellido');
-    if (!nombre || !apellido) return false;
-    return !!(estadoTienda.sedeId && nombre.value.trim() && apellido.value.trim());
+function abrirModal(prodId) {
+    agregarAlCarrito(prodId);
 }
 
-function abrirModal(prodId) {
+// =============================================
+// CARRITO — AGREGAR PRODUCTO
+// =============================================
+function agregarAlCarrito(prodId) {
     const p = buscarProducto(prodId);
     if (!p) return;
 
-    estadoTienda.productoActual = p;
-    estadoTienda.cantidad = 1;
-    estadoTienda.sedeId = null;
+    const existente = carritoItems.find(i => i.id === prodId);
+    if (existente) {
+        existente.qty += 1;
+    } else {
+        carritoItems.push({
+            id: p.id,
+            marca: p.marca,
+            nombre: p.nombre,
+            precio: p.precio,
+            img: p.img,
+            qty: 1
+        });
+    }
 
-    // Llenar panel de producto (columna izquierda)
-    document.getElementById('modalPreview').innerHTML = `
-        <img src="${p.img}" alt="${p.nombre}"
-             onerror="this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
-        <div>
-            <div class="modal-preview-marca">${p.marca}</div>
-            <div class="modal-preview-nombre">${p.nombre}</div>
-            <div class="modal-preview-precio">
-                <span>S/</span>${p.precio.toFixed(2)}
+    guardarCarritoStorage();
+    renderizarCarrito();
+    actualizarFabCount();
+    dispararPulseRing();
+}
+
+// =============================================
+// CARRITO — CAMBIAR CANTIDAD DE UN ITEM
+// =============================================
+function cambiarCantidadItem(id, delta) {
+    const item = carritoItems.find(i => i.id === id);
+    if (!item) return;
+    item.qty = Math.max(1, item.qty + delta);
+    guardarCarritoStorage();
+    renderizarCarrito();
+}
+
+// =============================================
+// CARRITO — ELIMINAR ITEM
+// =============================================
+function eliminarItem(id) {
+    carritoItems = carritoItems.filter(i => i.id !== id);
+    guardarCarritoStorage();
+    renderizarCarrito();
+    actualizarFabCount();
+}
+
+// =============================================
+// CARRITO — VACIAR
+// =============================================
+function vaciarCarrito() {
+    carritoItems = [];
+    carritoSedeId = null;
+    guardarCarritoStorage();
+    renderizarCarrito();
+    actualizarFabCount();
+    // Resetear sede
+    document.querySelectorAll('.cart-sede').forEach(s => s.classList.remove('selected'));
+    const sedeInfo = document.getElementById('cartSedeInfo');
+    if (sedeInfo) sedeInfo.style.display = 'none';
+}
+
+// =============================================
+// CARRITO — RENDERIZAR PANEL
+// =============================================
+function renderizarCarrito() {
+    const empty = document.getElementById('cartEmpty');
+    const itemsSection = document.getElementById('cartItems');
+    const formSection = document.getElementById('cartFormSection');
+    const lista = document.getElementById('cartItemsList');
+
+    const hayItems = carritoItems.length > 0;
+
+    if (empty) empty.style.display = hayItems ? 'none' : 'flex';
+    if (itemsSection) itemsSection.style.display = hayItems ? 'block' : 'none';
+    if (formSection) formSection.style.display = hayItems ? 'block' : 'none';
+
+    if (!hayItems || !lista) return;
+
+    lista.innerHTML = carritoItems.map(item => `
+        <div class="cart-item cart-item-entering" data-id="${item.id}">
+            <div class="cart-item-img">
+                <img src="${item.img}" alt="${item.nombre}"
+                     onerror="this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
+            </div>
+            <div class="cart-item-info">
+                <div class="cart-item-marca">${item.marca}</div>
+                <div class="cart-item-nombre">${item.nombre}</div>
+                <div class="cart-item-qty">
+                    <button class="cart-qty-btn" onclick="cambiarCantidadItem('${item.id}', -1)">−</button>
+                    <span class="cart-qty-num">${item.qty}</span>
+                    <button class="cart-qty-btn" onclick="cambiarCantidadItem('${item.id}', 1)">+</button>
+                </div>
+            </div>
+            <div class="cart-item-right">
+                <span class="cart-item-precio">S/ ${(item.precio * item.qty).toFixed(2)}</span>
+                <button class="cart-item-remove" onclick="eliminarItem('${item.id}')">Quitar</button>
             </div>
         </div>
-    `;
+    `).join('');
 
-    // Resetear formulario completamente
-    const inputNombre = document.getElementById('clienteNombre');
-    const inputApellido = document.getElementById('clienteApellido');
-    if (inputNombre) { inputNombre.value = ''; inputNombre.classList.remove('error'); }
-    if (inputApellido) { inputApellido.value = ''; inputApellido.classList.remove('error'); }
-
-    document.getElementById('qtyDisplay').textContent = 1;
-    document.getElementById('modalTotal').textContent = '';
-    document.getElementById('btnWsp').disabled = true;
-    document.querySelectorAll('.sede-opt').forEach(s => s.classList.remove('selected'));
-
-    document.getElementById('modalOverlay').classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function cerrarModal(e) {
-    if (e.target === document.getElementById('modalOverlay')) cerrarModalBtn();
-}
-function cerrarModalBtn() {
-    document.getElementById('modalOverlay').classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-// =============================================
-// CANTIDAD
-// =============================================
-function cambiarCantidad(delta) {
-    const nueva = Math.max(1, estadoTienda.cantidad + delta);
-    estadoTienda.cantidad = nueva;
-    document.getElementById('qtyDisplay').textContent = nueva;
     actualizarTotal();
+    actualizarBtnWsp();
 }
 
 // =============================================
-// SEDE
-// =============================================
-function elegirSede(el) {
-    document.querySelectorAll('.sede-opt').forEach(s => s.classList.remove('selected'));
-    el.classList.add('selected');
-    estadoTienda.sedeId = el.dataset.id;
-    actualizarTotal();
-}
-
-// =============================================
-// TOTAL + HABILITAR BOTÓN
+// CARRITO — TOTAL
 // =============================================
 function actualizarTotal() {
-    const p = estadoTienda.productoActual;
-    if (!p) return;
-    const total = (p.precio * estadoTienda.cantidad).toFixed(2);
-    const totalEl = document.getElementById('modalTotal');
-    const btnWsp = document.getElementById('btnWsp');
-
-    if (estadoTienda.sedeId) {
-        const sede = NOMBRES_SEDES[estadoTienda.sedeId];
-        totalEl.textContent = `${estadoTienda.cantidad} × S/ ${p.precio.toFixed(2)} = S/ ${total} — Sede ${sede}`;
-    } else {
-        totalEl.textContent = estadoTienda.cantidad > 1
-            ? `${estadoTienda.cantidad} × S/ ${p.precio.toFixed(2)} = S/ ${total} — Elige tu sede`
-            : '';
-    }
-
-    btnWsp.disabled = !puedeEnviar();
+    const total = carritoItems.reduce((sum, i) => sum + i.precio * i.qty, 0);
+    const el = document.getElementById('cartTotalAmount');
+    if (el) el.textContent = 'S/ ' + total.toFixed(2);
 }
 
 // =============================================
-// ENVIAR POR WHATSAPP
+// CARRITO — FAB COUNT
 // =============================================
-function enviarWsp() {
-    const p = estadoTienda.productoActual;
-    const sedeId = estadoTienda.sedeId;
-    if (!p || !sedeId) return;
+function actualizarFabCount() {
+    const totalQty = carritoItems.reduce((s, i) => s + i.qty, 0);
+    const badge = document.getElementById('cartCount');
+    if (!badge) return;
+    if (totalQty > 0) {
+        badge.textContent = totalQty > 99 ? '99+' : totalQty;
+        badge.style.display = 'flex';
+    } else {
+        badge.style.display = 'none';
+    }
+}
 
-    const inputNombre = document.getElementById('clienteNombre');
-    const inputApellido = document.getElementById('clienteApellido');
-    const nombre = inputNombre ? inputNombre.value.trim() : '';
-    const apellido = inputApellido ? inputApellido.value.trim() : '';
+// =============================================
+// CARRITO — PULSE RING AL AGREGAR
+// =============================================
+function dispararPulseRing() {
+    const ring = document.getElementById('cartPulseRing');
+    if (!ring) return;
+    ring.classList.remove('firing');
+    // Force reflow
+    void ring.offsetWidth;
+    ring.classList.add('firing');
+    ring.addEventListener('animationend', () => ring.classList.remove('firing'), { once: true });
+}
 
-    // Validación de seguridad: marcar campos vacíos en rojo
-    if (!nombre || !apellido) {
-        [inputNombre, inputApellido].forEach(el => {
-            if (el && !el.value.trim()) {
-                el.classList.add('error');
-                setTimeout(() => el.classList.remove('error'), 600);
-            }
-        });
-        return;
+// =============================================
+// CARRITO — TOGGLE PANEL
+// =============================================
+function toggleCarrito() {
+    const overlay = document.getElementById('cartOverlay');
+    if (!overlay) return;
+    const isOpen = overlay.classList.contains('open');
+    overlay.classList.toggle('open');
+    document.body.style.overflow = isOpen ? '' : 'hidden';
+}
+
+function cerrarCarritoOverlay(e) {
+    if (e.target === document.getElementById('cartOverlay')) toggleCarrito();
+}
+
+// =============================================
+// CARRITO — ELEGIR SEDE
+// =============================================
+function elegirSedeCarrito(el) {
+    document.querySelectorAll('.cart-sede').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    carritoSedeId = el.dataset.id;
+    guardarCarritoStorage();
+    actualizarInfoSede(carritoSedeId);
+    actualizarBtnWsp();
+}
+
+function actualizarInfoSede(sedeId) {
+    const infoEl = document.getElementById('cartSedeInfo');
+    const infoText = document.getElementById('cartSedeInfoText');
+    if (!infoEl || !infoText) return;
+    const nombre = NOMBRES_SEDES[sedeId];
+    const numero = WSP_SEDES[sedeId];
+    const formatted = '+' + numero.slice(0, 2) + ' ' + numero.slice(2, 5) + ' ' + numero.slice(5, 8) + ' ' + numero.slice(8);
+    infoText.textContent = `Vía WhatsApp Directo · ${nombre} ${formatted}`;
+    infoEl.style.display = 'flex';
+}
+
+// =============================================
+// CARRITO — HABILITAR/DESHABILITAR BOTÓN WSP
+// =============================================
+function actualizarBtnWsp() {
+    const btn = document.getElementById('cartBtnWsp');
+    if (!btn) return;
+    const nombre = (document.getElementById('cartNombre') || {}).value || '';
+    const apellido = (document.getElementById('cartApellido') || {}).value || '';
+    const listo = carritoItems.length > 0 && carritoSedeId && nombre.trim() && apellido.trim();
+    btn.disabled = !listo;
+}
+
+// =============================================
+// CARRITO — ENVIAR POR WHATSAPP
+// =============================================
+function enviarCarritoWsp() {
+    const nombre = (document.getElementById('cartNombre') || {}).value || '';
+    const apellido = (document.getElementById('cartApellido') || {}).value || '';
+    const vehiculo = (document.getElementById('cartVehiculo') || {}).value || '';
+
+    // Validación campos obligatorios
+    let valido = true;
+    ['cartNombre', 'cartApellido'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && !el.value.trim()) {
+            el.classList.add('error');
+            setTimeout(() => el.classList.remove('error'), 600);
+            valido = false;
+        }
+    });
+    if (!valido) return;
+    if (!carritoSedeId || carritoItems.length === 0) return;
+
+    const sede = NOMBRES_SEDES[carritoSedeId];
+    const numero = WSP_SEDES[carritoSedeId];
+    const total = carritoItems.reduce((s, i) => s + i.precio * i.qty, 0);
+
+    const lineasProductos = carritoItems.map(i =>
+        `- ${i.marca} ${i.nombre} × ${i.qty} — S/ ${(i.precio * i.qty).toFixed(2)}`
+    ).join('\n');
+
+    let msg =
+        `Hola AutoGas ${sede} 👋\n\n` +
+        `*Cliente:* ${nombre.trim()} ${apellido.trim()}\n`;
+
+    if (vehiculo.trim()) {
+        msg += `*Vehículo:* ${vehiculo.trim()}\n`;
     }
 
-    const numero = WSP_SEDES[sedeId];
-    const sede = NOMBRES_SEDES[sedeId];
-    const total = (p.precio * estadoTienda.cantidad).toFixed(2);
+    msg +=
+        `\n🛒 *Mi pedido:*\n${lineasProductos}\n\n` +
+        `💳 *Total estimado:* S/ ${total.toFixed(2)}\n\n` +
+        `Por favor confirmar disponibilidad antes de coordinar recojo o entrega.`;
 
-    const mensaje =
-        `Hola AutoGas ${sede} 👋\n\n` +
-        `*Cliente:* ${nombre} ${apellido}\n\n` +
-        `Quiero hacer un pedido desde la tienda online:\n\n` +
-        `🛒 *Producto:* ${p.marca} ${p.nombre}\n` +
-        `🔢 *Cantidad:* ${estadoTienda.cantidad}\n` +
-        `💰 *Precio unitario:* S/ ${p.precio.toFixed(2)}\n` +
-        `💳 *Total estimado:* S/ ${total}\n\n` +
-        `¿Tienen disponibilidad? ¿Puedo coordinar el recojo o la entrega?`;
-
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
-    cerrarModalBtn();
+
+    // Cerrar carrito después de enviar
+    toggleCarrito();
 }
 
 // =============================================
