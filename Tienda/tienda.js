@@ -1,15 +1,14 @@
 // =============================================
 // NÚMEROS DE WHATSAPP POR SEDE
-// (mismo sistema que contacto.js)
 // =============================================
 const WSP_SEDES = {
     '1': '51978421654',   // Ica
-    '2': '51939067488',   // Lima
-    '3': '51XXXXXXXXX',   // Trujillo  ← pon el número real
-    '4': '51XXXXXXXXX',   // Chincha   ← pon el número real
-    '5': '51XXXXXXXXX',   // Huancayo  ← pon el número real
-    '6': '51XXXXXXXXX',   // Nasca     ← pon el número real
-    '7': '51XXXXXXXXX',   // Arequipa  ← pon el número real
+    '2': '51942623696',   // Lima
+    '3': '51937695830',   // Trujillo
+    '4': '51930210613',   // Chincha
+    '5': '51942867212',   // Huancayo
+    '6': '51939067488',   // Nasca
+    '7': '51975338252',   // Arequipa
 };
 
 const NOMBRES_SEDES = {
@@ -19,7 +18,6 @@ const NOMBRES_SEDES = {
 
 // =============================================
 // CATÁLOGO DE PRODUCTOS
-// (agrega todos los que quieras después)
 // =============================================
 const CATALOGO = {
     aceites: {
@@ -29,7 +27,6 @@ const CATALOGO = {
                 id: 'ac01', marca: 'Shell', nombre: 'Helix Ultra 5W-40',
                 desc: 'Aceite sintético de última generación. Protección máxima del motor.',
                 precio: 89.90, badge: 'Más vendido',
-                // IMAGEN: foto en fondo blanco, estilo Tiffany, botella Shell Helix
                 img: 'Imagenes/prod-shell-helix-5w40.png'
             },
             {
@@ -173,7 +170,7 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // =============================================
-// HERO — fade-in
+// HERO — fade-in + init
 // =============================================
 window.addEventListener('load', () => {
     ['.hero-badge--anim', '.hero-title--anim', '.hero-sub--anim', '.hero-actions--anim']
@@ -182,6 +179,31 @@ window.addEventListener('load', () => {
             if (el) setTimeout(() => el.classList.add('visible'), 200 + i * 160);
         });
     iniciarReveal();
+
+    // Event listeners para campos de nombre — habilitan/deshabilitan botón en tiempo real
+    const inputNombre = document.getElementById('clienteNombre');
+    const inputApellido = document.getElementById('clienteApellido');
+    if (inputNombre) inputNombre.addEventListener('input', actualizarTotal);
+    if (inputApellido) inputApellido.addEventListener('input', actualizarTotal);
+
+    // Search input
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            const q = this.value.trim().toLowerCase();
+            const clearBtn = document.getElementById('searchClear');
+            if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
+            const cat = CATALOGO[estadoTienda.categoriaActual];
+            if (!cat) return;
+            const filtrados = q
+                ? cat.productos.filter(p =>
+                    p.nombre.toLowerCase().includes(q) ||
+                    p.marca.toLowerCase().includes(q) ||
+                    p.desc.toLowerCase().includes(q))
+                : cat.productos;
+            renderizarProductos(filtrados);
+        });
+    }
 });
 
 // =============================================
@@ -229,9 +251,29 @@ function verCategoria(catId) {
     bc.classList.add('visible');
     document.getElementById('bcNombre').textContent = cat.label;
 
-    // Mostrar productos
-    document.getElementById('viewProds').style.display = 'block';
+    // Mostrar y limpiar el buscador
+    const searchWrap = document.getElementById('searchWrap');
+    if (searchWrap) {
+        searchWrap.style.display = 'block';
+        const searchInput = document.getElementById('searchInput');
+        const searchClear = document.getElementById('searchClear');
+        if (searchInput) searchInput.value = '';
+        if (searchClear) searchClear.style.display = 'none';
+    }
+
+    // Mostrar productos con animación fluida
+    const viewProds = document.getElementById('viewProds');
+    viewProds.style.display = 'block';
+    viewProds.style.opacity = '0';
+    viewProds.style.transform = 'translateY(16px)';
     renderizarProductos(estadoTienda.productosOrdenados);
+
+    requestAnimationFrame(() => {
+        viewProds.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        viewProds.style.opacity = '1';
+        viewProds.style.transform = 'translateY(0)';
+        setTimeout(() => { viewProds.style.transition = ''; }, 450);
+    });
 
     // Scroll al store
     document.getElementById('store').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -249,11 +291,15 @@ function volverCategorias() {
     document.getElementById('viewCats').style.display = 'grid';
     document.getElementById('headerCats').style.display = 'block';
 
+    // Ocultar buscador
+    const searchWrap = document.getElementById('searchWrap');
+    if (searchWrap) searchWrap.style.display = 'none';
+
     document.getElementById('store').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 // =============================================
-// RENDERIZAR PRODUCTOS
+// RENDERIZAR PRODUCTOS — ESTILO LUXURY
 // =============================================
 function renderizarProductos(productos) {
     const grid = document.getElementById('prodsGrid');
@@ -261,23 +307,81 @@ function renderizarProductos(productos) {
     count.textContent = productos.length + ' producto' + (productos.length !== 1 ? 's' : '');
 
     grid.innerHTML = productos.map(p => `
-        <div class="prod-card">
+        <div class="prod-card" data-id="${p.id}" onclick="abrirModal('${p.id}')">
             <div class="prod-img">
                 <img src="${p.img}" alt="${p.nombre}" loading="lazy"
                      onerror="this.style.padding='2rem';this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
                 ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
+                <div class="prod-img-overlay">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.525 5.845L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.003-1.368l-.359-.214-3.722.976.994-3.636-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+                    </svg>
+                    Pedir por WhatsApp
+                </div>
             </div>
             <div class="prod-info">
                 <div class="prod-marca">${p.marca}</div>
                 <div class="prod-nombre">${p.nombre}</div>
                 <div class="prod-desc">${p.desc}</div>
                 <div class="prod-footer">
-                    <div class="prod-precio"><span>S/</span>${p.precio.toFixed(2)}</div>
-                    <button class="prod-btn" onclick="abrirModal('${p.id}')">Pedir</button>
+                    <div class="prod-precio">
+                        ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
+                        <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
+                    </div>
                 </div>
             </div>
         </div>
     `).join('');
+
+    activarCarrusel();
+}
+
+// =============================================
+// CARRUSEL DE FOTOS POR HOVER (ESTILO BALENCIAGA)
+// =============================================
+function activarCarrusel() {
+    document.querySelectorAll('.prod-card').forEach(card => {
+        const prodId = card.dataset.id;
+        const p = buscarProducto(prodId);
+        if (!p || !p.imgs || p.imgs.length < 2) return;
+
+        const img = card.querySelector('.prod-img img');
+        let intervalo = null;
+        let idx = 0;
+
+        card.addEventListener('mouseenter', () => {
+            idx = 0;
+            intervalo = setInterval(() => {
+                idx = (idx + 1) % p.imgs.length;
+                img.style.opacity = '0';
+                setTimeout(() => {
+                    img.src = p.imgs[idx];
+                    img.style.opacity = '1';
+                }, 200);
+            }, 800);
+        });
+
+        card.addEventListener('mouseleave', () => {
+            clearInterval(intervalo);
+            img.style.opacity = '0';
+            setTimeout(() => {
+                img.src = p.imgs[0];
+                img.style.opacity = '1';
+            }, 200);
+        });
+    });
+}
+
+// =============================================
+// BUSCAR PRODUCTO (helper)
+// =============================================
+function buscarProducto(id) {
+    for (const cat of Object.values(CATALOGO)) {
+        const p = cat.productos.find(x => x.id === id);
+        if (p) return p;
+    }
+    return null;
 }
 
 // =============================================
@@ -297,14 +401,27 @@ function ordenarProductos() {
 }
 
 // =============================================
-// MODAL WHATSAPP
+// BÚSQUEDA
 // =============================================
-function buscarProducto(id) {
-    for (const cat of Object.values(CATALOGO)) {
-        const p = cat.productos.find(x => x.id === id);
-        if (p) return p;
-    }
-    return null;
+function limpiarBusqueda() {
+    const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
+    if (searchInput) searchInput.value = '';
+    if (searchClear) searchClear.style.display = 'none';
+    const cat = CATALOGO[estadoTienda.categoriaActual];
+    if (cat) renderizarProductos(cat.productos);
+}
+
+// =============================================
+// MODAL WHATSAPP — REDISEÑADO
+// =============================================
+
+// Validación centralizada
+function puedeEnviar() {
+    const nombre = document.getElementById('clienteNombre');
+    const apellido = document.getElementById('clienteApellido');
+    if (!nombre || !apellido) return false;
+    return !!(estadoTienda.sedeId && nombre.value.trim() && apellido.value.trim());
 }
 
 function abrirModal(prodId) {
@@ -315,22 +432,28 @@ function abrirModal(prodId) {
     estadoTienda.cantidad = 1;
     estadoTienda.sedeId = null;
 
-    // Llenar preview
+    // Llenar panel de producto (columna izquierda)
     document.getElementById('modalPreview').innerHTML = `
         <img src="${p.img}" alt="${p.nombre}"
              onerror="this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
         <div>
             <div class="modal-preview-marca">${p.marca}</div>
             <div class="modal-preview-nombre">${p.nombre}</div>
-            <div class="modal-preview-precio"><span>S/</span>${p.precio.toFixed(2)}</div>
+            <div class="modal-preview-precio">
+                <span>S/</span>${p.precio.toFixed(2)}
+            </div>
         </div>
     `;
+
+    // Resetear formulario completamente
+    const inputNombre = document.getElementById('clienteNombre');
+    const inputApellido = document.getElementById('clienteApellido');
+    if (inputNombre) { inputNombre.value = ''; inputNombre.classList.remove('error'); }
+    if (inputApellido) { inputApellido.value = ''; inputApellido.classList.remove('error'); }
 
     document.getElementById('qtyDisplay').textContent = 1;
     document.getElementById('modalTotal').textContent = '';
     document.getElementById('btnWsp').disabled = true;
-
-    // Limpiar selección de sedes
     document.querySelectorAll('.sede-opt').forEach(s => s.classList.remove('selected'));
 
     document.getElementById('modalOverlay').classList.add('open');
@@ -378,23 +501,38 @@ function actualizarTotal() {
     if (estadoTienda.sedeId) {
         const sede = NOMBRES_SEDES[estadoTienda.sedeId];
         totalEl.textContent = `${estadoTienda.cantidad} × S/ ${p.precio.toFixed(2)} = S/ ${total} — Sede ${sede}`;
-        btnWsp.disabled = false;
     } else {
         totalEl.textContent = estadoTienda.cantidad > 1
             ? `${estadoTienda.cantidad} × S/ ${p.precio.toFixed(2)} = S/ ${total} — Elige tu sede`
             : '';
-        btnWsp.disabled = true;
     }
+
+    btnWsp.disabled = !puedeEnviar();
 }
 
 // =============================================
 // ENVIAR POR WHATSAPP
-// (igual que contacto.js — mismo sistema)
 // =============================================
 function enviarWsp() {
     const p = estadoTienda.productoActual;
     const sedeId = estadoTienda.sedeId;
     if (!p || !sedeId) return;
+
+    const inputNombre = document.getElementById('clienteNombre');
+    const inputApellido = document.getElementById('clienteApellido');
+    const nombre = inputNombre ? inputNombre.value.trim() : '';
+    const apellido = inputApellido ? inputApellido.value.trim() : '';
+
+    // Validación de seguridad: marcar campos vacíos en rojo
+    if (!nombre || !apellido) {
+        [inputNombre, inputApellido].forEach(el => {
+            if (el && !el.value.trim()) {
+                el.classList.add('error');
+                setTimeout(() => el.classList.remove('error'), 600);
+            }
+        });
+        return;
+    }
 
     const numero = WSP_SEDES[sedeId];
     const sede = NOMBRES_SEDES[sedeId];
@@ -402,11 +540,12 @@ function enviarWsp() {
 
     const mensaje =
         `Hola AutoGas ${sede} 👋\n\n` +
+        `*Cliente:* ${nombre} ${apellido}\n\n` +
         `Quiero hacer un pedido desde la tienda online:\n\n` +
         `🛒 *Producto:* ${p.marca} ${p.nombre}\n` +
         `🔢 *Cantidad:* ${estadoTienda.cantidad}\n` +
         `💰 *Precio unitario:* S/ ${p.precio.toFixed(2)}\n` +
-        `💳 *Total:* S/ ${total}\n\n` +
+        `💳 *Total estimado:* S/ ${total}\n\n` +
         `¿Tienen disponibilidad? ¿Puedo coordinar el recojo o la entrega?`;
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
@@ -416,7 +555,6 @@ function enviarWsp() {
 
 // =============================================
 // TICKER — swipe móvil
-// (mismo código que inicio.js)
 // =============================================
 (function () {
     const track = document.getElementById('tickerTrack');

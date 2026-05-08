@@ -59,7 +59,8 @@
         <a href="../Tienda/tienda.html" onclick="toggleMenu()" class="mobile-nav-highlight">Tienda</a>
         <a href="../Contacto/contacto.html" onclick="toggleMenu()" class="mobile-nav-cta">Cotizar</a>
     </div>
-    <!-- HERO -->
+
+    <!-- ==================== HERO ==================== -->
     <section class="hero-tienda">
         <div class="hero-bg">
             <!-- IMAGEN: foto premium productos automotrices, fondo oscuro industrial -->
@@ -83,7 +84,7 @@
         <div class="hero-scroll"><span></span></div>
     </section>
 
-    <!-- STORE SECTION -->
+    <!-- ==================== STORE SECTION ==================== -->
     <section class="store-section" id="store">
 
         <!-- Breadcrumb (oculto al inicio) -->
@@ -210,6 +211,20 @@
 
         <!-- GRID PRODUCTOS -->
         <div class="prods-section" id="viewProds" style="display:none">
+
+            <!-- Barra de búsqueda (oculta al inicio, visible al entrar a categoría) -->
+            <div class="search-bar-wrap" id="searchWrap" style="display:none">
+                <div class="search-bar">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre, marca..." autocomplete="off" />
+                    <button class="search-clear" id="searchClear" onclick="limpiarBusqueda()"
+                        style="display:none">✕</button>
+                </div>
+            </div>
+
             <div class="prods-meta">
                 <span id="prodsCount" class="prods-count"></span>
                 <select id="ordenSelect" onchange="ordenarProductos()" class="prods-order">
@@ -223,7 +238,7 @@
 
     </section>
 
-    <!-- BRANDS STATIC -->
+    <!-- ==================== BRANDS STATIC ==================== -->
     <section class="brands-section">
         <div class="brands-header">
             <span class="section-label">Marcas Originales</span>
@@ -325,57 +340,82 @@
         </div>
     </footer>
 
-    <!-- MODAL PEDIR POR WHATSAPP -->
+    <!-- ==================== MODAL PEDIR POR WHATSAPP ==================== -->
     <div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
         <div class="modal-box">
             <button class="modal-close" onclick="cerrarModalBtn()">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                     <line x1="18" y1="6" x2="6" y2="18" />
                     <line x1="6" y1="6" x2="18" y2="18" />
                 </svg>
             </button>
 
-            <div class="modal-preview" id="modalPreview">
-                <!-- JS lo llena -->
-            </div>
+            <div class="modal-inner">
 
-            <div class="modal-form">
-                <h3 class="modal-title">Selecciona cantidad y sede</h3>
-
-                <div class="modal-field">
-                    <label>Cantidad</label>
-                    <div class="qty-ctrl">
-                        <button onclick="cambiarCantidad(-1)">−</button>
-                        <span id="qtyDisplay">1</span>
-                        <button onclick="cambiarCantidad(1)">+</button>
-                    </div>
+                <!-- Panel izquierdo: producto -->
+                <div class="modal-product-panel" id="modalPreview">
+                    <!-- JS lo llena dinámicamente -->
                 </div>
 
-                <div class="modal-field">
-                    <label>Tu sede AutoGas</label>
-                    <div class="sedes-grid">
-                        <div class="sede-opt" data-id="1" onclick="elegirSede(this)">Ica</div>
-                        <div class="sede-opt" data-id="2" onclick="elegirSede(this)">Lima</div>
-                        <div class="sede-opt" data-id="3" onclick="elegirSede(this)">Trujillo</div>
-                        <div class="sede-opt" data-id="4" onclick="elegirSede(this)">Chincha</div>
-                        <div class="sede-opt" data-id="5" onclick="elegirSede(this)">Huancayo</div>
-                        <div class="sede-opt" data-id="6" onclick="elegirSede(this)">Nasca</div>
-                        <div class="sede-opt" data-id="7" onclick="elegirSede(this)">Arequipa</div>
+                <!-- Panel derecho: formulario -->
+                <div class="modal-form-panel">
+                    <p class="modal-eyebrow">AutoGas Tienda</p>
+                    <h3 class="modal-title">Completa tu pedido</h3>
+
+                    <!-- Nombre y Apellido en 2 columnas -->
+                    <div class="modal-row">
+                        <div class="modal-field">
+                            <label>Nombre</label>
+                            <input type="text" id="clienteNombre" class="modal-input" placeholder="Carlos"
+                                autocomplete="given-name" />
+                        </div>
+                        <div class="modal-field">
+                            <label>Apellido</label>
+                            <input type="text" id="clienteApellido" class="modal-input" placeholder="Ríos"
+                                autocomplete="family-name" />
+                        </div>
                     </div>
+
+                    <!-- Cantidad -->
+                    <div class="modal-field">
+                        <label>Cantidad</label>
+                        <div class="qty-ctrl">
+                            <button onclick="cambiarCantidad(-1)">−</button>
+                            <span id="qtyDisplay">1</span>
+                            <button onclick="cambiarCantidad(1)">+</button>
+                        </div>
+                    </div>
+
+                    <!-- Sede -->
+                    <div class="modal-field">
+                        <label>Tu sede AutoGas</label>
+                        <div class="sedes-grid">
+                            <div class="sede-opt" data-id="1" onclick="elegirSede(this)">Ica</div>
+                            <div class="sede-opt" data-id="2" onclick="elegirSede(this)">Lima</div>
+                            <div class="sede-opt" data-id="3" onclick="elegirSede(this)">Trujillo</div>
+                            <div class="sede-opt" data-id="4" onclick="elegirSede(this)">Chincha</div>
+                            <div class="sede-opt" data-id="5" onclick="elegirSede(this)">Huancayo</div>
+                            <div class="sede-opt" data-id="6" onclick="elegirSede(this)">Nasca</div>
+                            <div class="sede-opt" data-id="7" onclick="elegirSede(this)">Arequipa</div>
+                        </div>
+                    </div>
+
+                    <!-- Resumen total -->
+                    <div class="modal-total" id="modalTotal"></div>
+
+                    <!-- Botón WhatsApp -->
+                    <button class="btn-wsp" id="btnWsp" onclick="enviarWsp()" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                            <path
+                                d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.525 5.845L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.003-1.368l-.359-.214-3.722.976.994-3.636-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
+                        </svg>
+                        Enviar pedido
+                    </button>
+                    <p class="modal-note">Solo dale enviar en WhatsApp. 🚀</p>
                 </div>
 
-                <div class="modal-total" id="modalTotal"></div>
-
-                <button class="btn-wsp" id="btnWsp" onclick="enviarWsp()" disabled>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
-                        <path
-                            d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.525 5.845L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.003-1.368l-.359-.214-3.722.976.994-3.636-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z" />
-                    </svg>
-                    Pedir por WhatsApp
-                </button>
-                <p class="modal-note">Solo dale enviar en WhatsApp. 🚀</p>
             </div>
         </div>
     </div>
