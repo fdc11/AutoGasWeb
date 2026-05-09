@@ -1916,7 +1916,7 @@ ul {
 
 .cart-item-marca {
     font-family: var(--font-cond);
-    font-size: 0.58rem;
+    font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -1926,7 +1926,7 @@ ul {
 
 .cart-item-nombre {
     font-family: var(--font-cond);
-    font-size: 0.82rem;
+    font-size: 0.98rem;
     font-weight: 700;
     text-transform: uppercase;
     color: var(--white);
@@ -1985,7 +1985,7 @@ ul {
 
 .cart-item-precio {
     font-family: var(--font-cond);
-    font-size: 0.9rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--white);
     white-space: nowrap;
@@ -1993,19 +1993,23 @@ ul {
 
 .cart-item-remove {
     background: none;
-    border: none;
-    color: #333;
+    border: 1px solid rgba(227, 6, 19, 0.35);
+    border-radius: 2px;
+    color: #cc2200;
     cursor: pointer;
-    font-size: 0.7rem;
-    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     font-family: var(--font-cond);
-    padding: 0;
-    transition: color var(--transition-fast);
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
 }
 
 .cart-item-remove:hover {
-    color: var(--red);
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--white);
 }
 
 /* Sección del formulario */
@@ -2026,7 +2030,7 @@ ul {
 
 .cart-form-label {
     font-family: var(--font-cond);
-    font-size: 0.62rem;
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.22em;
     text-transform: uppercase;
@@ -2054,20 +2058,20 @@ ul {
 
 .cart-field label {
     font-family: var(--font-cond);
-    font-size: 0.6rem;
+    font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #555;
+    color: #888;
 }
 
 .cart-field-optional {
     font-weight: 400;
-    color: #3a3a3a;
+    color: #555;
     text-transform: none;
     letter-spacing: 0;
     font-family: var(--font-body);
-    font-size: 0.6rem;
+    font-size: 0.65rem;
 }
 
 .cart-input {
@@ -2089,7 +2093,7 @@ ul {
 }
 
 .cart-input::placeholder {
-    color: #2e2e2e;
+    color: #444;
 }
 
 .cart-input.error {
