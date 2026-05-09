@@ -2281,8 +2281,45 @@ ul {
 }
 
 /* =============================================
-   BOTÓN AGREGAR EN PROD-CARD
+   BOTÓN VOLVER AL FINAL DEL GRID
 ============================================= */
+.prods-back-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 3rem 0 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 1rem;
+}
+
+.prods-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid rgba(227, 6, 19, 0.4);
+    border-radius: 3px;
+    color: var(--white);
+    font-family: var(--font-cond);
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.7rem 1.6rem 0.7rem 1.2rem;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.prods-back-btn svg {
+    color: var(--red);
+    flex-shrink: 0;
+}
+
+.prods-back-btn:hover {
+    background: rgba(227, 6, 19, 0.12);
+    border-color: var(--red);
+    transform: translateX(-3px);
+}
+
 .prod-add-btn {
     display: inline-flex;
     align-items: center;
