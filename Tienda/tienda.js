@@ -202,6 +202,7 @@ window.addEventListener('load', () => {
             if (el) setTimeout(() => el.classList.add('visible'), 200 + i * 160);
         });
     iniciarReveal();
+    iniciarBrandsReveal();
 
     // Search input
     const searchInput = document.getElementById('searchInput');
@@ -355,13 +356,24 @@ function renderizarProductos(productos) {
     const count = document.getElementById('prodsCount');
     count.textContent = productos.length + ' producto' + (productos.length !== 1 ? 's' : '');
 
+    if (productos.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column:1/-1;padding:4rem 2rem;text-align:center;">
+                <div style="font-size:2.5rem;margin-bottom:1rem;">🔍</div>
+                <p style="font-family:var(--font-cond);font-size:1.2rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:0.5rem;">Sin resultados</p>
+                <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.5rem;">No encontramos productos que coincidan con tu búsqueda.</p>
+                <button onclick="limpiarBusqueda()" style="background:var(--red);border:none;color:#fff;font-family:var(--font-cond);font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.4rem;border-radius:2px;cursor:pointer;">Limpiar búsqueda</button>
+            </div>`;
+        return;
+    }
+
     grid.innerHTML = productos.map(p => `
         <div class="prod-card" data-id="${p.id}">
             <div class="prod-img" onclick="abrirModal('${p.id}')">
                 <img src="${p.img}" alt="${p.nombre}" loading="lazy"
                      onerror="this.style.padding='2rem';this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
                 ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
-                <div class="prod-img-overlay" onclick="event.stopPropagation();agregarAlCarrito('${p.id}')">
+                <div class="prod-img-overlay" onclick="event.stopPropagation();agregarAlCarritoDesdeCard('${p.id}', event)">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
                         <line x1="3" y1="6" x2="21" y2="6"/>
@@ -374,18 +386,27 @@ function renderizarProductos(productos) {
                 <div class="prod-marca">${p.marca}</div>
                 <div class="prod-nombre">${p.nombre}</div>
                 <div class="prod-desc">${p.desc}</div>
-                <div class="prod-footer">
-                    <div class="prod-precio">
-                        ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
-                        <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
+                <div class="prod-footer-full">
+                    <div class="prod-footer-top">
+                        <div class="prod-precio">
+                            ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
+                            <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
+                        </div>
                     </div>
-                    <button class="prod-add-btn" onclick="agregarAlCarrito('${p.id}')">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <line x1="12" y1="5" x2="12" y2="19"/>
-                            <line x1="5" y1="12" x2="19" y2="12"/>
-                        </svg>
-                        Agregar
-                    </button>
+                    <div class="prod-footer-actions">
+                        <div class="prod-qty-controls">
+                            <button class="prod-qty-btn" onclick="cambiarQtyCard('${p.id}', -1)" aria-label="Restar">−</button>
+                            <span class="prod-qty-num" id="qty-${p.id}">1</span>
+                            <button class="prod-qty-btn" onclick="cambiarQtyCard('${p.id}', 1)" aria-label="Sumar">+</button>
+                        </div>
+                        <button class="prod-add-btn-full" onclick="agregarAlCarritoDesdeCard('${p.id}', event)">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            Agregar al carrito
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -478,7 +499,84 @@ function abrirModal(prodId) {
 }
 
 // =============================================
-// CARRITO — AGREGAR PRODUCTO
+// CANTIDAD EN CARD — estado local por producto
+// =============================================
+const qtdCard = {}; // {prodId: cantidad}
+
+function cambiarQtyCard(prodId, delta) {
+    if (!qtdCard[prodId]) qtdCard[prodId] = 1;
+    qtdCard[prodId] = Math.max(1, qtdCard[prodId] + delta);
+    const el = document.getElementById('qty-' + prodId);
+    if (el) el.textContent = qtdCard[prodId];
+}
+
+function agregarAlCarritoDesdeCard(prodId, e) {
+    if (e) e.stopPropagation();
+    const qty = qtdCard[prodId] || 1;
+    const p = buscarProducto(prodId);
+    if (!p) return;
+
+    const existente = carritoItems.find(i => i.id === prodId);
+    if (existente) {
+        existente.qty += qty;
+    } else {
+        carritoItems.push({
+            id: p.id, marca: p.marca, nombre: p.nombre,
+            precio: p.precio, img: p.img, qty
+        });
+    }
+
+    // Reset qty visual
+    qtdCard[prodId] = 1;
+    const qtyEl = document.getElementById('qty-' + prodId);
+    if (qtyEl) qtyEl.textContent = '1';
+
+    // Feedback visual en la card
+    const card = document.querySelector(`.prod-card[data-id="${prodId}"]`);
+    if (card) {
+        const btn = card.querySelector('.prod-add-btn-full');
+        if (btn) {
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ¡Agregado!`;
+            btn.style.background = '#1a7a3a';
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.style.background = '';
+            }, 1400);
+        }
+    }
+
+    guardarCarritoStorage();
+    renderizarCarrito();
+    actualizarFabCount();
+    dispararPulseRing();
+    mostrarToastAdd(p.nombre, qty);
+}
+
+// =============================================
+// TOAST: producto agregado al carrito
+// =============================================
+let _toastAddTimer = null;
+function mostrarToastAdd(nombre, qty) {
+    let toast = document.getElementById('toastAdd');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toastAdd';
+        toast.className = 'toast-add';
+        document.body.appendChild(toast);
+    }
+    toast.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        ${qty > 1 ? qty + ' × ' : ''}${nombre} — en tu carrito`;
+    clearTimeout(_toastAddTimer);
+    toast.classList.add('visible');
+    _toastAddTimer = setTimeout(() => toast.classList.remove('visible'), 2400);
+}
+
+// =============================================
+// CARRITO — AGREGAR PRODUCTO (mantener para compatibilidad)
 // =============================================
 function agregarAlCarrito(prodId) {
     const p = buscarProducto(prodId);
@@ -715,8 +813,71 @@ function enviarCarritoWsp() {
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
 
-    // Cerrar carrito después de enviar
+    // Cerrar carrito
     toggleCarrito();
+
+    // Toast de confirmación
+    mostrarToastWsp();
+}
+
+// =============================================
+// TOAST — CONFIRMACIÓN WHATSAPP
+// =============================================
+function mostrarToastWsp() {
+    let toast = document.getElementById('toastWsp');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toastWsp';
+        toast.className = 'toast-wsp';
+        toast.innerHTML = `
+            <div class="toast-wsp-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.525 5.845L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.003-1.368l-.359-.214-3.722.976.994-3.636-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+                </svg>
+            </div>
+            <div class="toast-wsp-body">
+                <div class="toast-wsp-title">¡Pedido listo! Revisa WhatsApp</div>
+                <div class="toast-wsp-sub">Se abrió WhatsApp con tu pedido. Solo dale <strong style="color:#fff">Enviar</strong> al mensaje para confirmarlo. 🚀</div>
+            </div>
+            <button class="toast-wsp-close" onclick="cerrarToastWsp()" aria-label="Cerrar">✕</button>
+        `;
+        document.body.appendChild(toast);
+    }
+    setTimeout(() => toast.classList.add('visible'), 50);
+    // Auto-cerrar en 7 segundos
+    setTimeout(() => cerrarToastWsp(), 7000);
+}
+
+function cerrarToastWsp() {
+    const toast = document.getElementById('toastWsp');
+    if (toast) toast.classList.remove('visible');
+}
+
+// =============================================
+// BRANDS — reveal animado con stagger
+// =============================================
+function iniciarBrandsReveal() {
+    const header = document.querySelector('.brands-header');
+    const items = document.querySelectorAll('.t-item');
+
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('brands-header')) {
+                    entry.target.classList.add('visible');
+                } else {
+                    // stagger por índice
+                    const idx = Array.from(items).indexOf(entry.target);
+                    setTimeout(() => entry.target.classList.add('visible'), idx * 100);
+                }
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    if (header) obs.observe(header);
+    items.forEach(item => obs.observe(item));
 }
 
 // =============================================

@@ -494,7 +494,7 @@ ul {
 .breadcrumb {
     display: none;
     align-items: center;
-    gap: .6rem;
+    gap: .8rem;
     margin-bottom: 2.5rem;
     font-family: var(--font-body);
     font-size: .85rem;
@@ -508,17 +508,28 @@ ul {
 .bc-back {
     display: flex;
     align-items: center;
-    gap: .3rem;
-    background: none;
-    border: none;
-    color: var(--gray);
+    gap: .5rem;
+    background: rgba(227, 6, 19, 0.1);
+    border: 1px solid rgba(227, 6, 19, 0.35);
+    border-radius: 3px;
+    color: var(--white);
     cursor: pointer;
-    font-size: .85rem;
+    font-size: .88rem;
     font-family: var(--font-body);
-    transition: color var(--transition);
+    font-weight: 600;
+    letter-spacing: .04em;
+    padding: .55rem 1.1rem .55rem .8rem;
+    transition: background var(--transition), border-color var(--transition), transform var(--transition);
 }
 
 .bc-back:hover {
+    background: rgba(227, 6, 19, 0.22);
+    border-color: var(--red);
+    transform: translateX(-2px);
+}
+
+.bc-back svg {
+    flex-shrink: 0;
     color: var(--red);
 }
 
@@ -572,9 +583,21 @@ ul {
 ============================================= */
 .cats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 0;
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 900px) {
+    .cats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .cats-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .cat-card {
@@ -612,7 +635,7 @@ ul {
 
 .cat-img {
     position: relative;
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/4;
     overflow: hidden;
 }
 
@@ -976,14 +999,15 @@ ul {
 ============================================= */
 .brands-section {
     background: #ffffff;
-    padding: 5rem 0;
-    border-top: 1px solid rgba(0, 0, 0, .08);
+    padding: 7rem 0;
+    border-top: 4px solid var(--red);
+    margin-top: 2rem;
 }
 
 .brands-header {
     text-align: center;
     padding: 0 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
 }
 
 .brands-header .section-label {
@@ -1003,7 +1027,7 @@ ul {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 2rem 3rem;
+    gap: 2.5rem 4rem;
     padding: 0 2rem;
     max-width: 1100px;
     margin: 0 auto;
@@ -1013,26 +1037,53 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, filter var(--transition), scale var(--transition);
+}
+
+.t-item.visible {
     opacity: 1;
-    transition: opacity var(--transition), transform var(--transition);
+    transform: translateY(0);
 }
 
 .t-item:hover {
-    opacity: .75;
-    transform: scale(1.05);
+    scale: 1.08;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.18));
 }
 
 .t-item img {
-    height: 40px;
+    height: 44px;
     width: auto;
-    max-width: 130px;
+    max-width: 140px;
     object-fit: contain;
     filter: none;
 }
 
+.brands-header .section-label,
+.brands-header .section-title {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.brands-header.visible .section-label,
+.brands-header.visible .section-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.brands-header.visible .section-title {
+    transition-delay: 0.1s;
+}
+
 @media (max-width: 480px) {
+    .brands-section {
+        padding: 5rem 0;
+    }
+
     .brands-grid {
-        gap: 1.5rem 2rem;
+        gap: 1.5rem 2.5rem;
     }
 
     .t-item img {
@@ -2254,6 +2305,231 @@ ul {
 
 .prod-add-btn:active {
     transform: translateY(0);
+}
+
+/* ── Selector de cantidad en prod-card ── */
+.prod-qty-controls {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.prod-qty-btn {
+    width: 30px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.07);
+    border: none;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background var(--transition-fast);
+    line-height: 1;
+    padding: 0;
+}
+
+.prod-qty-btn:hover {
+    background: var(--red);
+}
+
+.prod-qty-num {
+    width: 30px;
+    text-align: center;
+    font-family: var(--font-cond);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--white);
+    background: rgba(255, 255, 255, 0.04);
+    padding: 0 2px;
+    line-height: 30px;
+    display: block;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prod-footer-full {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    width: 100%;
+}
+
+.prod-footer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.prod-footer-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.prod-add-btn-full {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.55rem 0.75rem;
+    background: var(--red);
+    border: none;
+    border-radius: 2px;
+    color: var(--white);
+    font-family: var(--font-cond);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.prod-add-btn-full:hover {
+    background: var(--red-dark);
+    transform: translateY(-1px);
+}
+
+.prod-add-btn-full:active {
+    transform: translateY(0);
+}
+
+/* ── Feedback visual al agregar ── */
+.prod-card.added .prod-add-btn-full {
+    background: #1a7a3a;
+}
+
+/* =============================================
+   TOAST DE CONFIRMACIÓN
+============================================= */
+.toast-wsp {
+    position: fixed;
+    bottom: 6rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: #1a1a1a;
+    border: 1px solid rgba(37, 211, 102, 0.4);
+    border-radius: 6px;
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    max-width: 360px;
+    width: 90vw;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.toast-wsp.visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: all;
+}
+
+.toast-wsp-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: rgba(37, 211, 102, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #25D366;
+}
+
+.toast-wsp-body {
+    flex: 1;
+}
+
+.toast-wsp-title {
+    font-family: var(--font-cond);
+    font-size: 0.92rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 0.2rem;
+}
+
+.toast-wsp-sub {
+    font-size: 0.8rem;
+    color: #aaa;
+    line-height: 1.4;
+}
+
+.toast-wsp-close {
+    background: none;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    flex-shrink: 0;
+    line-height: 1;
+    transition: color var(--transition-fast);
+    align-self: flex-start;
+}
+
+.toast-wsp-close:hover {
+    color: var(--white);
+}
+
+/* Toast de "agregado al carrito" */
+.toast-add {
+    position: fixed;
+    bottom: 6rem;
+    right: 5rem;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 3px solid var(--red);
+    border-radius: 3px;
+    padding: 0.8rem 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 9999;
+    opacity: 0;
+    transform: translateX(16px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    font-family: var(--font-cond);
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    white-space: nowrap;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.toast-add.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+@media (max-width: 600px) {
+    .toast-add {
+        right: 1rem;
+        bottom: 5rem;
+    }
+
+    .toast-wsp {
+        bottom: 1rem;
+    }
 }
 
 /* =============================================
