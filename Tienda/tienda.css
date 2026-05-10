@@ -1,4 +1,78 @@
 /* =============================================
+   FUENTES LOCALES — Barlow & Barlow Condensed
+============================================= */
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-300.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-500.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Barlow';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-600.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-700.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Barlow Condensed';
+    font-style: normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url('../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2') format('woff2');
+}
+/* =============================================
    RESET & VARIABLES
 ============================================= */
 *,
@@ -37,6 +111,7 @@
 }
 
 html {
+    font-size: 16px;
     scroll-behavior: smooth;
 }
 
@@ -44,6 +119,8 @@ body {
     background: var(--dark2);
     color: var(--white);
     font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.5;
     overflow-x: hidden;
 }
 
@@ -53,12 +130,7 @@ img {
 }
 
 a {
-    text-decoration: none;
     color: inherit;
-}
-
-ul {
-    list-style: none;
 }
 
 /* =============================================
@@ -348,7 +420,7 @@ ul {
 /* Title */
 .hero-title {
     font-family: var(--font-cond);
-    font-size: clamp(3.5rem, 9vw, 7.5rem);
+    font-size: clamp(3rem, 7vw, 6rem);
     font-weight: 900;
     line-height: .92;
     letter-spacing: -.01em;
@@ -560,7 +632,7 @@ ul {
 
 .section-title {
     font-family: var(--font-cond);
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2rem, 4vw, 3.5rem);
     font-weight: 900;
     line-height: .95;
     text-transform: uppercase;
@@ -938,17 +1010,17 @@ ul {
 
 .prod-nombre {
     font-family: var(--font-cond);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.02em;
     color: var(--white);
     line-height: 1.2;
     margin-bottom: 0.35rem;
 }
 
 .prod-desc {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     color: var(--gray);
     line-height: 1.5;
     margin-bottom: 0.8rem;
@@ -1089,6 +1161,14 @@ ul {
 /* =============================================
    FOOTER
 ============================================= */
+.footer a {
+    text-decoration: none !important;
+}
+
+.footer ul {
+    list-style: none !important;
+}
+
 .footer {
     background: #1a1a1a;
     border-top: 1px solid rgba(255, 255, 255, .06);
