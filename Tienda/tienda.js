@@ -386,26 +386,10 @@ function renderizarProductos(productos) {
                 <div class="prod-marca">${p.marca}</div>
                 <div class="prod-nombre">${p.nombre}</div>
                 <div class="prod-desc">${p.desc}</div>
-                <div class="prod-footer-full">
-                    <div class="prod-footer-top">
-                        <div class="prod-precio">
-                            ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
-                            <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
-                        </div>
-                    </div>
-                    <div class="prod-footer-actions">
-                        <div class="prod-qty-controls">
-                            <button class="prod-qty-btn" onclick="cambiarQtyCard('${p.id}', -1)" aria-label="Restar">−</button>
-                            <span class="prod-qty-num" id="qty-${p.id}">1</span>
-                            <button class="prod-qty-btn" onclick="cambiarQtyCard('${p.id}', 1)" aria-label="Sumar">+</button>
-                        </div>
-                        <button class="prod-add-btn-full" onclick="agregarAlCarritoDesdeCard('${p.id}', event)">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                                <line x1="12" y1="5" x2="12" y2="19"/>
-                                <line x1="5" y1="12" x2="19" y2="12"/>
-                            </svg>
-                            Agregar al carrito
-                        </button>
+                <div class="prod-footer">
+                    <div class="prod-precio">
+                        ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
+                        <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
                     </div>
                 </div>
             </div>
