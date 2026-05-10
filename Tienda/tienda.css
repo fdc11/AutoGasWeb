@@ -954,12 +954,6 @@ ul {
     margin-bottom: 0.8rem;
 }
 
-.prod-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .prod-precio {
     font-family: var(--font-body);
     font-size: 0.9rem;
