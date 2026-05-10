@@ -369,28 +369,33 @@ function renderizarProductos(productos) {
 
     grid.innerHTML = productos.map(p => `
         <div class="prod-card" data-id="${p.id}">
-            <div class="prod-img" onclick="abrirModal('${p.id}')">
+            <div class="prod-img">
                 <img src="${p.img}" alt="${p.nombre}" loading="lazy"
                      onerror="this.style.padding='2rem';this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
                 ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
-                <div class="prod-img-overlay" onclick="event.stopPropagation();agregarAlCarritoDesdeCard('${p.id}', event)">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 01-8 0"/>
-                    </svg>
-                    Agregar al carrito
-                </div>
             </div>
             <div class="prod-info">
                 <div class="prod-marca">${p.marca}</div>
                 <div class="prod-nombre">${p.nombre}</div>
                 <div class="prod-desc">${p.desc}</div>
-                <div class="prod-footer">
-                    <div class="prod-precio">
-                        ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
-                        <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
+                <div class="prod-precio" style="margin-bottom:0.9rem;">
+                    ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
+                    <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
+                </div>
+                <div class="prod-add-row">
+                    <div class="prod-qty-ctrl">
+                        <button class="prod-qty-btn" onclick="cambiarQtyCard('${p.id}',-1)" aria-label="Menos">−</button>
+                        <span class="prod-qty-num" id="qty-${p.id}">1</span>
+                        <button class="prod-qty-btn" onclick="cambiarQtyCard('${p.id}',1)" aria-label="Más">+</button>
                     </div>
+                    <button class="prod-add-btn-full" onclick="agregarAlCarritoDesdeCard('${p.id}', event)">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                            <line x1="3" y1="6" x2="21" y2="6"/>
+                            <path d="M16 10a4 4 0 01-8 0"/>
+                        </svg>
+                        Agregar
+                    </button>
                 </div>
             </div>
         </div>
