@@ -13,6 +13,9 @@
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
+header('Strict-Transport-Security: max-age=31536000; includeSubDomains');
+header('Referrer-Policy: strict-origin-when-cross-origin');
+header('Permissions-Policy: camera=(), microphone=(), geolocation=()');
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 $allowed_origins = [
@@ -68,11 +71,11 @@ foreach (['nombre', 'sede', 'servicio', 'calificacion', 'comentario'] as $campo)
 }
 
 // ─── Sanitizar ────────────────────────────────────────────────────────────────
-$nombre       = trim($input['nombre']);
+$nombre       = htmlspecialchars(strip_tags(trim($input['nombre'])), ENT_QUOTES, 'UTF-8');
 $sede_nombre  = trim($input['sede']);
 $servicio_nom = trim($input['servicio']);
 $calificacion = (int) $input['calificacion'];
-$comentario   = trim($input['comentario']);
+$comentario   = htmlspecialchars(strip_tags(trim($input['comentario'])), ENT_QUOTES, 'UTF-8');
 
 // ─── Validaciones de longitud ─────────────────────────────────────────────────
 if ($calificacion < 1 || $calificacion > 5) {
