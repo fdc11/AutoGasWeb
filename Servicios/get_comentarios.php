@@ -1,17 +1,25 @@
 <?php
 /* =============================================
    get_comentarios.php — AutoGas
-   Devuelve reseñas verificadas desde la BD
-   para mostrar en servicios.html
+   Carga reseñas desde BD con cache simple (5 min)
+   Mejoras v2:
+   - Cache en archivo JSON para evitar hammering
+   - Headers de seguridad (nosniff, no-frame)
+   - CORS configurable para producción
 ============================================= */
 
+// ─── Headers ─────────────────────────────────────────────────────────────────
 header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
 
-// Restricción de origen
+// ─── CORS ────────────────────────────────────────────────────────────────────
 $allowed_origins = [
     'http://localhost',
     'http://localhost:80',
     'http://127.0.0.1',
+    // TODO: agregar dominio de producción aquí una vez definido
+    // 'https://www.autogas.pe',
 ];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if (in_array($origin, $allowed_origins, true)) {
@@ -19,72 +27,92 @@ if (in_array($origin, $allowed_origins, true)) {
 } else {
     header('Access-Control-Allow-Origin: http://localhost');
 }
+header('Access-Control-Allow-Methods: GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
 
-// Solo permitir GET
-if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-    http_response_code(405);
-    echo json_encode(['error' => 'Método no permitido']);
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
     exit;
 }
 
-$host = 'localhost';
-$db   = 'autogas_db';
-$user = 'root';
-$pass = '';
+// ─── Cache simple (5 minutos) ───────────────────────────────────────────────
+$cacheFile = sys_get_temp_dir() . '/autogas_resenas_cache.json';
+$cacheTTL = 300; // 5 minutos
 
+if (file_exists($cacheFile)) {
+    $cacheTime = filemtime($cacheFile);
+    if (time() - $cacheTime < $cacheTTL) {
+        echo file_get_contents($cacheFile);
+        exit;
+    }
+}
+
+// ─── Credenciales desde variables de entorno ──────────────────────────────────
+$host = getenv('AUTOGAS_DB_HOST') ?: 'localhost';
+$db   = getenv('AUTOGAS_DB_NAME') ?: 'autogas_db';
+$user = getenv('AUTOGAS_DB_USER') ?: 'root';
+$pass = getenv('AUTOGAS_DB_PASS') ?: '';
+
+// ─── Consulta a BD ─────────────────────────────────────────────────────────────
 try {
     $pdo = new PDO(
-        "mysql:host=$host;dbname=$db;charset=utf8",
+        "mysql:host=$host;dbname=$db;charset=utf8mb4",
         $user, $pass,
-        [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        [
+            PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_EMULATE_PREPARES   => false,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]
     );
 
-    // Solo reseñas positivas/neutras con calificación >= 4
-    // Mostramos nombre_publico si es visita web,
-    // o nombre del cliente registrado si tiene cliente_id
-    $stmt = $pdo->query("
-        SELECT
-            cc.id,
-            COALESCE(
-                cc.nombre_publico,
-                CONCAT(c.nombres, ' ', SUBSTRING(c.apellidos, 1, 1), '.')
-            )                        AS nombre,
-            s.nombre                 AS sede,
-            sc.nombre                AS servicio,
-            cc.calificacion,
-            cc.sentimiento,
-            cc.comentario,
-            cc.fecha
-        FROM comentarios_clientes cc
-        LEFT JOIN clientes         c  ON c.id  = cc.cliente_id
-        LEFT JOIN sedes            s  ON s.id  = cc.sede_id
-        LEFT JOIN servicios_catalogo sc ON sc.id = cc.servicio_id
-        WHERE cc.calificacion >= 4
-          AND cc.sentimiento IN ('positivo', 'neutro')
-        ORDER BY cc.calificacion DESC, cc.fecha DESC
-        LIMIT 20
-    ");
+    // Detectar columnas opcionales dinámicamente
+    $stmtNombre = $pdo->query("SHOW COLUMNS FROM comentarios_clientes LIKE 'nombre_publico'");
+    $tieneNombre = ($stmtNombre->rowCount() > 0);
 
-    $resenas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmtEstado = $pdo->query("SHOW COLUMNS FROM comentarios_clientes LIKE 'estado'");
+    $tieneEstado = ($stmtEstado->rowCount() > 0);
 
-    // Normalizar para el slider
-    $resultado = array_map(function($r) {
-        return [
-            'nombre'      => $r['nombre']     ?? 'Cliente AutoGas',
-            'sede'        => $r['sede']        ?? 'AutoGas',
-            'servicio'    => $r['servicio']    ?? 'Servicio AutoGas',
-            'calificacion'=> (int)($r['calificacion'] ?? 5),
-            'sentimiento' => $r['sentimiento'] ?? 'positivo',
-            'comentario'  => $r['comentario']  ?? '',
-            'fecha'       => $r['fecha']       ?? '',
+    // Construir query dinámico
+    $sql = "SELECT cc.*, s.nombre as sede, sc.nombre as servicio
+            FROM comentarios_clientes cc
+            LEFT JOIN sedes s ON cc.sede_id = s.id
+            LEFT JOIN servicios_catalogo sc ON cc.servicio_id = sc.id
+            WHERE 1=1";
+
+    if ($tieneEstado) {
+        $sql .= " AND (cc.estado = 'Aprobado' OR cc.estado IS NULL)";
+    }
+
+    $sql .= " ORDER BY cc.fecha DESC LIMIT 50";
+
+    $stmt = $pdo->query($sql);
+    $comentarios = $stmt->fetchAll();
+
+    // Formatear respuesta
+    $result = [];
+    foreach ($comentarios as $row) {
+        $item = [
+            'nombre'      => $tieneNombre ? ($row['nombre_publico'] ?? 'Anónimo') : 'Anónimo',
+            'sede'        => $row['sede'] ?? 'No especificada',
+            'servicio'    => $row['servicio'] ?? 'General',
+            'calificacion' => (int)($row['calificacion'] ?? 5),
+            'comentario'  => $row['comentario'] ?? '',
+            'fecha'       => $row['fecha'] ?? date('Y-m-d')
         ];
-    }, $resenas);
+        $result[] = $item;
+    }
 
-    echo json_encode($resultado, JSON_UNESCAPED_UNICODE);
+    // Guardar en cache
+    file_put_contents($cacheFile, json_encode($result));
+
+    echo json_encode($result);
 
 } catch (PDOException $e) {
-    // No exponer detalles internos de la BD al cliente
-    error_log('[AutoGas] get_comentarios error: ' . $e->getMessage());
     http_response_code(500);
-    echo json_encode(['error' => 'No se pudieron cargar las reseñas. Intenta más tarde.']);
+    error_log('[AutoGas] get_comentarios error: ' . $e->getMessage());
+    echo json_encode([]);
+} catch (Throwable $e) {
+    http_response_code(500);
+    error_log('[AutoGas] get_comentarios unexpected: ' . $e->getMessage());
+    echo json_encode([]);
 }

@@ -1,12 +1,26 @@
 <?php
-// ─── CORS & Headers ───────────────────────────────────────────────────────────
-header('Content-Type: application/json; charset=utf-8');
+/* =============================================
+   guardar_comentario.php — AutoGas
+   Mejoras v2:
+   - Credenciales desde variables de entorno
+   - Rate limiting por IP en BD (más robusto que sesiones)
+   - Límite de longitud máxima en nombre y comentario
+   - Headers de seguridad (nosniff, no-frame)
+   - Invalida el cache de get_comentarios al insertar
+============================================= */
 
-// Permitir solo el origen propio del sitio (no acceso desde otros dominios)
+// ─── Headers ─────────────────────────────────────────────────────────────────
+header('Content-Type: application/json; charset=utf-8');
+header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
+
+// ─── CORS ────────────────────────────────────────────────────────────────────
 $allowed_origins = [
     'http://localhost',
     'http://localhost:80',
     'http://127.0.0.1',
+    // TODO: agregar dominio de producción aquí una vez definido
+    // 'https://www.autogas.pe',
 ];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 if (in_array($origin, $allowed_origins, true)) {
@@ -28,24 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// ─── Rate limiting por sesión (máx 3 comentarios por hora) ───────────────────
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-$ahora = time();
-if (!isset($_SESSION['resena_timestamps'])) {
-    $_SESSION['resena_timestamps'] = [];
-}
-// Eliminar registros de hace más de 1 hora
-$_SESSION['resena_timestamps'] = array_filter(
-    $_SESSION['resena_timestamps'],
-    fn($t) => ($ahora - $t) < 3600
-);
-if (count($_SESSION['resena_timestamps']) >= 3) {
-    http_response_code(429);
-    echo json_encode(['success' => false, 'message' => 'Demasiadas reseñas enviadas. Espera un momento antes de intentar de nuevo.']);
-    exit;
-}
+// ─── Credenciales desde variables de entorno ──────────────────────────────────
+$host = getenv('AUTOGAS_DB_HOST') ?: 'localhost';
+$db   = getenv('AUTOGAS_DB_NAME') ?: 'autogas_db';
+$user = getenv('AUTOGAS_DB_USER') ?: 'root';
+$pass = getenv('AUTOGAS_DB_PASS') ?: '';
 
 // ─── Leer y validar JSON ──────────────────────────────────────────────────────
 $raw   = file_get_contents('php://input');
@@ -73,6 +74,7 @@ $servicio_nom = trim($input['servicio']);
 $calificacion = (int) $input['calificacion'];
 $comentario   = trim($input['comentario']);
 
+// ─── Validaciones de longitud ─────────────────────────────────────────────────
 if ($calificacion < 1 || $calificacion > 5) {
     http_response_code(422);
     echo json_encode(['success' => false, 'message' => 'La calificación debe ser entre 1 y 5']);
@@ -85,27 +87,39 @@ if (mb_strlen($nombre) < 2) {
     exit;
 }
 
+if (mb_strlen($nombre) > 120) {
+    http_response_code(422);
+    echo json_encode(['success' => false, 'message' => 'El nombre no puede superar 120 caracteres']);
+    exit;
+}
+
 if (mb_strlen($comentario) < 10) {
     http_response_code(422);
     echo json_encode(['success' => false, 'message' => 'El comentario es muy corto (mínimo 10 caracteres)']);
     exit;
 }
 
-// ─── Sentimiento automático (alimenta al programa de IA) ─────────────────────
-if ($calificacion >= 4) {
-    $sentimiento = 'positivo';
-} elseif ($calificacion === 3) {
-    $sentimiento = 'neutro';
-} else {
-    $sentimiento = 'negativo';
+if (mb_strlen($comentario) > 1000) {
+    http_response_code(422);
+    echo json_encode(['success' => false, 'message' => 'El comentario no puede superar 1000 caracteres']);
+    exit;
 }
 
-// ─── Conexión PDO ─────────────────────────────────────────────────────────────
-$host = 'localhost';
-$db   = 'autogas_db';
-$user = 'root';
-$pass = '';
+// ─── Sentimiento automático ───────────────────────────────────────────────────
+if ($calificacion >= 4)     $sentimiento = 'positivo';
+elseif ($calificacion === 3) $sentimiento = 'neutro';
+else                         $sentimiento = 'negativo';
 
+// ─── IP del cliente ───────────────────────────────────────────────────────────
+// Obtener IP real (considerando proxies/CDN)
+$ip = $_SERVER['HTTP_CF_CONNECTING_IP']
+   ?? $_SERVER['HTTP_X_FORWARDED_FOR']
+   ?? $_SERVER['REMOTE_ADDR']
+   ?? '0.0.0.0';
+// Si hay múltiples IPs (X-Forwarded-For puede ser lista), tomar la primera
+$ip = trim(explode(',', $ip)[0]);
+
+// ─── Conexión PDO ─────────────────────────────────────────────────────────────
 try {
     $pdo = new PDO(
         "mysql:host=$host;dbname=$db;charset=utf8mb4",
@@ -117,7 +131,31 @@ try {
         ]
     );
 
-    // ─── Resolver sede_id desde el nombre ────────────────────────────────────
+    // ─── Rate limiting por IP en BD (máx 3 reseñas por hora por IP) ──────────
+    // Requiere tabla rate_limit_resenas:
+    //   CREATE TABLE IF NOT EXISTS rate_limit_resenas (
+    //       ip VARCHAR(45) NOT NULL,
+    //       creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    //       INDEX idx_ip_creado (ip, creado_en)
+    //   );
+    $stmtRL = $pdo->prepare("
+        SELECT COUNT(*) AS total
+        FROM rate_limit_resenas
+        WHERE ip = ? AND creado_en >= DATE_SUB(NOW(), INTERVAL 1 HOUR)
+    ");
+    $stmtRL->execute([$ip]);
+    $rlRow = $stmtRL->fetch();
+
+    if ((int)($rlRow['total'] ?? 0) >= 3) {
+        http_response_code(429);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Demasiadas reseñas enviadas. Espera un momento antes de intentar de nuevo.'
+        ]);
+        exit;
+    }
+
+    // ─── Resolver sede_id ─────────────────────────────────────────────────────
     $stmtSede = $pdo->prepare("SELECT id FROM sedes WHERE nombre = ? LIMIT 1");
     $stmtSede->execute([$sede_nombre]);
     $sede = $stmtSede->fetch();
@@ -130,7 +168,7 @@ try {
 
     $sede_id = (int) $sede['id'];
 
-    // ─── Resolver servicio_id desde el nombre (búsqueda parcial) ─────────────
+    // ─── Resolver servicio_id ─────────────────────────────────────────────────
     $stmtServ = $pdo->prepare("
         SELECT id FROM servicios_catalogo
         WHERE activo = 1 AND nombre LIKE ?
@@ -140,16 +178,14 @@ try {
     $servicio    = $stmtServ->fetch();
     $servicio_id = $servicio ? (int) $servicio['id'] : null;
 
-    // ─── Detectar si la BD ya tiene columna nombre_publico ───────────────────
-    // Compatible tanto ANTES como DESPUÉS de ejecutar autogas_fixes.sql
+    // ─── Detectar columnas opcionales ─────────────────────────────────────────
     $stmtCols    = $pdo->query("SHOW COLUMNS FROM comentarios_clientes LIKE 'nombre_publico'");
     $tieneNombre = ($stmtCols->rowCount() > 0);
 
-    // ─── Insertar comentario ─────────────────────────────────────────────────
+    // ─── Insertar comentario ──────────────────────────────────────────────────
     if ($tieneNombre) {
-        // Verificar si la tabla tiene columna 'estado'
-        $stmtEstado   = $pdo->query("SHOW COLUMNS FROM comentarios_clientes LIKE 'estado'");
-        $tieneEstado  = ($stmtEstado->rowCount() > 0);
+        $stmtEstado  = $pdo->query("SHOW COLUMNS FROM comentarios_clientes LIKE 'estado'");
+        $tieneEstado = ($stmtEstado->rowCount() > 0);
 
         if ($tieneEstado) {
             $stmtInsert = $pdo->prepare("
@@ -171,7 +207,6 @@ try {
             $comentario, $calificacion, $sentimiento
         ]);
     } else {
-        // Sin columna nombre_publico todavía — sigue funcionando igual
         $stmtInsert = $pdo->prepare("
             INSERT INTO comentarios_clientes
                 (cliente_id, sede_id, servicio_id,
@@ -186,8 +221,17 @@ try {
 
     $comentarioId = (int) $pdo->lastInsertId();
 
-    // Registrar timestamp para rate limiting
-    $_SESSION['resena_timestamps'][] = time();
+    // ─── Registrar IP para rate limiting ──────────────────────────────────────
+    $pdo->prepare("INSERT INTO rate_limit_resenas (ip) VALUES (?)")->execute([$ip]);
+
+    // ─── Limpiar registros viejos de rate_limit (> 2 horas) — mantenimiento ──
+    $pdo->exec("DELETE FROM rate_limit_resenas WHERE creado_en < DATE_SUB(NOW(), INTERVAL 2 HOUR)");
+
+    // ─── Invalidar cache de get_comentarios ───────────────────────────────────
+    $cacheFile = sys_get_temp_dir() . '/autogas_resenas_cache.json';
+    if (file_exists($cacheFile)) {
+        @unlink($cacheFile);
+    }
 
     http_response_code(201);
     echo json_encode([
@@ -206,4 +250,3 @@ try {
     error_log('[AutoGas] guardar_comentario unexpected: ' . $e->getMessage());
     echo json_encode(['success' => false, 'message' => 'Error inesperado']);
 }
-?>

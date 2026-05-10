@@ -297,12 +297,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cargar desde BD y arrancar slider
     async function cargarTestimonios() {
+        // Mostrar skeleton loader mientras carga
+        if (track) {
+            track.innerHTML = '';
+            for (let i = 0; i < 3; i++) {
+                const skeleton = document.createElement('div');
+                skeleton.className = 'testimonio-card skeleton-card';
+                skeleton.innerHTML = `
+                    <div class="skeleton-stars"></div>
+                    <div class="skeleton-text skeleton-text--long"></div>
+                    <div class="skeleton-text skeleton-text--medium"></div>
+                    <div class="skeleton-text skeleton-text--short"></div>
+                    <div class="card-meta">
+                        <div class="card-avatar skeleton-avatar"></div>
+                        <div>
+                            <div class="skeleton-text skeleton-text--name"></div>
+                            <div class="skeleton-text skeleton-text--sede"></div>
+                        </div>
+                    </div>
+                `;
+                track.appendChild(skeleton);
+            }
+        }
+
         let testimoniosData = testimoniosFallback;
         try {
             const res = await fetch('get_comentarios.php');
             if (res.ok) {
                 const json = await res.json();
-                if (Array.isArray(json) && json.length >= 3) {
+                // Usar datos reales si el array no está vacío (no solo si >= 3)
+                if (Array.isArray(json) && json.length > 0) {
                     testimoniosData = json;
                 }
             }
@@ -340,6 +364,25 @@ document.addEventListener('DOMContentLoaded', () => {
             return name.split(' ').slice(0, 2).map(w => w[0].toUpperCase()).join('');
         }
 
+        function getAvatarColor(name) {
+            // Generar color HSL único basado en hash del nombre
+            let hash = 0;
+            for (let i = 0; i < name.length; i++) {
+                hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const hue = Math.abs(hash % 360);
+            return `hsl(${hue}, 65%, 45%)`;
+        }
+
+        function formatFecha(fechaStr) {
+            if (!fechaStr) return '';
+            const fecha = new Date(fechaStr);
+            if (isNaN(fecha.getTime())) return '';
+            const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                          'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+            return `${meses[fecha.getMonth()]} ${fecha.getFullYear()}`;
+        }
+
         function escHtml(str) {
             const d = document.createElement('div');
             d.appendChild(document.createTextNode(str));
@@ -351,11 +394,14 @@ document.addEventListener('DOMContentLoaded', () => {
             testimoniosData.forEach(t => {
                 const card = document.createElement('div');
                 card.className = 'testimonio-card';
+                const avatarColor = getAvatarColor(t.nombre);
+                const fechaStr = formatFecha(t.fecha);
                 card.innerHTML = `
                     <div class="card-estrellas">${renderStars(t.calificacion)}</div>
                     <p class="card-comentario">${escHtml(t.comentario)}</p>
+                    ${fechaStr ? `<div class="card-fecha">${fechaStr}</div>` : ''}
                     <div class="card-meta">
-                        <div class="card-avatar">${getInitials(t.nombre)}</div>
+                        <div class="card-avatar" style="background:${avatarColor};border-color:${avatarColor}33">${getInitials(t.nombre)}</div>
                         <div>
                             <div class="card-nombre">${escHtml(t.nombre)}</div>
                             <div class="card-sede">Sede ${escHtml(t.sede)} · ${escHtml(t.servicio)}</div>
@@ -368,18 +414,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 track.appendChild(card);
             });
             renderDots();
+            updateRatingAverage();
             updateTrack();
         }
 
         function renderDots() {
             if (!dotsWrap) return;
             dotsWrap.innerHTML = '';
-            for (let i = 0; i <= maxIdx; i++) {
-                const dot = document.createElement('button');
-                dot.className = 'slider-dot' + (i === current ? ' active' : '');
-                dot.setAttribute('aria-label', `Grupo ${i + 1}`);
-                dot.addEventListener('click', () => goTo(i));
-                dotsWrap.appendChild(dot);
+            
+            // Si hay más de 5 grupos, implementar dots agrupados
+            const totalDots = maxIdx + 1;
+            if (totalDots > 5) {
+                // Mostrar máximo 5 dots con indicadores de "más"
+                const maxVisible = 5;
+                const step = Math.ceil(totalDots / maxVisible);
+                
+                for (let i = 0; i < maxVisible; i++) {
+                    const idx = Math.min(i * step, maxIdx);
+                    const dot = document.createElement('button');
+                    dot.className = 'slider-dot' + (idx === current ? ' active' : '');
+                    dot.setAttribute('aria-label', `Grupo ${idx + 1}`);
+                    dot.addEventListener('click', () => goTo(idx));
+                    dotsWrap.appendChild(dot);
+                }
+            } else {
+                // Mostrar todos los dots normalmente
+                for (let i = 0; i <= maxIdx; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'slider-dot' + (i === current ? ' active' : '');
+                    dot.setAttribute('aria-label', `Grupo ${i + 1}`);
+                    dot.addEventListener('click', () => goTo(i));
+                    dotsWrap.appendChild(dot);
+                }
             }
         }
 
@@ -413,6 +479,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         function stopAuto() {
             if (autoTimer) clearInterval(autoTimer);
+        }
+
+        // Pausar autoplay cuando la pestaña está en segundo plano
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                stopAuto();
+            } else {
+                startAuto();
+            }
+        });
+
+        function updateRatingAverage() {
+            if (testimoniosData.length === 0) return;
+            const sum = testimoniosData.reduce((acc, t) => acc + (t.calificacion || 0), 0);
+            const avg = (sum / testimoniosData.length).toFixed(1);
+            
+            // Crear o actualizar elemento de promedio
+            let avgEl = document.getElementById('ratingAverage');
+            if (!avgEl) {
+                avgEl = document.createElement('div');
+                avgEl.id = 'ratingAverage';
+                avgEl.className = 'rating-average';
+                const header = document.querySelector('.testimonios-header');
+                if (header) header.appendChild(avgEl);
+            }
+            avgEl.innerHTML = `⭐ ${avg} · Basado en ${testimoniosData.length} reseña${testimoniosData.length !== 1 ? 's' : ''}`;
         }
 
         if (btnPrev) btnPrev.addEventListener('click', () => { prev(); stopAuto(); startAuto(); });
@@ -499,6 +591,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!nombre || !sede || !servicio || !calificacion || !comentario) {
                 showError('Por favor completa todos los campos y selecciona una calificación.');
+                // Shake animation en star-rating si no hay calificación
+                if (!calificacion && starContainer) {
+                    starContainer.classList.add('shake-error');
+                    setTimeout(() => starContainer.classList.remove('shake-error'), 500);
+                }
                 return;
             }
 
@@ -558,21 +655,22 @@ document.addEventListener('DOMContentLoaded', () => {
             }).join('');
 
             const ini = nombre.split(' ').slice(0,2).map(w => w[0].toUpperCase()).join('');
+            const avatarColor = getAvatarColor ? getAvatarColor(nombre) : 'var(--red-soft)';
             const newCard = document.createElement('div');
             newCard.className = 'testimonio-card new-review-wow';
             newCard.innerHTML = `
                 <div class="card-estrellas">${stars}</div>
-                <p class="card-comentario">"${comentario.replace(/</g,'&lt;')}"</p>
+                <p class="card-comentario">"${escHtml(comentario)}"</p>
                 <div class="card-meta">
-                    <div class="card-avatar">${ini}</div>
+                    <div class="card-avatar" style="background:${avatarColor};border-color:${avatarColor}33">${ini}</div>
                     <div>
-                        <div class="card-nombre">${nombre.replace(/</g,'&lt;')}</div>
-                        <div class="card-sede">Sede ${sede} · ${servicio}</div>
+                        <div class="card-nombre">${escHtml(nombre)}</div>
+                        <div class="card-sede">Sede ${escHtml(sede)} · ${escHtml(servicio)}</div>
                     </div>
                 </div>
-                <div class="card-verified">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4caf7d" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-                    Tu reseña fue enviada
+                <div class="card-verified card-verified--pending">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    Tu reseña está pendiente de verificación
                 </div>`;
             track.prepend(newCard);
             track.scrollTo({ left: 0, behavior: 'smooth' });

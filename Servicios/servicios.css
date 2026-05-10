@@ -1088,6 +1088,7 @@ img {
     display: flex;
     gap: 24px;
     transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    align-items: stretch;
 }
 
 .testimonio-card {
@@ -1100,6 +1101,7 @@ img {
     flex-direction: column;
     gap: 16px;
     transition: border-color var(--transition), transform var(--transition);
+    min-height: 280px;
 }
 
 .testimonio-card:hover {
@@ -1172,6 +1174,101 @@ img {
     color: var(--gray-text);
 }
 
+.card-fecha {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--gray-muted);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* Rating average */
+.rating-average {
+    margin-top: 16px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 0.04em;
+}
+
+/* Skeleton loader */
+.skeleton-card {
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.skeleton-stars {
+    display: flex;
+    gap: 3px;
+    height: 14px;
+    width: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.skeleton-text {
+    height: 14px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+    margin-bottom: 8px;
+}
+
+.skeleton-text--long {
+    width: 100%;
+}
+
+.skeleton-text--medium {
+    width: 80%;
+}
+
+.skeleton-text--short {
+    width: 60%;
+}
+
+.skeleton-text--name {
+    width: 120px;
+    margin-bottom: 4px;
+}
+
+.skeleton-text--sede {
+    width: 150px;
+}
+
+.skeleton-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Shake animation for star rating validation */
+.star-rating.shake-error {
+    animation: shake 0.5s ease-in-out;
+    border-color: var(--red);
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-8px);
+    }
+    75% {
+        transform: translateX(8px);
+    }
+}
+
 /* Verified badge */
 .card-verified {
     display: flex;
@@ -1185,6 +1282,10 @@ img {
     border-top: 1px solid var(--border-dark);
     padding-top: 12px;
     margin-top: auto;
+}
+
+.card-verified--pending {
+    color: #f59e0b;
 }
 
 /* WOW new review animation */
