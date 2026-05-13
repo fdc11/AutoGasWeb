@@ -17,20 +17,20 @@ const state = {
     currentStep: 1,
     totalSteps: 4,
     data: {
-        nombres:     '',
-        apellidos:   '',
-        celular:     '',
-        correo:      '',
-        marca:       '',
-        modelo:      '',
-        placa:       '',
+        nombres: '',
+        apellidos: '',
+        celular: '',
+        correo: '',
+        marca: '',
+        modelo: '',
+        placa: '',
         kilometraje: '',
         combustible: '',
-        servicio:    '',
-        sedeId:      null,
-        sedeNombre:  '',
-        fecha:       '',
-        hora:        ''
+        servicio: '',
+        sedeId: null,
+        sedeNombre: '',
+        fecha: '',
+        hora: ''
     }
 };
 
@@ -94,29 +94,29 @@ document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => 
    VALIDACIONES POR CAMPO
 ========================================= */
 const validators = {
-    nombres:     v => v.trim().length >= 2,
-    apellidos:   v => v.trim().length >= 2,
-    celular:     v => /^9\d{8}$/.test(v.trim()),
-    correo:      v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
-    marca:       v => v.trim().length >= 2,
-    modelo:      v => v.trim().length >= 2,
-    placa:       v => /^[A-Z0-9]{3}-[A-Z0-9]{3}$/i.test(v.trim()),
+    nombres: v => v.trim().length >= 2,
+    apellidos: v => v.trim().length >= 2,
+    celular: v => /^9\d{8}$/.test(v.trim()),
+    correo: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+    marca: v => v.trim().length >= 2,
+    modelo: v => v.trim().length >= 2,
+    placa: v => /^[A-Z0-9]{3}-[A-Z0-9]{3}$/i.test(v.trim()),
     kilometraje: v => parseInt(v) > 0 && parseInt(v) <= 999999,
     combustible: v => v !== '',
-    servicio:    v => v !== '',
+    servicio: v => v !== '',
 };
 
 const errorMessages = {
-    nombres:     'Ingresa tu nombre (mín. 2 caracteres)',
-    apellidos:   'Ingresa tus apellidos (mín. 2 caracteres)',
-    celular:     'Número de 9 dígitos, debe empezar con 9',
-    correo:      'Ingresa un correo electrónico válido',
-    marca:       'Ingresa la marca del vehículo',
-    modelo:      'Ingresa el modelo del vehículo',
-    placa:       'Formato: ABC-123 o ABC-34F',
+    nombres: 'Ingresa tu nombre (mín. 2 caracteres)',
+    apellidos: 'Ingresa tus apellidos (mín. 2 caracteres)',
+    celular: 'Número de 9 dígitos, debe empezar con 9',
+    correo: 'Ingresa un correo electrónico válido',
+    marca: 'Ingresa la marca del vehículo',
+    modelo: 'Ingresa el modelo del vehículo',
+    placa: 'Formato: ABC-123 o ABC-34F',
     kilometraje: 'Ingresa un kilometraje válido',
     combustible: 'Selecciona el combustible actual',
-    servicio:    'Selecciona el servicio que deseas',
+    servicio: 'Selecciona el servicio que deseas',
 };
 
 /**
@@ -246,7 +246,7 @@ function prevStep() {
  */
 function goToStep(targetStep) {
     const currentEl = document.getElementById(`step${state.currentStep}`);
-    const targetEl  = document.getElementById(`step${targetStep}`);
+    const targetEl = document.getElementById(`step${targetStep}`);
     const goingBack = targetStep < state.currentStep;
 
     currentEl.style.animation = goingBack
@@ -272,18 +272,18 @@ function goToStep(targetStep) {
  */
 function saveStepData(step) {
     if (step === 1) {
-        state.data.nombres   = document.getElementById('nombres').value.trim();
+        state.data.nombres = document.getElementById('nombres').value.trim();
         state.data.apellidos = document.getElementById('apellidos').value.trim();
-        state.data.celular   = document.getElementById('celular').value.trim();
-        state.data.correo    = document.getElementById('correo').value.trim();
+        state.data.celular = document.getElementById('celular').value.trim();
+        state.data.correo = document.getElementById('correo').value.trim();
     }
     if (step === 2) {
-        state.data.marca       = document.getElementById('marca').value;
-        state.data.modelo      = document.getElementById('modelo').value.trim();
-        state.data.placa       = document.getElementById('placa').value.trim().toUpperCase();
+        state.data.marca = document.getElementById('marca').value;
+        state.data.modelo = document.getElementById('modelo').value.trim();
+        state.data.placa = document.getElementById('placa').value.trim().toUpperCase();
         state.data.kilometraje = document.getElementById('kilometraje').value;
         state.data.combustible = document.getElementById('combustible').value;
-        state.data.servicio    = document.getElementById('servicio').value;
+        state.data.servicio = document.getElementById('servicio').value;
     }
 }
 
@@ -302,7 +302,7 @@ function updateProgress() {
         const n = parseInt(el.dataset.step);
         el.classList.remove('active', 'done');
         if (n === state.currentStep) el.classList.add('active');
-        if (n < state.currentStep)   el.classList.add('done');
+        if (n < state.currentStep) el.classList.add('done');
     });
 
     document.querySelectorAll('.pstep-line').forEach((line, idx) => {
@@ -313,13 +313,13 @@ function updateProgress() {
         }
     });
 
-    const btnAnterior  = document.getElementById('btnAnterior');
+    const btnAnterior = document.getElementById('btnAnterior');
     const btnSiguiente = document.getElementById('btnSiguiente');
-    const btnEnviar    = document.getElementById('btnEnviar');
+    const btnEnviar = document.getElementById('btnEnviar');
 
-    btnAnterior.style.display  = state.currentStep > 1 ? 'inline-flex' : 'none';
+    btnAnterior.style.display = state.currentStep > 1 ? 'inline-flex' : 'none';
     btnSiguiente.style.display = state.currentStep < state.totalSteps ? 'inline-flex' : 'none';
-    btnEnviar.style.display    = state.currentStep === state.totalSteps ? 'inline-flex' : 'none';
+    btnEnviar.style.display = state.currentStep === state.totalSteps ? 'inline-flex' : 'none';
 }
 
 /* =========================================
@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', () => {
             document.querySelectorAll('.sede-card').forEach(c => c.classList.remove('selected'));
             card.classList.add('selected');
-            state.data.sedeId     = card.dataset.sedeId;
+            state.data.sedeId = card.dataset.sedeId;
             state.data.sedeNombre = card.dataset.sedeNombre;
 
             document.getElementById('err-sede').textContent = '';
@@ -340,7 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.getElementById('fecha').value = '';
             state.data.fecha = '';
-            state.data.hora  = '';
+            state.data.hora = '';
             document.getElementById('horasWrap').style.display = 'none';
         });
     });
@@ -355,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fecha = fechaInput.value;
             if (!fecha) return;
             state.data.fecha = fecha;
-            state.data.hora  = '';
+            state.data.hora = '';
             document.getElementById('err-fecha').textContent = '';
             // ✅ FIX 1: ahora se pasa también el sede_id para filtrar por sede correctamente
             cargarDisponibilidad(fecha, state.data.sedeId);
@@ -366,15 +366,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const el = document.getElementById(id);
         if (el) {
             el.addEventListener('input', () => validateField(id));
-            el.addEventListener('blur',  () => validateField(id));
+            el.addEventListener('blur', () => validateField(id));
         }
     });
 
     ['marca', 'modelo', 'placa', 'kilometraje', 'combustible', 'servicio'].forEach(id => {
         const el = document.getElementById(id);
         if (el) {
-            el.addEventListener('input',  () => validateField(id));
-            el.addEventListener('blur',   () => validateField(id));
+            el.addEventListener('input', () => validateField(id));
+            el.addEventListener('blur', () => validateField(id));
             if (el.tagName === 'SELECT') el.addEventListener('change', () => validateField(id));
         }
     });
@@ -413,8 +413,8 @@ document.addEventListener('DOMContentLoaded', () => {
    CARGAR DISPONIBILIDAD HORARIA
 ========================================= */
 const HORAS_TALLER = [
-    '08:00','09:00','10:00','11:00','12:00',
-    '13:00','14:00','15:00','16:00','17:00'
+    '08:00', '09:00', '10:00', '11:00', '12:00',
+    '13:00', '14:00', '15:00', '16:00', '17:00'
 ];
 
 // ✅ FIX 1: función ahora recibe sede_id y lo envía al PHP
@@ -432,7 +432,7 @@ async function cargarDisponibilidad(fecha, sedeId) {
     let ocupadas = [];
     try {
         // Ahora le pasa tanto fecha como sede_id al backend
-        const res  = await fetch(`get_disponibilidad.php?fecha=${fecha}&sede_id=${sedeId}`);
+        const res = await fetch(`get_disponibilidad.php?fecha=${fecha}&sede_id=${sedeId}`);
         const data = await res.json();
         ocupadas = data.ocupadas || [];
     } catch (e) {
@@ -549,8 +549,8 @@ function buildConfirmationGrid() {
 function formatFecha(fechaStr) {
     if (!fechaStr) return '';
     const [y, m, d] = fechaStr.split('-');
-    const meses = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-    return `${d} ${meses[parseInt(m)-1]} ${y}`;
+    const meses = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic'];
+    return `${d} ${meses[parseInt(m) - 1]} ${y}`;
 }
 
 /* =========================================
@@ -558,15 +558,19 @@ function formatFecha(fechaStr) {
    → Sin BD. Abre WhatsApp directo.
 ========================================= */
 function enviarFormulario() {
-    const btnEnviar  = document.getElementById('btnEnviar');
-    const btnText    = btnEnviar.querySelector('.btn-text');
+    const btnEnviar = document.getElementById('btnEnviar');
+    const btnText = btnEnviar.querySelector('.btn-text');
     const btnSpinner = btnEnviar.querySelector('.btn-spinner');
 
-    btnText.style.display    = 'none';
+    btnText.style.display = 'none';
     btnSpinner.style.display = 'inline-flex';
     btnEnviar.disabled = true;
 
-    // Pequeña pausa visual para que no sea instantáneo
+    // Abrir WhatsApp INMEDIATAMENTE (acción directa del usuario)
+    // para evitar que el navegador bloquee el popup
+    abrirWhatsApp(state.data);
+
+    // Pequeña pausa visual y luego mostrar pantalla de éxito
     setTimeout(() => {
         mostrarExito();
     }, 700);
@@ -589,9 +593,9 @@ const WSP_SEDES = {
    GENERAR MENSAJE DE WHATSAPP
 ========================================= */
 function generarMensajeWSP(d) {
-    const meses = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const meses = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
     const partes = d.fecha.split('-');
-    const fechaLegible = partes[2] + ' de ' + meses[parseInt(partes[1])-1] + ' de ' + partes[0];
+    const fechaLegible = partes[2] + ' de ' + meses[parseInt(partes[1]) - 1] + ' de ' + partes[0];
 
     const lineas = [
         'Hola AutoGas ' + d.sedeNombre + ', le escribo para confirmar mi cita.',
@@ -639,7 +643,4 @@ function mostrarExito() {
     const overlay = document.getElementById('successOverlay');
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-
-    // Abrir WhatsApp de la sede seleccionada con los datos del cliente
-    setTimeout(() => abrirWhatsApp(state.data), 600);
 }
