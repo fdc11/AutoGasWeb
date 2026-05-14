@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
     <style>
@@ -19,9 +20,6 @@
             margin: 0;
             padding: 0;
             width: 100%;
-        }
-
-        body {
             overflow-x: hidden;
         }
 
@@ -734,6 +732,14 @@
                             tiempo entre cambios.</p>
                     </div>
                     <div class="repuesto-card ">
+                        <div class="repuesto-logo"><img src="Imagenes/LiquiMolyLogo.png" alt="LiquiMoly"
+                                onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span
+                                class="repuesto-fallback" style="display:none">LiquiMoly</span></div>
+                        <h4 class="repuesto-nombre">LiquiMoly</h4>
+                        <p class="repuesto-desc">Aceite premium que mantiene el motor limpio y protegido durante más
+                            tiempo entre cambios.</p>
+                    </div>
+                    <div class="repuesto-card ">
                         <div class="repuesto-logo"><img src="Imagenes/Chevron.jpg" alt="Chevron"
                                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><span
                                 class="repuesto-fallback" style="display:none">Chevron</span></div>
@@ -921,7 +927,8 @@
                 <form class="resena-form" id="resenaForm" novalidate>
                     <div class="form-group">
                         <label for="resena-nombre">Nombre completo</label>
-                        <input type="text" id="resena-nombre" name="nombre" placeholder="Ej. Carlos Mendoza" autocomplete="name" required>
+                        <input type="text" id="resena-nombre" name="nombre" placeholder="Ej. Carlos Mendoza"
+                            autocomplete="name" required>
                     </div>
                     <div class="form-row-two">
                         <div class="form-group">
