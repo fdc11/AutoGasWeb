@@ -2336,7 +2336,8 @@ img {
     }
 
     .hero-title {
-        font-size: clamp(2.8rem, 14vw, 4.5rem);
+        font-size: clamp(2.2rem, 11vw, 4.5rem);
+        word-wrap: break-word;
     }
 
     .hero-actions {
