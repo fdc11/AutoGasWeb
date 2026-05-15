@@ -1785,11 +1785,144 @@ img {
     .mobile-nav .mnav-close::after {
         transform: rotate(-45deg);
     }
+
+    /* === NUEVOS AJUSTES RESPONSIVE === */
+
+    /* HERO */
+    .hero-content {
+        padding: 120px 5% 80px;
+    }
+    .hero-sub {
+        font-size: 1rem;
+    }
+
+    /* IMPACTO */
+    .impacto {
+        padding: 60px 5%;
+    }
+    .impacto-inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 15px;
+    }
+    .impacto-divider {
+        display: none;
+    }
+    .impacto-num {
+        font-size: 2.5rem;
+    }
+    .impacto-item {
+        min-width: 0;
+        gap: 8px;
+    }
+
+    /* QUIÉNES SOMOS */
+    .quienes {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 80px 5%;
+    }
+    .quienes-media {
+        height: 380px;
+        order: -1; /* Mover arriba en móviles */
+    }
+    .q-img-main {
+        width: 90%;
+        height: 85%;
+        left: 0;
+    }
+    .q-img-secondary {
+        width: 65%;
+        height: 50%;
+        bottom: 0;
+        right: 0;
+    }
+    .q-badge {
+        top: auto;
+        bottom: 10px;
+        left: 10px;
+        right: auto;
+        font-size: 0.65rem;
+        padding: 8px 12px;
+    }
+    .section-title {
+        font-size: clamp(2.4rem, 6vw, 3.2rem);
+        margin-bottom: 20px;
+    }
+
+    /* VALORES */
+    .valores {
+        padding: 80px 5%;
+    }
+    .valores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .valor-card {
+        padding: 30px 20px;
+    }
+    .valor-icon-wrap {
+        width: 56px;
+        height: 56px;
+    }
+    .valor-icon-wrap svg {
+        width: 24px;
+        height: 24px;
+    }
+    .valor-word {
+        font-size: 1.2rem;
+    }
+
+    /* EQUIPO */
+    .equipo {
+        padding: 80px 5%;
+    }
+    .equipo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* CERTIFICACIONES */
+    .certs {
+        padding: 80px 5%;
+    }
+    .marquee-track {
+        gap: 20px;
+    }
+    .cert-logo {
+        padding: 10px 15px;
+    }
+    .cert-logo img {
+        max-width: 100px;
+        height: 45px;
+    }
+
+    /* CTA SEDES */
+    .cta-sedes-content {
+        padding: 80px 5%;
+    }
+    .cta-title {
+        font-size: clamp(2.4rem, 6vw, 3.2rem);
+    }
 }
 
 @media (max-width: 480px) {
     .hero-title {
         font-size: clamp(2.2rem, 11vw, 4.5rem);
         word-wrap: break-word;
+    }
+    .impacto-inner {
+        grid-template-columns: 1fr; /* Una sola columna para contadores */
+    }
+    .valores-grid {
+        grid-template-columns: 1fr; /* Una sola columna para valores */
+    }
+    .equipo-grid {
+        grid-template-columns: 1fr; /* Una sola columna para equipo */
+        max-width: 320px;
+        margin: 0 auto;
+    }
+    .quienes-media {
+        height: 320px;
     }
 }
