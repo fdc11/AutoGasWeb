@@ -162,8 +162,10 @@ function validateStep(step) {
     let valid = true;
 
     if (step === 1) {
-        const fields = ['nombres', 'apellidos', 'celular', 'correo'];
-        fields.forEach(f => {
+        const mandatoryFields = ['nombres', 'apellidos', 'celular'];
+        const optionalFields = ['correo'];
+
+        mandatoryFields.forEach(f => {
             const input = document.getElementById(f);
             if (input && input.value.trim() === '') {
                 input.classList.add('error');
@@ -174,6 +176,19 @@ function validateStep(step) {
                 valid = false;
             } else {
                 if (!validateField(f)) valid = false;
+            }
+        });
+
+        optionalFields.forEach(f => {
+            const input = document.getElementById(f);
+            if (input && input.value.trim() !== '') {
+                if (!validateField(f)) valid = false;
+            } else if (input) {
+                input.classList.remove('error');
+                const errEl = document.getElementById(`err-${f}`);
+                if (errEl) errEl.textContent = '';
+                const statusEl = input.parentElement.querySelector('.field-status');
+                if (statusEl) statusEl.className = 'field-status';
             }
         });
     }
@@ -348,7 +363,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const fechaInput = document.getElementById('fecha');
     if (fechaInput) {
         const hoy = new Date();
-        hoy.setDate(hoy.getDate() + 1);
         fechaInput.min = hoy.toISOString().split('T')[0];
 
         fechaInput.addEventListener('change', () => {
