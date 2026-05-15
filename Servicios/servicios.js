@@ -290,10 +290,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    const track    = document.getElementById('testimoniosTrack');
+    const track = document.getElementById('testimoniosTrack');
     const dotsWrap = document.getElementById('sliderDots');
-    const btnPrev  = document.getElementById('sliderPrev');
-    const btnNext  = document.getElementById('sliderNext');
+    const btnPrev = document.getElementById('sliderPrev');
+    const btnNext = document.getElementById('sliderNext');
 
     // Cargar desde BD y arrancar slider
     async function cargarTestimonios() {
@@ -338,11 +338,11 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!track) return;
         let current = 0;
         let perView = getPerView();
-        let maxIdx  = Math.max(0, testimoniosData.length - perView);
+        let maxIdx = Math.max(0, testimoniosData.length - perView);
         let autoTimer = null;
 
         function getPerView() {
-            if (window.innerWidth <= 768)  return 1;
+            if (window.innerWidth <= 768) return 1;
             if (window.innerWidth <= 1100) return 2;
             return 3;
         }
@@ -379,7 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const fecha = new Date(fechaStr);
             if (isNaN(fecha.getTime())) return '';
             const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                          'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
             return `${meses[fecha.getMonth()]} ${fecha.getFullYear()}`;
         }
 
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="card-comentario">${escHtml(t.comentario)}</p>
                     ${fechaStr ? `<div class="card-fecha">${fechaStr}</div>` : ''}
                     <div class="card-meta">
-                        <div class="card-avatar" style="background:${avatarColor};border-color:${avatarColor}33">${getInitials(t.nombre)}</div>
+                        <div class="card-avatar" style="background:${avatarColor}22;border-color:${avatarColor};color:${avatarColor}">${getInitials(t.nombre)}</div>
                         <div>
                             <div class="card-nombre">${escHtml(t.nombre)}</div>
                             <div class="card-sede">Sede ${escHtml(t.sede)} · ${escHtml(t.servicio)}</div>
@@ -421,14 +421,14 @@ document.addEventListener('DOMContentLoaded', () => {
         function renderDots() {
             if (!dotsWrap) return;
             dotsWrap.innerHTML = '';
-            
+
             // Si hay más de 5 grupos, implementar dots agrupados
             const totalDots = maxIdx + 1;
             if (totalDots > 5) {
                 // Mostrar máximo 5 dots con indicadores de "más"
                 const maxVisible = 5;
                 const step = Math.ceil(totalDots / maxVisible);
-                
+
                 for (let i = 0; i < maxVisible; i++) {
                     const idx = Math.min(i * step, maxIdx);
                     const dot = document.createElement('button');
@@ -454,9 +454,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!cards.length) return;
             const gap = 24;
             const trackW = track.parentElement.offsetWidth;
-            const cardW  = (trackW - gap * (perView - 1)) / perView;
+            const cardW = (trackW - gap * (perView - 1)) / perView;
 
-            cards.forEach(el => { el.style.minWidth = cardW + 'px'; });
+            // Índice de la tarjeta central visible
+            const centerOffset = Math.floor(perView / 2);
+            const activeIdx = current + centerOffset;
+
+            cards.forEach((el, i) => {
+                el.style.minWidth = cardW + 'px';
+                el.classList.toggle('active', i === activeIdx);
+            });
             track.style.transform = `translateX(-${current * (cardW + gap)}px)`;
 
             if (dotsWrap) {
@@ -494,7 +501,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (testimoniosData.length === 0) return;
             const sum = testimoniosData.reduce((acc, t) => acc + (t.calificacion || 0), 0);
             const avg = (sum / testimoniosData.length).toFixed(1);
-            
+
             // Crear o actualizar elemento de promedio
             let avgEl = document.getElementById('ratingAverage');
             if (!avgEl) {
@@ -504,7 +511,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const header = document.querySelector('.testimonios-header');
                 if (header) header.appendChild(avgEl);
             }
-            avgEl.innerHTML = `⭐ ${avg} · Basado en ${testimoniosData.length} reseña${testimoniosData.length !== 1 ? 's' : ''}`;
+            avgEl.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="1.5" style="filter:drop-shadow(0 0 4px rgba(245,166,35,0.5));flex-shrink:0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ${avg} <span style="color:rgba(255,255,255,0.4);font-size:1rem;font-weight:400">· ${testimoniosData.length} reseña${testimoniosData.length !== 1 ? 's' : ''}</span>`;
         }
 
         if (btnPrev) btnPrev.addEventListener('click', () => { prev(); stopAuto(); startAuto(); });
@@ -513,7 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Swipe
         let touchX = 0;
         track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-        track.addEventListener('touchend',   e => {
+        track.addEventListener('touchend', e => {
             const diff = touchX - e.changedTouches[0].clientX;
             if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
         }, { passive: true });
@@ -521,7 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Resize
         window.addEventListener('resize', () => {
             perView = getPerView();
-            maxIdx  = Math.max(0, testimoniosData.length - perView);
+            maxIdx = Math.max(0, testimoniosData.length - perView);
             if (current > maxIdx) current = maxIdx;
             renderDots();
             updateTrack();
@@ -538,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
        8. STAR RATING (formulario)
     ----------------------------------------------- */
     const starContainer = document.getElementById('starRating');
-    const starInput     = document.getElementById('resena-calificacion');
+    const starInput = document.getElementById('resena-calificacion');
 
     if (starContainer && starInput) {
         const btns = starContainer.querySelectorAll('.star-btn');
@@ -573,21 +580,21 @@ document.addEventListener('DOMContentLoaded', () => {
        POST a guardar_comentario.php
        Respuesta esperada: { success: true } o { success: false, message: "..." }
     ----------------------------------------------- */
-    const form      = document.getElementById('resenaForm');
+    const form = document.getElementById('resenaForm');
     const btnSubmit = document.getElementById('btnSubmitResena');
     const successEl = document.getElementById('formSuccess');
-    const errorEl   = document.getElementById('formError');
-    const errorMsg  = document.getElementById('formErrorMsg');
+    const errorEl = document.getElementById('formError');
+    const errorMsg = document.getElementById('formErrorMsg');
 
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const nombre      = form.elements['nombre'].value.trim();
-            const sede        = form.elements['sede'].value;
-            const servicio    = form.elements['servicio'].value;
+            const nombre = form.elements['nombre'].value.trim();
+            const sede = form.elements['sede'].value;
+            const servicio = form.elements['servicio'].value;
             const calificacion = parseInt(form.elements['calificacion'].value, 10);
-            const comentario  = form.elements['comentario'].value.trim();
+            const comentario = form.elements['comentario'].value.trim();
 
             if (!nombre || !sede || !servicio || !calificacion || !comentario) {
                 showError('Por favor completa todos los campos y selecciona una calificación.');
@@ -603,14 +610,14 @@ document.addEventListener('DOMContentLoaded', () => {
             hideMessages();
 
             try {
-                const res  = await fetch('guardar_comentario.php', {
+                const res = await fetch('guardar_comentario.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ nombre, sede, servicio, calificacion, comentario })
                 });
 
                 let data = {};
-                try { data = await res.json(); } catch (_) {}
+                try { data = await res.json(); } catch (_) { }
 
                 if (res.ok && data.success !== false) {
                     showSuccess(nombre, comentario, sede, servicio, calificacion);
@@ -635,26 +642,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function setLoading(on) {
         if (!btnSubmit) return;
         btnSubmit.disabled = on;
-        const txt     = btnSubmit.querySelector('.btn-text');
+        const txt = btnSubmit.querySelector('.btn-text');
         const loading = btnSubmit.querySelector('.btn-loading');
-        const arrow   = btnSubmit.querySelector('.btn-arrow');
-        if (txt)     txt.style.display     = on ? 'none' : 'inline';
+        const arrow = btnSubmit.querySelector('.btn-arrow');
+        if (txt) txt.style.display = on ? 'none' : 'inline';
         if (loading) loading.style.display = on ? 'inline-flex' : 'none';
-        if (arrow)   arrow.style.display   = on ? 'none' : 'inline';
+        if (arrow) arrow.style.display = on ? 'none' : 'inline';
     }
 
     function showSuccess(nombre, comentario, sede, servicio, calificacion) {
         if (successEl) successEl.style.display = 'flex';
-        if (errorEl)   errorEl.style.display   = 'none';
+        if (errorEl) errorEl.style.display = 'none';
 
         // WOW: inject the new review at the top of the slider
         if (track && nombre && comentario) {
-            const stars = Array.from({length: 5}, (_, i) => {
+            const stars = Array.from({ length: 5 }, (_, i) => {
                 const filled = i < calificacion ? 'currentColor' : 'none';
                 return `<svg class="estrella-svg ${i < calificacion ? 'filled' : 'empty'}" viewBox="0 0 24 24" fill="${filled}" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
             }).join('');
 
-            const ini = nombre.split(' ').slice(0,2).map(w => w[0].toUpperCase()).join('');
+            const ini = nombre.split(' ').slice(0, 2).map(w => w[0].toUpperCase()).join('');
             const avatarColor = getAvatarColor ? getAvatarColor(nombre) : 'var(--red-soft)';
             const newCard = document.createElement('div');
             newCard.className = 'testimonio-card new-review-wow';
@@ -679,14 +686,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function showError(msg) {
-        if (errorEl)  { errorEl.style.display = 'flex'; }
+        if (errorEl) { errorEl.style.display = 'flex'; }
         if (errorMsg) { errorMsg.textContent = msg; }
         if (successEl) successEl.style.display = 'none';
     }
 
     function hideMessages() {
         if (successEl) successEl.style.display = 'none';
-        if (errorEl)   errorEl.style.display   = 'none';
+        if (errorEl) errorEl.style.display = 'none';
     }
 
     function resetForm() {
@@ -709,15 +716,15 @@ const SERVICIOS_IA = [
         desc: 'Diagnóstico y reparación integral: pastillas, discos, líquido y bomba de freno.',
         href: '#mecanica', color: '#ef4444', icon: '🛑',
         keywords: [
-            'freno','frenos','frenado','frenar','frena','frenando',
-            'no frena','frena mal','frena tarde','frena poco','frena raro',
-            'pastilla','pastillas','disco','discos','tambor','tambores',
-            'liquido freno','liquido de frenos','pedal','pedal blando',
-            'pedal se hunde','pedal duro','pedal fondo','abs','sistema abs',
-            'vibra al frenar','vibración freno','pulsacion freno',
-            'chirria','chirrido','chirrian','ruido al frenar','ruido freno',
-            'raspa al frenar','rechinido','squeal','freno de mano',
-            'freno de emergencia','handbrake'
+            'freno', 'frenos', 'frenado', 'frenar', 'frena', 'frenando',
+            'no frena', 'frena mal', 'frena tarde', 'frena poco', 'frena raro',
+            'pastilla', 'pastillas', 'disco', 'discos', 'tambor', 'tambores',
+            'liquido freno', 'liquido de frenos', 'pedal', 'pedal blando',
+            'pedal se hunde', 'pedal duro', 'pedal fondo', 'abs', 'sistema abs',
+            'vibra al frenar', 'vibración freno', 'pulsacion freno',
+            'chirria', 'chirrido', 'chirrian', 'ruido al frenar', 'ruido freno',
+            'raspa al frenar', 'rechinido', 'squeal', 'freno de mano',
+            'freno de emergencia', 'handbrake'
         ]
     },
 
@@ -727,14 +734,14 @@ const SERVICIOS_IA = [
         desc: 'Corrección de dirección hidráulica o eléctrica, cremallera y terminales.',
         href: '#mecanica', color: '#ef4444', icon: '🔧',
         keywords: [
-            'direccion','dirección','volante','timón','jala','jalando',
-            'jala a un lado','se va solo','desvia','desvía','desvio',
-            'volante duro','volante pesado','dificil girar','cuesta girar',
-            'cremallera','terminal','rotula','manga','rótula',
-            'ruido al girar','ruido volante','traquea al girar',
-            'alineacion','alineación','alineado','convergencia',
-            'servo','servodirección','direccion hidraulica','direccion electrica',
-            'liquido direccion','aceite direccion'
+            'direccion', 'dirección', 'volante', 'timón', 'jala', 'jalando',
+            'jala a un lado', 'se va solo', 'desvia', 'desvía', 'desvio',
+            'volante duro', 'volante pesado', 'dificil girar', 'cuesta girar',
+            'cremallera', 'terminal', 'rotula', 'manga', 'rótula',
+            'ruido al girar', 'ruido volante', 'traquea al girar',
+            'alineacion', 'alineación', 'alineado', 'convergencia',
+            'servo', 'servodirección', 'direccion hidraulica', 'direccion electrica',
+            'liquido direccion', 'aceite direccion'
         ]
     },
 
@@ -744,14 +751,14 @@ const SERVICIOS_IA = [
         desc: 'Radiador, termostato y bomba de agua. Evita que tu motor se recaliente.',
         href: '#mecanica', color: '#ef4444', icon: '🌡️',
         keywords: [
-            'calienta','caliente','recalienta','recalentamiento','temperatura',
-            'se calienta','se recalienta','temperatura alta','sube temperatura',
-            'aguja sube','indicador temperatura','tablero temperatura',
-            'agua motor','pierde agua','consume agua','falta agua',
-            'refrigerante','anticongelante','radiador','termostato',
-            'bomba agua','electróventilador','ventilador radiador',
-            'vapor','vapores','echa vapor','humo blanco','humo motor',
-            'sobrecalentamiento','overheat','calentón','se calientea'
+            'calienta', 'caliente', 'recalienta', 'recalentamiento', 'temperatura',
+            'se calienta', 'se recalienta', 'temperatura alta', 'sube temperatura',
+            'aguja sube', 'indicador temperatura', 'tablero temperatura',
+            'agua motor', 'pierde agua', 'consume agua', 'falta agua',
+            'refrigerante', 'anticongelante', 'radiador', 'termostato',
+            'bomba agua', 'electróventilador', 'ventilador radiador',
+            'vapor', 'vapores', 'echa vapor', 'humo blanco', 'humo motor',
+            'sobrecalentamiento', 'overheat', 'calentón', 'se calientea'
         ]
     },
 
@@ -761,13 +768,13 @@ const SERVICIOS_IA = [
         desc: 'Diagnóstico y cambio del sistema de embrague: disco, plato y collarín.',
         href: '#mecanica', color: '#ef4444', icon: '⚙️',
         keywords: [
-            'embrague','clutch','cloch','patina','resbala','resbalamiento',
-            'no agarra','no jala al soltar','pierde fuerza al subir',
-            'cambio duro','marchas duras','no entra marcha','cuesta cambiar',
-            'pedal embrague','embrague blando','embrague duro','embrague bajo',
-            'vibra al arrancar','tiembla al soltar clutch','huele quemado',
-            'olor quemado','disco clutch','plato presion','collarin',
-            'transmision manual','caja manual','no suelta bien'
+            'embrague', 'clutch', 'cloch', 'patina', 'resbala', 'resbalamiento',
+            'no agarra', 'no jala al soltar', 'pierde fuerza al subir',
+            'cambio duro', 'marchas duras', 'no entra marcha', 'cuesta cambiar',
+            'pedal embrague', 'embrague blando', 'embrague duro', 'embrague bajo',
+            'vibra al arrancar', 'tiembla al soltar clutch', 'huele quemado',
+            'olor quemado', 'disco clutch', 'plato presion', 'collarin',
+            'transmision manual', 'caja manual', 'no suelta bien'
         ]
     },
 
@@ -777,11 +784,11 @@ const SERVICIOS_IA = [
         desc: 'Inspección y reparación de culata para evitar daños mayores al motor.',
         href: '#mecanica', color: '#ef4444', icon: '🔩',
         keywords: [
-            'culata','junta culata','empaque culata','humo blanco escape',
-            'aceite con agua','agua con aceite','aceite lechoso','emulsión',
-            'pierde compresión','baja compresion','falla compresion',
-            'burbuja radiador','burbujas en agua','recalentar motor',
-            'motor golpea','consume refrigerante mucho','pierde refrigerante rapido'
+            'culata', 'junta culata', 'empaque culata', 'humo blanco escape',
+            'aceite con agua', 'agua con aceite', 'aceite lechoso', 'emulsión',
+            'pierde compresión', 'baja compresion', 'falla compresion',
+            'burbuja radiador', 'burbujas en agua', 'recalentar motor',
+            'motor golpea', 'consume refrigerante mucho', 'pierde refrigerante rapido'
         ]
     },
 
@@ -791,13 +798,13 @@ const SERVICIOS_IA = [
         desc: 'Desmontaje y reparación total. Recuperamos la potencia original.',
         href: '#mecanica', color: '#ef4444', icon: '🏎️',
         keywords: [
-            'motor','reparar motor','revisar motor','overhaul','golpeteo',
-            'golpea motor','taca taca','ruido motor','motor ruidoso',
-            'motor consume aceite','pierde aceite','aceite bajo siempre',
-            'pistones','anillos','biela','cigüeñal','bancada',
-            'motor sin fuerza','sin potencia','motor viejo','motor cansado',
-            'motor lento','no jala','motor fumando','echa humo azul',
-            'humo azul','quema aceite'
+            'motor', 'reparar motor', 'revisar motor', 'overhaul', 'golpeteo',
+            'golpea motor', 'taca taca', 'ruido motor', 'motor ruidoso',
+            'motor consume aceite', 'pierde aceite', 'aceite bajo siempre',
+            'pistones', 'anillos', 'biela', 'cigüeñal', 'bancada',
+            'motor sin fuerza', 'sin potencia', 'motor viejo', 'motor cansado',
+            'motor lento', 'no jala', 'motor fumando', 'echa humo azul',
+            'humo azul', 'quema aceite'
         ]
     },
 
@@ -807,11 +814,11 @@ const SERVICIOS_IA = [
         desc: 'Cambio de aceite de motor, caja y corona. Castrol, Shell, Chevron, Valvoline.',
         href: '#mecanica', color: '#f97316', icon: '🛢️',
         keywords: [
-            'aceite','cambio aceite','aceite motor','aceite sucio','aceite negro',
-            'aceite bajo','bajo de aceite','nivel aceite','gotea aceite',
-            'pierde aceite','fuga aceite','aceite viejo','aceite quemado',
-            'kilometraje aceite','servicio aceite','mantenimiento aceite',
-            'filtro aceite','aceite caja','aceite diferencial','lubricación'
+            'aceite', 'cambio aceite', 'aceite motor', 'aceite sucio', 'aceite negro',
+            'aceite bajo', 'bajo de aceite', 'nivel aceite', 'gotea aceite',
+            'pierde aceite', 'fuga aceite', 'aceite viejo', 'aceite quemado',
+            'kilometraje aceite', 'servicio aceite', 'mantenimiento aceite',
+            'filtro aceite', 'aceite caja', 'aceite diferencial', 'lubricación'
         ]
     },
 
@@ -821,13 +828,13 @@ const SERVICIOS_IA = [
         desc: 'Revisión de batería y sistema eléctrico. Detectamos fallas antes de quedar varado.',
         href: '#mecanica', color: '#f97316', icon: '🔋',
         keywords: [
-            'bateria','batería','no arranca','no prende','no enciende',
-            'no da arranque','se queda muerto','se muere','arranque lento',
-            'arranque flojo','no tiene fuerza para arrancar',
-            'alternador','carga bateria','no carga','descarga rapido',
-            'bateria muerta','bateria vieja','bateria descargada',
-            'luces debiles','luces bajan','voltaje bajo','bornes',
-            'sistema electrico','electrico','corriente','sin corriente'
+            'bateria', 'batería', 'no arranca', 'no prende', 'no enciende',
+            'no da arranque', 'se queda muerto', 'se muere', 'arranque lento',
+            'arranque flojo', 'no tiene fuerza para arrancar',
+            'alternador', 'carga bateria', 'no carga', 'descarga rapido',
+            'bateria muerta', 'bateria vieja', 'bateria descargada',
+            'luces debiles', 'luces bajan', 'voltaje bajo', 'bornes',
+            'sistema electrico', 'electrico', 'corriente', 'sin corriente'
         ]
     },
 
@@ -837,12 +844,12 @@ const SERVICIOS_IA = [
         desc: 'Scanner OBD2 completo para detectar códigos de falla y evaluar el estado general.',
         href: '#mecanica', color: '#f97316', icon: '🔍',
         keywords: [
-            'check engine','luz motor','luz naranja','luz tablero','testigo',
-            'código error','codigo falla','obd','scanner','diagnóstico',
-            'no sé qué tiene','no se que tiene','falla rara','algo raro',
-            'revision general','chequeo','evaluar','inspección general',
-            'ver qué tiene','qué tiene mi carro','que le pasa',
-            'falla esporádica','falla a veces','falla intermitente'
+            'check engine', 'luz motor', 'luz naranja', 'luz tablero', 'testigo',
+            'código error', 'codigo falla', 'obd', 'scanner', 'diagnóstico',
+            'no sé qué tiene', 'no se que tiene', 'falla rara', 'algo raro',
+            'revision general', 'chequeo', 'evaluar', 'inspección general',
+            'ver qué tiene', 'qué tiene mi carro', 'que le pasa',
+            'falla esporádica', 'falla a veces', 'falla intermitente'
         ]
     },
 
@@ -852,13 +859,13 @@ const SERVICIOS_IA = [
         desc: 'Limpieza de inyectores a gasolina para recuperar potencia y reducir consumo.',
         href: '#mecanica', color: '#f97316', icon: '💉',
         keywords: [
-            'inyector','inyectores','gasta mucho','consume mucho','alto consumo',
-            'gasto mucho combustible','mucha gasolina','gasolina se acaba rapido',
-            'rendimiento bajo','poco rendimiento','mal rendimiento',
-            'motor tiembla ralenti','tiembla en freno','tiembla parado',
-            'ralenti malo','ralenti bajo','ralenti irregular','se apaga parado',
-            'tartamudea','jalona','jalona al acelerar','corte motor',
-            'humo negro','negro por el tubo','exceso humo'
+            'inyector', 'inyectores', 'gasta mucho', 'consume mucho', 'alto consumo',
+            'gasto mucho combustible', 'mucha gasolina', 'gasolina se acaba rapido',
+            'rendimiento bajo', 'poco rendimiento', 'mal rendimiento',
+            'motor tiembla ralenti', 'tiembla en freno', 'tiembla parado',
+            'ralenti malo', 'ralenti bajo', 'ralenti irregular', 'se apaga parado',
+            'tartamudea', 'jalona', 'jalona al acelerar', 'corte motor',
+            'humo negro', 'negro por el tubo', 'exceso humo'
         ]
     },
 
@@ -868,13 +875,13 @@ const SERVICIOS_IA = [
         desc: 'Calibración electrónica del motor para optimizar rendimiento y reducir consumo.',
         href: '#mecanica', color: '#f97316', icon: '⚡',
         keywords: [
-            'afinar','afinamiento','afine','afino','calibrar motor',
-            'motor irregular','arranca mal','arranque dificil','cuesta arrancar',
-            'motor no jala','sin jale','le falta jale','potencia baja',
-            'rendimiento bajo','consumo alto','gasta mucho',
-            'bujia mala','bujias viejas','encendido malo',
-            'motor tose','tosca','toca','explosiones escape',
-            'motor poco listo','no responde bien','aceleracion mala'
+            'afinar', 'afinamiento', 'afine', 'afino', 'calibrar motor',
+            'motor irregular', 'arranca mal', 'arranque dificil', 'cuesta arrancar',
+            'motor no jala', 'sin jale', 'le falta jale', 'potencia baja',
+            'rendimiento bajo', 'consumo alto', 'gasta mucho',
+            'bujia mala', 'bujias viejas', 'encendido malo',
+            'motor tose', 'tosca', 'toca', 'explosiones escape',
+            'motor poco listo', 'no responde bien', 'aceleracion mala'
         ]
     },
 
@@ -884,11 +891,11 @@ const SERVICIOS_IA = [
         desc: 'Renovación de fluidos de frenos, dirección y refrigeración.',
         href: '#mecanica', color: '#f97316', icon: '💧',
         keywords: [
-            'fluido','fluidos','liquido','liquidos','cambio liquido',
-            'liquido frenos','fluido frenos','liquido embrague',
-            'liquido dirección','aceite caja','aceite diferencial',
-            'cambio fluidos','mantenimiento fluidos','fluido viejo',
-            'fluido oscuro','cambiar líquidos'
+            'fluido', 'fluidos', 'liquido', 'liquidos', 'cambio liquido',
+            'liquido frenos', 'fluido frenos', 'liquido embrague',
+            'liquido dirección', 'aceite caja', 'aceite diferencial',
+            'cambio fluidos', 'mantenimiento fluidos', 'fluido viejo',
+            'fluido oscuro', 'cambiar líquidos'
         ]
     },
 
@@ -898,12 +905,12 @@ const SERVICIOS_IA = [
         desc: 'Gas Licuado de Petróleo. Ahorra hasta 50% con instalación rápida y segura.',
         href: '#conversion', color: '#3b82f6', icon: '⛽',
         keywords: [
-            'glp','gas licuado','conversion glp','convertir glp','instalar glp',
-            'kit glp','cilindro glp','toroidal','propano','butano',
-            'poner gas','instalar gas','quiero gas','cambiar a gas',
-            'gasolina cara','gasolina sube','gasto mucho gasolina',
-            'ahorrar combustible','economizar','reducir gasto',
-            'quiero convertir','conversion gas','gas para mi carro'
+            'glp', 'gas licuado', 'conversion glp', 'convertir glp', 'instalar glp',
+            'kit glp', 'cilindro glp', 'toroidal', 'propano', 'butano',
+            'poner gas', 'instalar gas', 'quiero gas', 'cambiar a gas',
+            'gasolina cara', 'gasolina sube', 'gasto mucho gasolina',
+            'ahorrar combustible', 'economizar', 'reducir gasto',
+            'quiero convertir', 'conversion gas', 'gas para mi carro'
         ]
     },
 
@@ -913,12 +920,12 @@ const SERVICIOS_IA = [
         desc: 'Gas Natural Vehicular. Hasta 60% de ahorro con financiamiento FISE.',
         href: '#conversion', color: '#0ea5e9', icon: '🔵',
         keywords: [
-            'gnv','gas natural','conversion gnv','convertir gnv','instalar gnv',
-            'kit gnv','gas vehicular','fise','subsidio','subsidio gas',
-            'financiamiento','bono gas','poner gas','instalar gas',
-            'quiero gas','cambiar a gas','gasolina cara','gasolina sube',
-            'gasto mucho gasolina','ahorrar combustible','economizar',
-            'reducir gasto','quiero convertir','gas natural vehicular'
+            'gnv', 'gas natural', 'conversion gnv', 'convertir gnv', 'instalar gnv',
+            'kit gnv', 'gas vehicular', 'fise', 'subsidio', 'subsidio gas',
+            'financiamiento', 'bono gas', 'poner gas', 'instalar gas',
+            'quiero gas', 'cambiar a gas', 'gasolina cara', 'gasolina sube',
+            'gasto mucho gasolina', 'ahorrar combustible', 'economizar',
+            'reducir gasto', 'quiero convertir', 'gas natural vehicular'
         ]
     },
 
@@ -928,10 +935,10 @@ const SERVICIOS_IA = [
         desc: 'Para motores con inyección directa. Tecnología avanzada que preserva el rendimiento.',
         href: '#conversion', color: '#6366f1', icon: '🚀',
         keywords: [
-            'inyeccion directa','motor gdi','motor tsi','motor tfsi',
-            'motor turbo','turbo','turbocargado','motor moderno',
-            'carro nuevo gas','vehiculo nuevo gas','motor ultimo modelo gas',
-            'conversion especial','motor complejo gas'
+            'inyeccion directa', 'motor gdi', 'motor tsi', 'motor tfsi',
+            'motor turbo', 'turbo', 'turbocargado', 'motor moderno',
+            'carro nuevo gas', 'vehiculo nuevo gas', 'motor ultimo modelo gas',
+            'conversion especial', 'motor complejo gas'
         ]
     },
 
@@ -941,10 +948,10 @@ const SERVICIOS_IA = [
         desc: 'Combina gas y diésel en motores diésel. Reduce costos sin perder potencia.',
         href: '#conversion', color: '#8b5cf6', icon: '🚛',
         keywords: [
-            'diesel','diésel','diesel dual','camion','camión','furgon','furgón',
-            'minibus','bus','moto taxi diesel','camioneta diesel',
-            'motor diesel gas','convertir diesel','diesel gnv','diesel glp',
-            'dual fuel','gasoil','petróleo'
+            'diesel', 'diésel', 'diesel dual', 'camion', 'camión', 'furgon', 'furgón',
+            'minibus', 'bus', 'moto taxi diesel', 'camioneta diesel',
+            'motor diesel gas', 'convertir diesel', 'diesel gnv', 'diesel glp',
+            'dual fuel', 'gasoil', 'petróleo'
         ]
     },
 
@@ -954,10 +961,10 @@ const SERVICIOS_IA = [
         desc: 'Revisión técnica anual obligatoria del sistema de gas. Nos encargamos de todo.',
         href: '#conversion', color: '#22c55e', icon: '📋',
         keywords: [
-            'certificacion','certificado','certificado gas','revision anual',
-            'vencio certificado','certificado vencido','renovar certificado',
-            'tramite gas','papeles gas','documento gas','habilitacion gas',
-            'revision tecnica gas','inspeccion gas','certificar sistema'
+            'certificacion', 'certificado', 'certificado gas', 'revision anual',
+            'vencio certificado', 'certificado vencido', 'renovar certificado',
+            'tramite gas', 'papeles gas', 'documento gas', 'habilitacion gas',
+            'revision tecnica gas', 'inspeccion gas', 'certificar sistema'
         ]
     },
 
@@ -967,10 +974,10 @@ const SERVICIOS_IA = [
         desc: 'Registramos la conversión en los documentos oficiales de tu vehículo.',
         href: '#conversion', color: '#22c55e', icon: '📄',
         keywords: [
-            'cambio caracteristicas','tarjeta propiedad','registro conversion',
-            'sunarp','mtc','documento conversion','inscribir gas',
-            'legalizar','tramite conversion','papeles conversion',
-            'cambio documentos','actualizar tarjeta','tarjeta propiedad gas'
+            'cambio caracteristicas', 'tarjeta propiedad', 'registro conversion',
+            'sunarp', 'mtc', 'documento conversion', 'inscribir gas',
+            'legalizar', 'tramite conversion', 'papeles conversion',
+            'cambio documentos', 'actualizar tarjeta', 'tarjeta propiedad gas'
         ]
     },
 
@@ -980,10 +987,10 @@ const SERVICIOS_IA = [
         desc: 'Inspección de cilindros cada 5 años. Obligatoria para seguir usando el sistema de gas.',
         href: '#conversion', color: '#22c55e', icon: '🔎',
         keywords: [
-            'quinquenal','5 años gas','cilindro vencido','cilindro vence',
-            'revision cilindro','inspeccion cilindro','prueba hidraulica',
-            'cilindro 5 años','cilindro gas vencido','renovar cilindro',
-            'cilindro caducado','plazo cilindro'
+            'quinquenal', '5 años gas', 'cilindro vencido', 'cilindro vence',
+            'revision cilindro', 'inspeccion cilindro', 'prueba hidraulica',
+            'cilindro 5 años', 'cilindro gas vencido', 'renovar cilindro',
+            'cilindro caducado', 'plazo cilindro'
         ]
     },
 
@@ -993,10 +1000,10 @@ const SERVICIOS_IA = [
         desc: 'Subsidio del Gobierno Peruano para tu conversión a gas. Sin costo adicional.',
         href: '#conversion', color: '#22c55e', icon: '💰',
         keywords: [
-            'fise','subsidio','financiamiento','credito','cuotas',
-            'bono gas','gobierno paga','estado paga','apoyo gobierno',
-            'conversion barata','precio bajo conversion','pagar facil gas',
-            'como financiar','ayuda economica','prestamo gas'
+            'fise', 'subsidio', 'financiamiento', 'credito', 'cuotas',
+            'bono gas', 'gobierno paga', 'estado paga', 'apoyo gobierno',
+            'conversion barata', 'precio bajo conversion', 'pagar facil gas',
+            'como financiar', 'ayuda economica', 'prestamo gas'
         ]
     },
 
@@ -1006,10 +1013,10 @@ const SERVICIOS_IA = [
         desc: 'Reprogramación del chip del sistema de gas para optimizar rendimiento.',
         href: '#conversion', color: '#ec4899', icon: '💾',
         keywords: [
-            'chip gas','chip bloqueado','desbloquear chip','programar chip',
-            'chip gnv','chip glp','ecu gas','centralita gas',
-            'error electronico gas','falla chip','resetear chip',
-            'configurar gas','reprogramar sistema gas','chip dañado'
+            'chip gas', 'chip bloqueado', 'desbloquear chip', 'programar chip',
+            'chip gnv', 'chip glp', 'ecu gas', 'centralita gas',
+            'error electronico gas', 'falla chip', 'resetear chip',
+            'configurar gas', 'reprogramar sistema gas', 'chip dañado'
         ]
     },
 
@@ -1019,11 +1026,11 @@ const SERVICIOS_IA = [
         desc: 'Diagnóstico electrónico y calibración del sistema de gas para funcionamiento correcto.',
         href: '#conversion', color: '#ec4899', icon: '📡',
         keywords: [
-            'calibrar gas','calibracion gas','escaneo gas','scanner gas',
-            'diagnostico gas','ajustar gas','mezcla gas','regulacion gas',
-            'gas mal calibrado','gas no funciona bien','gas irregular',
-            'consumo gas alto','gas gasta mucho','afinar gas',
-            'inyectores gas','calibrar inyectores gas'
+            'calibrar gas', 'calibracion gas', 'escaneo gas', 'scanner gas',
+            'diagnostico gas', 'ajustar gas', 'mezcla gas', 'regulacion gas',
+            'gas mal calibrado', 'gas no funciona bien', 'gas irregular',
+            'consumo gas alto', 'gas gasta mucho', 'afinar gas',
+            'inyectores gas', 'calibrar inyectores gas'
         ]
     },
 
@@ -1033,10 +1040,10 @@ const SERVICIOS_IA = [
         desc: 'Reemplazo de filtros del sistema de gas para mantener la pureza del combustible.',
         href: '#conversion', color: '#ec4899', icon: '🔄',
         keywords: [
-            'filtro gas','filtro gnv','filtro glp','cambio filtro gas',
-            'filtro sucio gas','filtro tapado gas','mantenimiento filtro',
-            'filtro vaporizado','filtro obstruido','servicio gas filtro',
-            'pierde potencia en gas','gas sin fuerza'
+            'filtro gas', 'filtro gnv', 'filtro glp', 'cambio filtro gas',
+            'filtro sucio gas', 'filtro tapado gas', 'mantenimiento filtro',
+            'filtro vaporizado', 'filtro obstruido', 'servicio gas filtro',
+            'pierde potencia en gas', 'gas sin fuerza'
         ]
     },
 
@@ -1046,11 +1053,11 @@ const SERVICIOS_IA = [
         desc: 'Detección y corrección de fugas. Tu seguridad es lo primero.',
         href: '#conversion', color: '#ec4899', icon: '⚠️',
         keywords: [
-            'fuga gas','fuga','huele gas','olor gas','gas se escapa',
-            'huele a gas','huele raro','olor combustible','olor extraño',
-            'perdida gas','peligro gas','riesgo gas','gas peligroso',
-            'cilindro fuga','conducto fuga','manguera fuga',
-            'escape gas','riesgo explosion','explosión gas'
+            'fuga gas', 'fuga', 'huele gas', 'olor gas', 'gas se escapa',
+            'huele a gas', 'huele raro', 'olor combustible', 'olor extraño',
+            'perdida gas', 'peligro gas', 'riesgo gas', 'gas peligroso',
+            'cilindro fuga', 'conducto fuga', 'manguera fuga',
+            'escape gas', 'riesgo explosion', 'explosión gas'
         ]
     },
 
@@ -1060,10 +1067,10 @@ const SERVICIOS_IA = [
         desc: 'Limpieza del obturador para arranque correcto y flujo estable de gas.',
         href: '#conversion', color: '#ec4899', icon: '🔧',
         keywords: [
-            'obturador','no arranca en gas','no prende en gas','gas no prende',
-            'cambia a gasolina solo','se pasa a gasolina','no usa gas',
-            'gas no activa','sistema no cambia gas','fallo arranque gas',
-            'valvula gas','no pasa gas','obturador sucio','obturador tapado'
+            'obturador', 'no arranca en gas', 'no prende en gas', 'gas no prende',
+            'cambia a gasolina solo', 'se pasa a gasolina', 'no usa gas',
+            'gas no activa', 'sistema no cambia gas', 'fallo arranque gas',
+            'valvula gas', 'no pasa gas', 'obturador sucio', 'obturador tapado'
         ]
     },
 
@@ -1073,10 +1080,10 @@ const SERVICIOS_IA = [
         desc: 'Revisión de conductores de gas y agua para detectar desgaste.',
         href: '#conversion', color: '#ec4899', icon: '🔗',
         keywords: [
-            'conductor gas','manguera gas','tubo gas','tuberia gas',
-            'conexion gas','conducto gas','manguera deteriorada','manguera rota',
-            'manguera vieja','presion gas baja','pierde presion',
-            'gas sin presion','manguera dañada'
+            'conductor gas', 'manguera gas', 'tubo gas', 'tuberia gas',
+            'conexion gas', 'conducto gas', 'manguera deteriorada', 'manguera rota',
+            'manguera vieja', 'presion gas baja', 'pierde presion',
+            'gas sin presion', 'manguera dañada'
         ]
     },
 
@@ -1086,10 +1093,10 @@ const SERVICIOS_IA = [
         desc: 'Filtro limpio = mejor rendimiento y menor consumo de combustible.',
         href: '#repuestos', color: '#eab308', icon: '💨',
         keywords: [
-            'filtro aire','aire motor','filtro tapado','filtro sucio',
-            'potencia baja','motor sin fuerza','aceleracion lenta',
-            'consumo alto','gasta mucho','cambio filtro aire',
-            'mantenimiento filtro','servicio filtro'
+            'filtro aire', 'aire motor', 'filtro tapado', 'filtro sucio',
+            'potencia baja', 'motor sin fuerza', 'aceleracion lenta',
+            'consumo alto', 'gasta mucho', 'cambio filtro aire',
+            'mantenimiento filtro', 'servicio filtro'
         ]
     },
 
@@ -1099,11 +1106,11 @@ const SERVICIOS_IA = [
         desc: 'Bujías de calidad para ignición perfecta, mejor arranque y menor consumo.',
         href: '#repuestos', color: '#eab308', icon: '⚡',
         keywords: [
-            'bujia','bujías','bujias','bujia mala','bujia vieja',
-            'arranque malo','cuesta arrancar','motor falla','motor tiembla',
-            'motor vibra','encendido falla','chispa','ignición',
-            'consume mucho','gasta mucho','bujia gastada','cambio bujias',
-            'platinos','cables bujia','falla un cilindro'
+            'bujia', 'bujías', 'bujias', 'bujia mala', 'bujia vieja',
+            'arranque malo', 'cuesta arrancar', 'motor falla', 'motor tiembla',
+            'motor vibra', 'encendido falla', 'chispa', 'ignición',
+            'consume mucho', 'gasta mucho', 'bujia gastada', 'cambio bujias',
+            'platinos', 'cables bujia', 'falla un cilindro'
         ]
     },
 
@@ -1113,9 +1120,9 @@ const SERVICIOS_IA = [
         desc: 'Protegen el sistema de encendido en vehículos a gas contra retroceso de llama.',
         href: '#repuestos', color: '#eab308', icon: '🛡️',
         keywords: [
-            'supresor','retroceso','retroceso llama','supresores',
-            'bujia quemada gas','bobina dañada gas','encendido dañado gas',
-            'sistema ignicion gas','falla encendido gas','proteccion bujia'
+            'supresor', 'retroceso', 'retroceso llama', 'supresores',
+            'bujia quemada gas', 'bobina dañada gas', 'encendido dañado gas',
+            'sistema ignicion gas', 'falla encendido gas', 'proteccion bujia'
         ]
     },
 
@@ -1125,10 +1132,10 @@ const SERVICIOS_IA = [
         desc: 'Conduce alta tensión de la bobina a las bujías. Clave para encendido eficiente.',
         href: '#repuestos', color: '#eab308', icon: '🔌',
         keywords: [
-            'bobina','caña bobina','cable bujia','cables encendido',
-            'distribuidor','fallo cilindro','misfire','cilindro falla',
-            'motor cojea','motor renguea','falla un cilindro',
-            'chispa bujia','cable encendido','alta tension'
+            'bobina', 'caña bobina', 'cable bujia', 'cables encendido',
+            'distribuidor', 'fallo cilindro', 'misfire', 'cilindro falla',
+            'motor cojea', 'motor renguea', 'falla un cilindro',
+            'chispa bujia', 'cable encendido', 'alta tension'
         ]
     },
 ];
@@ -1170,18 +1177,18 @@ function iaCalcularScores(texto) {
 
         return { ...servicio, score, pct, encontrados };
     })
-    .filter(s => s.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 5);
+        .filter(s => s.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 5);
 }
 
 /* ─────────── Función principal ─────────────────────────── */
 window.analizarProblema = function () {
-    const input      = document.getElementById('iaInput');
+    const input = document.getElementById('iaInput');
     const resultados = document.getElementById('iaResultados');
-    const lista      = document.getElementById('iaLista');
-    const vacio      = document.getElementById('iaVacio');
-    const btn        = document.getElementById('iaBtn');
+    const lista = document.getElementById('iaLista');
+    const vacio = document.getElementById('iaVacio');
+    const btn = document.getElementById('iaBtn');
     if (!input || !resultados || !lista) return;
 
     const texto = input.value.trim();
