@@ -502,16 +502,29 @@ document.addEventListener('DOMContentLoaded', () => {
             const sum = testimoniosData.reduce((acc, t) => acc + (t.calificacion || 0), 0);
             const avg = (sum / testimoniosData.length).toFixed(1);
 
-            // Crear o actualizar elemento de promedio
+            // El elemento ya existe en el HTML, solo lo llenamos
             let avgEl = document.getElementById('ratingAverage');
-            if (!avgEl) {
-                avgEl = document.createElement('div');
-                avgEl.id = 'ratingAverage';
-                avgEl.className = 'rating-average';
-                const header = document.querySelector('.testimonios-header');
-                if (header) header.appendChild(avgEl);
+            if (!avgEl) return;
+
+            // Renderizar estrellas para el promedio
+            const fullStars = Math.floor(parseFloat(avg));
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                const filled = i <= fullStars;
+                starsHtml += `<svg class="estrella-svg ${filled ? 'filled' : 'empty'}" viewBox="0 0 24 24"
+                    fill="${filled ? 'currentColor' : 'none'}"
+                    stroke="currentColor" stroke-width="1.8">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>`;
             }
-            avgEl.innerHTML = `<svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="1.5" style="filter:drop-shadow(0 0 4px rgba(245,166,35,0.5));flex-shrink:0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> ${avg} <span style="color:rgba(255,255,255,0.4);font-size:1rem;font-weight:400">· ${testimoniosData.length} reseña${testimoniosData.length !== 1 ? 's' : ''}</span>`;
+
+            avgEl.innerHTML = `
+                <span class="rating-num">${avg}</span>
+                <div class="rating-detail">
+                    <div class="rating-stars">${starsHtml}</div>
+                    <span class="rating-count">Basado en ${testimoniosData.length} reseña${testimoniosData.length !== 1 ? 's' : ''}</span>
+                </div>
+            `;
         }
 
         if (btnPrev) btnPrev.addEventListener('click', () => { prev(); stopAuto(); startAuto(); });

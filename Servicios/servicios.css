@@ -1018,10 +1018,28 @@ a {
 .testimonios-inner {
     max-width: 1280px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 80px;
+    align-items: center;
 }
 
-.testimonios-header {
-    margin-bottom: 60px;
+/* Panel izquierdo */
+.testimonios-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.testimonios-left .section-title {
+    margin-bottom: 0;
+}
+
+/* Panel derecho */
+.testimonios-right {
+    overflow: hidden;
+    min-width: 0;
+    /* evita overflow en grid */
 }
 
 .testimonios-slider-wrap {
@@ -1029,25 +1047,16 @@ a {
     position: relative;
 }
 
-/* Fade en bordes del carrusel */
-.testimonios-slider-wrap::before,
+/* Fade solo en el borde derecho */
 .testimonios-slider-wrap::after {
     content: '';
     position: absolute;
     top: 0;
+    right: 0;
     bottom: 0;
-    width: 80px;
+    width: 60px;
     z-index: 2;
     pointer-events: none;
-}
-
-.testimonios-slider-wrap::before {
-    left: 0;
-    background: linear-gradient(to right, var(--black-mid), transparent);
-}
-
-.testimonios-slider-wrap::after {
-    right: 0;
     background: linear-gradient(to left, var(--black-mid), transparent);
 }
 
@@ -1162,19 +1171,42 @@ a {
 
 /* Rating average */
 .rating-average {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 20px;
+    gap: 14px;
+    margin-top: 24px;
+    margin-bottom: 32px;
+    padding: 16px 0;
+    border-top: 1px solid var(--border-dark);
+    border-bottom: 1px solid var(--border-dark);
+}
+
+.rating-average .rating-num {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
+    font-size: 3.2rem;
+    font-weight: 800;
     color: var(--white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.rating-average .rating-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.rating-average .rating-stars {
+    display: flex;
+    gap: 3px;
+}
+
+.rating-average .rating-count {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.35);
     letter-spacing: 0.04em;
-    padding: 8px 16px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-dark);
-    border-radius: 3px;
+    text-transform: uppercase;
 }
 
 /* Skeleton loader */
@@ -2276,6 +2308,19 @@ a {
 
     .testimonios-section {
         padding: 72px 6%;
+    }
+
+    .testimonios-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .testimonios-left .section-title {
+        font-size: clamp(2.4rem, 7vw, 3.2rem);
+    }
+
+    .rating-average .rating-num {
+        font-size: 2.4rem;
     }
 
     .resena-section {
