@@ -238,13 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
     /* -----------------------------------------------
-       7. TESTIMONIOS SLIDER — dinámico desde BD
-       Carga reseñas reales desde get_comentarios.php
-       Fallback a datos estáticos si falla el fetch
+       7. TESTIMONIOS — Grid paginado v3
+       3 cols desktop / 2 tablet / 1 mobile
+       Sin transform bug, sin espacio vacío
     ----------------------------------------------- */
 
-    // Datos de respaldo (si PHP no responde)
     const testimoniosFallback = [
         {
             nombre: 'Carlos Quispe',
@@ -290,20 +290,192 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    const track = document.getElementById('testimoniosTrack');
+    const gridContainer = document.getElementById('testimoniosTrack');
     const dotsWrap = document.getElementById('sliderDots');
     const btnPrev = document.getElementById('sliderPrev');
     const btnNext = document.getElementById('sliderNext');
 
-    // Cargar desde BD y arrancar slider
+    // ── Helpers ────────────────────────────────────────────────────────────
+    function renderStars(n) {
+        let h = '';
+        for (let i = 1; i <= 5; i++) {
+            const f = i <= n;
+            h += `<svg class="estrella-svg ${f ? 'filled' : 'empty'}" viewBox="0 0 24 24"
+                    fill="${f ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>`;
+        }
+        return h;
+    }
+
+    function getInitials(name) {
+        return (name || '').split(' ').slice(0, 2).map(w => (w[0] || '').toUpperCase()).join('');
+    }
+
+    function getAvatarColor(name) {
+        let hash = 0;
+        for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+        return `hsl(${Math.abs(hash % 360)}, 58%, 42%)`;
+    }
+
+    function formatFecha(s) {
+        if (!s) return '';
+        const d = new Date(s);
+        if (isNaN(d.getTime())) return '';
+        const m = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+        return `${m[d.getMonth()]} ${d.getFullYear()}`;
+    }
+
+    function escHtml(str) {
+        const d = document.createElement('div');
+        d.appendChild(document.createTextNode(str));
+        return d.innerHTML;
+    }
+
+    function getPerPage() {
+        if (window.innerWidth <= 480) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+    }
+
+    // ── Sistema de paginación por grid ─────────────────────────────────────
+    function iniciarGrid(data) {
+        if (!gridContainer) return;
+
+        gridContainer.className = 'testimonios-grid';
+
+        let page = 0;
+        let perPage = getPerPage();
+        let autoTimer = null;
+
+        function totalPages() { return Math.ceil(data.length / perPage); }
+
+        function renderPage() {
+            perPage = getPerPage();
+            gridContainer.innerHTML = '';
+
+            const slice = data.slice(page * perPage, page * perPage + perPage);
+            slice.forEach(t => {
+                const card = document.createElement('div');
+                card.className = 'testimonio-card';
+                const color = getAvatarColor(t.nombre);
+                const fecha = formatFecha(t.fecha);
+                card.innerHTML = `
+                    <div class="card-estrellas">${renderStars(t.calificacion)}</div>
+                    <p class="card-comentario">${escHtml(t.comentario)}</p>
+                    ${fecha ? `<div class="card-fecha">${fecha}</div>` : ''}
+                    <div class="card-meta">
+                        <div class="card-avatar"
+                             style="background:${color}22;border-color:${color};color:${color}">
+                            ${getInitials(t.nombre)}
+                        </div>
+                        <div>
+                            <div class="card-nombre">${escHtml(t.nombre)}</div>
+                            <div class="card-sede">Sede ${escHtml(t.sede)} · ${escHtml(t.servicio)}</div>
+                        </div>
+                    </div>
+                    <div class="card-verified">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                             stroke="#4caf7d" stroke-width="2.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <polyline points="9 12 11 14 15 10"/>
+                        </svg>
+                        Opinión Verificada
+                    </div>`;
+                gridContainer.appendChild(card);
+            });
+
+            renderDots();
+        }
+
+        function renderDots() {
+            if (!dotsWrap) return;
+            dotsWrap.innerHTML = '';
+            for (let i = 0; i < totalPages(); i++) {
+                const dot = document.createElement('button');
+                dot.className = 'slider-dot' + (i === page ? ' active' : '');
+                dot.setAttribute('aria-label', `Página ${i + 1}`);
+                dot.addEventListener('click', () => { goTo(i); resetAuto(); });
+                dotsWrap.appendChild(dot);
+            }
+        }
+
+        function goTo(p) {
+            page = Math.max(0, Math.min(p, totalPages() - 1));
+            renderPage();
+        }
+
+        function next() { goTo(page < totalPages() - 1 ? page + 1 : 0); }
+        function prev() { goTo(page > 0 ? page - 1 : totalPages() - 1); }
+
+        function startAuto() {
+            stopAuto();
+            if (totalPages() > 1) autoTimer = setInterval(next, 6000);
+        }
+        function stopAuto() { if (autoTimer) clearInterval(autoTimer); }
+        function resetAuto() { stopAuto(); startAuto(); }
+
+        document.addEventListener('visibilitychange', () => {
+            document.hidden ? stopAuto() : startAuto();
+        });
+
+        // Swipe en móvil
+        let touchX = 0;
+        gridContainer.addEventListener('touchstart', e => {
+            touchX = e.touches[0].clientX;
+        }, { passive: true });
+        gridContainer.addEventListener('touchend', e => {
+            const diff = touchX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); resetAuto(); }
+        }, { passive: true });
+
+        // Resize: recalcular si cambia el breakpoint
+        let lastPer = perPage;
+        window.addEventListener('resize', () => {
+            const np = getPerPage();
+            if (np !== lastPer) { lastPer = np; page = 0; renderPage(); }
+        }, { passive: true });
+
+        if (btnPrev) btnPrev.addEventListener('click', () => { prev(); resetAuto(); });
+        if (btnNext) btnNext.addEventListener('click', () => { next(); resetAuto(); });
+
+        // Rating promedio
+        if (data.length) {
+            const avg = (data.reduce((a, t) => a + (t.calificacion || 0), 0) / data.length).toFixed(1);
+            const avgEl = document.getElementById('ratingAverage');
+            if (avgEl) {
+                const full = Math.floor(parseFloat(avg));
+                let stars = '';
+                for (let i = 1; i <= 5; i++) {
+                    const f = i <= full;
+                    stars += `<svg class="estrella-svg ${f ? 'filled' : 'empty'}" viewBox="0 0 24 24"
+                        fill="${f ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                    </svg>`;
+                }
+                avgEl.innerHTML = `
+                    <span class="rating-num">${avg}</span>
+                    <div class="rating-detail">
+                        <div class="rating-stars">${stars}</div>
+                        <span class="rating-count">Basado en ${data.length} reseña${data.length !== 1 ? 's' : ''}</span>
+                    </div>`;
+            }
+        }
+
+        renderPage();
+        startAuto();
+    }
+
+    // ── Carga con skeleton ─────────────────────────────────────────────────
     async function cargarTestimonios() {
-        // Mostrar skeleton loader mientras carga
-        if (track) {
-            track.innerHTML = '';
+        if (gridContainer) {
+            gridContainer.className = 'testimonios-grid';
+            gridContainer.innerHTML = '';
             for (let i = 0; i < 3; i++) {
-                const skeleton = document.createElement('div');
-                skeleton.className = 'testimonio-card skeleton-card';
-                skeleton.innerHTML = `
+                const sk = document.createElement('div');
+                sk.className = 'testimonio-card skeleton-card';
+                sk.innerHTML = `
                     <div class="skeleton-stars"></div>
                     <div class="skeleton-text skeleton-text--long"></div>
                     <div class="skeleton-text skeleton-text--medium"></div>
@@ -314,245 +486,24 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="skeleton-text skeleton-text--name"></div>
                             <div class="skeleton-text skeleton-text--sede"></div>
                         </div>
-                    </div>
-                `;
-                track.appendChild(skeleton);
+                    </div>`;
+                gridContainer.appendChild(sk);
             }
         }
 
-        let testimoniosData = testimoniosFallback;
+        let data = testimoniosFallback;
         try {
             const res = await fetch('get_comentarios.php');
             if (res.ok) {
                 const json = await res.json();
-                // Usar datos reales si el array no está vacío (no solo si >= 3)
-                if (Array.isArray(json) && json.length > 0) {
-                    testimoniosData = json;
-                }
+                if (Array.isArray(json) && json.length > 0) data = json;
             }
-        } catch (_) { /* Sin PHP usa fallback silenciosamente */ }
-        iniciarSlider(testimoniosData);
+        } catch (_) { /* sin PHP: usa fallback */ }
+
+        iniciarGrid(data);
     }
 
-    function iniciarSlider(testimoniosData) {
-        if (!track) return;
-        let current = 0;
-        let perView = getPerView();
-        let maxIdx = Math.max(0, testimoniosData.length - perView);
-        let autoTimer = null;
-
-        function getPerView() {
-            if (window.innerWidth <= 768) return 1;
-            if (window.innerWidth <= 1100) return 2;
-            return 3;
-        }
-
-        function renderStars(n) {
-            let html = '';
-            for (let i = 1; i <= 5; i++) {
-                const cls = i <= n ? 'filled' : 'empty';
-                html += `<svg class="estrella-svg ${cls}" viewBox="0 0 24 24"
-                            fill="${i <= n ? 'currentColor' : 'none'}"
-                            stroke="currentColor" stroke-width="1.8">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                         </svg>`;
-            }
-            return html;
-        }
-
-        function getInitials(name) {
-            return name.split(' ').slice(0, 2).map(w => w[0].toUpperCase()).join('');
-        }
-
-        function getAvatarColor(name) {
-            // Generar color HSL único basado en hash del nombre
-            let hash = 0;
-            for (let i = 0; i < name.length; i++) {
-                hash = name.charCodeAt(i) + ((hash << 5) - hash);
-            }
-            const hue = Math.abs(hash % 360);
-            return `hsl(${hue}, 65%, 45%)`;
-        }
-
-        function formatFecha(fechaStr) {
-            if (!fechaStr) return '';
-            const fecha = new Date(fechaStr);
-            if (isNaN(fecha.getTime())) return '';
-            const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-            return `${meses[fecha.getMonth()]} ${fecha.getFullYear()}`;
-        }
-
-        function escHtml(str) {
-            const d = document.createElement('div');
-            d.appendChild(document.createTextNode(str));
-            return d.innerHTML;
-        }
-
-        function renderCards() {
-            track.innerHTML = '';
-            testimoniosData.forEach(t => {
-                const card = document.createElement('div');
-                card.className = 'testimonio-card';
-                const avatarColor = getAvatarColor(t.nombre);
-                const fechaStr = formatFecha(t.fecha);
-                card.innerHTML = `
-                    <div class="card-estrellas">${renderStars(t.calificacion)}</div>
-                    <p class="card-comentario">${escHtml(t.comentario)}</p>
-                    ${fechaStr ? `<div class="card-fecha">${fechaStr}</div>` : ''}
-                    <div class="card-meta">
-                        <div class="card-avatar" style="background:${avatarColor}22;border-color:${avatarColor};color:${avatarColor}">${getInitials(t.nombre)}</div>
-                        <div>
-                            <div class="card-nombre">${escHtml(t.nombre)}</div>
-                            <div class="card-sede">Sede ${escHtml(t.sede)} · ${escHtml(t.servicio)}</div>
-                        </div>
-                    </div>
-                    <div class="card-verified" title="Reseña verificada por AutoGas">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4caf7d" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-                        Opinión Verificada
-                    </div>`;
-                track.appendChild(card);
-            });
-            renderDots();
-            updateRatingAverage();
-            updateTrack();
-        }
-
-        function renderDots() {
-            if (!dotsWrap) return;
-            dotsWrap.innerHTML = '';
-
-            // Si hay más de 5 grupos, implementar dots agrupados
-            const totalDots = maxIdx + 1;
-            if (totalDots > 5) {
-                // Mostrar máximo 5 dots con indicadores de "más"
-                const maxVisible = 5;
-                const step = Math.ceil(totalDots / maxVisible);
-
-                for (let i = 0; i < maxVisible; i++) {
-                    const idx = Math.min(i * step, maxIdx);
-                    const dot = document.createElement('button');
-                    dot.className = 'slider-dot' + (idx === current ? ' active' : '');
-                    dot.setAttribute('aria-label', `Grupo ${idx + 1}`);
-                    dot.addEventListener('click', () => goTo(idx));
-                    dotsWrap.appendChild(dot);
-                }
-            } else {
-                // Mostrar todos los dots normalmente
-                for (let i = 0; i <= maxIdx; i++) {
-                    const dot = document.createElement('button');
-                    dot.className = 'slider-dot' + (i === current ? ' active' : '');
-                    dot.setAttribute('aria-label', `Grupo ${i + 1}`);
-                    dot.addEventListener('click', () => goTo(i));
-                    dotsWrap.appendChild(dot);
-                }
-            }
-        }
-
-        function updateTrack() {
-            const cards = track.querySelectorAll('.testimonio-card');
-            if (!cards.length) return;
-            const gap = 24;
-            const trackW = track.parentElement.offsetWidth;
-            const cardW = (trackW - gap * (perView - 1)) / perView;
-
-            // Índice de la tarjeta central visible
-            const centerOffset = Math.floor(perView / 2);
-            const activeIdx = current + centerOffset;
-
-            cards.forEach((el, i) => {
-                el.style.minWidth = cardW + 'px';
-                el.classList.toggle('active', i === activeIdx);
-            });
-            track.style.transform = `translateX(-${current * (cardW + gap)}px)`;
-
-            if (dotsWrap) {
-                dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) =>
-                    d.classList.toggle('active', i === current));
-            }
-        }
-
-        function goTo(idx) {
-            current = Math.max(0, Math.min(idx, maxIdx));
-            updateTrack();
-        }
-
-        function next() { goTo(current < maxIdx ? current + 1 : 0); }
-        function prev() { goTo(current > 0 ? current - 1 : maxIdx); }
-
-        function startAuto() {
-            stopAuto();
-            autoTimer = setInterval(next, 5000);
-        }
-        function stopAuto() {
-            if (autoTimer) clearInterval(autoTimer);
-        }
-
-        // Pausar autoplay cuando la pestaña está en segundo plano
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                stopAuto();
-            } else {
-                startAuto();
-            }
-        });
-
-        function updateRatingAverage() {
-            if (testimoniosData.length === 0) return;
-            const sum = testimoniosData.reduce((acc, t) => acc + (t.calificacion || 0), 0);
-            const avg = (sum / testimoniosData.length).toFixed(1);
-
-            // El elemento ya existe en el HTML, solo lo llenamos
-            let avgEl = document.getElementById('ratingAverage');
-            if (!avgEl) return;
-
-            // Renderizar estrellas para el promedio
-            const fullStars = Math.floor(parseFloat(avg));
-            let starsHtml = '';
-            for (let i = 1; i <= 5; i++) {
-                const filled = i <= fullStars;
-                starsHtml += `<svg class="estrella-svg ${filled ? 'filled' : 'empty'}" viewBox="0 0 24 24"
-                    fill="${filled ? 'currentColor' : 'none'}"
-                    stroke="currentColor" stroke-width="1.8">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-                </svg>`;
-            }
-
-            avgEl.innerHTML = `
-                <span class="rating-num">${avg}</span>
-                <div class="rating-detail">
-                    <div class="rating-stars">${starsHtml}</div>
-                    <span class="rating-count">Basado en ${testimoniosData.length} reseña${testimoniosData.length !== 1 ? 's' : ''}</span>
-                </div>
-            `;
-        }
-
-        if (btnPrev) btnPrev.addEventListener('click', () => { prev(); stopAuto(); startAuto(); });
-        if (btnNext) btnNext.addEventListener('click', () => { next(); stopAuto(); startAuto(); });
-
-        // Swipe
-        let touchX = 0;
-        track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-        track.addEventListener('touchend', e => {
-            const diff = touchX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
-        }, { passive: true });
-
-        // Resize
-        window.addEventListener('resize', () => {
-            perView = getPerView();
-            maxIdx = Math.max(0, testimoniosData.length - perView);
-            if (current > maxIdx) current = maxIdx;
-            renderDots();
-            updateTrack();
-        }, { passive: true });
-
-        renderCards();
-        startAuto();
-    } // end iniciarSlider
-
-    cargarTestimonios(); // 🔄 Inicia carga dinámica desde BD
-
+    cargarTestimonios(); // 🔄 Inicia carga desde BD
 
     /* -----------------------------------------------
        8. STAR RATING (formulario)
