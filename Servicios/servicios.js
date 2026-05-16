@@ -2,7 +2,67 @@
    servicios.js — AutoGas
    Navbar · Hero · Scroll reveal · Counters
    Parallax · Slider · Star rating · Formulario
+   BD: Supabase (reemplaza PHP + MySQL local)
 ============================================= */
+
+/* ─── Supabase config ────────────────────────────────────────────────────── */
+const SUPABASE_URL = 'https://jyfnsyruaupzvtycrkbx.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_SHX1oK1x4h5kvL4kJlv3KQ_LM2NRpu3';
+
+async function supabaseRequest(path, options = {}) {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1${path}`, {
+        ...options,
+        headers: {
+            'apikey': SUPABASE_KEY,
+            'Authorization': `Bearer ${SUPABASE_KEY}`,
+            'Content-Type': 'application/json',
+            'Prefer': options.prefer || 'return=representation',
+            ...(options.headers || {})
+        }
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.message || `HTTP ${res.status}`);
+    }
+    return res.status === 204 ? null : res.json();
+}
+
+function supabaseRealtime(table, onInsert) {
+    const url = `${SUPABASE_URL.replace('https', 'wss')}/realtime/v1/websocket?apikey=${SUPABASE_KEY}&vsn=1.0.0`;
+    let ws;
+    let retryDelay = 2000;
+
+    function connect() {
+        ws = new WebSocket(url);
+
+        ws.onopen = () => {
+            retryDelay = 2000;
+            ws.send(JSON.stringify({
+                topic: `realtime:public:${table}`,
+                event: 'phx_join',
+                payload: { config: { broadcast: { self: false }, presence: { key: '' }, postgres_changes: [{ event: 'INSERT', schema: 'public', table }] } },
+                ref: '1'
+            }));
+        };
+
+        ws.onmessage = (e) => {
+            try {
+                const msg = JSON.parse(e.data);
+                if (msg.event === 'postgres_changes' && msg.payload?.data?.type === 'INSERT') {
+                    const row = msg.payload.data.record;
+                    if (row.estado === 'Aprobado') onInsert(row);
+                }
+            } catch (_) { }
+        };
+
+        ws.onclose = () => {
+            setTimeout(connect, retryDelay);
+            retryDelay = Math.min(retryDelay * 2, 30000);
+        };
+    }
+
+    connect();
+}
 
 /* -----------------------------------------------
    TOGGLE GRUPOS DE SERVICIOS
@@ -493,17 +553,62 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let data = testimoniosFallback;
         try {
-            const res = await fetch('get_comentarios.php');
-            if (res.ok) {
-                const json = await res.json();
-                if (Array.isArray(json) && json.length > 0) data = json;
+            // ── Supabase: trae reseñas aprobadas, las más recientes primero ──
+            const rows = await supabaseRequest(
+                '/resenas?estado=eq.Aprobado&order=creado_en.desc&limit=50',
+                { prefer: 'return=representation' }
+            );
+            if (Array.isArray(rows) && rows.length > 0) {
+                data = rows.map(r => ({
+                    nombre: r.nombre || 'Anónimo',
+                    sede: r.sede || 'No especificada',
+                    servicio: r.servicio || 'General',
+                    calificacion: r.calificacion || 5,
+                    comentario: r.comentario || '',
+                    fecha: r.creado_en || ''
+                }));
             }
-        } catch (_) { /* sin PHP: usa fallback */ }
+        } catch (_) { /* sin conexión: usa fallback */ }
 
         iniciarGrid(data);
+
+        // ── Tiempo real: cuando se aprueba una reseña aparece al instante ──
+        supabaseRealtime('resenas', (row) => {
+            const nueva = {
+                nombre: row.nombre || 'Anónimo',
+                sede: row.sede || 'No especificada',
+                servicio: row.servicio || 'General',
+                calificacion: row.calificacion || 5,
+                comentario: row.comentario || '',
+                fecha: row.creado_en || ''
+            };
+            // Prepend al grid actual sin recargar toda la lista
+            if (gridContainer) {
+                const color = getAvatarColor(nueva.nombre);
+                const ini = getInitials(nueva.nombre);
+                const card = document.createElement('div');
+                card.className = 'testimonio-card new-review-wow';
+                card.innerHTML = `
+                    <div class="card-estrellas">${renderStars(nueva.calificacion)}</div>
+                    <p class="card-comentario">"${escHtml(nueva.comentario)}"</p>
+                    <div class="card-meta">
+                        <div class="card-avatar" style="background:${color};border-color:${color}33">${ini}</div>
+                        <div>
+                            <div class="card-nombre">${escHtml(nueva.nombre)}</div>
+                            <div class="card-sede">Sede ${escHtml(nueva.sede)} · ${escHtml(nueva.servicio)}</div>
+                        </div>
+                    </div>
+                    <div class="card-verified">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Opinión Verificada
+                    </div>`;
+                gridContainer.prepend(card);
+                setTimeout(() => card.classList.add('visible'), 50);
+            }
+        });
     }
 
-    cargarTestimonios(); // 🔄 Inicia carga desde BD
+    cargarTestimonios(); // 🔄 Inicia carga desde Supabase
 
     /* -----------------------------------------------
        8. STAR RATING (formulario)
@@ -541,8 +646,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* -----------------------------------------------
        9. FORMULARIO RESEÑA
-       POST a guardar_comentario.php
-       Respuesta esperada: { success: true } o { success: false, message: "..." }
+       INSERT directo a Supabase (sin PHP)
     ----------------------------------------------- */
     const form = document.getElementById('resenaForm');
     const btnSubmit = document.getElementById('btnSubmitResena');
@@ -574,26 +678,21 @@ document.addEventListener('DOMContentLoaded', () => {
             hideMessages();
 
             try {
-                const res = await fetch('guardar_comentario.php', {
+                // ── Supabase: insert directo, sin PHP ──────────────────────
+                await supabaseRequest('/resenas', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    prefer: 'return=minimal',
                     body: JSON.stringify({ nombre, sede, servicio, calificacion, comentario })
                 });
 
-                let data = {};
-                try { data = await res.json(); } catch (_) { }
+                showSuccess(nombre, comentario, sede, servicio, calificacion);
+                resetForm();
 
-                if (res.ok && data.success !== false) {
-                    showSuccess(nombre, comentario, sede, servicio, calificacion);
-                    resetForm();
-                } else {
-                    showError(data.message || 'No se pudo enviar tu reseña. Intenta de nuevo.');
-                }
-            } catch (_) {
-                // Simulación en entorno local (sin servidor PHP)
-                if (window.location.protocol === 'file:' || window.location.hostname === 'localhost') {
-                    showSuccess(nombre, comentario, sede, servicio, calificacion);
-                    resetForm();
+            } catch (err) {
+                // Rate limit o validación
+                const msg = err.message || '';
+                if (msg.includes('check') || msg.includes('constraint')) {
+                    showError('Revisa que todos los campos sean válidos e intenta de nuevo.');
                 } else {
                     showError('Error de conexión. Verifica tu internet e intenta de nuevo.');
                 }
