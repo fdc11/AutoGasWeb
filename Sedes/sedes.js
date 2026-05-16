@@ -12,86 +12,86 @@
 -------------------------------------------------- */
 const SEDES_DATA = {
     ica: {
-        ciudad:   'Ica',
-        region:   'Región Ica',
-        address:  'Av. Fernando León de Vivero N°304 - Ref. Frente al Cementerio General de Saraja',
-        maps:     'https://maps.app.goo.gl/PZdiW36SM2awhmtSA',
-        lat: -14.0677, lng: -75.7286,
+        ciudad: 'Ica',
+        region: 'Región Ica',
+        address: 'Av. Fernando León de Vivero N°304 - Ref. Frente al Cementerio General de Saraja',
+        maps: 'https://maps.app.goo.gl/PZdiW36SM2awhmtSA',
+        lat: -14.05906, lng: -75.74256,
         areas: [
             { tipo: 'atencion', nombre: 'Atención al Cliente', telefono: '984851714' },
-            { tipo: 'ventas',   nombre: 'Ventas',              telefono: '978421654' },
-            { tipo: 'soporte',  nombre: 'Soporte Técnico',     telefono: '942058613' }
+            { tipo: 'ventas', nombre: 'Ventas', telefono: '978421654' },
+            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '942058613' }
         ],
         whatsapp: '51984851714'
     },
     lima: {
-        ciudad:   'Lima',
-        region:   'Región Lima',
-        address:  'Jr. San Lino N°6318 - Los Olivos, Lima',
-        maps:     'https://maps.app.goo.gl/c628PPCCC9cx2U5w5',
-        lat: -11.9785, lng: -77.0694,
+        ciudad: 'Lima',
+        region: 'Región Lima',
+        address: 'Jr. San Lino N°6318 - Los Olivos, Lima',
+        maps: 'https://maps.app.goo.gl/c628PPCCC9cx2U5w5',
+        lat: -11.95456, lng: -77.07081,
         areas: [
             { tipo: 'atencion', nombre: 'Atención al Cliente', telefono: '942623696' },
-            { tipo: 'ventas',   nombre: 'Ventas',              telefono: '971799721' },
-            { tipo: 'soporte',  nombre: 'Soporte Técnico',     telefono: '969952447' }
+            { tipo: 'ventas', nombre: 'Ventas', telefono: '971799721' },
+            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '969952447' }
         ],
         whatsapp: '51942623696'
     },
     huancayo: {
-        ciudad:   'Huancayo',
-        region:   'Región Junín',
-        address:  'Prol. Julio Sumar N°698, El Tambo - Huancayo',
-        maps:     'https://maps.app.goo.gl/GkT1hSnraskuAcUq9',
-        lat: -12.0431, lng: -75.2048,
+        ciudad: 'Huancayo',
+        region: 'Región Junín',
+        address: 'Prol. Julio Sumar N°698, El Tambo - Huancayo',
+        maps: 'https://maps.app.goo.gl/GkT1hSnraskuAcUq9',
+        lat: -12.04594, lng: -75.21781,
         areas: [
             { tipo: 'atencion', nombre: 'Atención al Cliente', telefono: '942867212' },
-            { tipo: 'ventas',   nombre: 'Ventas',              telefono: '975829713' },
-            { tipo: 'soporte',  nombre: 'Soporte Técnico',     telefono: '975750903' }
+            { tipo: 'ventas', nombre: 'Ventas', telefono: '975829713' },
+            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '975750903' }
         ],
         whatsapp: '51942867212'
     },
     trujillo: {
-        ciudad:   'Trujillo',
-        region:   'Región La Libertad',
-        address:  'Av. Tupac Amaru 1633 - Urb. Alto Mochica',
-        maps:     'https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5',
-        lat: -8.0784, lng: -79.0326,
+        ciudad: 'Trujillo',
+        region: 'Región La Libertad',
+        address: 'Av. Tupac Amaru 1633 - Urb. Alto Mochica',
+        maps: 'https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5',
+        lat: -8.08931, lng: -79.03844,
         areas: [
-            { tipo: 'ventas',  nombre: 'Ventas',          telefono: '937695830' },
+            { tipo: 'ventas', nombre: 'Ventas', telefono: '937695830' },
             { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '974596922' }
         ],
         whatsapp: '51937695830'
     },
     nasca: {
-        ciudad:   'Nasca',
-        region:   'Región Ica',
-        address:  'Av. Los Incas N°201 - Ref. Frente a la Agencia Ormeño',
-        maps:     'https://maps.app.goo.gl/V51hHVnhix8rHUdR6',
-        lat: -14.8294, lng: -74.9389,
+        ciudad: 'Nasca',
+        region: 'Región Ica',
+        address: 'Av. Los Incas N°201 - Ref. Frente a la Agencia Ormeño',
+        maps: 'https://maps.app.goo.gl/V51hHVnhix8rHUdR6',
+        lat: -14.82806, lng: -74.94569,
         areas: [
-            { tipo: 'ventas',  nombre: 'Ventas',          telefono: '939067488' },
+            { tipo: 'ventas', nombre: 'Ventas', telefono: '939067488' },
             { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '976812208' }
         ],
         whatsapp: '51939067488'
     },
     arequipa: {
-        ciudad:   'Arequipa',
-        region:   'Región Arequipa',
-        address:  'Av. Túpac Amaru N°714 - Campo Marte Paucarpata',
-        maps:     'https://maps.app.goo.gl/qG2XawRA8xHF2MTb7',
-        lat: -16.4205, lng: -71.4949,
+        ciudad: 'Arequipa',
+        region: 'Región Arequipa',
+        address: 'Av. Túpac Amaru N°714 - Campo Marte Paucarpata',
+        maps: 'https://maps.app.goo.gl/qG2XawRA8xHF2MTb7',
+        lat: -16.42856, lng: -71.49956,
         areas: [
-            { tipo: 'ventas',  nombre: 'Ventas',          telefono: '975338252' },
+            { tipo: 'ventas', nombre: 'Ventas', telefono: '975338252' },
             { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '949496098' }
         ],
         whatsapp: '51975338252'
     },
     chincha: {
-        ciudad:   'Chincha',
-        region:   'Región Ica',
-        address:  'Prolongación Lima N°636 - Chincha Alta',
-        maps:     'https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA',
-        lat: -13.4098, lng: -76.1350,
+        ciudad: 'Chincha',
+        region: 'Región Ica',
+        address: 'Prolongación Lima N°636 - Chincha Alta',
+        maps: 'https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA',
+        lat: -13.45056, lng: -76.13681,
         areas: [
             { tipo: 'ventas', nombre: 'Ventas', telefono: '930210613' }
         ],
@@ -102,8 +102,8 @@ const SEDES_DATA = {
 /* Área icons (SVG strings) */
 const AREA_ICONS = {
     atencion: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12 19.79 19.79 0 01.07 3.4 2 2 0 012.03 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
-    ventas:   `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`,
-    soporte:  `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M20 12h2M2 12h2M12 20v2M12 2v2"/></svg>`
+    ventas: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`,
+    soporte: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M20 12h2M2 12h2M12 20v2M12 2v2"/></svg>`
 };
 
 /* Phone SVG */
@@ -207,8 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
        6. FILTROS — pill filter sin reload
     ----------------------------------------------- */
     const filterPills = document.querySelectorAll('.filter-pill');
-    const sedeCards   = document.querySelectorAll('.sede-card');
-    const noResults   = document.getElementById('noResults');
+    const sedeCards = document.querySelectorAll('.sede-card');
+    const noResults = document.getElementById('noResults');
 
     filterPills.forEach(pill => {
         pill.addEventListener('click', () => {
@@ -249,7 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
        7. MODAL — abrir/cerrar
     ----------------------------------------------- */
     const modalOverlay = document.getElementById('modalOverlay');
-    const modalClose   = document.getElementById('modalClose');
+    const modalClose = document.getElementById('modalClose');
 
     /**
      * Builds the content of the modal with data from the specified sede.
@@ -259,10 +259,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = SEDES_DATA[sedeKey];
         if (!data) return;
 
-        document.getElementById('modalRegion').textContent      = data.region;
-        document.getElementById('modalTitle').textContent       = data.ciudad;
+        document.getElementById('modalRegion').textContent = data.region;
+        document.getElementById('modalTitle').textContent = data.ciudad;
         document.getElementById('modalAddressText').textContent = data.address;
-        document.getElementById('modalAddress').href            = data.maps;
+        document.getElementById('modalAddress').href = data.maps;
 
         // WhatsApp link
         const waBtn = document.getElementById('modalWhatsApp');
@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="modal-area-name">${area.nombre}</div>
                     <div class="modal-area-phone">${area.telefono}</div>
                 </div>
-                <a href="tel:${area.telefono.replace(/\D/g,'')}" class="modal-area-call" title="Llamar">
+                <a href="tel:${area.telefono.replace(/\D/g, '')}" class="modal-area-call" title="Llamar">
                     ${PHONE_ICON}
                 </a>
             </div>
@@ -336,7 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const map = L.map('leafletMap', {
             center: [-12.5, -75.8],
-            zoom:   6,
+            zoom: 6,
             zoomControl: true,
             attributionControl: true
         });
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         "></div>
                     </div>
                 `,
-                iconSize:   [size * 2 + 8, size * 2 + 8],
+                iconSize: [size * 2 + 8, size * 2 + 8],
                 iconAnchor: [size + 4, size + 4]
             });
         }
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', () => {
             marker.addTo(map);
         });
 
-        window.__openModalFromMap = function(sedeKey) {
+        window.__openModalFromMap = function (sedeKey) {
             openModal(sedeKey);
             map.closePopup();
         };
