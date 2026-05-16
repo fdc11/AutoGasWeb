@@ -9,60 +9,7 @@
 const SUPABASE_URL = 'https://jyfnsyruaupzvtycrkbx.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5Zm5zeXJ1YXVwenZ0eWNya2J4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4OTcwNzMsImV4cCI6MjA5NDQ3MzA3M30.5TthKej3TdqKXZ-uRs-ui2YokwPxy5-v73YV12f5g34';
 
-async function supabaseRequest(path, options = {}) {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1${path}`, {
-        ...options,
-        headers: {
-            'apikey': SUPABASE_KEY,
-            'Authorization': `Bearer ${SUPABASE_KEY}`,
-            'Content-Type': 'application/json',
-            'Prefer': options.prefer || 'return=representation',
-            ...(options.headers || {})
-        }
-    });
-    if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.message || `HTTP ${res.status}`);
-    }
-    return res.status === 204 ? null : res.json();
-}
-
-function supabaseRealtime(table, onInsert) {
-    const url = `${SUPABASE_URL.replace('https', 'wss')}/realtime/v1/websocket?apikey=${SUPABASE_KEY}&vsn=1.0.0`;
-    let ws;
-    let retryDelay = 2000;
-
-    function connect() {
-        ws = new WebSocket(url);
-
-        ws.onopen = () => {
-            retryDelay = 2000;
-            ws.send(JSON.stringify({
-                topic: `realtime:public:${table}`,
-                event: 'phx_join',
-                payload: { config: { broadcast: { self: false }, presence: { key: '' }, postgres_changes: [{ event: 'INSERT', schema: 'public', table }] } },
-                ref: '1'
-            }));
-        };
-
-        ws.onmessage = (e) => {
-            try {
-                const msg = JSON.parse(e.data);
-                if (msg.event === 'postgres_changes' && msg.payload?.data?.type === 'INSERT') {
-                    const row = msg.payload.data.record;
-                    if (row.estado === 'Aprobado') onInsert(row);
-                }
-            } catch (_) { }
-        };
-
-        ws.onclose = () => {
-            setTimeout(connect, retryDelay);
-            retryDelay = Math.min(retryDelay * 2, 30000);
-        };
-    }
-
-    connect();
-}
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 /* -----------------------------------------------
    TOGGLE GRUPOS DE SERVICIOS
@@ -554,10 +501,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let data = testimoniosFallback;
         try {
             // ── Supabase: trae reseñas aprobadas, las más recientes primero ──
-            const rows = await supabaseRequest(
-                '/resenas?estado=eq.Aprobado&order=creado_en.desc&limit=50',
-                { prefer: 'return=representation' }
-            );
+            const { data: rows, error } = await supabaseClient
+                .from('resenas')
+                .select('*')
+                .eq('estado', 'Aprobado')
+                .order('creado_en', { ascending: false })
+                .limit(50);
+
+            if (error) throw error;
+
             if (Array.isArray(rows) && rows.length > 0) {
                 data = rows.map(r => ({
                     nombre: r.nombre || 'Anónimo',
@@ -573,39 +525,44 @@ document.addEventListener('DOMContentLoaded', () => {
         iniciarGrid(data);
 
         // ── Tiempo real: cuando se aprueba una reseña aparece al instante ──
-        supabaseRealtime('resenas', (row) => {
-            const nueva = {
-                nombre: row.nombre || 'Anónimo',
-                sede: row.sede || 'No especificada',
-                servicio: row.servicio || 'General',
-                calificacion: row.calificacion || 5,
-                comentario: row.comentario || '',
-                fecha: row.creado_en || ''
-            };
-            // Prepend al grid actual sin recargar toda la lista
-            if (gridContainer) {
-                const color = getAvatarColor(nueva.nombre);
-                const ini = getInitials(nueva.nombre);
-                const card = document.createElement('div');
-                card.className = 'testimonio-card new-review-wow';
-                card.innerHTML = `
-                    <div class="card-estrellas">${renderStars(nueva.calificacion)}</div>
-                    <p class="card-comentario">"${escHtml(nueva.comentario)}"</p>
-                    <div class="card-meta">
-                        <div class="card-avatar" style="background:${color};border-color:${color}33">${ini}</div>
-                        <div>
-                            <div class="card-nombre">${escHtml(nueva.nombre)}</div>
-                            <div class="card-sede">Sede ${escHtml(nueva.sede)} · ${escHtml(nueva.servicio)}</div>
-                        </div>
-                    </div>
-                    <div class="card-verified">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                        Opinión Verificada
-                    </div>`;
-                gridContainer.prepend(card);
-                setTimeout(() => card.classList.add('visible'), 50);
-            }
-        });
+        supabaseClient.channel('custom-insert-channel')
+            .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'resenas' }, (payload) => {
+                const row = payload.new;
+                if (row.estado === 'Aprobado') {
+                    const nueva = {
+                        nombre: row.nombre || 'Anónimo',
+                        sede: row.sede || 'No especificada',
+                        servicio: row.servicio || 'General',
+                        calificacion: row.calificacion || 5,
+                        comentario: row.comentario || '',
+                        fecha: row.creado_en || ''
+                    };
+                    // Prepend al grid actual sin recargar toda la lista
+                    if (gridContainer) {
+                        const color = getAvatarColor(nueva.nombre);
+                        const ini = getInitials(nueva.nombre);
+                        const card = document.createElement('div');
+                        card.className = 'testimonio-card new-review-wow';
+                        card.innerHTML = `
+                            <div class="card-estrellas">${renderStars(nueva.calificacion)}</div>
+                            <p class="card-comentario">"${escHtml(nueva.comentario)}"</p>
+                            <div class="card-meta">
+                                <div class="card-avatar" style="background:${color};border-color:${color}33">${ini}</div>
+                                <div>
+                                    <div class="card-nombre">${escHtml(nueva.nombre)}</div>
+                                    <div class="card-sede">Sede ${escHtml(nueva.sede)} · ${escHtml(nueva.servicio)}</div>
+                                </div>
+                            </div>
+                            <div class="card-verified">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                Opinión Verificada
+                            </div>`;
+                        gridContainer.prepend(card);
+                        setTimeout(() => card.classList.add('visible'), 50);
+                    }
+                }
+            })
+            .subscribe();
     }
 
     cargarTestimonios(); // 🔄 Inicia carga desde Supabase
@@ -679,11 +636,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // ── Supabase: insert directo, sin PHP ──────────────────────
-                await supabaseRequest('/resenas', {
-                    method: 'POST',
-                    prefer: 'return=minimal',
-                    body: JSON.stringify({ nombre, sede, servicio, calificacion, comentario })
-                });
+                const { error } = await supabaseClient
+                    .from('resenas')
+                    .insert({ nombre, sede, servicio, calificacion, comentario });
+
+                if (error) throw error;
 
                 showSuccess(nombre, comentario, sede, servicio, calificacion);
                 resetForm();
