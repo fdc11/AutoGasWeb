@@ -7,7 +7,7 @@
 
 /* ─── Supabase config ────────────────────────────────────────────────────── */
 const SUPABASE_URL = 'https://jyfnsyruaupzvtycrkbx.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_SHX1oK1x4h5kvL4kJlv3KQ_LM2NRpu3';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imp5Zm5zeXJ1YXVwenZ0eWNya2J4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg4OTcwNzMsImV4cCI6MjA5NDQ3MzA3M30.5TthKej3TdqKXZ-uRs-ui2YokwPxy5-v73YV12f5g34';
 
 async function supabaseRequest(path, options = {}) {
     const res = await fetch(`${SUPABASE_URL}/rest/v1${path}`, {
