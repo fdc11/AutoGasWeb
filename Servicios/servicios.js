@@ -675,7 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (errorEl) errorEl.style.display = 'none';
 
         // WOW: inject the new review at the top of the slider
-        if (track && nombre && comentario) {
+        if (gridContainer && nombre && comentario) {
             const stars = Array.from({ length: 5 }, (_, i) => {
                 const filled = i < calificacion ? 'currentColor' : 'none';
                 return `<svg class="estrella-svg ${i < calificacion ? 'filled' : 'empty'}" viewBox="0 0 24 24" fill="${filled}" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
@@ -699,8 +699,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
                     Tu reseña está pendiente de verificación
                 </div>`;
-            track.prepend(newCard);
-            track.scrollTo({ left: 0, behavior: 'smooth' });
+            gridContainer.prepend(newCard);
+            // No need to scroll if grid is multi-line, but if it's horizontal:
+            // gridContainer.scrollTo({ left: 0, behavior: 'smooth' });
             setTimeout(() => newCard.classList.add('visible'), 50);
         }
     }
