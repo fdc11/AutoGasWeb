@@ -426,7 +426,7 @@ a {
     background: url('Imagenes/Taller1.jpg') center / cover no-repeat;
     opacity: 0.18;
     transform: scale(1.06);
-    transition: transform 8s ease, opacity 1.2s ease;
+    transition: opacity 1.2s ease;
 }
 
 .hero-bg.loaded {
