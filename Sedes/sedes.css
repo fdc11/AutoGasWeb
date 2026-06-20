@@ -813,9 +813,9 @@ a {
     border: 1.5px solid var(--gray-mid);
     border-radius: 4px;
     overflow: hidden;
-    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
     isolation: isolate;
     will-change: transform;
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 
 .sede-card:hover {
@@ -1134,12 +1134,14 @@ a {
     padding: 20px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.35s ease;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .modal-overlay.open {
     opacity: 1;
     pointer-events: all;
+    visibility: visible;
 }
 
 .modal {
@@ -1615,10 +1617,6 @@ a {
         grid-template-columns: 1fr;
     }
 
-    .sede-card {
-        min-width: 0;
-    }
-
     .stats-strip-inner {
         gap: 20px 0;
     }
@@ -1874,6 +1872,14 @@ a {
 
     .hamburger {
         display: flex;
+    }
+
+    .sede-card {
+        min-width: 0;
+    }
+
+    .sede-chips {
+        min-width: 0;
     }
 
     .mobile-nav {
