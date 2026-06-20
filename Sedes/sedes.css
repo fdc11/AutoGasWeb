@@ -814,6 +814,8 @@ a {
     border-radius: 4px;
     overflow: hidden;
     transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    isolation: isolate;
+    will-change: transform;
 }
 
 .sede-card:hover {
@@ -1611,6 +1613,10 @@ a {
 
     .sedes-grid {
         grid-template-columns: 1fr;
+    }
+
+    .sede-card {
+        min-width: 0;
     }
 
     .stats-strip-inner {
