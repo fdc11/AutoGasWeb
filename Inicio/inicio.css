@@ -2093,10 +2093,22 @@ a {
     transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.area-card:hover .area-card-inner {
-    transform: rotateY(180deg);
+/* On true-pointer (mouse) devices only — prevent ghost-hover on touch */
+@media (hover: hover) and (pointer: fine) {
+    .area-card:hover .area-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .area-card:hover .area-card-front {
+        pointer-events: none;
+    }
+
+    .area-card:hover .area-card-back {
+        pointer-events: auto;
+    }
 }
 
+/* Base: both faces share these structural rules */
 .area-card-front,
 .area-card-back {
     position: absolute;
@@ -2109,20 +2121,13 @@ a {
     flex-direction: column;
 }
 
+/* Default pointer-events: front gets clicks, back is hidden */
 .area-card-front {
     pointer-events: auto;
 }
 
 .area-card-back {
     pointer-events: none;
-}
-
-.area-card:hover .area-card-front {
-    pointer-events: none;
-}
-
-.area-card:hover .area-card-back {
-    pointer-events: auto;
 }
 
 /* Frente: imagen de fondo con overlay */
@@ -2414,6 +2419,23 @@ a {
 .area-card.flipped .area-card-inner {
     transform: rotateY(180deg);
 }
+
+/* When flipped via JS: restore pointer-events correctly */
+.area-card.flipped .area-card-front {
+    pointer-events: none;
+}
+
+.area-card.flipped .area-card-back {
+    pointer-events: auto;
+}
+
+/* The link on the back face is always clickable */
+.area-card.flipped .area-back-link {
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+}
+
 
 /* =============================================
    CALCULADORA DE AHORRO

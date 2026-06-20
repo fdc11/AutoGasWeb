@@ -1634,6 +1634,17 @@ a {
     #leafletMap {
         height: 380px;
     }
+
+    /* Evitar glitch de parallax en móvil */
+    .hero-bg {
+        transform: none !important;
+        transition: opacity 1.2s ease !important;
+    }
+
+    .hero-bg.loaded {
+        transform: none !important;
+        opacity: 0.22;
+    }
 }
 
 /* =============================================
@@ -1729,7 +1740,7 @@ a {
    MOBILE NAV OVERLAY (Premium)
 ============================================= */
 .navbar {
-    will-change: transform;
+    will-change: auto;
 }
 
 /* Hamburger animado */

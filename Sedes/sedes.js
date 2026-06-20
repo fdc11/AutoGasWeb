@@ -193,13 +193,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* -----------------------------------------------
-       5. PARALLAX — hero background
+       5. PARALLAX — hero background (desktop only)
     ----------------------------------------------- */
     const heroBgEl = document.querySelector('.hero-bg');
 
     window.addEventListener('scroll', () => {
         if (!heroBgEl) return;
+        // Desactivar parallax en móvil para evitar glitches visuales
+        if (window.innerWidth <= 768) {
+            heroBgEl.style.transform = '';
+            return;
+        }
         heroBgEl.style.transform = `scale(1) translateY(${window.scrollY * 0.25}px)`;
+    }, { passive: true });
+
+    // Limpiar parallax al redimensionar a móvil
+    window.addEventListener('resize', () => {
+        if (!heroBgEl) return;
+        if (window.innerWidth <= 768) {
+            heroBgEl.style.transform = '';
+        }
     }, { passive: true });
 
 

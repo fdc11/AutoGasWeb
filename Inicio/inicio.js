@@ -124,13 +124,28 @@ document.querySelectorAll('.cred-item')
     .forEach(el => revealObserver.observe(el));
 
 // =============================================
-// AREA CARDS — touch/click flip for mobile
+// AREA CARDS — touch/click flip (exclusive: one card at a time)
 // =============================================
-document.querySelectorAll('.area-card').forEach(card => {
-    card.addEventListener('click', () => {
-        card.classList.toggle('flipped');
+(function () {
+    const cards = Array.from(document.querySelectorAll('.area-card'));
+
+    cards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            // If the click landed on the back-link anchor, let it navigate normally
+            if (e.target.closest('.area-back-link')) return;
+
+            const isAlreadyFlipped = card.classList.contains('flipped');
+
+            // Collapse every card
+            cards.forEach(c => c.classList.remove('flipped'));
+
+            // If this card was NOT already flipped, flip it open
+            if (!isAlreadyFlipped) {
+                card.classList.add('flipped');
+            }
+        });
     });
-});
+})();
 
 // =============================================
 // CALCULADORA DE AHORRO
