@@ -4,9 +4,8 @@
  *  - Navegación entre steps con validación por campo
  *  - Barra de progreso animada
  *  - Selección de sede mediante cards
- *  - Carga de disponibilidad horaria desde get_disponibilidad.php
  *  - Resumen de confirmación en Step 4
- *  - Envío a guardar_cita.php vía fetch (JSON)
+ *  - Envío directo a WhatsApp de la sede elegida
  *  - Animación de éxito SVG
  */
 
@@ -33,6 +32,17 @@ const state = {
         hora: ''
     }
 };
+
+/* =========================================
+   ANTI-SPAM: honeypot + trampa de tiempo
+========================================= */
+const formLoadedAt = Date.now();
+
+function escHtml(str) {
+    return String(str).replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+}
 
 /* =========================================
    NAVBAR — scroll + hamburguesa
@@ -431,28 +441,19 @@ const HORAS_TALLER = [
     '14:00', '15:00', '16:00', '17:00'
 ];
 
-// ✅ FIX 1: función ahora recibe sede_id y lo envía al PHP
 /**
- * Fetches available time slots for a given date and headquarters.
+ * Renders the bookable time slots for a given date and headquarters.
+ * No backend tracks real occupancy — final booking is confirmed by the
+ * sede itself over WhatsApp, so every slot is shown as selectable here.
  * @param {string} fecha - The selected date (YYYY-MM-DD).
  * @param {string} sedeId - The ID of the selected headquarters.
  */
-async function cargarDisponibilidad(fecha, sedeId) {
+function cargarDisponibilidad(fecha, sedeId) {
     const horasWrap = document.getElementById('horasWrap');
     const horasGrid = document.getElementById('horasGrid');
-    horasGrid.innerHTML = '<span style="color:rgba(255,255,255,0.3);font-size:0.82rem;">Cargando horarios...</span>';
     horasWrap.style.display = 'block';
 
-    let ocupadas = [];
-    try {
-        // Ahora le pasa tanto fecha como sede_id al backend
-        const res = await fetch(`get_disponibilidad.php?fecha=${fecha}&sede_id=${sedeId}`);
-        const data = await res.json();
-        ocupadas = data.ocupadas || [];
-    } catch (e) {
-        ocupadas = [];
-    }
-
+    const ocupadas = [];
     horasGrid.innerHTML = '';
     HORAS_TALLER.forEach(hora => {
         const btn = document.createElement('button');
@@ -492,16 +493,16 @@ function buildConfirmationGrid() {
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Nombre</span>
-                <span class="confirm-val">${d.nombres} ${d.apellidos}</span>
+                <span class="confirm-val">${escHtml(d.nombres)} ${escHtml(d.apellidos)}</span>
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Celular</span>
-                <span class="confirm-val">${d.celular}</span>
+                <span class="confirm-val">${escHtml(d.celular)}</span>
             </div>
             ${d.correo ? `
             <div class="confirm-row">
                 <span class="confirm-key">Correo</span>
-                <span class="confirm-val">${d.correo}</span>
+                <span class="confirm-val">${escHtml(d.correo)}</span>
             </div>` : ''}
         </div>
 
@@ -512,11 +513,11 @@ function buildConfirmationGrid() {
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Marca / Modelo</span>
-                <span class="confirm-val">${d.marca} ${d.modelo}</span>
+                <span class="confirm-val">${escHtml(d.marca)} ${escHtml(d.modelo)}</span>
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Placa</span>
-                <span class="confirm-val">${d.placa}</span>
+                <span class="confirm-val">${escHtml(d.placa)}</span>
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Kilometraje</span>
@@ -524,7 +525,7 @@ function buildConfirmationGrid() {
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Combustible</span>
-                <span class="confirm-val">${d.combustible}</span>
+                <span class="confirm-val">${escHtml(d.combustible)}</span>
             </div>
         </div>
 
@@ -535,7 +536,7 @@ function buildConfirmationGrid() {
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Servicio</span>
-                <span class="confirm-val" style="color:var(--red)">${d.servicio}</span>
+                <span class="confirm-val" style="color:var(--red)">${escHtml(d.servicio)}</span>
             </div>
         </div>
 
@@ -546,15 +547,15 @@ function buildConfirmationGrid() {
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Sede</span>
-                <span class="confirm-val">${d.sedeNombre}</span>
+                <span class="confirm-val">${escHtml(d.sedeNombre)}</span>
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Fecha</span>
-                <span class="confirm-val">${formatFecha(d.fecha)}</span>
+                <span class="confirm-val">${escHtml(formatFecha(d.fecha))}</span>
             </div>
             <div class="confirm-row">
                 <span class="confirm-key">Hora</span>
-                <span class="confirm-val">${d.hora} hrs</span>
+                <span class="confirm-val">${escHtml(d.hora)} hrs</span>
             </div>
         </div>
     `;
@@ -572,6 +573,16 @@ function formatFecha(fechaStr) {
    → Sin BD. Abre WhatsApp directo.
 ========================================= */
 function enviarFormulario() {
+    // Honeypot: campo invisible que solo un bot llenaría
+    const honeypot = document.getElementById('empresa');
+    if (honeypot && honeypot.value.trim() !== '') {
+        return; // silencioso: no delatamos la detección
+    }
+    // Trampa de tiempo: un envío en menos de 3s del primer render es casi siempre un bot
+    if (Date.now() - formLoadedAt < 3000) {
+        return;
+    }
+
     const btnEnviar = document.getElementById('btnEnviar');
     const btnText = btnEnviar.querySelector('.btn-text');
     const btnSpinner = btnEnviar.querySelector('.btn-spinner');
@@ -647,7 +658,7 @@ function abrirWhatsApp(d) {
     if (!numero) return;
     const mensaje = generarMensajeWSP(d);
     const url = 'https://wa.me/' + numero + '?text=' + mensaje;
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'noopener,noreferrer');
 }
 
 /* =========================================

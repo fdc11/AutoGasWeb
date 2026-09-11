@@ -937,10 +937,15 @@
             </div>
             <div class="resena-form-wrap reveal-right">
                 <form class="resena-form" id="resenaForm" novalidate>
+                    <div class="form-group" aria-hidden="true"
+                        style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
+                        <label for="resena-web">Sitio web</label>
+                        <input type="text" id="resena-web" name="web" tabindex="-1" autocomplete="off">
+                    </div>
                     <div class="form-group">
                         <label for="resena-nombre">Nombre completo</label>
                         <input type="text" id="resena-nombre" name="nombre" placeholder="Ej. Carlos Mendoza"
-                            autocomplete="name" required>
+                            autocomplete="name" maxlength="80" required>
                     </div>
                     <div class="form-row-two">
                         <div class="form-group">
@@ -1017,7 +1022,7 @@
                     </div>
                     <div class="form-group">
                         <label for="resena-comentario">Comentario</label>
-                        <textarea id="resena-comentario" name="comentario" rows="4"
+                        <textarea id="resena-comentario" name="comentario" rows="4" maxlength="600"
                             placeholder="Cuéntanos cómo fue tu experiencia..." required></textarea>
                     </div>
                     <button type="submit" class="btn-submit" id="btnSubmitResena">

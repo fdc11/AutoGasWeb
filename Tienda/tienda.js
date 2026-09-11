@@ -800,7 +800,7 @@ function enviarCarritoWsp() {
         `Por favor confirmar disponibilidad antes de coordinar recojo o entrega.`;
 
     const url = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
+    window.open(url, '_blank', 'noopener,noreferrer');
 
     // Cerrar carrito
     toggleCarrito();

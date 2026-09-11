@@ -11,6 +11,10 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+/* ─── Anti-spam: honeypot + trampa de tiempo + throttle local ──────────────── */
+const resenaFormLoadedAt = Date.now();
+const RESENA_THROTTLE_MS = 60000; // 1 envío por minuto por navegador
+
 /* -----------------------------------------------
    TOGGLE GRUPOS DE SERVICIOS
 ----------------------------------------------- */
@@ -615,6 +619,22 @@ document.addEventListener('DOMContentLoaded', () => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
+            // Honeypot: campo invisible que solo un bot llenaría
+            const honeypot = form.elements['web'];
+            if (honeypot && honeypot.value.trim() !== '') {
+                return; // silencioso: no delatamos la detección
+            }
+            // Trampa de tiempo: un envío en menos de 3s del primer render es casi siempre un bot
+            if (Date.now() - resenaFormLoadedAt < 3000) {
+                return;
+            }
+            // Throttle local: máximo un envío por minuto desde este navegador
+            const lastSubmit = parseInt(localStorage.getItem('autogas_resena_last') || '0', 10);
+            if (Date.now() - lastSubmit < RESENA_THROTTLE_MS) {
+                showError('Ya enviaste una reseña hace poco. Intenta de nuevo en un momento.');
+                return;
+            }
+
             const nombre = form.elements['nombre'].value.trim();
             const sede = form.elements['sede'].value;
             const servicio = form.elements['servicio'].value;
@@ -630,6 +650,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 return;
             }
+            if (nombre.length > 80 || comentario.length > 600) {
+                showError('El nombre o el comentario son demasiado largos.');
+                return;
+            }
 
             setLoading(true);
             hideMessages();
@@ -642,6 +666,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (error) throw error;
 
+                localStorage.setItem('autogas_resena_last', String(Date.now()));
                 showSuccess(nombre, comentario, sede, servicio, calificacion);
                 resetForm();
 
