@@ -1058,6 +1058,11 @@ a {
     width: 100%;
 }
 
+/* Fake a dark basemap from free/keyless OSM light tiles */
+#leafletMap .leaflet-tile-pane {
+    filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+}
+
 /* Override leaflet popup */
 .leaflet-popup-content-wrapper {
     background: var(--black-soft) !important;

@@ -354,9 +354,11 @@ document.addEventListener('DOMContentLoaded', () => {
             attributionControl: true
         });
 
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-            subdomains: 'abcd',
+        // OSM standard tiles (free, no API key) + CSS filter for the dark look —
+        // CARTO's dark_all basemap now requires a paid/free-tier API key and
+        // was rendering an "API KEY REQUIRED" watermark over the map.
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
             maxZoom: 19
         }).addTo(map);
 
