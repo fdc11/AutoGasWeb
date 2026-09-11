@@ -404,7 +404,7 @@ a {
 .hero-contact-bg {
     position: absolute;
     inset: 0;
-    background: url('../Inicio/Imagenes/AutoGasBanner.jpg') center/cover no-repeat;
+    background: url('../Inicio/Imagenes/AutoGasBanner.webp') center/cover no-repeat;
     transform: scale(1.05);
     transition: transform 8s ease;
 }
@@ -1440,7 +1440,7 @@ a {
     padding: 120px 5%;
     text-align: center;
     overflow: hidden;
-    background: url('../Inicio/Imagenes/AutoGasBanner.jpg') center/cover no-repeat;
+    background: url('../Inicio/Imagenes/AutoGasBanner.webp') center/cover no-repeat;
     margin-top: 0;
 }
 

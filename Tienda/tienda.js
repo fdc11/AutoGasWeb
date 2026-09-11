@@ -371,7 +371,7 @@ function renderizarProductos(productos) {
         <div class="prod-card" data-id="${p.id}">
             <div class="prod-img">
                 <img src="${p.img}" alt="${p.nombre}" loading="lazy"
-                     onerror="this.style.padding='2rem';this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
+                     onerror="this.style.padding='2rem';this.src='../Inicio/Imagenes/AutoGasLogo2.webp'" />
                 ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
             </div>
             <div class="prod-info">
@@ -648,7 +648,7 @@ function renderizarCarrito() {
         <div class="cart-item cart-item-entering" data-id="${item.id}">
             <div class="cart-item-img">
                 <img src="${item.img}" alt="${item.nombre}"
-                     onerror="this.src='../Inicio/Imagenes/AutoGasLogo2.png'" />
+                     onerror="this.src='../Inicio/Imagenes/AutoGasLogo2.webp'" />
             </div>
             <div class="cart-item-info">
                 <div class="cart-item-marca">${item.marca}</div>

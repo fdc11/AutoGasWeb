@@ -564,7 +564,7 @@ a {
 .hero-bg {
     position: absolute;
     inset: 0;
-    background: url('Imagenes/AutoGasBanner.jpg') center/cover no-repeat;
+    background: url('Imagenes/AutoGasBanner.webp') center/cover no-repeat;
 }
 
 .hero-overlay {
@@ -2002,7 +2002,7 @@ a {
 .cta-final-bg {
     position: absolute;
     inset: 0;
-    background: url('Imagenes/AutoGasBanner.jpg') center/cover no-repeat;
+    background: url('Imagenes/AutoGasBanner.webp') center/cover no-repeat;
 }
 
 .cta-final-overlay {
