@@ -122,6 +122,24 @@ img {
     height: auto;
 }
 
+/* Iconografía: trazo un poco más firme en los tamaños "feature", acorde
+   al peso de la tipografía de marca (evita el look genérico de icon-pack) */
+svg[width="24"][height="24"],
+svg[width="28"][height="28"],
+svg[width="36"][height="36"],
+svg[width="38"][height="38"] {
+    stroke-width: 1.75px;
+}
+
+/* Consistencia de color en fotografía real (mezcla de cámaras/luz):
+   mismo grading en todas las fotos de taller para que no se vean como
+   capturas sueltas de distintos celulares */
+.quienes-img-main,
+.quienes-img-secondary,
+.galeria-item img {
+    filter: saturate(1.08) contrast(1.06) brightness(0.99) sepia(0.06) hue-rotate(-6deg);
+}
+
 a {
     text-decoration: none;
 }
@@ -575,6 +593,18 @@ a {
             rgba(8, 8, 8, 0.68) 55%,
             rgba(8, 8, 8, 0.28) 100%);
     z-index: 1;
+}
+
+/* Textura de grano sutil — le quita el look "vector plano" a los fondos oscuros */
+.hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Marca de agua */
