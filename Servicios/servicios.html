@@ -131,68 +131,44 @@
         </div>
     </section>
 
-    <!-- ==================== ASISTENTE DE ORIENTACIÓN ==================== -->
+    <!-- ==================== ORIENTACIÓN AUTOMÁTICA ==================== -->
     <section class="asistente-ia" id="asistente-ia">
         <div class="asistente-inner">
             <div class="asistente-header reveal">
-                <div class="section-tag light-tag">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="3" />
-                        <path
-                            d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
-                    </svg>
-                    ORIENTACIÓN AUTOMÁTICA
-                </div>
+                <div class="section-tag light-tag">ORIENTACIÓN AUTOMÁTICA</div>
                 <h2 class="asistente-title">¿QUÉ LE PASA A<br>TU <span class="accent">VEHÍCULO?</span></h2>
-                <p class="asistente-desc">Cuéntanos qué notas con tus propias palabras. Identificamos los síntomas,
-                    evaluamos su urgencia y te indicamos qué servicio de AutoGas necesitas.</p>
-                <ul class="dx-pasos" aria-label="Cómo funciona">
-                    <li><span>1</span>Describe el síntoma</li>
-                    <li><span>2</span>Analizamos urgencia y causas</li>
-                    <li><span>3</span>Agenda con un asesor</li>
-                </ul>
+                <p class="asistente-desc">Descríbenos el problema con tus propias palabras y te indicaremos qué servicios
+                    de AutoGas pueden ayudarte.</p>
             </div>
             <div class="asistente-box reveal">
-                <div class="dx-input">
-                    <label for="iaInput" class="dx-label">Describe el problema</label>
-                    <textarea id="iaInput" class="asistente-textarea"
-                        placeholder="Ej: El motor tiembla cuando estoy parado y consume más gasolina de lo normal..." rows="3"
-                        maxlength="400"></textarea>
-                    <div class="asistente-input-footer">
-                        <span class="dx-hint">Tip: indica <b>cuándo</b> ocurre (al frenar, en frío, usando gas…)</span>
-                        <div class="dx-input-acc">
-                            <span class="ia-char-count"><span id="iaCharCount">0</span>/400</span>
-                            <button type="button" class="ia-btn" id="iaBtn" onclick="analizarProblema()">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round">
-                                    <circle cx="11" cy="11" r="8" />
-                                    <path d="m21 21-4.3-4.3" />
-                                </svg>
-                                Analizar
-                            </button>
-                        </div>
+                <label for="iaInput" class="ia-label">Describe el problema</label>
+                <textarea id="iaInput" class="asistente-textarea"
+                    placeholder="Ej: Mi carro consume mucho combustible y a veces falla el arranque..." rows="3"
+                    maxlength="400"></textarea>
+                <div class="asistente-input-footer">
+                    <span class="ia-char-count"><span id="iaCharCount">0</span>/400</span>
+                    <button type="button" class="ia-btn" id="iaBtn" onclick="analizarProblema()">Analizar</button>
+                </div>
+
+                <div class="ia-resultados" id="iaResultados" aria-live="polite" hidden>
+                    <div class="ia-resultados-head">
+                        <span class="ia-resultados-titulo">Servicios sugeridos</span>
+                        <button type="button" class="ia-limpiar" onclick="reiniciarAsistente()">Nueva consulta</button>
+                    </div>
+                    <p class="ia-aviso" id="iaAviso" hidden></p>
+                    <ol class="ia-lista" id="iaLista"></ol>
+                    <div class="ia-cta">
+                        <p>Un técnico confirmará el diagnóstico en taller.</p>
+                        <a href="../Contacto/contacto.html" class="ia-cta-btn">Cotizar servicio</a>
                     </div>
                 </div>
-                <div class="dx-ejemplos" id="dxEjemplos">
-                    <span class="dx-ejemplos-tit">Casos frecuentes</span>
-                    <div class="dx-ejemplos-lista">
-                        <button type="button" data-ejemplo="Huele a gas dentro del carro">Huele a gas</button>
-                        <button type="button" data-ejemplo="El pedal del freno se hunde y frena poco">El pedal del freno se hunde</button>
-                        <button type="button" data-ejemplo="El motor se recalienta en el tráfico">Se recalienta el motor</button>
-                        <button type="button" data-ejemplo="No arranca en las mañanas">No arranca en las mañanas</button>
-                        <button type="button" data-ejemplo="Consume mucha gasolina">Consume mucha gasolina</button>
-                        <button type="button" data-ejemplo="Se prendió la luz del check engine">Luz de check engine</button>
-                        <button type="button" data-ejemplo="Quiero convertir mi auto a GNV">Quiero convertir a GNV</button>
-                    </div>
+
+                <div class="ia-vacio" id="iaVacio" aria-live="polite" hidden>
+                    <p>No encontramos un servicio específico para tu descripción. Te recomendamos una
+                        <strong>Revisión y Diagnóstico Vehicular</strong>, o cuéntanos tu caso directamente.</p>
+                    <a href="../Contacto/contacto.html" class="ia-cta-btn">Cotizar servicio</a>
                 </div>
-                <div class="dx-resultado" id="dxResultado" aria-live="polite" hidden></div>
             </div>
-            <p class="dx-nota">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" /></svg>
-                Orientación referencial basada en los síntomas que describes. El diagnóstico definitivo lo realiza un
-                técnico en taller.
-            </p>
         </div>
     </section>
 
