@@ -151,14 +151,59 @@ const CATALOGO = {
 };
 
 // =============================================
+// DATOS DE CADA CATEGORÍA (tarjetas y cabecera)
+// Para cambiar las fotos: reemplaza la ruta de "img".
+// =============================================
+const CATEGORIAS_INFO = {
+    aceites: {
+        num: '01', corto: 'Aceites',
+        titulo: 'Aceites y <em>Lubricantes</em>',
+        desc: 'Shell, Castrol, Mobil, Valvoline. Motor protegido, rendimiento al tope.',
+        img: 'Imagenes/AceitesCaraEjemplo.webp'
+    },
+    repuestos: {
+        num: '02', corto: 'Repuestos',
+        titulo: '<em>Repuestos</em>',
+        desc: 'Bujías, pastillas de freno y correas para las marcas del mercado peruano.',
+        img: 'Imagenes/ComponentesCaraEjemplo.webp'
+    },
+    refrigerantes: {
+        num: '03', corto: 'Refrigerantes',
+        titulo: '<em>Refrigerantes</em>',
+        desc: 'Fórmulas de larga duración para mantener tu motor a la temperatura correcta.',
+        img: 'Imagenes/PrestoneEjemploCara.webp'
+    },
+    filtros: {
+        num: '04', corto: 'Filtros',
+        titulo: 'Filtros y <em>Componentes</em>',
+        desc: 'Filtros de aceite, aire, combustible y habitáculo.',
+        img: 'Imagenes/RefrigeranteEjemplo.webp'
+    }
+};
+
+// Productos que salen en "Los más pedidos" (por id)
+const MAS_PEDIDOS = ['ac01', 'rf01', 'fi02', 're02'];
+
+// Imagen de reemplazo si la foto del producto no existe todavía
+const IMG_PENDIENTE = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">' +
+    '<rect width="200" height="200" fill="#f4f4f4"/>' +
+    '<path d="M70 80h60v50H70z M82 80v-8h36v8" fill="none" stroke="#c4c4c4" stroke-width="5" stroke-linejoin="round"/>' +
+    '<text x="100" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#8a8a8a">Foto pendiente</text>' +
+    '</svg>');
+
+const ICONO_FLECHA = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const ICONO_ATRAS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
+const ICONO_CHECK = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+// =============================================
 // ESTADO DE LA TIENDA
 // =============================================
 let estadoTienda = {
+    vista: 'home',          // 'home' | 'cat' | 'buscar'
     categoriaActual: null,
-    productoActual: null,       // legacy, ya no se usa
-    cantidad: 1,                // legacy
-    sedeId: null,
-    productosOrdenados: []
+    busqueda: '',
+    orden: 'default'
 };
 
 // =============================================
@@ -170,9 +215,9 @@ let carritoSedeId = null;
 function cargarCarritoStorage() {
     try {
         const raw = localStorage.getItem('autogas_carrito');
-        if (raw) carritoItems = JSON.parse(raw);
+        if (raw) carritoItems = JSON.parse(raw) || [];
         const sede = localStorage.getItem('autogas_sede');
-        if (sede) carritoSedeId = sede;
+        if (sede && WSP_SEDES[sede]) carritoSedeId = sede;
     } catch (e) { carritoItems = []; }
 }
 
@@ -185,70 +230,49 @@ function guardarCarritoStorage() {
 }
 
 // =============================================
-// NAVBAR — scroll
+// HELPERS
 // =============================================
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
+function $(id) { return document.getElementById(id); }
+
+function soles(n) { return 'S/ ' + n.toFixed(2); }
+
+function escaparHTML(txt) {
+    return String(txt).replace(/[&<>"']/g, c => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[c]));
+}
+
+function normalizar(txt) {
+    return String(txt).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
+function buscarProducto(id) {
+    for (const cat of Object.values(CATALOGO)) {
+        const p = cat.productos.find(x => x.id === id);
+        if (p) return p;
+    }
+    return null;
+}
+
+function todosLosProductos() {
+    return Object.values(CATALOGO).flatMap(c => c.productos);
+}
+
+// =============================================
+// NAVBAR — scroll (igual que el resto de páginas)
+// =============================================
+const navbar = $('navbar');
+function actualizarNavbar() {
     navbar.classList.toggle('scrolled', window.scrollY > 50);
-}, { passive: true });
-
-// =============================================
-// HERO — fade-in + init
-// =============================================
-window.addEventListener('load', () => {
-    ['.hero-badge--anim', '.hero-title--anim', '.hero-sub--anim', '.hero-actions--anim']
-        .forEach((sel, i) => {
-            const el = document.querySelector(sel);
-            if (el) setTimeout(() => el.classList.add('visible'), 200 + i * 160);
-        });
-    iniciarReveal();
-    iniciarBrandsReveal();
-
-    // Search input
-    const searchInput = document.getElementById('searchInput');
-    if (searchInput) {
-        searchInput.addEventListener('input', function () {
-            const q = this.value.trim().toLowerCase();
-            const clearBtn = document.getElementById('searchClear');
-            if (clearBtn) clearBtn.style.display = q ? 'block' : 'none';
-            const cat = CATALOGO[estadoTienda.categoriaActual];
-            if (!cat) return;
-            const filtrados = q
-                ? cat.productos.filter(p =>
-                    p.nombre.toLowerCase().includes(q) ||
-                    p.marca.toLowerCase().includes(q) ||
-                    p.desc.toLowerCase().includes(q))
-                : cat.productos;
-            renderizarProductos(filtrados);
-        });
-    }
-
-    // Cargar carrito guardado y restaurar sede si había
-    cargarCarritoStorage();
-    renderizarCarrito();
-    actualizarFabCount();
-
-    // Restaurar sede seleccionada visualmente
-    if (carritoSedeId) {
-        document.querySelectorAll('.cart-sede').forEach(s => {
-            s.classList.toggle('selected', s.dataset.id === carritoSedeId);
-        });
-        actualizarInfoSede(carritoSedeId);
-    }
-
-    // Habilitar/deshabilitar botón al escribir
-    ['cartNombre', 'cartApellido'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.addEventListener('input', actualizarBtnWsp);
-    });
-});
+}
+window.addEventListener('scroll', actualizarNavbar, { passive: true });
 
 // =============================================
 // MENÚ MÓVIL
 // =============================================
 function toggleMenu() {
-    const nav = document.getElementById('mobileNav');
-    const hamburger = document.getElementById('hamburger');
+    const nav = $('mobileNav');
+    const hamburger = $('hamburger');
     const isOpen = nav.classList.contains('open');
 
     if (isOpen) {
@@ -266,273 +290,235 @@ function toggleMenu() {
     }
 }
 
-// Cerrar con Escape
 document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        const nav = document.getElementById('mobileNav');
-        if (nav && nav.classList.contains('open')) toggleMenu();
-    }
+    if (e.key !== 'Escape') return;
+    const nav = $('mobileNav');
+    if (nav && nav.classList.contains('open')) { toggleMenu(); return; }
+    const overlay = $('cartOverlay');
+    if (overlay && overlay.classList.contains('open')) toggleCarrito();
 });
 
 // =============================================
-// SCROLL REVEAL
+// TARJETAS DE PRODUCTO (se usan en todas las grillas)
 // =============================================
-function iniciarReveal() {
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.05 });
-    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-}
-
-// =============================================
-// NAVEGACIÓN: VER CATEGORÍA
-// =============================================
-function verCategoria(catId) {
-    const cat = CATALOGO[catId];
-    if (!cat) return;
-
-    estadoTienda.categoriaActual = catId;
-    estadoTienda.productosOrdenados = [...cat.productos];
-
-    document.getElementById('viewCats').style.display = 'none';
-    document.getElementById('headerCats').style.display = 'none';
-    document.getElementById('headerProds').style.display = 'block';
-
-    document.getElementById('prodLabel').textContent = 'Tienda / ' + cat.label;
-    document.getElementById('prodTitle').textContent = cat.label.toUpperCase();
-
-    const bc = document.getElementById('breadcrumb');
-    bc.classList.add('visible');
-    document.getElementById('bcNombre').textContent = cat.label;
-
-    const searchWrap = document.getElementById('searchWrap');
-    if (searchWrap) {
-        searchWrap.style.display = 'block';
-        const searchInput = document.getElementById('searchInput');
-        const searchClear = document.getElementById('searchClear');
-        if (searchInput) searchInput.value = '';
-        if (searchClear) searchClear.style.display = 'none';
-    }
-
-    const viewProds = document.getElementById('viewProds');
-    viewProds.style.display = 'block';
-    viewProds.style.opacity = '0';
-    viewProds.style.transform = 'translateY(16px)';
-    renderizarProductos(estadoTienda.productosOrdenados);
-
-    requestAnimationFrame(() => {
-        viewProds.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-        viewProds.style.opacity = '1';
-        viewProds.style.transform = 'translateY(0)';
-        setTimeout(() => { viewProds.style.transition = ''; }, 450);
-    });
-
-    document.getElementById('store').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// =============================================
-// VOLVER A CATEGORÍAS
-// =============================================
-function volverCategorias() {
-    estadoTienda.categoriaActual = null;
-
-    document.getElementById('viewProds').style.display = 'none';
-    document.getElementById('headerProds').style.display = 'none';
-    document.getElementById('breadcrumb').classList.remove('visible');
-    document.getElementById('viewCats').style.display = 'grid';
-    document.getElementById('headerCats').style.display = 'block';
-
-    const searchWrap = document.getElementById('searchWrap');
-    if (searchWrap) searchWrap.style.display = 'none';
-
-    document.getElementById('store').scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
-
-// =============================================
-// RENDERIZAR PRODUCTOS — ESTILO LUXURY
-// =============================================
-function renderizarProductos(productos) {
-    const grid = document.getElementById('prodsGrid');
-    const count = document.getElementById('prodsCount');
-    count.textContent = productos.length + ' producto' + (productos.length !== 1 ? 's' : '');
-
-    if (productos.length === 0) {
-        grid.innerHTML = `
-            <div style="grid-column:1/-1;padding:4rem 2rem;text-align:center;">
-                <div style="font-size:2.5rem;margin-bottom:1rem;">🔍</div>
-                <p style="font-family:var(--font-cond);font-size:1.2rem;font-weight:700;text-transform:uppercase;color:var(--white);margin-bottom:0.5rem;">Sin resultados</p>
-                <p style="color:var(--gray);font-size:0.9rem;margin-bottom:1.5rem;">No encontramos productos que coincidan con tu búsqueda.</p>
-                <button onclick="limpiarBusqueda()" style="background:var(--red);border:none;color:#fff;font-family:var(--font-cond);font-size:0.8rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.4rem;border-radius:2px;cursor:pointer;">Limpiar búsqueda</button>
-            </div>`;
-        return;
-    }
-
-    grid.innerHTML = productos.map(p => `
-        <div class="prod-card" data-id="${p.id}">
-            <div class="prod-img">
-                <img src="${p.img}" alt="${p.nombre}" loading="lazy"
-                     onerror="this.style.padding='2rem';this.src='../Inicio/Imagenes/AutoGasLogo2.webp'" />
-                ${p.badge ? `<span class="prod-badge">${p.badge}</span>` : ''}
+function htmlProducto(p, conDescripcion) {
+    return `
+        <article class="t-prod" data-id="${p.id}">
+            <div class="t-prod-media">
+                <img src="${p.img}" alt="${escaparHTML(p.marca + ' ' + p.nombre)}" loading="lazy" decoding="async"
+                     onerror="this.onerror=null;this.src=IMG_PENDIENTE" />
+                ${p.badge ? `<span class="t-badge">${escaparHTML(p.badge)}</span>` : ''}
             </div>
-            <div class="prod-info">
-                <div class="prod-marca">${p.marca}</div>
-                <div class="prod-nombre">${p.nombre}</div>
-                <div class="prod-desc">${p.desc}</div>
-                <div class="prod-precio" style="margin-bottom:0.9rem;">
-                    ${p.precioRef ? `<span class="prod-precio-ref">S/ ${p.precioRef.toFixed(2)}</span>` : ''}
-                    <span class="prod-precio-currency">S/</span>${p.precio.toFixed(2)}
-                </div>
-                <div class="prod-add-row">
-                    <div class="prod-qty-ctrl">
-                        <button class="prod-qty-btn" onclick="cambiarQtyCard('${p.id}',-1)" aria-label="Menos">−</button>
-                        <span class="prod-qty-num" id="qty-${p.id}">1</span>
-                        <button class="prod-qty-btn" onclick="cambiarQtyCard('${p.id}',1)" aria-label="Más">+</button>
+            <div class="t-prod-info">
+                <p class="t-prod-marca">${escaparHTML(p.marca)}</p>
+                <h3 class="t-prod-nombre">${escaparHTML(p.nombre)}</h3>
+                ${conDescripcion ? `<p class="t-prod-desc">${escaparHTML(p.desc)}</p>` : ''}
+                <p class="t-prod-precio">${soles(p.precio)}</p>
+                <div class="t-prod-actions">
+                    <div class="t-qty">
+                        <button type="button" onclick="cambiarQtyCard('${p.id}',-1)" aria-label="Quitar uno">−</button>
+                        <span data-qty="${p.id}" aria-live="polite">${qtyCard[p.id] || 1}</span>
+                        <button type="button" onclick="cambiarQtyCard('${p.id}',1)" aria-label="Agregar uno">+</button>
                     </div>
-                    <button class="prod-add-btn-full" onclick="agregarAlCarritoDesdeCard('${p.id}', event)">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-                            <line x1="3" y1="6" x2="21" y2="6"/>
-                            <path d="M16 10a4 4 0 01-8 0"/>
-                        </svg>
-                        Agregar
-                    </button>
+                    <button type="button" class="t-add" onclick="agregarAlCarritoDesdeCard('${p.id}', this)">Agregar</button>
                 </div>
             </div>
-        </div>
+        </article>`;
+}
+
+// =============================================
+// VISTA INICIO: categorías + más pedidos
+// =============================================
+function renderizarInicio() {
+    $('catsGrid').innerHTML = Object.entries(CATEGORIAS_INFO).map(([id, info]) => `
+        <a class="t-cat" href="#${id}">
+            <div class="t-cat-info">
+                <span class="t-cat-num">${info.num}</span>
+                <h3 class="t-cat-name">${CATALOGO[id].label}</h3>
+                <p class="t-cat-desc">${info.desc}</p>
+                <span class="t-cat-go">Ver ${CATALOGO[id].productos.length} productos ${ICONO_FLECHA}</span>
+            </div>
+            <div class="t-cat-media">
+                <img src="${info.img}" alt="" loading="lazy" decoding="async" />
+            </div>
+            <span class="t-cat-bar"></span>
+        </a>`).join('');
+
+    const top = MAS_PEDIDOS.map(buscarProducto).filter(Boolean);
+    $('topGrid').innerHTML = top.map(p => htmlProducto(p, false)).join('');
+}
+
+// =============================================
+// BARRA DE CATEGORÍAS + BLOQUE "¿BUSCAS OTRA COSA?"
+// =============================================
+function renderizarNavCategorias(catActual) {
+    $('catTabs').innerHTML = Object.entries(CATEGORIAS_INFO).map(([id, info]) => `
+        <a class="t-tab" href="#${id}" ${id === catActual ? 'aria-current="page"' : ''}>${info.corto}</a>
     `).join('');
 
-    activarCarrusel();
+    $('moreLinks').innerHTML = Object.entries(CATEGORIAS_INFO)
+        .filter(([id]) => id !== catActual)
+        .map(([id, info]) => `<a href="#${id}">${info.corto}</a>`)
+        .join('') +
+        `<a href="#tienda" class="is-all">${ICONO_ATRAS} Todas las categorías</a>`;
 }
 
 // =============================================
-// CARRUSEL DE FOTOS POR HOVER (ESTILO BALENCIAGA)
+// ROUTER — cada categoría tiene su propia dirección
+// (tienda.html#aceites). Así funciona el botón "atrás"
+// del navegador y se puede compartir el link.
 // =============================================
-function activarCarrusel() {
-    document.querySelectorAll('.prod-card').forEach(card => {
-        const prodId = card.dataset.id;
-        const p = buscarProducto(prodId);
-        if (!p || !p.imgs || p.imgs.length < 2) return;
-
-        const img = card.querySelector('.prod-img img');
-        let intervalo = null;
-        let idx = 0;
-
-        card.addEventListener('mouseenter', () => {
-            idx = 0;
-            intervalo = setInterval(() => {
-                idx = (idx + 1) % p.imgs.length;
-                img.style.opacity = '0';
-                setTimeout(() => {
-                    img.src = p.imgs[idx];
-                    img.style.opacity = '1';
-                }, 200);
-            }, 800);
-        });
-
-        card.addEventListener('mouseleave', () => {
-            clearInterval(intervalo);
-            img.style.opacity = '0';
-            setTimeout(() => {
-                img.src = p.imgs[0];
-                img.style.opacity = '1';
-            }, 200);
-        });
-    });
-}
-
-// =============================================
-// BUSCAR PRODUCTO (helper)
-// =============================================
-function buscarProducto(id) {
-    for (const cat of Object.values(CATALOGO)) {
-        const p = cat.productos.find(x => x.id === id);
-        if (p) return p;
+function leerRuta() {
+    const hash = decodeURIComponent(location.hash.replace(/^#/, ''));
+    if (CATALOGO[hash]) return { vista: 'cat', cat: hash };
+    if (hash.startsWith('buscar=')) {
+        const q = hash.slice(7).trim();
+        if (q) return { vista: 'buscar', q };
     }
-    return null;
+    return { vista: 'home', ancla: hash };
+}
+
+function aplicarRuta(primeraCarga) {
+    const ruta = leerRuta();
+    const esHome = ruta.vista === 'home';
+
+    $('tHero').hidden = !esHome;
+    $('viewHome').hidden = !esHome;
+    $('catHead').hidden = esHome;
+    $('catBar').hidden = esHome;
+    $('viewCat').hidden = esHome;
+    $('store').classList.toggle('is-cat', !esHome);
+
+    estadoTienda.vista = ruta.vista;
+    estadoTienda.orden = 'default';
+    $('ordenSelect').value = 'default';
+    $('searchInput').value = '';
+
+    if (ruta.vista === 'cat') {
+        const info = CATEGORIAS_INFO[ruta.cat];
+        estadoTienda.categoriaActual = ruta.cat;
+        estadoTienda.busqueda = '';
+        $('catHeadImg').src = info.img;
+        $('crumbActual').textContent = CATALOGO[ruta.cat].label;
+        $('catTitle').innerHTML = info.titulo;
+        $('catDesc').textContent = info.desc;
+        $('searchInput').placeholder = 'Buscar en ' + info.corto.toLowerCase() + '…';
+        document.title = 'AutoGas | ' + CATALOGO[ruta.cat].label + ' — Tienda';
+        renderizarNavCategorias(ruta.cat);
+        filtrarYRenderizar();
+        window.scrollTo({ top: 0, behavior: 'auto' });
+    } else if (ruta.vista === 'buscar') {
+        estadoTienda.categoriaActual = null;
+        estadoTienda.busqueda = ruta.q;
+        $('catHeadImg').src = 'Imagenes/IMG_3214.webp';
+        $('crumbActual').textContent = 'Búsqueda';
+        $('catTitle').innerHTML = 'Resultados para <em></em>';
+        $('catTitle').querySelector('em').textContent = '“' + ruta.q + '”';
+        $('catDesc').textContent = 'Buscamos en todas las categorías de la tienda.';
+        $('searchInput').placeholder = 'Buscar en toda la tienda…';
+        $('searchInput').value = ruta.q;
+        document.title = 'AutoGas | Buscar “' + ruta.q + '” — Tienda';
+        renderizarNavCategorias(null);
+        filtrarYRenderizar();
+        window.scrollTo({ top: 0, behavior: 'auto' });
+    } else {
+        estadoTienda.categoriaActual = null;
+        estadoTienda.busqueda = '';
+        document.title = 'AutoGas | Tienda — Aceites, Refrigerantes, Filtros y Repuestos';
+        if (!primeraCarga && (ruta.ancla === 'tienda' || ruta.ancla === 'store' || ruta.ancla === 'categorias')) {
+            $('categorias').scrollIntoView({ behavior: 'auto', block: 'start' });
+        } else if (!primeraCarga) {
+            window.scrollTo({ top: 0, behavior: 'auto' });
+        } else if (ruta.ancla === 'store' || ruta.ancla === 'categorias' || ruta.ancla === 'tienda') {
+            requestAnimationFrame(() => $('categorias').scrollIntoView({ block: 'start' }));
+        }
+    }
+    actualizarNavbar();
+}
+
+window.addEventListener('hashchange', () => aplicarRuta(false));
+
+function irACategorias() {
+    const overlay = $('cartOverlay');
+    if (overlay.classList.contains('open')) toggleCarrito();
+    if (location.hash === '#tienda') aplicarRuta(false);
+    else location.hash = 'tienda';
 }
 
 // =============================================
-// ORDENAR PRODUCTOS
+// LISTADO DE PRODUCTOS: búsqueda + orden
 // =============================================
-function ordenarProductos() {
-    const orden = document.getElementById('ordenSelect').value;
-    const cat = CATALOGO[estadoTienda.categoriaActual];
-    if (!cat) return;
+function filtrarYRenderizar() {
+    const qInput = normalizar($('searchInput').value.trim());
+    let base;
+    if (estadoTienda.vista === 'cat') {
+        base = [...CATALOGO[estadoTienda.categoriaActual].productos];
+    } else {
+        base = todosLosProductos();
+    }
 
-    let prods = [...cat.productos];
+    let prods = qInput
+        ? base.filter(p => normalizar(p.nombre + ' ' + p.marca + ' ' + p.desc).includes(qInput))
+        : base;
+
+    const orden = $('ordenSelect').value;
     if (orden === 'asc') prods.sort((a, b) => a.precio - b.precio);
     else if (orden === 'desc') prods.sort((a, b) => b.precio - a.precio);
+    else if (orden === 'marca') prods.sort((a, b) => a.marca.localeCompare(b.marca));
 
-    estadoTienda.productosOrdenados = prods;
     renderizarProductos(prods);
 }
 
-// =============================================
-// BÚSQUEDA
-// =============================================
+function renderizarProductos(productos) {
+    const grid = $('prodsGrid');
+    const n = productos.length;
+    $('prodsCount').innerHTML = `<strong>${n}</strong> producto${n !== 1 ? 's' : ''}`;
+
+    if (n === 0) {
+        grid.innerHTML = `
+            <div class="t-empty">
+                <p class="t-empty-title">Sin resultados</p>
+                <p>No encontramos productos con esa búsqueda. Prueba con otra palabra o escríbenos por WhatsApp.</p>
+                <button type="button" class="t-btn" onclick="limpiarBusqueda()">Limpiar búsqueda</button>
+            </div>`;
+        return;
+    }
+    grid.innerHTML = productos.map(p => htmlProducto(p, true)).join('');
+}
+
 function limpiarBusqueda() {
-    const searchInput = document.getElementById('searchInput');
-    const searchClear = document.getElementById('searchClear');
-    if (searchInput) searchInput.value = '';
-    if (searchClear) searchClear.style.display = 'none';
-    const cat = CATALOGO[estadoTienda.categoriaActual];
-    if (cat) renderizarProductos(cat.productos);
+    $('searchInput').value = '';
+    if (estadoTienda.vista === 'buscar') { irACategorias(); return; }
+    filtrarYRenderizar();
+    $('searchInput').focus();
 }
 
 // =============================================
-// abrirModal — ahora solo agrega al carrito
-// (mantenemos el nombre para no romper onclick en HTML de productos)
+// CANTIDAD EN TARJETA
 // =============================================
-function abrirModal(prodId) {
-    agregarAlCarrito(prodId);
-}
-
-// =============================================
-// CANTIDAD EN CARD — estado local por producto
-// =============================================
-const qtdCard = {}; // {prodId: cantidad}
+const qtyCard = {}; // {prodId: cantidad}
 
 function cambiarQtyCard(prodId, delta) {
-    if (!qtdCard[prodId]) qtdCard[prodId] = 1;
-    qtdCard[prodId] = Math.max(1, qtdCard[prodId] + delta);
-    const el = document.getElementById('qty-' + prodId);
-    if (el) el.textContent = qtdCard[prodId];
+    qtyCard[prodId] = Math.max(1, Math.min(99, (qtyCard[prodId] || 1) + delta));
+    document.querySelectorAll('[data-qty="' + prodId + '"]').forEach(el => el.textContent = qtyCard[prodId]);
 }
 
-function agregarAlCarritoDesdeCard(prodId, e) {
-    if (e) e.stopPropagation();
-    const qty = qtdCard[prodId] || 1;
+function agregarAlCarritoDesdeCard(prodId, btn) {
+    const qty = qtyCard[prodId] || 1;
     const p = buscarProducto(prodId);
     if (!p) return;
 
     const existente = carritoItems.find(i => i.id === prodId);
-    if (existente) {
-        existente.qty += qty;
-    } else {
-        carritoItems.push({
-            id: p.id, marca: p.marca, nombre: p.nombre,
-            precio: p.precio, img: p.img, qty
-        });
-    }
+    if (existente) existente.qty = Math.min(99, existente.qty + qty);
+    else carritoItems.push({ id: p.id, marca: p.marca, nombre: p.nombre, precio: p.precio, img: p.img, qty });
 
-    // Reset qty visual
-    qtdCard[prodId] = 1;
-    const qtyEl = document.getElementById('qty-' + prodId);
-    if (qtyEl) qtyEl.textContent = '1';
+    qtyCard[prodId] = 1;
+    document.querySelectorAll('[data-qty="' + prodId + '"]').forEach(el => el.textContent = '1');
 
-    // Feedback visual en la card
-    const card = document.querySelector(`.prod-card[data-id="${prodId}"]`);
-    if (card) {
-        const btn = card.querySelector('.prod-add-btn-full');
-        if (btn) {
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ¡Agregado!`;
-            btn.style.background = '#1a7a3a';
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.style.background = '';
-            }, 1400);
-        }
+    if (btn) {
+        btn.innerHTML = ICONO_CHECK + ' Agregado';
+        btn.classList.add('is-added');
+        setTimeout(() => { btn.textContent = 'Agregar'; btn.classList.remove('is-added'); }, 1400);
     }
 
     guardarCarritoStorage();
@@ -543,68 +529,37 @@ function agregarAlCarritoDesdeCard(prodId, e) {
 }
 
 // =============================================
-// TOAST: producto agregado al carrito
+// TOAST: producto agregado
 // =============================================
 let _toastAddTimer = null;
 function mostrarToastAdd(nombre, qty) {
-    let toast = document.getElementById('toastAdd');
+    let toast = $('toastAdd');
     if (!toast) {
         toast = document.createElement('div');
         toast.id = 'toastAdd';
         toast.className = 'toast-add';
+        toast.setAttribute('role', 'status');
         document.body.appendChild(toast);
     }
-    toast.innerHTML = `
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <polyline points="20 6 9 17 4 12"/>
-        </svg>
-        ${qty > 1 ? qty + ' × ' : ''}${nombre} — en tu carrito`;
+    toast.innerHTML = `${ICONO_CHECK}<span></span><button type="button" onclick="toggleCarrito()">Ver pedido</button>`;
+    toast.querySelector('span').textContent = (qty > 1 ? qty + ' × ' : '') + nombre + ' agregado';
     clearTimeout(_toastAddTimer);
     toast.classList.add('visible');
-    _toastAddTimer = setTimeout(() => toast.classList.remove('visible'), 2400);
+    _toastAddTimer = setTimeout(() => toast.classList.remove('visible'), 3000);
 }
 
 // =============================================
-// CARRITO — AGREGAR PRODUCTO (mantener para compatibilidad)
-// =============================================
-function agregarAlCarrito(prodId) {
-    const p = buscarProducto(prodId);
-    if (!p) return;
-
-    const existente = carritoItems.find(i => i.id === prodId);
-    if (existente) {
-        existente.qty += 1;
-    } else {
-        carritoItems.push({
-            id: p.id,
-            marca: p.marca,
-            nombre: p.nombre,
-            precio: p.precio,
-            img: p.img,
-            qty: 1
-        });
-    }
-
-    guardarCarritoStorage();
-    renderizarCarrito();
-    actualizarFabCount();
-    dispararPulseRing();
-}
-
-// =============================================
-// CARRITO — CAMBIAR CANTIDAD DE UN ITEM
+// CARRITO — cantidades, quitar, vaciar
 // =============================================
 function cambiarCantidadItem(id, delta) {
     const item = carritoItems.find(i => i.id === id);
     if (!item) return;
-    item.qty = Math.max(1, item.qty + delta);
+    item.qty = Math.max(1, Math.min(99, item.qty + delta));
     guardarCarritoStorage();
     renderizarCarrito();
+    actualizarFabCount();
 }
 
-// =============================================
-// CARRITO — ELIMINAR ITEM
-// =============================================
 function eliminarItem(id) {
     carritoItems = carritoItems.filter(i => i.id !== id);
     guardarCarritoStorage();
@@ -612,308 +567,250 @@ function eliminarItem(id) {
     actualizarFabCount();
 }
 
-// =============================================
-// CARRITO — VACIAR
-// =============================================
 function vaciarCarrito() {
     carritoItems = [];
-    carritoSedeId = null;
     guardarCarritoStorage();
     renderizarCarrito();
     actualizarFabCount();
-    // Resetear sede
-    document.querySelectorAll('.cart-sede').forEach(s => s.classList.remove('selected'));
-    const sedeInfo = document.getElementById('cartSedeInfo');
-    if (sedeInfo) sedeInfo.style.display = 'none';
 }
 
 // =============================================
-// CARRITO — RENDERIZAR PANEL
+// CARRITO — dibujar
 // =============================================
 function renderizarCarrito() {
-    const empty = document.getElementById('cartEmpty');
-    const itemsSection = document.getElementById('cartItems');
-    const formSection = document.getElementById('cartFormSection');
-    const lista = document.getElementById('cartItemsList');
-
     const hayItems = carritoItems.length > 0;
+    $('cartEmpty').style.display = hayItems ? 'none' : 'flex';
+    $('cartBody').style.display = hayItems ? 'flex' : 'none';
 
-    if (empty) empty.style.display = hayItems ? 'none' : 'flex';
-    if (itemsSection) itemsSection.style.display = hayItems ? 'block' : 'none';
-    if (formSection) formSection.style.display = hayItems ? 'block' : 'none';
+    const totalQty = carritoItems.reduce((s, i) => s + i.qty, 0);
+    $('cartHeadCount').textContent = hayItems ? '· ' + totalQty + (totalQty === 1 ? ' producto' : ' productos') : '';
 
-    if (!hayItems || !lista) return;
+    if (!hayItems) { actualizarBtnWsp(); return; }
 
-    lista.innerHTML = carritoItems.map(item => `
-        <div class="cart-item cart-item-entering" data-id="${item.id}">
-            <div class="cart-item-img">
-                <img src="${item.img}" alt="${item.nombre}"
-                     onerror="this.src='../Inicio/Imagenes/AutoGasLogo2.webp'" />
-            </div>
-            <div class="cart-item-info">
-                <div class="cart-item-marca">${item.marca}</div>
-                <div class="cart-item-nombre">${item.nombre}</div>
-                <div class="cart-item-qty">
-                    <button class="cart-qty-btn" onclick="cambiarCantidadItem('${item.id}', -1)">−</button>
-                    <span class="cart-qty-num">${item.qty}</span>
-                    <button class="cart-qty-btn" onclick="cambiarCantidadItem('${item.id}', 1)">+</button>
+    $('cartItemsList').innerHTML = carritoItems.map(item => `
+        <div class="cart-item" data-id="${item.id}">
+            <div class="cart-item-prod">
+                <div class="cart-item-img">
+                    <img src="${item.img}" alt="" onerror="this.onerror=null;this.src=IMG_PENDIENTE" />
+                </div>
+                <div>
+                    <p class="cart-item-marca">${escaparHTML(item.marca)}</p>
+                    <p class="cart-item-nombre">${escaparHTML(item.nombre)}</p>
+                    <p class="cart-item-meta">${soles(item.precio)} c/u ·
+                        <button type="button" class="cart-link" onclick="eliminarItem('${item.id}')">Quitar</button></p>
                 </div>
             </div>
-            <div class="cart-item-right">
-                <span class="cart-item-precio">S/ ${(item.precio * item.qty).toFixed(2)}</span>
-                <button class="cart-item-remove" onclick="eliminarItem('${item.id}')">Quitar</button>
+            <div class="cart-item-qty">
+                <div class="t-qty">
+                    <button type="button" onclick="cambiarCantidadItem('${item.id}', -1)" aria-label="Quitar uno de ${escaparHTML(item.nombre)}">−</button>
+                    <span>${item.qty}</span>
+                    <button type="button" onclick="cambiarCantidadItem('${item.id}', 1)" aria-label="Agregar uno de ${escaparHTML(item.nombre)}">+</button>
+                </div>
             </div>
+            <p class="cart-item-sub">${soles(item.precio * item.qty)}</p>
         </div>
     `).join('');
 
-    actualizarTotal();
+    const total = carritoItems.reduce((s, i) => s + i.precio * i.qty, 0);
+    $('cartSubLabel').textContent = 'Productos (' + totalQty + ')';
+    $('cartSubAmount').textContent = soles(total);
+    $('cartTotalAmount').textContent = soles(total);
     actualizarBtnWsp();
 }
 
-// =============================================
-// CARRITO — TOTAL
-// =============================================
-function actualizarTotal() {
-    const total = carritoItems.reduce((sum, i) => sum + i.precio * i.qty, 0);
-    const el = document.getElementById('cartTotalAmount');
-    if (el) el.textContent = 'S/ ' + total.toFixed(2);
-}
-
-// =============================================
-// CARRITO — FAB COUNT
-// =============================================
 function actualizarFabCount() {
     const totalQty = carritoItems.reduce((s, i) => s + i.qty, 0);
-    const badge = document.getElementById('cartCount');
-    if (!badge) return;
-    if (totalQty > 0) {
-        badge.textContent = totalQty > 99 ? '99+' : totalQty;
-        badge.style.display = 'flex';
-    } else {
-        badge.style.display = 'none';
-    }
+    const badge = $('cartCount');
+    badge.textContent = totalQty > 99 ? '99+' : totalQty;
+    badge.style.display = totalQty > 0 ? 'flex' : 'none';
+    $('cartFab').setAttribute('aria-label', totalQty > 0 ? `Abrir carrito, ${totalQty} productos` : 'Abrir carrito');
 }
 
-// =============================================
-// CARRITO — PULSE RING AL AGREGAR
-// =============================================
 function dispararPulseRing() {
-    const ring = document.getElementById('cartPulseRing');
+    const ring = $('cartPulseRing');
     if (!ring) return;
     ring.classList.remove('firing');
-    // Force reflow
     void ring.offsetWidth;
     ring.classList.add('firing');
     ring.addEventListener('animationend', () => ring.classList.remove('firing'), { once: true });
 }
 
 // =============================================
-// CARRITO — TOGGLE PANEL
+// CARRITO — abrir / cerrar
 // =============================================
+let _focoAntesCarrito = null;
 function toggleCarrito() {
-    const overlay = document.getElementById('cartOverlay');
-    if (!overlay) return;
-    const isOpen = overlay.classList.contains('open');
-    overlay.classList.toggle('open');
-    document.body.style.overflow = isOpen ? '' : 'hidden';
+    const overlay = $('cartOverlay');
+    const abrir = !overlay.classList.contains('open');
+    overlay.classList.toggle('open', abrir);
+    document.body.style.overflow = abrir ? 'hidden' : '';
+    const toast = $('toastAdd');
+    if (toast) toast.classList.remove('visible');
+    if (abrir) {
+        _focoAntesCarrito = document.activeElement;
+        setTimeout(() => overlay.querySelector('.cart-close').focus(), 50);
+    } else if (_focoAntesCarrito && _focoAntesCarrito.focus) {
+        _focoAntesCarrito.focus();
+    }
 }
 
 function cerrarCarritoOverlay(e) {
-    if (e.target === document.getElementById('cartOverlay')) toggleCarrito();
+    if (e.target === $('cartOverlay')) toggleCarrito();
 }
 
 // =============================================
-// CARRITO — ELEGIR SEDE
+// CARRITO — sede
 // =============================================
 function elegirSedeCarrito(el) {
-    document.querySelectorAll('.cart-sede').forEach(s => s.classList.remove('selected'));
-    el.classList.add('selected');
     carritoSedeId = el.dataset.id;
+    marcarSede();
+    $('cartSedesBlock').querySelector('.cart-sedes-grid').classList.remove('error');
     guardarCarritoStorage();
-    actualizarInfoSede(carritoSedeId);
     actualizarBtnWsp();
 }
 
-function actualizarInfoSede(sedeId) {
-    const infoEl = document.getElementById('cartSedeInfo');
-    const infoText = document.getElementById('cartSedeInfoText');
-    if (!infoEl || !infoText) return;
-    const nombre = NOMBRES_SEDES[sedeId];
-    const numero = WSP_SEDES[sedeId];
-    const formatted = '+' + numero.slice(0, 2) + ' ' + numero.slice(2, 5) + ' ' + numero.slice(5, 8) + ' ' + numero.slice(8);
-    infoText.textContent = `Vía WhatsApp Directo · ${nombre} ${formatted}`;
-    infoEl.style.display = 'flex';
-}
-
-// =============================================
-// CARRITO — HABILITAR/DESHABILITAR BOTÓN WSP
-// =============================================
-function actualizarBtnWsp() {
-    const btn = document.getElementById('cartBtnWsp');
-    if (!btn) return;
-    const nombre = (document.getElementById('cartNombre') || {}).value || '';
-    const apellido = (document.getElementById('cartApellido') || {}).value || '';
-    const listo = carritoItems.length > 0 && carritoSedeId && nombre.trim() && apellido.trim();
-    btn.disabled = !listo;
-}
-
-// =============================================
-// CARRITO — ENVIAR POR WHATSAPP
-// =============================================
-function enviarCarritoWsp() {
-    const nombre = (document.getElementById('cartNombre') || {}).value || '';
-    const apellido = (document.getElementById('cartApellido') || {}).value || '';
-    const vehiculo = (document.getElementById('cartVehiculo') || {}).value || '';
-
-    // Validación campos obligatorios
-    let valido = true;
-    ['cartNombre', 'cartApellido'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el && !el.value.trim()) {
-            el.classList.add('error');
-            setTimeout(() => el.classList.remove('error'), 600);
-            valido = false;
-        }
+function marcarSede() {
+    document.querySelectorAll('.cart-sede').forEach(s => {
+        const on = s.dataset.id === carritoSedeId;
+        s.classList.toggle('selected', on);
+        s.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
-    if (!valido) return;
-    if (!carritoSedeId || carritoItems.length === 0) return;
+    const info = $('cartSedeInfo');
+    if (carritoSedeId) {
+        const n = WSP_SEDES[carritoSedeId];
+        info.textContent = `Tu pedido llega al WhatsApp de AutoGas ${NOMBRES_SEDES[carritoSedeId]}: +${n.slice(0, 2)} ${n.slice(2, 5)} ${n.slice(5, 8)} ${n.slice(8)}`;
+        info.hidden = false;
+    } else {
+        info.hidden = true;
+    }
+}
 
+// =============================================
+// CARRITO — botón de WhatsApp: dice qué falta
+// =============================================
+function camposFaltantes() {
+    const faltan = [];
+    if (!$('cartNombre').value.trim()) faltan.push('nombre');
+    if (!$('cartApellido').value.trim()) faltan.push('apellido');
+    if (!carritoSedeId) faltan.push('sede');
+    return faltan;
+}
+
+function actualizarBtnWsp() {
+    const btn = $('cartBtnWsp');
+    const hint = $('cartHint');
+    const faltan = camposFaltantes();
+    const listo = carritoItems.length > 0 && faltan.length === 0;
+
+    btn.setAttribute('aria-disabled', listo ? 'false' : 'true');
+    $('cartBtnText').textContent = listo && carritoSedeId
+        ? 'Enviar pedido a sede ' + NOMBRES_SEDES[carritoSedeId]
+        : 'Enviar pedido por WhatsApp';
+
+    if (listo) {
+        hint.textContent = 'Se abre WhatsApp con tu pedido listo. Solo dale enviar.';
+        hint.classList.remove('is-missing');
+    } else {
+        const etiquetas = { nombre: 'tu nombre', apellido: 'tu apellido', sede: 'elegir sede' };
+        hint.textContent = 'Falta: ' + faltan.map(f => etiquetas[f]).join(', ');
+        hint.classList.add('is-missing');
+    }
+}
+
+function enviarCarritoWsp() {
+    const faltan = camposFaltantes();
+    if (carritoItems.length === 0) return;
+
+    if (faltan.length) {
+        if (faltan.includes('nombre')) $('cartNombre').classList.add('error');
+        if (faltan.includes('apellido')) $('cartApellido').classList.add('error');
+        if (faltan.includes('sede')) $('cartSedesBlock').querySelector('.cart-sedes-grid').classList.add('error');
+        const primero = faltan[0] === 'nombre' ? $('cartNombre')
+            : faltan[0] === 'apellido' ? $('cartApellido')
+                : $('cartSedesBlock').querySelector('.cart-sede');
+        primero.focus();
+        if (faltan[0] === 'sede') primero.scrollIntoView({ block: 'center', behavior: 'smooth' });
+        return;
+    }
+
+    const nombre = $('cartNombre').value.trim();
+    const apellido = $('cartApellido').value.trim();
+    const vehiculo = $('cartVehiculo').value.trim();
     const sede = NOMBRES_SEDES[carritoSedeId];
     const numero = WSP_SEDES[carritoSedeId];
     const total = carritoItems.reduce((s, i) => s + i.precio * i.qty, 0);
 
-    const lineasProductos = carritoItems.map(i =>
-        `- ${i.marca} ${i.nombre} × ${i.qty} — S/ ${(i.precio * i.qty).toFixed(2)}`
-    ).join('\n');
+    const lineas = carritoItems.map(i =>
+        `- ${i.marca} ${i.nombre} × ${i.qty} — ${soles(i.precio * i.qty)}`).join('\n');
 
-    let msg =
-        `Hola AutoGas ${sede} 👋\n\n` +
-        `*Cliente:* ${nombre.trim()} ${apellido.trim()}\n`;
-
-    if (vehiculo.trim()) {
-        msg += `*Vehículo:* ${vehiculo.trim()}\n`;
-    }
-
-    msg +=
-        `\n🛒 *Mi pedido:*\n${lineasProductos}\n\n` +
-        `💳 *Total estimado:* S/ ${total.toFixed(2)}\n\n` +
+    let msg = `Hola AutoGas ${sede} 👋\n\n*Cliente:* ${nombre} ${apellido}\n`;
+    if (vehiculo) msg += `*Vehículo:* ${vehiculo}\n`;
+    msg += `\n🛒 *Mi pedido:*\n${lineas}\n\n` +
+        `💳 *Total estimado:* ${soles(total)}\n\n` +
         `Por favor confirmar disponibilidad antes de coordinar recojo o entrega.`;
 
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
-
-    // Cerrar carrito
+    window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
     toggleCarrito();
-
-    // Toast de confirmación
     mostrarToastWsp();
 }
 
 // =============================================
-// TOAST — CONFIRMACIÓN WHATSAPP
+// TOAST — confirmación de WhatsApp
 // =============================================
 function mostrarToastWsp() {
-    let toast = document.getElementById('toastWsp');
+    let toast = $('toastWsp');
     if (!toast) {
         toast = document.createElement('div');
         toast.id = 'toastWsp';
         toast.className = 'toast-wsp';
+        toast.setAttribute('role', 'status');
         toast.innerHTML = `
-            <div class="toast-wsp-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.116 1.525 5.845L0 24l6.335-1.509A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.81 9.81 0 01-5.003-1.368l-.359-.214-3.722.976.994-3.636-.234-.374A9.817 9.817 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-                </svg>
-            </div>
-            <div class="toast-wsp-body">
+            <div class="toast-wsp-icon">${ICONO_CHECK}</div>
+            <div>
                 <div class="toast-wsp-title">¡Pedido listo! Revisa WhatsApp</div>
-                <div class="toast-wsp-sub">Se abrió WhatsApp con tu pedido. Solo dale <strong style="color:#fff">Enviar</strong> al mensaje para confirmarlo. 🚀</div>
+                <div class="toast-wsp-sub">Se abrió WhatsApp con tu pedido. Solo dale <strong style="color:#fff">Enviar</strong> para confirmarlo.</div>
             </div>
-            <button class="toast-wsp-close" onclick="cerrarToastWsp()" aria-label="Cerrar">✕</button>
-        `;
+            <button type="button" class="toast-wsp-close" onclick="cerrarToastWsp()" aria-label="Cerrar">✕</button>`;
         document.body.appendChild(toast);
     }
     setTimeout(() => toast.classList.add('visible'), 50);
-    // Auto-cerrar en 7 segundos
-    setTimeout(() => cerrarToastWsp(), 7000);
+    setTimeout(cerrarToastWsp, 7000);
 }
 
 function cerrarToastWsp() {
-    const toast = document.getElementById('toastWsp');
+    const toast = $('toastWsp');
     if (toast) toast.classList.remove('visible');
 }
 
 // =============================================
-// BRANDS — reveal animado con stagger
+// INICIO
 // =============================================
-function iniciarBrandsReveal() {
-    const header = document.querySelector('.brands-header');
-    const items = document.querySelectorAll('.t-item');
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarInicio();
 
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (entry.target.classList.contains('brands-header')) {
-                    entry.target.classList.add('visible');
-                } else {
-                    // stagger por índice
-                    const idx = Array.from(items).indexOf(entry.target);
-                    setTimeout(() => entry.target.classList.add('visible'), idx * 100);
-                }
-                obs.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    if (header) obs.observe(header);
-    items.forEach(item => obs.observe(item));
-}
-
-// =============================================
-// TICKER — swipe móvil
-// =============================================
-(function () {
-    const track = document.getElementById('tickerTrack');
-    if (!track) return;
-    let touchStartX = 0, currentOffset = 0, resumeTimer = null, isSwiping = false;
-
-    function getCurrentCSSOffset() {
-        const m = new DOMMatrix(window.getComputedStyle(track).transform);
-        return m.m41;
-    }
-    function pauseAnimation() {
-        const o = getCurrentCSSOffset();
-        track.style.animation = 'none';
-        track.style.transform = `translateX(${o}px)`;
-        currentOffset = o;
-    }
-    function resumeAnimation() {
-        const half = track.scrollWidth / 2;
-        let n = currentOffset % -half;
-        if (n > 0) n -= half;
-        const progress = Math.abs(n) / half;
-        const remaining = 30 * (1 - progress);
-        track.style.transform = `translateX(${n}px)`;
-        track.style.animation = `tickerMove ${remaining}s linear 1 forwards`;
-        track.addEventListener('animationend', function onEnd() {
-            track.removeEventListener('animationend', onEnd);
-            track.style.animation = 'tickerMove 30s linear infinite';
-        }, { once: true });
-    }
-
-    track.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX; isSwiping = false;
-        clearTimeout(resumeTimer); pauseAnimation();
-    }, { passive: true });
-    track.addEventListener('touchmove', (e) => {
-        const dx = e.touches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 5) isSwiping = true;
-        currentOffset += dx * 1.5;
-        track.style.transform = `translateX(${currentOffset}px)`;
-        touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-    track.addEventListener('touchend', () => {
-        if (!isSwiping) { resumeAnimation(); return; }
-        resumeTimer = setTimeout(resumeAnimation, 1500);
+    // Buscador del hero → vista de resultados
+    $('heroSearchForm').addEventListener('submit', e => {
+        e.preventDefault();
+        const q = $('heroSearch').value.trim();
+        if (!q) { $('heroSearch').focus(); return; }
+        location.hash = 'buscar=' + encodeURIComponent(q);
     });
-})();
+
+    // Buscador y orden dentro de una categoría
+    $('searchInput').addEventListener('input', filtrarYRenderizar);
+    $('ordenSelect').addEventListener('change', filtrarYRenderizar);
+
+    // Carrito
+    cargarCarritoStorage();
+    marcarSede();
+    renderizarCarrito();
+    actualizarFabCount();
+    ['cartNombre', 'cartApellido'].forEach(id => {
+        $(id).addEventListener('input', () => {
+            $(id).classList.remove('error');
+            actualizarBtnWsp();
+        });
+    });
+
+    aplicarRuta(true);
+});
