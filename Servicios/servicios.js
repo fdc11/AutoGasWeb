@@ -750,3 +750,31 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+
+/* -----------------------------------------------
+   SERVICIOS — la foto de cada categoría cambia según
+   el subgrupo que estás viendo (solo en computadora)
+----------------------------------------------- */
+(function () {
+    const escritorio = window.matchMedia('(min-width: 1025px)');
+    if (!('IntersectionObserver' in window)) return;
+
+    document.querySelectorAll('.svc-cat').forEach(seccion => {
+        const fotos = Array.from(seccion.querySelectorAll('.svc-photo img'));
+        const grupos = Array.from(seccion.querySelectorAll('.svc-group'));
+        if (fotos.length < 2 || !grupos.length) return;
+
+        const activar = i => fotos.forEach((f, k) => f.classList.toggle('is-active', k === Math.min(i, fotos.length - 1)));
+
+        const obs = new IntersectionObserver(entradas => {
+            if (!escritorio.matches) return;
+            entradas.forEach(e => {
+                if (e.isIntersecting) activar(grupos.indexOf(e.target));
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+
+        grupos.forEach(g => obs.observe(g));
+        escritorio.addEventListener('change', () => { if (!escritorio.matches) activar(0); });
+    });
+})();
