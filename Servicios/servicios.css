@@ -3952,3 +3952,44 @@ a {
         animation: none;
     }
 }
+
+
+/* Estado sin reseñas (no se muestran testimonios de ejemplo) */
+.testimonios-grid--vacio { grid-template-columns: 1fr; }
+.testimonios-vacio {
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    border-radius: 6px;
+    padding: 48px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+.testimonios-vacio-titulo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0;
+}
+.testimonios-vacio-texto {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 8px;
+}
+.testimonios-vacio-btn {
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--white);
+    background: var(--red);
+    padding: 12px 22px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+.testimonios-vacio-btn:hover { filter: brightness(1.1); }
+.slider-controls[hidden],
+.rating-average[hidden] { display: none; }

@@ -1268,30 +1268,6 @@ a {
     color: var(--gray-text);
 }
 
-.team-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(8, 8, 8, 0.8) 0%, transparent 50%);
-    display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    opacity: 0;
-    transition: opacity var(--transition);
-}
-
-.team-card:hover .team-overlay {
-    opacity: 1;
-}
-
-.team-overlay-text {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--red);
-}
-
 .team-info {
     padding: 16px 4px 0;
     display: flex;

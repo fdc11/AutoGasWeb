@@ -1,295 +1,127 @@
-// =============================================
-// NAVBAR — scroll
-// =============================================
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-}, { passive: true });
-
-// =============================================
-// HERO — fade-in de elementos
-// =============================================
-window.addEventListener('load', () => {
-    const heroAnims = [
-        '.hero-badge--anim',
-        '.hero-title--anim',
-        '.hero-sub--anim',
-        '.hero-actions--anim'
-    ];
-    heroAnims.forEach((sel, i) => {
-        const el = document.querySelector(sel);
-        if (el) setTimeout(() => el.classList.add('visible'), 200 + i * 160);
-    });
-});
-
-// =============================================
-// MENÚ MÓVIL
-// =============================================
-/**
- * Toggles the mobile navigation menu open/close state.
- * Also prevents background scrolling when the menu is open.
- */
-function toggleMenu() {
-  const nav = document.getElementById('mobileNav');
-  const hamburger = document.getElementById('hamburger');
-  const isOpen = nav.classList.contains('open');
-  
-  if (isOpen) {
-    nav.classList.remove('open');
-    hamburger.classList.remove('is-open');
-    document.body.style.overflow = '';
-    nav.querySelectorAll('.mnav-item').forEach(el => el.classList.remove('visible'));
-  } else {
-    nav.classList.add('open');
-    hamburger.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
-    nav.querySelectorAll('.mnav-item').forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), 60 + i * 60);
-    });
-  }
-}
-
-// Cerrar con Escape
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    const nav = document.getElementById('mobileNav');
-    if (nav.classList.contains('open')) toggleMenu();
-  }
-});
-
-// =============================================
-// SCROLL REVEAL
-// =============================================
-const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-
-document.querySelectorAll('.reveal, .reveal-left, .reveal-right')
-    .forEach(el => revealObserver.observe(el));
-
-// =============================================
-// COUNTER ANIMATION
-// =============================================
-/**
- * Animates a numerical counter from 0 to the target value.
- * Appends 'K' for values >= 1000.
- * 
- * @param {HTMLElement} el - The DOM element where the number is displayed.
- * @param {number} target - The final numerical value to reach.
- * @param {number} [duration=1800] - Total duration of the animation in ms.
- */
-function animateCounter(el, target, duration = 1800) {
-    const isLarge = target >= 1000;
-    const step    = target / (duration / 16);
-    let   current = 0;
-
-    const timer = setInterval(() => {
-        current += step;
-        if (current >= target) {
-            el.textContent = isLarge
-                ? (target / 1000).toFixed(0) + 'K'
-                : target;
-            clearInterval(timer);
-        } else {
-            el.textContent = isLarge
-                ? (current / 1000).toFixed(1).replace('.0', '')
-                : Math.floor(current);
-        }
-    }, 16);
-}
-
-document.querySelectorAll('.sband-item').forEach(item => {
-    const numEl = item.querySelector('.sband-num');
-    if (!numEl) return;
-    const target = parseInt(numEl.dataset.target);
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                animateCounter(numEl, target);
-                obs.disconnect();
-            }
-        });
-    }, { threshold: 0.5 });
-    obs.observe(item);
-});
-
-// =============================================
-// CRED ITEMS — scroll reveal
-// =============================================
-document.querySelectorAll('.cred-item')
-    .forEach(el => revealObserver.observe(el));
-
-// =============================================
-// AREA CARDS — touch/click flip (exclusive: one card at a time)
-// =============================================
+/* =====================================================================
+   inicio.js — AutoGas
+   1. Menú móvil
+   2. Aparición de elementos al hacer scroll
+   3. Calculadora de ahorro
+   4. Mapa de sedes (punto ↔ tarjeta)
+   5. Carrusel de marcas
+   6. Año del footer
+   ===================================================================== */
 (function () {
-    const cards = Array.from(document.querySelectorAll('.area-card'));
+    'use strict';
 
-    cards.forEach(card => {
-        card.addEventListener('click', (e) => {
-            // If the click landed on the back-link anchor, let it navigate normally
-            if (e.target.closest('.area-back-link')) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            const isAlreadyFlipped = card.classList.contains('flipped');
+    /* ---------- 1. Menú móvil ---------- */
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('mobileMenu');
 
-            // Collapse every card
-            cards.forEach(c => c.classList.remove('flipped'));
+    function setMenu(open) {
+        if (!toggle || !menu) return;
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        menu.hidden = !open;
+        menu.classList.toggle('is-open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+    }
 
-            // If this card was NOT already flipped, flip it open
-            if (!isAlreadyFlipped) {
-                card.classList.add('flipped');
-            }
+    if (toggle && menu) {
+        toggle.addEventListener('click', () => setMenu(menu.hidden));
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !menu.hidden) { setMenu(false); toggle.focus(); }
         });
-    });
-})();
+        // Si se agranda la pantalla con el menú abierto, se cierra solo
+        window.matchMedia('(min-width: 901px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+    }
 
-// =============================================
-// CALCULADORA DE AHORRO
-// =============================================
-let esTaxista = false;
-
-/**
- * Toggles the calculator between Taxi driver mode and Personal use mode.
- * Updates the informational tip and recalculates savings.
- */
-function toggleTipo() {
-    esTaxista = document.getElementById('switchTipo').checked;
-    const tip = document.getElementById('calc-tip');
-    if (esTaxista) {
-        tip.textContent = 'Taxista o conductor de app: Uber, InDrive, Beat. Recuperas la inversión en ~2 meses trabajando.';
-        tip.className = 'calc-tip taxista-tip';
+    /* ---------- 2. Aparición al hacer scroll ---------- */
+    const reveals = document.querySelectorAll('.reveal');
+    if (!('IntersectionObserver' in window) || reduceMotion) {
+        reveals.forEach(el => el.classList.add('is-visible'));
     } else {
-        tip.textContent = 'Conductor de uso diario: familia, trabajo, viajes.';
-        tip.className = 'calc-tip particular-tip';
-    }
-    calcularAhorro();
-}
-
-/**
- * Animates a numerical value increasing smoothly to the target end value.
- * Used for the savings calculator results.
- * 
- * @param {HTMLElement} el - The DOM element where the number will be displayed.
- * @param {number} valor - The target end value.
- */
-function animarNumero(el, valor) {
-    const start = 0;
-    const end = valor;
-    const duration = 700;
-    const startTime = performance.now();
-    const update = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        el.textContent = 'S/ ' + Math.floor(eased * (end - start) + start).toLocaleString('es-PE');
-        if (progress < 1) requestAnimationFrame(update);
-    };
-    requestAnimationFrame(update);
-}
-
-/**
- * Calculates the monthly savings based on current fuel expense and the selected driver profile.
- * Updates the UI with the animated results and investment recovery time.
- */
-function calcularAhorro() {
-    const gasto = parseFloat(document.getElementById('gastoActual').value) || 0;
-    if (gasto <= 0) {
-        document.getElementById('calcResult').style.display = 'none';
-        return;
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                // Escalonado suave entre elementos hermanos que entran juntos
+                const siblings = el.parentElement ? Array.from(el.parentElement.children).filter(c => c.classList.contains('reveal')) : [];
+                const i = Math.max(0, siblings.indexOf(el));
+                el.style.transitionDelay = Math.min(i * 80, 320) + 'ms';
+                el.classList.add('is-visible');
+                io.unobserve(el);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(el => io.observe(el));
     }
 
-    // GNV/GLP cuesta ~38-40% del precio de gasolina en Perú
-    const factorGNV = esTaxista ? 0.35 : 0.40;
-    const gastoGNV = gasto * factorGNV;
-    const ahorro = gasto - gastoGNV;
-    const inversionEquipo = esTaxista ? 1800 : 2200;
-    const mesesRecupero = (inversionEquipo / ahorro).toFixed(1);
+    /* ---------- 3. Calculadora de ahorro ----------
+       Con gas se paga aprox. el 40% de lo que se gasta en gasolina.
+       Para cambiar la referencia, modifica FACTOR_GAS. */
+    const FACTOR_GAS = 0.40;
+    const gastoInput = document.getElementById('calcGasto');
+    const outGas = document.getElementById('calcGas');
+    const outAhorro = document.getElementById('calcAhorro');
+    const outAnual = document.getElementById('calcAnual');
+    const form = document.getElementById('calc');
 
-    document.getElementById('calcResult').style.display = 'block';
-    animarNumero(document.getElementById('resActual'), gasto);
-    animarNumero(document.getElementById('resGNV'), Math.round(gastoGNV));
-    animarNumero(document.getElementById('resAhorro'), Math.round(ahorro));
-    
-    const recovery = document.getElementById('resRecovery');
-    recovery.textContent = `🚀 Recuperas la inversión del equipo en solo ${mesesRecupero} meses. ¡Después es pura ganancia!`;
-}
+    const soles = n => 'S/ ' + Math.round(n).toLocaleString('es-PE');
 
-// =============================================
-// TICKER — swipe táctil en móvil
-// =============================================
-(function () {
-    const track = document.getElementById('tickerTrack');
-    if (!track) return;
-
-    let touchStartX = 0;
-    let currentOffset = 0;
-    let resumeTimer = null;
-    let isSwiping = false;
-
-    // Obtener el offset actual de la animación CSS antes de pausar
-    function getCurrentCSSOffset() {
-        const style = window.getComputedStyle(track);
-        const matrix = new DOMMatrix(style.transform);
-        return matrix.m41; // translateX actual
+    function calcular() {
+        const gasto = Math.min(99999, Math.max(0, parseFloat(gastoInput.value) || 0));
+        const conGas = gasto * FACTOR_GAS;
+        const ahorro = gasto - conGas;
+        outGas.textContent = soles(conGas);
+        outAhorro.textContent = soles(ahorro);
+        outAnual.textContent = soles(ahorro * 12);
     }
 
-    function pauseAnimation() {
-        const offset = getCurrentCSSOffset();
-        track.style.animation = 'none';
-        track.style.transform = `translateX(${offset}px)`;
-        currentOffset = offset;
+    if (gastoInput && outGas && outAhorro && outAnual) {
+        gastoInput.addEventListener('input', calcular);
+        calcular();
+    }
+    if (form) form.addEventListener('submit', e => e.preventDefault());
+
+    /* ---------- 4. Mapa de sedes ---------- */
+    const pins = document.querySelectorAll('.pin[data-sede]');
+    const cards = document.querySelectorAll('.sede-card[data-sede]');
+
+    function activarSede(id) {
+        pins.forEach(p => {
+            const on = p.dataset.sede === id;
+            p.classList.toggle('is-active', on);
+            p.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        cards.forEach(c => c.classList.toggle('is-active', c.dataset.sede === id));
     }
 
-    function resumeAnimation() {
-        // Calcular qué porcentaje del recorrido llevamos para reanudar desde ahí
-        const halfWidth = track.scrollWidth / 2;
-        // Normalizar offset al rango [0, -halfWidth]
-        let normalized = currentOffset % -halfWidth;
-        if (normalized > 0) normalized -= halfWidth;
-
-        const progress = Math.abs(normalized) / halfWidth; // 0 a 1
-        const remainingTime = 32 * (1 - progress);
-
-        track.style.transform = `translateX(${normalized}px)`;
-
-        // Reanudar desde la posición actual con el tiempo restante
-        track.style.animation = `tickerMove ${remainingTime}s linear 1 forwards`;
-
-        // Cuando termine ese tramo, volver al loop normal
-        track.addEventListener('animationend', function onEnd() {
-            track.removeEventListener('animationend', onEnd);
-            track.style.animation = 'tickerMove 32s linear infinite';
-        }, { once: true });
-    }
-
-    track.addEventListener('touchstart', (e) => {
-        touchStartX = e.touches[0].clientX;
-        isSwiping = false;
-        clearTimeout(resumeTimer);
-        pauseAnimation();
-    }, { passive: true });
-
-    track.addEventListener('touchmove', (e) => {
-        const dx = e.touches[0].clientX - touchStartX;
-        if (Math.abs(dx) > 5) isSwiping = true;
-        currentOffset += dx * 1.5; // multiplicador para que se sienta más fluido
-        track.style.transform = `translateX(${currentOffset}px)`;
-        touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    track.addEventListener('touchend', () => {
-        if (!isSwiping) {
-            // Fue un tap, no un swipe — reanudar inmediatamente
-            resumeAnimation();
-            return;
+    pins.forEach(p => p.addEventListener('click', () => {
+        activarSede(p.dataset.sede);
+        const card = document.querySelector('.sede-card[data-sede="' + p.dataset.sede + '"]');
+        // En celular la lista queda debajo del mapa: llevamos al usuario a la tarjeta
+        if (card && window.matchMedia('(max-width: 900px)').matches) {
+            card.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
         }
-        // Fue swipe — esperar 1.5s y reanudar
-        resumeTimer = setTimeout(() => {
-            resumeAnimation();
-        }, 1500);
+    }));
+    cards.forEach(c => {
+        c.addEventListener('mouseenter', () => activarSede(c.dataset.sede));
+        c.addEventListener('focusin', () => activarSede(c.dataset.sede));
     });
+
+    /* ---------- 5. Carrusel de marcas ----------
+       Se duplica la lista para que el movimiento sea continuo.
+       La copia se oculta a lectores de pantalla. */
+    const marquee = document.querySelector('.marquee');
+    const track = marquee && marquee.querySelector('.marquee-track');
+    const list = track && track.querySelector('.marquee-list');
+    if (marquee && track && list && !reduceMotion) {
+        const copia = list.cloneNode(true);
+        copia.setAttribute('aria-hidden', 'true');
+        copia.querySelectorAll('img').forEach(img => { img.alt = ''; });
+        track.appendChild(copia);
+        marquee.classList.add('is-running');
+    }
+
+    /* ---------- 6. Año del footer ---------- */
+    const anio = document.getElementById('anio');
+    if (anio) anio.textContent = new Date().getFullYear();
 })();

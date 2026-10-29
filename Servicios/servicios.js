@@ -256,50 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
        Sin transform bug, sin espacio vacío
     ----------------------------------------------- */
 
-    const testimoniosFallback = [
-        {
-            nombre: 'Carlos Quispe',
-            sede: 'Ica',
-            servicio: 'Conversión GNV',
-            calificacion: 5,
-            comentario: 'Excelente servicio. Me instalaron el kit GNV en un día y el ahorro en combustible es notable. El equipo es muy profesional y me explicaron todo el proceso paso a paso.'
-        },
-        {
-            nombre: 'María Fernández',
-            sede: 'Lima',
-            servicio: 'Mecánica General',
-            calificacion: 5,
-            comentario: 'Vine por un problema de frenos y me los solucionaron al instante. Precios justos, sin cobros extras. Definitivamente vuelvo.'
-        },
-        {
-            nombre: 'Roberto Vargas',
-            sede: 'Huancayo',
-            servicio: 'Conversión GLP',
-            calificacion: 4,
-            comentario: 'Buena atención y trabajo de calidad. El cilindro toroidal quedó perfecto y no perdí el maletero. Recomendado.'
-        },
-        {
-            nombre: 'Lucía Torres',
-            sede: 'Trujillo',
-            servicio: 'Revisión Técnica',
-            calificacion: 5,
-            comentario: 'El diagnóstico fue muy completo. Detectaron un problema que otros talleres no habían visto. Gran trabajo del equipo técnico.'
-        },
-        {
-            nombre: 'Juan Paredes',
-            sede: 'Arequipa',
-            servicio: 'Mantenimiento Kit GNV',
-            calificacion: 5,
-            comentario: 'Llevo 2 años viniendo para el mantenimiento anual de mi kit GNV. Siempre puntual y transparente en los presupuestos.'
-        },
-        {
-            nombre: 'Ana Huanca',
-            sede: 'Chincha',
-            servicio: 'Filtros y Repuestos',
-            calificacion: 4,
-            comentario: 'Encontré todos los repuestos que necesitaba y a buen precio. El trato fue muy amable y me dieron buena asesoría técnica.'
-        }
-    ];
 
     const gridContainer = document.getElementById('testimoniosTrack');
     const dotsWrap = document.getElementById('sliderDots');
@@ -320,10 +276,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function getInitials(name) {
-        return (name || '').split(' ').slice(0, 2).map(w => (w[0] || '').toUpperCase()).join('');
+        const ini = String(name || '').trim().split(/\s+/).filter(Boolean)
+            .slice(0, 2).map(w => w[0].toUpperCase()).join('');
+        return escHtml(ini || '?');
     }
 
     function getAvatarColor(name) {
+        name = String(name || '');
         let hash = 0;
         for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
         return `hsl(${Math.abs(hash % 360)}, 58%, 42%)`;
@@ -478,6 +437,27 @@ document.addEventListener('DOMContentLoaded', () => {
         startAuto();
     }
 
+    // ── Sin reseñas: no inventamos nada, invitamos a opinar ────────────────
+    const sliderControls = document.querySelector('.slider-controls');
+
+    function mostrarSinResenas(fallo) {
+        if (!gridContainer) return;
+        gridContainer.className = 'testimonios-grid testimonios-grid--vacio';
+        gridContainer.innerHTML = `
+            <div class="testimonios-vacio" data-vacio>
+                <p class="testimonios-vacio-titulo">${fallo
+                    ? 'No pudimos cargar las reseñas en este momento.'
+                    : 'Aún no hay reseñas publicadas.'}</p>
+                <p class="testimonios-vacio-texto">${fallo
+                    ? 'Vuelve a intentarlo en unos minutos.'
+                    : '¿Ya te atendimos? Sé el primero en contar tu experiencia.'}</p>
+                ${fallo ? '' : '<a class="testimonios-vacio-btn" href="#dejar-resena">Dejar mi reseña</a>'}
+            </div>`;
+        if (sliderControls) sliderControls.hidden = true;
+        const avgEl = document.getElementById('ratingAverage');
+        if (avgEl) { avgEl.innerHTML = ''; avgEl.hidden = true; }
+    }
+
     // ── Carga con skeleton ─────────────────────────────────────────────────
     async function cargarTestimonios() {
         if (gridContainer) {
@@ -502,7 +482,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        let data = testimoniosFallback;
+        let data = [];
+        let fallo = false;
         try {
             // ── Supabase: trae reseñas aprobadas, las más recientes primero ──
             const { data: rows, error } = await supabaseClient
@@ -524,9 +505,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     fecha: r.creado_en || ''
                 }));
             }
-        } catch (_) { /* sin conexión: usa fallback */ }
+        } catch (_) { fallo = true; }
 
-        iniciarGrid(data);
+        if (data.length) iniciarGrid(data);
+        else mostrarSinResenas(fallo);
 
         // ── Tiempo real: cuando se aprueba una reseña aparece al instante ──
         supabaseClient.channel('custom-insert-channel')
@@ -629,7 +611,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             // Throttle local: máximo un envío por minuto desde este navegador
-            const lastSubmit = parseInt(localStorage.getItem('autogas_resena_last') || '0', 10);
+            let lastSubmit = 0;
+            try { lastSubmit = parseInt(localStorage.getItem('autogas_resena_last') || '0', 10); } catch (_) { }
             if (Date.now() - lastSubmit < RESENA_THROTTLE_MS) {
                 showError('Ya enviaste una reseña hace poco. Intenta de nuevo en un momento.');
                 return;
@@ -658,6 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setLoading(true);
             hideMessages();
 
+            let guardada = false;
             try {
                 // ── Supabase: insert directo, sin PHP ──────────────────────
                 const { error } = await supabaseClient
@@ -665,11 +649,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .insert({ nombre, sede, servicio, calificacion, comentario });
 
                 if (error) throw error;
-
-                localStorage.setItem('autogas_resena_last', String(Date.now()));
-                showSuccess(nombre, comentario, sede, servicio, calificacion);
-                resetForm();
-
+                guardada = true;
             } catch (err) {
                 // Rate limit o validación
                 const msg = err.message || '';
@@ -681,6 +661,18 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 setLoading(false);
             }
+
+            // La reseña ya está guardada: nada de aquí abajo puede mostrar
+            // "Error de conexión" ni provocar que el cliente la reenvíe.
+            if (!guardada) return;
+            try { localStorage.setItem('autogas_resena_last', String(Date.now())); } catch (_) { }
+            hideMessages();
+            try {
+                showSuccess(nombre, comentario, sede, servicio, calificacion);
+            } catch (_) {
+                if (successEl) successEl.style.display = 'flex';
+            }
+            resetForm();
         });
     }
 
@@ -706,8 +698,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return `<svg class="estrella-svg ${i < calificacion ? 'filled' : 'empty'}" viewBox="0 0 24 24" fill="${filled}" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
             }).join('');
 
-            const ini = nombre.split(' ').slice(0, 2).map(w => w[0].toUpperCase()).join('');
-            const avatarColor = getAvatarColor ? getAvatarColor(nombre) : 'var(--red-soft)';
+            const ini = getInitials(nombre);
+            const avatarColor = getAvatarColor(nombre);
+            // Si estaba el aviso de "aún no hay reseñas", se reemplaza por la tarjeta
+            const vacio = gridContainer.querySelector('[data-vacio]');
+            if (vacio) { vacio.remove(); gridContainer.className = 'testimonios-grid'; }
             const newCard = document.createElement('div');
             newCard.className = 'testimonio-card new-review-wow';
             newCard.innerHTML = `
