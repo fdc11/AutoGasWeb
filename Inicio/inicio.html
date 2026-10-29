@@ -28,7 +28,7 @@
     </style>
     <script>document.documentElement.classList.add('js');</script>
 
-    <link rel="preload" as="image" href="Imagenes/Taller3.webp">
+    <link rel="preload" as="image" href="Imagenes/hero-poster.webp">
     <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
     <link rel="stylesheet" href="inicio.css?v=20261029">
 
@@ -96,7 +96,13 @@
 
         <!-- ==================== PORTADA ==================== -->
         <section class="hero" aria-labelledby="heroTitulo">
-            <img class="hero-img" src="Imagenes/Taller3.webp" alt="Interior del taller AutoGas con vehículos en conversión" width="1920" height="1440" fetchpriority="high">
+            <!-- Video de fondo: 720p en celular, 1080p en computadora. Sin sonido, en bucle.
+                 Mientras carga (o si el usuario ahorra datos / reduce movimiento) se ve la imagen "poster". -->
+            <video class="hero-img hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata"
+                poster="Imagenes/hero-poster.webp" aria-hidden="true" tabindex="-1">
+                <source src="Imagenes/hero-720.mp4" type="video/mp4" media="(max-width: 900px)">
+                <source src="Imagenes/hero-1080.mp4" type="video/mp4">
+            </video>
             <div class="hero-shade" aria-hidden="true"></div>
 
             <div class="hero-inner container">
@@ -304,6 +310,7 @@
         </section>
 
         <!-- ==================== SEDES + MAPA ==================== -->
+        <!-- Una sede a la vez: se elige con las pestañas o tocando el mapa. -->
         <section class="section section-white" id="sedes" aria-labelledby="sedesTitulo">
             <div class="container">
                 <div class="section-head reveal">
@@ -315,102 +322,139 @@
                 <div class="sedes">
                     <div class="mapa reveal">
                         <div class="mapa-box">
-                            <img src="Imagenes/peru-mapa.svg" alt="Mapa del Perú con las siete sedes de AutoGas" width="515" height="775" loading="lazy">
+                            <img src="Imagenes/peru-mapa.svg" alt="" width="515" height="775" loading="lazy">
                             <!-- Posición = (x+15)/515 y (y+12)/775 del mapa original -->
-                            <button class="pin" type="button" data-sede="trujillo" style="left:28.35%;top:44.26%" aria-label="Sede Trujillo"><span class="pin-dot"></span><span class="pin-label">Trujillo</span></button>
-                            <button class="pin" type="button" data-sede="lima" style="left:40.19%;top:66.84%" aria-label="Sede Lima"><span class="pin-dot"></span><span class="pin-label">Lima</span></button>
-                            <button class="pin" type="button" data-sede="huancayo" style="left:55.34%;top:63.74%" aria-label="Sede Huancayo"><span class="pin-dot"></span><span class="pin-label">Huancayo</span></button>
-                            <button class="pin" type="button" data-sede="chincha" style="left:45.24%;top:73.55%" aria-label="Sede Chincha"><span class="pin-dot"></span><span class="pin-label">Chincha</span></button>
-                            <button class="pin is-active" type="button" data-sede="ica" style="left:49.51%;top:77.68%" aria-label="Sede Ica" aria-pressed="true"><span class="pin-dot"></span><span class="pin-label">Ica</span></button>
-                            <button class="pin" type="button" data-sede="nasca" style="left:51.84%;top:82.58%" aria-label="Sede Nasca"><span class="pin-dot"></span><span class="pin-label">Nasca</span></button>
-                            <button class="pin pin-left" type="button" data-sede="arequipa" style="left:74.76%;top:87.74%" aria-label="Sede Arequipa"><span class="pin-dot"></span><span class="pin-label">Arequipa</span></button>
+                            <button class="pin" type="button" data-sede="trujillo" style="left:28.35%;top:44.26%" tabindex="-1"><span class="pin-dot"></span><span class="pin-label">Trujillo</span></button>
+                            <button class="pin" type="button" data-sede="lima" style="left:40.19%;top:66.84%" tabindex="-1"><span class="pin-dot"></span><span class="pin-label">Lima</span></button>
+                            <button class="pin" type="button" data-sede="huancayo" style="left:55.34%;top:63.74%" tabindex="-1"><span class="pin-dot"></span><span class="pin-label">Huancayo</span></button>
+                            <button class="pin" type="button" data-sede="chincha" style="left:45.24%;top:73.55%" tabindex="-1"><span class="pin-dot"></span><span class="pin-label">Chincha</span></button>
+                            <button class="pin is-active" type="button" data-sede="ica" style="left:49.51%;top:77.68%" tabindex="-1"><span class="pin-dot"></span><span class="pin-label">Ica</span></button>
+                            <button class="pin" type="button" data-sede="nasca" style="left:51.84%;top:82.58%" tabindex="-1"><span class="pin-dot"></span><span class="pin-label">Nasca</span></button>
+                            <button class="pin pin-left" type="button" data-sede="arequipa" style="left:74.76%;top:87.74%" tabindex="-1"><span class="pin-dot"></span><span class="pin-label">Arequipa</span></button>
                         </div>
                     </div>
 
-                    <ul class="sede-list">
-                        <li class="sede-card reveal" data-sede="trujillo">
-                            <div class="sede-media"><img src="../Sedes/Imagenes/Trujillo.webp" alt="Fachada de la sede AutoGas Trujillo" width="680" height="453" loading="lazy" decoding="async"></div>
-                            <div class="sede-body">
-                                <h3>Trujillo</h3>
-                                <p>Av. Túpac Amaru 1633, Urb. Alto Mochica</p>
+                    <div class="sede-panel reveal">
+                        <div class="sede-tabs" role="tablist" aria-label="Elige una sede">
+                            <button class="sede-tab" type="button" role="tab" id="tab-trujillo" data-sede="trujillo" aria-controls="sede-trujillo" aria-selected="false" tabindex="-1">Trujillo</button>
+                            <button class="sede-tab" type="button" role="tab" id="tab-lima" data-sede="lima" aria-controls="sede-lima" aria-selected="false" tabindex="-1">Lima</button>
+                            <button class="sede-tab" type="button" role="tab" id="tab-huancayo" data-sede="huancayo" aria-controls="sede-huancayo" aria-selected="false" tabindex="-1">Huancayo</button>
+                            <button class="sede-tab" type="button" role="tab" id="tab-chincha" data-sede="chincha" aria-controls="sede-chincha" aria-selected="false" tabindex="-1">Chincha</button>
+                            <button class="sede-tab is-active" type="button" role="tab" id="tab-ica" data-sede="ica" aria-controls="sede-ica" aria-selected="true">Ica</button>
+                            <button class="sede-tab" type="button" role="tab" id="tab-nasca" data-sede="nasca" aria-controls="sede-nasca" aria-selected="false" tabindex="-1">Nasca</button>
+                            <button class="sede-tab" type="button" role="tab" id="tab-arequipa" data-sede="arequipa" aria-controls="sede-arequipa" aria-selected="false" tabindex="-1">Arequipa</button>
+                        </div>
+
+                        <article class="sede-detail" role="tabpanel" id="sede-trujillo" aria-labelledby="tab-trujillo" data-sede="trujillo">
+                            <div class="sede-photo"><img src="../Sedes/Imagenes/Trujillo.webp" alt="Fachada de la sede AutoGas Trujillo" width="680" height="453" loading="lazy" decoding="async"></div>
+                            <div class="sede-info">
+                                <div>
+                                    <p class="sede-region">La Libertad</p>
+                                    <h3>AutoGas Trujillo</h3>
+                                    <p class="sede-address">Av. Túpac Amaru 1633, Urb. Alto Mochica</p>
+                                </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-dark btn-sm" href="https://wa.me/51937695830" target="_blank" rel="noopener">WhatsApp</a>
-                                    <a class="btn btn-outline btn-sm" href="https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5" target="_blank" rel="noopener">Cómo llegar</a>
+                                    <a class="btn btn-red" href="https://wa.me/51937695830" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-outline" href="https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="sede-card reveal" data-sede="lima">
-                            <div class="sede-media"><img src="../Sedes/Imagenes/Lima.webp" alt="Fachada de la sede AutoGas Lima" width="364" height="273" loading="lazy" decoding="async"></div>
-                            <div class="sede-body">
-                                <h3>Lima</h3>
-                                <p>Jr. San Lino N.º 6318, Los Olivos</p>
+                        </article>
+
+                        <article class="sede-detail" role="tabpanel" id="sede-lima" aria-labelledby="tab-lima" data-sede="lima">
+                            <div class="sede-photo"><img src="../Sedes/Imagenes/Lima.webp" alt="Fachada de la sede AutoGas Lima" width="364" height="273" loading="lazy" decoding="async"></div>
+                            <div class="sede-info">
+                                <div>
+                                    <p class="sede-region">Lima</p>
+                                    <h3>AutoGas Lima</h3>
+                                    <p class="sede-address">Jr. San Lino N.º 6318, Los Olivos</p>
+                                </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-dark btn-sm" href="https://wa.me/51942623696" target="_blank" rel="noopener">WhatsApp</a>
-                                    <a class="btn btn-outline btn-sm" href="https://maps.app.goo.gl/c628PPCCC9cx2U5w5" target="_blank" rel="noopener">Cómo llegar</a>
+                                    <a class="btn btn-red" href="https://wa.me/51942623696" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-outline" href="https://maps.app.goo.gl/c628PPCCC9cx2U5w5" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="sede-card reveal" data-sede="huancayo">
-                            <div class="sede-media"><img src="../Sedes/Imagenes/Huancayo.webp" alt="Fachada de la sede AutoGas Huancayo" width="680" height="322" loading="lazy" decoding="async"></div>
-                            <div class="sede-body">
-                                <h3>Huancayo</h3>
-                                <p>Prol. Julio Sumar N.º 698, El Tambo</p>
+                        </article>
+
+                        <article class="sede-detail" role="tabpanel" id="sede-huancayo" aria-labelledby="tab-huancayo" data-sede="huancayo">
+                            <div class="sede-photo"><img src="../Sedes/Imagenes/Huancayo.webp" alt="Fachada de la sede AutoGas Huancayo" width="680" height="322" loading="lazy" decoding="async"></div>
+                            <div class="sede-info">
+                                <div>
+                                    <p class="sede-region">Junín</p>
+                                    <h3>AutoGas Huancayo</h3>
+                                    <p class="sede-address">Prol. Julio Sumar N.º 698, El Tambo</p>
+                                </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-dark btn-sm" href="https://wa.me/51942867212" target="_blank" rel="noopener">WhatsApp</a>
-                                    <a class="btn btn-outline btn-sm" href="https://maps.app.goo.gl/GkT1hSnraskuAcUq9" target="_blank" rel="noopener">Cómo llegar</a>
+                                    <a class="btn btn-red" href="https://wa.me/51942867212" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-outline" href="https://maps.app.goo.gl/GkT1hSnraskuAcUq9" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="sede-card reveal" data-sede="chincha">
-                            <div class="sede-media"><img src="../Sedes/Imagenes/Chincha.webp" alt="Fachada de la sede AutoGas Chincha" width="408" height="306" loading="lazy" decoding="async"></div>
-                            <div class="sede-body">
-                                <h3>Chincha</h3>
-                                <p>Prolongación Lima N.º 636, Chincha Alta</p>
+                        </article>
+
+                        <article class="sede-detail" role="tabpanel" id="sede-chincha" aria-labelledby="tab-chincha" data-sede="chincha">
+                            <div class="sede-photo"><img src="../Sedes/Imagenes/Chincha.webp" alt="Fachada de la sede AutoGas Chincha" width="408" height="306" loading="lazy" decoding="async"></div>
+                            <div class="sede-info">
+                                <div>
+                                    <p class="sede-region">Ica</p>
+                                    <h3>AutoGas Chincha</h3>
+                                    <p class="sede-address">Prolongación Lima N.º 636, Chincha Alta</p>
+                                </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-dark btn-sm" href="https://wa.me/51930210613" target="_blank" rel="noopener">WhatsApp</a>
-                                    <a class="btn btn-outline btn-sm" href="https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA" target="_blank" rel="noopener">Cómo llegar</a>
+                                    <a class="btn btn-red" href="https://wa.me/51930210613" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-outline" href="https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="sede-card is-active reveal" data-sede="ica">
-                            <div class="sede-media"><img src="../Sedes/Imagenes/Ica.webp" alt="Fachada de la sede AutoGas Ica" width="680" height="382" loading="lazy" decoding="async"></div>
-                            <div class="sede-body">
-                                <h3>Ica</h3>
-                                <p>Av. Fernando León de Vivero N.º 304, frente al Cementerio General de Saraja</p>
+                        </article>
+
+                        <article class="sede-detail is-active" role="tabpanel" id="sede-ica" aria-labelledby="tab-ica" data-sede="ica">
+                            <div class="sede-photo"><img src="../Sedes/Imagenes/Ica.webp" alt="Fachada de la sede AutoGas Ica" width="680" height="382" loading="lazy" decoding="async"></div>
+                            <div class="sede-info">
+                                <div>
+                                    <p class="sede-region">Ica</p>
+                                    <h3>AutoGas Ica</h3>
+                                    <p class="sede-address">Av. Fernando León de Vivero N.º 304, frente al Cementerio General de Saraja</p>
+                                </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-dark btn-sm" href="https://wa.me/51978421654" target="_blank" rel="noopener">WhatsApp</a>
-                                    <a class="btn btn-outline btn-sm" href="https://maps.app.goo.gl/PZdiW36SM2awhmtSA" target="_blank" rel="noopener">Cómo llegar</a>
+                                    <a class="btn btn-red" href="https://wa.me/51978421654" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-outline" href="https://maps.app.goo.gl/PZdiW36SM2awhmtSA" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="sede-card reveal" data-sede="nasca">
-                            <div class="sede-media"><img src="../Sedes/Imagenes/Nasca.webp" alt="Fachada de la sede AutoGas Nasca" width="680" height="307" loading="lazy" decoding="async"></div>
-                            <div class="sede-body">
-                                <h3>Nasca</h3>
-                                <p>Av. Los Incas N.º 201, frente a la agencia Ormeño</p>
+                        </article>
+
+                        <article class="sede-detail" role="tabpanel" id="sede-nasca" aria-labelledby="tab-nasca" data-sede="nasca">
+                            <div class="sede-photo"><img src="../Sedes/Imagenes/Nasca.webp" alt="Fachada de la sede AutoGas Nasca" width="680" height="307" loading="lazy" decoding="async"></div>
+                            <div class="sede-info">
+                                <div>
+                                    <p class="sede-region">Ica</p>
+                                    <h3>AutoGas Nasca</h3>
+                                    <p class="sede-address">Av. Los Incas N.º 201, frente a la agencia Ormeño</p>
+                                </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-dark btn-sm" href="https://wa.me/51939067488" target="_blank" rel="noopener">WhatsApp</a>
-                                    <a class="btn btn-outline btn-sm" href="https://maps.app.goo.gl/V51hHVnhix8rHUdR6" target="_blank" rel="noopener">Cómo llegar</a>
+                                    <a class="btn btn-red" href="https://wa.me/51939067488" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-outline" href="https://maps.app.goo.gl/V51hHVnhix8rHUdR6" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="sede-card reveal" data-sede="arequipa">
-                            <div class="sede-media"><img src="../Sedes/Imagenes/Arequipa.webp" alt="Fachada de la sede AutoGas Arequipa" width="1325" height="596" loading="lazy" decoding="async"></div>
-                            <div class="sede-body">
-                                <h3>Arequipa</h3>
-                                <p>Av. Túpac Amaru N.º 714, Campo Marte, Paucarpata</p>
+                        </article>
+
+                        <article class="sede-detail" role="tabpanel" id="sede-arequipa" aria-labelledby="tab-arequipa" data-sede="arequipa">
+                            <div class="sede-photo"><img src="../Sedes/Imagenes/Arequipa.webp" alt="Fachada de la sede AutoGas Arequipa" width="1325" height="596" loading="lazy" decoding="async"></div>
+                            <div class="sede-info">
+                                <div>
+                                    <p class="sede-region">Arequipa</p>
+                                    <h3>AutoGas Arequipa</h3>
+                                    <p class="sede-address">Av. Túpac Amaru N.º 714, Campo Marte, Paucarpata</p>
+                                </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-dark btn-sm" href="https://wa.me/51975338252" target="_blank" rel="noopener">WhatsApp</a>
-                                    <a class="btn btn-outline btn-sm" href="https://maps.app.goo.gl/qG2XawRA8xHF2MTb7" target="_blank" rel="noopener">Cómo llegar</a>
+                                    <a class="btn btn-red" href="https://wa.me/51975338252" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-outline" href="https://maps.app.goo.gl/qG2XawRA8xHF2MTb7" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </li>
-                        <li class="sede-otra reveal">
-                            <h3>¿Tu ciudad no está en la lista?</h3>
-                            <p>Escríbenos y te indicamos la sede más cercana o cómo podemos atenderte.</p>
-                            <a class="btn btn-red btn-sm" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-                        </li>
-                    </ul>
+                        </article>
+
+                        <div class="sede-foot">
+                            <p>¿Tu ciudad no está en la lista? <a class="text-link" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escríbenos y te orientamos</a></p>
+                            <a class="text-link" href="../Sedes/sedes.html">Ver todas las sedes</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -436,41 +480,8 @@
             </div>
         </section>
 
-        <!-- ==================== PREGUNTAS FRECUENTES ==================== -->
-        <section class="section section-white" aria-labelledby="faqTitulo">
-            <div class="container faq">
-                <h2 class="display reveal" id="faqTitulo">Preguntas frecuentes</h2>
-                <div class="faq-list reveal">
-                    <details open>
-                        <summary>¿Cuánto demora la conversión?</summary>
-                        <p>Depende del vehículo y del tipo de kit: normalmente [TIEMPO]. Te confirmamos la fecha de entrega al evaluar tu auto.</p>
-                    </details>
-                    <details>
-                        <summary>¿GNV o GLP: cuál me conviene?</summary>
-                        <p>Depende de cuántos kilómetros recorres al mes y de si hay grifos de GNV en tu ciudad. En la evaluación te recomendamos la opción que más te conviene.</p>
-                    </details>
-                    <details>
-                        <summary>¿Puedo financiar la conversión con FISE?</summary>
-                        <p>Sí. Somos taller con convenio FISE para conversiones a GNV. Requisitos: [REQUISITOS].</p>
-                    </details>
-                    <details>
-                        <summary>¿Cada cuánto debo certificar mi vehículo?</summary>
-                        <p>La certificación del sistema de gas es anual y los cilindros pasan una inspección quinquenal (cada 5 años). Hacemos ambas en nuestras sedes.</p>
-                    </details>
-                    <details>
-                        <summary>¿Qué garantía tiene la instalación?</summary>
-                        <p>[PLAZO DE GARANTÍA y qué cubre].</p>
-                    </details>
-                    <details>
-                        <summary>¿Necesito cita o puedo llegar directo?</summary>
-                        <p>[Respuesta del taller]. Para asegurar tu turno, reserva por el formulario o por WhatsApp.</p>
-                    </details>
-                </div>
-            </div>
-        </section>
-
         <!-- ==================== MARCAS + RESPALDO ==================== -->
-        <section class="marcas section-light" aria-labelledby="marcasTitulo">
+        <section class="marcas section-white" aria-labelledby="marcasTitulo">
             <div class="container marcas-head reveal">
                 <h2 class="display display-md" id="marcasTitulo">Marcas que trabajamos</h2>
                 <p class="lead lead-dark">Conversión, mantenimiento y repuestos para las principales marcas del mercado peruano.</p>
@@ -511,6 +522,39 @@
             </div>
         </section>
 
+        <!-- ==================== PREGUNTAS FRECUENTES ==================== -->
+        <section class="section section-light" aria-labelledby="faqTitulo">
+            <div class="container faq">
+                <h2 class="display reveal" id="faqTitulo">Preguntas frecuentes</h2>
+                <div class="faq-list reveal">
+                    <details open>
+                        <summary>¿Cuánto demora la conversión?</summary>
+                        <p>Depende del vehículo y del tipo de kit: normalmente [TIEMPO]. Te confirmamos la fecha de entrega al evaluar tu auto.</p>
+                    </details>
+                    <details>
+                        <summary>¿GNV o GLP: cuál me conviene?</summary>
+                        <p>Depende de cuántos kilómetros recorres al mes y de si hay grifos de GNV en tu ciudad. En la evaluación te recomendamos la opción que más te conviene.</p>
+                    </details>
+                    <details>
+                        <summary>¿Puedo financiar la conversión con FISE?</summary>
+                        <p>Sí. Somos taller con convenio FISE para conversiones a GNV. Requisitos: [REQUISITOS].</p>
+                    </details>
+                    <details>
+                        <summary>¿Cada cuánto debo certificar mi vehículo?</summary>
+                        <p>La certificación del sistema de gas es anual y los cilindros pasan una inspección quinquenal (cada 5 años). Hacemos ambas en nuestras sedes.</p>
+                    </details>
+                    <details>
+                        <summary>¿Qué garantía tiene la instalación?</summary>
+                        <p>[PLAZO DE GARANTÍA y qué cubre].</p>
+                    </details>
+                    <details>
+                        <summary>¿Necesito cita o puedo llegar directo?</summary>
+                        <p>[Respuesta del taller]. Para asegurar tu turno, reserva por el formulario o por WhatsApp.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
         <!-- ==================== CIERRE ==================== -->
         <section class="cta" aria-labelledby="ctaTitulo">
             <div class="container cta-inner reveal">
@@ -530,6 +574,28 @@
                 <div>
                     <img src="Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="88" height="32" loading="lazy">
                     <p>Convierte. Ahorra. Domina.<br>Talleres de conversión GNV/GLP en el Perú.</p>
+                    <ul class="social" aria-label="Redes sociales">
+                        <li>
+                            <a href="https://www.instagram.com/autogasica" target="_blank" rel="noopener" aria-label="Instagram de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" rel="noopener" aria-label="Facebook de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener" aria-label="TikTok de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.6-2.7 5.9-5.9 5.9-3.4 0-5.9-2.6-5.9-5.8 0-3.6 3.1-6.2 6.8-5.7v3.2c-1.8-.4-3.5.8-3.5 2.6 0 1.4 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.2z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
                 <nav aria-label="Secciones del sitio">
                     <h3>Navegación</h3>
@@ -567,11 +633,7 @@
             <div class="footer-bottom">
                 <!-- PENDIENTE: RUC -->
                 <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
-                <div class="footer-social">
-                    <a href="https://www.instagram.com/autogasica" target="_blank" rel="noopener">Instagram</a>
-                    <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" rel="noopener">Facebook</a>
-                    <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener">TikTok</a>
-                </div>
+                <p>Hecho en el Perú</p>
             </div>
         </div>
     </footer>
