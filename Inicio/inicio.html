@@ -76,21 +76,27 @@
             <a class="btn btn-red nav-cta" href="../Contacto/contacto.html">Cotizar</a>
 
             <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
-                <span></span><span></span>
+                <span></span><span></span><span></span>
             </button>
         </nav>
-
-        <div class="mobile-menu" id="mobileMenu" hidden>
-            <ul>
-                <li><a href="inicio.html" aria-current="page">Inicio</a></li>
-                <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
-                <li><a href="../Servicios/servicios.html">Servicios</a></li>
-                <li><a href="../Sedes/sedes.html">Sedes</a></li>
-                <li><a href="../Tienda/tienda.html">Tienda</a></li>
-            </ul>
-            <a class="btn btn-red btn-block" href="../Contacto/contacto.html">Cotizar mi conversión</a>
-        </div>
     </header>
+
+    <!-- Menú de celular: panel a pantalla completa que entra desde la derecha
+         (mismo efecto que en Nosotros). -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
+        <div class="mobile-menu-top">
+            <img src="Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
+            <button class="mobile-menu-close" id="navClose" type="button" aria-label="Cerrar menú"></button>
+        </div>
+        <ul class="mnav-list">
+            <li class="mnav-item"><span class="mnav-num">01</span><a class="mnav-link" href="inicio.html" aria-current="page">Inicio</a></li>
+            <li class="mnav-item"><span class="mnav-num">02</span><a class="mnav-link" href="../Nosotros/nosotros.html">Nosotros</a></li>
+            <li class="mnav-item"><span class="mnav-num">03</span><a class="mnav-link" href="../Servicios/servicios.html">Servicios</a></li>
+            <li class="mnav-item"><span class="mnav-num">04</span><a class="mnav-link" href="../Sedes/sedes.html">Sedes</a></li>
+            <li class="mnav-item"><span class="mnav-num">05</span><a class="mnav-link" href="../Tienda/tienda.html">Tienda</a></li>
+        </ul>
+        <a class="mnav-cta mnav-item" href="../Contacto/contacto.html">Cotizar ahora</a>
+    </div>
 
     <main id="contenido">
 

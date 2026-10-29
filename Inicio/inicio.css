@@ -146,45 +146,110 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--white); }
 .nav-links a:hover::after, .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
 
+/* Botón hamburguesa: 3 líneas que se convierten en X */
 .nav-toggle {
     display: none; margin-left: auto; width: 44px; height: 44px; padding: 0;
-    background: none; border: 0; cursor: pointer; position: relative;
+    background: none; border: 0; cursor: pointer;
+    flex-direction: column; align-items: center; justify-content: center; gap: 5px;
 }
 .nav-toggle span {
-    position: absolute; left: 10px; right: 10px; height: 2px; background: var(--white);
-    transition: transform .3s var(--ease-out), top .3s var(--ease-out);
+    width: 26px; height: 2px; border-radius: 2px; background: var(--white);
+    transition: transform .3s ease, opacity .3s ease;
 }
-.nav-toggle span:first-child { top: 17px; }
-.nav-toggle span:last-child { top: 25px; }
-.nav-toggle[aria-expanded="true"] span:first-child { top: 21px; transform: rotate(45deg); }
-.nav-toggle[aria-expanded="true"] span:last-child { top: 21px; transform: rotate(-45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Menú de celular: mismo efecto que Nosotros.
+   Entra deslizándose desde la derecha y los enlaces aparecen uno tras otro. */
 .mobile-menu {
-    position: fixed; inset: var(--header-h) 0 0 0; z-index: 49;
-    background: var(--black); padding: 32px var(--gutter) 40px;
-    display: flex; flex-direction: column; justify-content: space-between;
-    overflow-y: auto;
+    position: fixed; inset: 0; z-index: 1050;
+    width: 100%; height: 100dvh;
+    background: #080808;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 96px 8% 40px;
+    overflow: hidden auto;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform .45s cubic-bezier(.76, 0, .24, 1), visibility 0s linear .45s;
 }
-.mobile-menu[hidden] { display: none; }
-.mobile-menu ul { display: flex; flex-direction: column; }
-.mobile-menu li { border-bottom: 1px solid var(--line-dark); }
-.mobile-menu li a {
-    display: block; padding: 18px 0; text-decoration: none;
+.mobile-menu.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform .45s cubic-bezier(.76, 0, .24, 1), visibility 0s;
+}
+/* Textura roja en la esquina */
+.mobile-menu::after {
+    content: ''; position: absolute; bottom: -80px; right: -80px;
+    width: 320px; height: 320px; border-radius: 40px;
+    background: var(--red); opacity: .05; transform: rotate(30deg);
+    pointer-events: none;
+}
+
+.mobile-menu-top {
+    position: absolute; top: 0; left: 0; right: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 8% 0;
+}
+.mobile-menu-top img { height: 44px; width: auto; }
+.mobile-menu-close {
+    position: relative; width: 44px; height: 44px; padding: 0;
+    background: none; border: 0; cursor: pointer;
+}
+.mobile-menu-close::before, .mobile-menu-close::after {
+    content: ''; position: absolute; left: 10px; top: 21px;
+    width: 24px; height: 2px; border-radius: 2px; background: var(--white);
+    transition: transform .3s ease;
+}
+.mobile-menu-close::before { transform: rotate(45deg); }
+.mobile-menu-close::after { transform: rotate(-45deg); }
+.mobile-menu-close:hover::before { transform: rotate(135deg); }
+.mobile-menu-close:hover::after { transform: rotate(45deg); }
+
+.mnav-list { display: flex; flex-direction: column; gap: 4px; }
+
+/* Aparición escalonada de los elementos */
+.mnav-item {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity .4s ease, transform .4s ease;
+}
+.mobile-menu.is-open .mnav-item { opacity: 1; transform: none; }
+.mobile-menu.is-open .mnav-item:nth-child(1) { transition-delay: .18s; }
+.mobile-menu.is-open .mnav-item:nth-child(2) { transition-delay: .24s; }
+.mobile-menu.is-open .mnav-item:nth-child(3) { transition-delay: .30s; }
+.mobile-menu.is-open .mnav-item:nth-child(4) { transition-delay: .36s; }
+.mobile-menu.is-open .mnav-item:nth-child(5) { transition-delay: .42s; }
+.mobile-menu.is-open .mnav-cta { transition-delay: .50s; }
+
+.mnav-num {
+    display: block; margin-bottom: 2px;
+    font-size: 10px; font-weight: 700; letter-spacing: .22em; color: var(--red);
+}
+.mnav-link {
+    display: block; padding: 10px 0 10px 16px;
+    border-left: 3px solid transparent;
     font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
-    font-size: 40px; line-height: 1; color: var(--white);
+    font-size: clamp(42px, 8vw, 64px); line-height: 1; letter-spacing: .02em;
+    color: var(--white); text-decoration: none;
+    transition: color .22s ease, border-color .22s ease, padding-left .22s ease;
 }
-.mobile-menu li a[aria-current="page"] { color: var(--red); }
-.mobile-menu .btn { margin-top: 32px; }
-.mobile-menu.is-open li { animation: menuIn .5s var(--ease-out) both; }
-.mobile-menu.is-open li:nth-child(2) { animation-delay: .05s; }
-.mobile-menu.is-open li:nth-child(3) { animation-delay: .1s; }
-.mobile-menu.is-open li:nth-child(4) { animation-delay: .15s; }
-.mobile-menu.is-open li:nth-child(5) { animation-delay: .2s; }
-@keyframes menuIn { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.mnav-link:hover, .mnav-link:focus-visible { color: var(--red); border-left-color: var(--red); padding-left: 28px; }
+.mnav-link[aria-current="page"] { color: var(--red); border-left-color: var(--red); }
+
+.mnav-cta {
+    display: block; width: 90%; max-width: 360px; margin-top: 32px; padding: 16px;
+    background: var(--red); color: var(--white); text-align: center; text-decoration: none;
+    font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    border-radius: var(--radius);
+}
+.mnav-cta:hover { background: var(--red-hover); }
 
 @media (max-width: 900px) {
     .nav-links, .nav-cta { display: none; }
-    .nav-toggle { display: block; }
+    .nav-toggle { display: flex; }
+}
+@media (min-width: 901px) {
+    .mobile-menu { display: none; }
 }
 
 /* ---------- Portada ---------- */
