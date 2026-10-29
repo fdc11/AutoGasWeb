@@ -160,19 +160,21 @@
 
     if (typeof module !== 'undefined' && module.exports) { module.exports = { analizar, SERVICIOS }; return; }
 
-    /* ── Interfaz ───────────────────────────────────────────────────────── */
+    /* ── Interfaz (panel del globo flotante) ────────────────────────────── */
     const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-    const flecha = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+    const $ = id => document.getElementById(id);
+    const esCelular = () => window.matchMedia('(max-width: 640px)').matches;
 
     function render(resultados) {
-        const box = document.getElementById('iaResultados');
-        const lista = document.getElementById('iaLista');
-        const aviso = document.getElementById('iaAviso');
-        const vacio = document.getElementById('iaVacio');
+        const box = $('iaResultados');
+        const lista = $('iaLista');
+        const aviso = $('iaAviso');
+        const vacio = $('iaVacio');
 
         if (!resultados.length) {
             box.hidden = true;
             vacio.hidden = false;
+            bajarAlFinal();
             return;
         }
         vacio.hidden = true;
@@ -183,61 +185,91 @@
 
         lista.innerHTML = resultados.map((r, i) => `
             <li class="ia-item">
-                <span class="ia-num">${String(i + 1).padStart(2, '0')}</span>
-                <div class="ia-item-body">
-                    <span class="ia-item-grupo">${esc(r.grupo)}</span>
-                    <h3 class="ia-item-nombre">${esc(r.nombre)}</h3>
-                    <p class="ia-item-desc">${esc(r.desc)}</p>
-                </div>
-                <button type="button" class="ia-item-link" data-id="${r.id}">Ver servicio ${flecha}</button>
+                <button type="button" class="ia-item-link" data-id="${r.id}">
+                    <span class="ia-num">${String(i + 1).padStart(2, '0')}</span>
+                    <span>
+                        <span class="ia-item-nombre">${esc(r.nombre)}</span>
+                        <span class="ia-item-grupo">${esc(r.grupo)} · ${esc(r.desc)}</span>
+                        <span class="ia-item-ver">Ver en la página</span>
+                    </span>
+                </button>
             </li>`).join('');
 
         lista.querySelectorAll('[data-id]').forEach(b => b.addEventListener('click', () => irAServicio(b.dataset.id)));
         box.hidden = false;
+        bajarAlFinal();
+    }
+
+    function bajarAlFinal() {
+        const body = $('oaBody');
+        if (body) requestAnimationFrame(() => body.scrollTo({ top: body.scrollHeight, behavior: 'smooth' }));
     }
 
     function irAServicio(id) {
         const s = SERVICIOS.find(x => x.id === id);
         if (!s) return;
-        const col = document.getElementById('grupo-' + s.seccion);
-        const cerrado = col && !col.classList.contains('abierto');
-        if (cerrado && typeof window.toggleGrupo === 'function') window.toggleGrupo(s.seccion);
-        setTimeout(() => {
-            const card = Array.from(document.querySelectorAll(`#${s.seccion} .servicio-card-title`))
-                .find(h => normalizar(h.textContent).includes(normalizar(s.card)));
-            const destino = card ? card.closest('.servicio-card') : document.getElementById(s.seccion);
-            if (destino) window.scrollTo({ top: destino.getBoundingClientRect().top + window.scrollY - 110, behavior: 'smooth' });
-        }, cerrado ? 450 : 50);
+        const items = Array.from(document.querySelectorAll(`#${s.seccion} .svc-item`));
+        const item = items.find(li => normalizar(li.querySelector('.svc-name').textContent).includes(normalizar(s.card)));
+        const destino = item || document.getElementById(s.seccion);
+        if (esCelular()) window.toggleOrientacion(false);
+        if (!destino) return;
+        window.scrollTo({ top: destino.getBoundingClientRect().top + window.scrollY - window.innerHeight / 3, behavior: 'smooth' });
+        if (item) {
+            item.classList.remove('svc-item--hl');
+            void item.offsetWidth;
+            item.classList.add('svc-item--hl');
+        }
     }
 
+    window.toggleOrientacion = function (forzar) {
+        const panel = $('oaPanel');
+        const bubble = $('oaBubble');
+        const abrir = typeof forzar === 'boolean' ? forzar : panel.hidden;
+        panel.hidden = !abrir;
+        bubble.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+        if (esCelular()) document.body.style.overflow = abrir ? 'hidden' : '';
+        if (abrir) setTimeout(() => $('iaInput').focus(), 60);
+        else bubble.focus();
+    };
+
     window.analizarProblema = function () {
-        const input = document.getElementById('iaInput');
-        if (input.value.trim().length < 3) {
+        const input = $('iaInput');
+        const texto = input.value.trim();
+        if (texto.length < 3) {
             input.classList.add('ia-error');
             input.focus();
             setTimeout(() => input.classList.remove('ia-error'), 1500);
             return;
         }
-        render(analizar(input.value));
+        const pregunta = $('oaPregunta');
+        pregunta.textContent = texto;
+        pregunta.hidden = false;
+        render(analizar(texto));
+        input.value = '';
+        $('iaCharCount').textContent = '0';
     };
 
     window.reiniciarAsistente = function () {
-        const input = document.getElementById('iaInput');
+        const input = $('iaInput');
         input.value = '';
-        document.getElementById('iaCharCount').textContent = '0';
-        document.getElementById('iaResultados').hidden = true;
-        document.getElementById('iaVacio').hidden = true;
+        $('iaCharCount').textContent = '0';
+        $('oaPregunta').hidden = true;
+        $('iaResultados').hidden = true;
+        $('iaVacio').hidden = true;
         input.focus();
     };
 
     document.addEventListener('DOMContentLoaded', () => {
-        const input = document.getElementById('iaInput');
+        const input = $('iaInput');
         if (!input) return;
         input.addEventListener('input', () => {
-            document.getElementById('iaCharCount').textContent = input.value.length;
+            $('iaCharCount').textContent = input.value.length;
         });
         input.addEventListener('keydown', e => {
             if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); window.analizarProblema(); }
+        });
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !$('oaPanel').hidden) window.toggleOrientacion(false);
         });
     });
 })();

@@ -46,7 +46,7 @@
     </style>
     <title>Servicios | AutoGas Perú</title>
     <link rel="preload" as="image" href="Imagenes/IMG_3217.webp">
-    <link rel="stylesheet" href="servicios.css?v=20261022">
+    <link rel="stylesheet" href="servicios.css?v=20261029">
 </head>
 
 <body>
@@ -131,47 +131,6 @@
         </div>
     </section>
 
-    <!-- ==================== ORIENTACIÓN AUTOMÁTICA ==================== -->
-    <section class="asistente-ia" id="asistente-ia">
-        <div class="asistente-inner">
-            <div class="asistente-header reveal">
-                <div class="section-tag light-tag">ORIENTACIÓN AUTOMÁTICA</div>
-                <h2 class="asistente-title">¿QUÉ LE PASA A<br>TU <span class="accent">VEHÍCULO?</span></h2>
-                <p class="asistente-desc">Descríbenos el problema con tus propias palabras y te indicaremos qué servicios
-                    de AutoGas pueden ayudarte.</p>
-            </div>
-            <div class="asistente-box reveal">
-                <label for="iaInput" class="ia-label">Describe el problema</label>
-                <textarea id="iaInput" class="asistente-textarea"
-                    placeholder="Ej: Mi carro consume mucho combustible y a veces falla el arranque..." rows="3"
-                    maxlength="400"></textarea>
-                <div class="asistente-input-footer">
-                    <span class="ia-char-count"><span id="iaCharCount">0</span>/400</span>
-                    <button type="button" class="ia-btn" id="iaBtn" onclick="analizarProblema()">Analizar</button>
-                </div>
-
-                <div class="ia-resultados" id="iaResultados" aria-live="polite" hidden>
-                    <div class="ia-resultados-head">
-                        <span class="ia-resultados-titulo">Servicios sugeridos</span>
-                        <button type="button" class="ia-limpiar" onclick="reiniciarAsistente()">Nueva consulta</button>
-                    </div>
-                    <p class="ia-aviso" id="iaAviso" hidden></p>
-                    <ol class="ia-lista" id="iaLista"></ol>
-                    <div class="ia-cta">
-                        <p>Un técnico confirmará el diagnóstico en taller.</p>
-                        <a href="../Contacto/contacto.html" class="ia-cta-btn">Cotizar servicio</a>
-                    </div>
-                </div>
-
-                <div class="ia-vacio" id="iaVacio" aria-live="polite" hidden>
-                    <p>No encontramos un servicio específico para tu descripción. Te recomendamos una
-                        <strong>Revisión y Diagnóstico Vehicular</strong>, o cuéntanos tu caso directamente.</p>
-                    <a href="../Contacto/contacto.html" class="ia-cta-btn">Cotizar servicio</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- ==================== IMPACTO / COUNTERS ==================== -->
     <section class="impacto">
         <div class="impacto-inner">
@@ -236,616 +195,358 @@
         </div>
     </section>
 
+    <!-- ==================== ÍNDICE DE CATEGORÍAS ==================== -->
+    <section class="svc-index">
+        <div class="svc-index-inner">
+            <div class="svc-index-head reveal">
+                <div>
+                    <span class="svc-tag">Nuestros servicios</span>
+                    <h2 class="svc-index-title">¿Qué necesita<br><span>tu auto?</span></h2>
+                </div>
+                <p>Elige una categoría y mira todos sus servicios de un vistazo. ¿No sabes cuál es? Usa la
+                    orientación automática, abajo a la derecha.</p>
+            </div>
+            <nav class="svc-index-nav" aria-label="Categorías de servicio">
+                <a href="#mecanica" class="svc-index-card">
+                    <span class="svc-index-num">01</span>
+                    <span class="svc-index-txt"><strong>Mecánica general</strong><small>10 servicios</small></span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+                </a>
+                <a href="#conversion" class="svc-index-card">
+                    <span class="svc-index-num">02</span>
+                    <span class="svc-index-txt"><strong>Conversión GNV &amp; GLP</strong><small>14 servicios</small></span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+                </a>
+                <a href="#repuestos" class="svc-index-card">
+                    <span class="svc-index-num">03</span>
+                    <span class="svc-index-txt"><strong>Repuestos &amp; accesorios</strong><small>Aceites, refrigerantes, filtros</small></span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+                </a>
+            </nav>
+        </div>
+    </section>
+
 
     <!-- ==================== GRUPO 1: MECÁNICA GENERAL ==================== -->
-    <section class="grupo" id="mecanica">
-        <div class="grupo-intro grupo-intro--light">
-            <div class="grupo-intro-text reveal-left">
-                <div class="grupo-num-bg">01</div>
-                <div class="section-tag">Grupo de servicios</div>
-                <h2 class="section-title dark">MECÁNICA<br>GENERAL</h2>
-                <p class="section-desc dark">Tu vehículo habla, nosotros lo escuchamos. Con diagnóstico de scanner de
-                    última generación y mecánicos altamente capacitados, identificamos y solucionamos cualquier problema
-                    con precisión. Solo recomendamos lo estrictamente necesario.</p>
+    <section class="svc-cat" id="mecanica">
+        <div class="svc-cat-inner">
+            <div class="svc-aside reveal-left">
+                <span class="svc-bignum" aria-hidden="true">01</span>
+                <span class="svc-tag">Grupo de servicios</span>
+                <h2 class="svc-title">Mecánica<br>general</h2>
+                <p class="svc-desc">Diagnóstico con scanner y mecánicos capacitados. Solo recomendamos lo estrictamente necesario.</p>
+                <div class="svc-photo">
+                    <img src="Imagenes/Taller3.webp" alt="Mecánicos de AutoGas revisando un motor con scanner" loading="lazy" decoding="async">
+                    <span class="svc-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Scanner OBD2 incluido</span>
+                </div>
+                <div class="svc-actions"><a href="../Contacto/contacto.html" class="svc-btn">Cotizar servicio</a></div>
             </div>
-            <div class="grupo-intro-img reveal-right">
-                <img src="Imagenes/Taller3.webp" alt="Mecánica General AutoGas" loading="lazy" decoding="async">
-                <div class="grupo-intro-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Scanner OBD2 incluido
+            <div class="svc-body reveal-right">
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Reparaciones</h3>
+                        <span>4 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">01</span>
+                        <div>
+                            <p class="svc-name">Frenos, Dirección y Refrigeración</p>
+                            <p class="svc-hint">Los tres sistemas de seguridad</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">02</span>
+                        <div>
+                            <p class="svc-name">Sistema de Embrague</p>
+                            <p class="svc-hint">Cambios suaves, sin patinar</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">03</span>
+                        <div>
+                            <p class="svc-name">Diagnóstico y Reparación de Culata</p>
+                            <p class="svc-hint">Evita daños mayores al motor</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">04</span>
+                        <div>
+                            <p class="svc-name">Reparación Completa de Motor</p>
+                            <p class="svc-hint">Desmontaje y reparación total</p>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Mantenimiento Preventivo</h3>
+                        <span>6 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">05</span>
+                        <div>
+                            <p class="svc-name">Cambio de Aceite</p>
+                            <p class="svc-hint">Motor, caja y corona</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">06</span>
+                        <div>
+                            <p class="svc-name">Diagnóstico de Baterías</p>
+                            <p class="svc-hint">Que no te deje sin arranque</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">07</span>
+                        <div>
+                            <p class="svc-name">Revisión y Diagnóstico Vehicular</p>
+                            <p class="svc-hint">Scanner y revisión general</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">08</span>
+                        <div>
+                            <p class="svc-name">Limpieza de Inyectores</p>
+                            <p class="svc-hint">Más potencia, menos consumo</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">09</span>
+                        <div>
+                            <p class="svc-name">Afinamiento Electrónico</p>
+                            <p class="svc-hint">Motor calibrado y eficiente</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">10</span>
+                        <div>
+                            <p class="svc-name">Cambio de Fluidos</p>
+                            <p class="svc-hint">Frenos, dirección y refrigeración</p>
+                        </div>
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <!-- BOTÓN TOGGLE SERVICIOS -->
-        <div class="grupo-toggle-wrap">
-            <button class="grupo-toggle-btn" onclick="toggleGrupo('mecanica')" aria-expanded="false">
-                <span class="grupo-toggle-label">Ver servicios</span>
-                <span class="grupo-toggle-sub">Reparaciones · Mantenimiento Preventivo</span>
-                <div class="grupo-toggle-chevron">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </div>
-            </button>
-        </div>
-
-        <!-- CONTENIDO COLAPSABLE -->
-        <div class="grupo-colapsable" id="grupo-mecanica"> <!-- Reparaciones -->
-            <div class="subgrupo ">
-                <div class="subgrupo-header">
-                    <div class="subgrupo-icon"> <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8">
-                            <path
-                                d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
-                        </svg> </div>
-                    <div>
-                        <h3 class="subgrupo-title">Reparaciones</h3>
-                        <p class="subgrupo-desc">Diagnóstico y solución de fallas mecánicas complejas. Trabajamos con
-                            equipamiento especializado para devolver a tu vehículo su rendimiento óptimo.</p>
-                    </div>
-                </div>
-                <div class="servicios-grid">
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M12 8v4l3 3" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Frenos, Dirección y Refrigeración</h4>
-                        <p class="servicio-card-desc">Reparación integral de los tres sistemas críticos de seguridad y
-                            funcionamiento de tu vehículo.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <circle cx="12" cy="12" r="3" />
-                                <path
-                                    d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Sistema de Embrague</h4>
-                        <p class="servicio-card-desc">Diagnóstico y reparación completa del sistema de embrague para una
-                            transmisión suave y sin fallos.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <path
-                                    d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Diagnóstico y Reparación de Culata</h4>
-                        <p class="servicio-card-desc">Inspección exhaustiva y reparación de culata con equipamiento
-                            especializado para evitar daños mayores al motor.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <rect x="2" y="7" width="20" height="14" rx="2" />
-                                <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Reparación Completa de Motor</h4>
-                        <p class="servicio-card-desc">Revisión, desmontaje y reparación total del motor. Devolvemos la
-                            vida y potencia original a tu vehículo.</p>
-                    </div>
-                </div>
-            </div> <!-- Mantenimiento Preventivo -->
-            <div class="subgrupo subgrupo-alt ">
-                <div class="subgrupo-header">
-                    <div class="subgrupo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg></div>
-                    <div>
-                        <h3 class="subgrupo-title">Mantenimiento Preventivo</h3>
-                        <p class="subgrupo-desc">Prevenir es mejor que reparar. El mantenimiento regular alarga la vida
-                            útil de tu vehículo, reduce consumo y te ahorra grandes gastos a futuro.</p>
-                    </div>
-                </div>
-                <div class="servicios-grid">
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <path
-                                    d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Cambio de Aceite</h4>
-                        <p class="servicio-card-desc">Motor, caja de transmisión y corona. Usamos aceites Castrol,
-                            Shell, Chevron y Valvoline para máxima protección.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Diagnóstico de Baterías</h4>
-                        <p class="servicio-card-desc">Revisión y escaneo del sistema eléctrico y batería para detectar
-                            fallas antes de que te dejen sin arranque.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <circle cx="11" cy="11" r="8" />
-                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Revisión y Diagnóstico Vehicular</h4>
-                        <p class="servicio-card-desc">Inspección general completa con scanner para detectar códigos de
-                            falla y evaluar el estado general de tu vehículo.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-                                <line x1="4" y1="22" x2="4" y2="15" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Limpieza de Inyectores</h4>
-                        <p class="servicio-card-desc">Limpieza profesional de inyectores a gasolina para recuperar
-                            potencia, mejorar consumo y reducir emisiones.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Afinamiento Electrónico</h4>
-                        <p class="servicio-card-desc">Calibración electrónica del motor para optimizar el rendimiento,
-                            reducir consumo y alargar la vida del motor.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" />
-                                <path d="M12 6v6l4 2" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Cambio de Fluidos</h4>
-                        <p class="servicio-card-desc">Renovación de fluidos en frenos, dirección y refrigeración para
-                            garantizar respuesta y seguridad óptimas.</p>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /grupo-colapsable mecanica -->
     </section>
 
     <!-- ==================== GRUPO 2: CONVERSIÓN GNV/GLP ==================== -->
-    <section class="grupo grupo-dark" id="conversion">
-        <div class="grupo-intro grupo-intro--dark">
-            <div class="grupo-intro-text reveal-left">
-                <div class="grupo-num-bg light">02</div>
-                <div class="section-tag light-tag">Grupo de servicios</div>
-                <h2 class="section-title light">CONVERSIÓN<br>GNV &amp; GLP</h2>
-                <p class="section-desc light">Convierte tu vehículo a gas y reduce hasta un 60% tu gasto en combustible.
-                    Somos especialistas certificados con respaldo FISE. Instalamos kits de última generación que
-                    mantienen la potencia y eficiencia de tu motor intactas.</p>
+    <section class="svc-cat svc-cat--dark" id="conversion">
+        <div class="svc-cat-inner">
+            <div class="svc-aside reveal-left">
+                <span class="svc-bignum" aria-hidden="true">02</span>
+                <span class="svc-tag">Grupo de servicios</span>
+                <h2 class="svc-title">Conversión<br><span>GNV &amp; GLP</span></h2>
+                <p class="svc-desc">Ahorra hasta 60% en combustible. Especialistas certificados con respaldo FISE.</p>
+                <div class="svc-photo">
+                    <img src="Imagenes/Taller1.webp" alt="Auto con cilindro de gas instalado por AutoGas" loading="lazy" decoding="async">
+                    <span class="svc-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>Respaldo FISE oficial</span>
+                </div>
+                <div class="svc-actions"><a href="../Contacto/contacto.html" class="svc-btn">Cotizar conversión</a></div>
             </div>
-            <div class="grupo-intro-img reveal-right">
-                <img src="Imagenes/Taller1.webp" alt="Conversión GNV GLP AutoGas" loading="lazy" decoding="async">
-                <div class="grupo-intro-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                    Respaldo FISE oficial
+            <div class="svc-body reveal-right">
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Tipos de Conversión</h3>
+                        <span>4 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">01</span>
+                        <div>
+                            <p class="svc-name">Conversión a GLP</p>
+                            <p class="svc-hint">Ahorra hasta 50% en combustible</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">02</span>
+                        <div>
+                            <p class="svc-name">Conversión a GNV</p>
+                            <p class="svc-hint">Ahorra hasta 60% · financiamiento FISE</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">03</span>
+                        <div>
+                            <p class="svc-name">Inyección Directa</p>
+                            <p class="svc-hint">Para motores de inyección directa</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">04</span>
+                        <div>
+                            <p class="svc-name">Diesel Dual Fuel</p>
+                            <p class="svc-hint">Gas y diésel en el mismo motor</p>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Certificaciones y Trámites</h3>
+                        <span>4 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">05</span>
+                        <div>
+                            <p class="svc-name">Certificación Anual GNV/GLP</p>
+                            <p class="svc-hint">Revisión obligatoria cada año</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">06</span>
+                        <div>
+                            <p class="svc-name">Trámite Cambio de Características</p>
+                            <p class="svc-hint">La conversión en tus documentos</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">07</span>
+                        <div>
+                            <p class="svc-name">Inspección Quinquenal</p>
+                            <p class="svc-hint">Cilindros, cada 5 años</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">08</span>
+                        <div>
+                            <p class="svc-name">Financiamiento FISE</p>
+                            <p class="svc-hint">Te asesoramos sin costo</p>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Mantenimiento del Sistema de Gas</h3>
+                        <span>6 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">09</span>
+                        <div>
+                            <p class="svc-name">Desbloqueo de Chip</p>
+                            <p class="svc-hint">Corrige fallas electrónicas</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">10</span>
+                        <div>
+                            <p class="svc-name">Escaneo y Calibración</p>
+                            <p class="svc-hint">Sistema de gas afinado</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">11</span>
+                        <div>
+                            <p class="svc-name">Cambio de Filtros de Gas</p>
+                            <p class="svc-hint">Protege los inyectores</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">12</span>
+                        <div>
+                            <p class="svc-name">Revisión de Fugas</p>
+                            <p class="svc-hint">Tu seguridad primero</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">13</span>
+                        <div>
+                            <p class="svc-name">Limpieza de Obturador</p>
+                            <p class="svc-hint">Evita fallas en el arranque</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">14</span>
+                        <div>
+                            <p class="svc-name">Inspección de Conductores</p>
+                            <p class="svc-hint">Mangueras de gas y agua</p>
+                        </div>
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <!-- BOTÓN TOGGLE SERVICIOS -->
-        <div class="grupo-toggle-wrap grupo-toggle-wrap--dark">
-            <button class="grupo-toggle-btn grupo-toggle-btn--dark" onclick="toggleGrupo('conversion')"
-                aria-expanded="false">
-                <span class="grupo-toggle-label">Ver servicios</span>
-                <span class="grupo-toggle-sub">Conversiones · Certificaciones · Mantenimiento</span>
-                <div class="grupo-toggle-chevron">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </div>
-            </button>
-        </div>
-
-        <!-- CONTENIDO COLAPSABLE -->
-        <div class="grupo-colapsable" id="grupo-conversion"> <!-- Tipos de Conversión -->
-            <div class="subgrupo subgrupo-dark ">
-                <div class="subgrupo-header">
-                    <div class="subgrupo-icon light-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8">
-                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                        </svg></div>
-                    <div>
-                        <h3 class="subgrupo-title light">Tipos de Conversión</h3>
-                        <p class="subgrupo-desc light">Instalación profesional de sistemas GNV y GLP adaptados a todo
-                            tipo de motor. Preservamos el rendimiento y la estética de tu vehículo.</p>
-                    </div>
-                </div>
-                <div class="servicios-grid">
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Conversión a GLP</h4>
-                        <p class="servicio-card-desc light">Gas Licuado de Petróleo. Ideal para uso urbano e
-                            interurbano. Ahorra hasta un 50% en combustible con instalación rápida y segura.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                                <line x1="9" y1="9" x2="9.01" y2="9" />
-                                <line x1="15" y1="9" x2="15.01" y2="9" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Conversión a GNV</h4>
-                        <p class="servicio-card-desc light">Gas Natural Vehicular. El combustible más económico y
-                            limpio. Reducción de hasta un 60% en costos con financiamiento FISE.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Inyección Directa</h4>
-                        <p class="servicio-card-desc light">Conversión especializada para vehículos con sistema de
-                            inyección directa. Tecnología avanzada que preserva el rendimiento original.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <rect x="2" y="3" width="20" height="14" rx="2" />
-                                <path d="M8 21h8M12 17v4" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Diesel Dual Fuel</h4>
-                        <p class="servicio-card-desc light">Sistema mixto para motores diésel que combina gas y diésel,
-                            reduciendo costos sin eliminar la potencia original del motor.</p>
-                    </div>
-                </div>
-            </div> <!-- Certificaciones y Trámites -->
-            <div class="subgrupo subgrupo-dark ">
-                <div class="subgrupo-header">
-                    <div class="subgrupo-icon light-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8">
-                            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-                            <polyline points="22 4 12 14.01 9 11.01" />
-                        </svg></div>
-                    <div>
-                        <h3 class="subgrupo-title light">Certificaciones y Trámites</h3>
-                        <p class="subgrupo-desc light">Gestionamos todos los trámites legales y certificaciones
-                            requeridas para que tu conversión esté 100% en regla.</p>
-                    </div>
-                </div>
-                <div class="servicios-grid">
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
-                                <polyline points="14 2 14 8 20 8" />
-                                <line x1="16" y1="13" x2="8" y2="13" />
-                                <line x1="16" y1="17" x2="8" y2="17" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Certificación Anual GNV/GLP</h4>
-                        <p class="servicio-card-desc light">Revisión técnica anual obligatoria de tu sistema de gas. Nos
-                            encargamos de todo el proceso para que estés siempre al día.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <rect x="2" y="2" width="20" height="20" rx="2" />
-                                <path d="M9 9h6M9 12h6M9 15h4" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Trámite Cambio de Características</h4>
-                        <p class="servicio-card-desc light">Gestionamos el trámite oficial ante las autoridades para
-                            registrar la conversión en los documentos de tu vehículo.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Inspección Quinquenal</h4>
-                        <p class="servicio-card-desc light">Inspección obligatoria de cilindros cada 5 años.
-                            Garantizamos que tu equipo cumpla con todos los estándares de seguridad.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <circle cx="12" cy="12" r="10" />
-                                <path d="M12 8v4l3 3" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Financiamiento FISE</h4>
-                        <p class="servicio-card-desc light">Accede al subsidio del Gobierno Peruano para financiar tu
-                            conversión. Te asesoramos en todo el proceso sin costo adicional.</p>
-                    </div>
-                </div>
-            </div> <!-- Mantenimiento del Sistema de Gas -->
-            <div class="subgrupo subgrupo-dark ">
-                <div class="subgrupo-header">
-                    <div class="subgrupo-icon light-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8">
-                            <path
-                                d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
-                        </svg></div>
-                    <div>
-                        <h3 class="subgrupo-title light">Mantenimiento del Sistema de Gas</h3>
-                        <p class="subgrupo-desc light">El sistema de gas requiere revisiones periódicas para funcionar
-                            con seguridad y eficiencia. Nuestros técnicos especializados lo mantienen en perfecto
-                            estado.</p>
-                    </div>
-                </div>
-                <div class="servicios-grid">
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <circle cx="11" cy="11" r="8" />
-                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Desbloqueo de Chip</h4>
-                        <p class="servicio-card-desc light">Reprogramación y desbloqueo del chip del sistema de gas para
-                            optimizar el rendimiento y corregir fallas electrónicas.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Escaneo y Calibración</h4>
-                        <p class="servicio-card-desc light">Diagnóstico electrónico y calibración fina del sistema de
-                            gas para garantizar el funcionamiento correcto y eficiente.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
-                                <line x1="4" y1="22" x2="4" y2="15" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Cambio de Filtros de Gas</h4>
-                        <p class="servicio-card-desc light">Reemplazo de filtros del sistema de gas para mantener la
-                            pureza del combustible y proteger los componentes internos.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Revisión de Fugas</h4>
-                        <p class="servicio-card-desc light">Inspección exhaustiva del sistema para detectar y corregir
-                            cualquier fuga de gas, garantizando tu seguridad en todo momento.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <line x1="8" y1="6" x2="21" y2="6" />
-                                <line x1="8" y1="12" x2="21" y2="12" />
-                                <line x1="8" y1="18" x2="21" y2="18" />
-                                <line x1="3" y1="6" x2="3.01" y2="6" />
-                                <line x1="3" y1="12" x2="3.01" y2="12" />
-                                <line x1="3" y1="18" x2="3.01" y2="18" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Limpieza de Obturador</h4>
-                        <p class="servicio-card-desc light">Limpieza y mantenimiento del obturador para asegurar el
-                            flujo correcto del gas y evitar fallos en el arranque.</p>
-                    </div>
-                    <div class="servicio-card dark-card ">
-                        <div class="servicio-card-icon light-card-icon"><svg width="22" height="22" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.8">
-                                <path
-                                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                            </svg></div>
-                        <h4 class="servicio-card-title light">Inspección de Conductores</h4>
-                        <p class="servicio-card-desc light">Revisión de todos los conductores de gas y agua para
-                            detectar desgaste, grietas o conexiones deficientes.</p>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /grupo-colapsable conversion -->
     </section>
 
     <!-- ==================== GRUPO 3: REPUESTOS & ACCESORIOS ==================== -->
-    <section class="grupo" id="repuestos">
-        <div class="grupo-intro grupo-intro--light">
-            <div class="grupo-intro-text reveal-left">
-                <div class="grupo-num-bg">03</div>
-                <div class="section-tag">Grupo de servicios</div>
-                <h2 class="section-title dark">REPUESTOS &amp;<br>ACCESORIOS</h2>
-                <p class="section-desc dark">Stock permanente de repuestos y accesorios de primera línea. Trabajamos con
-                    las marcas más reconocidas del mercado para garantizar durabilidad, compatibilidad y rendimiento
-                    óptimo.</p>
+    <section class="svc-cat" id="repuestos">
+        <div class="svc-cat-inner">
+            <div class="svc-aside reveal-left">
+                <span class="svc-bignum" aria-hidden="true">03</span>
+                <span class="svc-tag">Grupo de servicios</span>
+                <h2 class="svc-title">Repuestos &amp;<br>accesorios</h2>
+                <p class="svc-desc">Stock permanente de marcas reconocidas. Te lo instalamos en la sede.</p>
+                <div class="svc-photo">
+                    <img src="Imagenes/Taller12.webp" alt="Repuestos disponibles en AutoGas" loading="lazy" decoding="async">
+                    <span class="svc-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Stock disponible</span>
+                </div>
+                <div class="svc-actions"><a href="../Tienda/tienda.html" class="svc-btn svc-btn--dark">Ver en la tienda <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a></div>
             </div>
-            <div class="grupo-intro-img reveal-right">
-                <img src="Imagenes/Taller12.webp" alt="Repuestos AutoGas" loading="lazy" decoding="async">
-                <div class="grupo-intro-badge">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Stock disponible
+            <div class="svc-body reveal-right">
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Aceites y Lubricantes</h3>
+                        <span>5 marcas</span>
+                    </div>
+                    <ul class="svc-brands">
+                        <li class="svc-brand"><img src="Imagenes/Castrol.webp" alt="Castrol" loading="lazy" decoding="async"><span>Castrol</span></li>
+                        <li class="svc-brand"><img src="Imagenes/Shell.webp" alt="Shell" loading="lazy" decoding="async"><span>Shell</span></li>
+                        <li class="svc-brand"><img src="Imagenes/LiquiMolyLogo.webp" alt="Liqui Moly" loading="lazy" decoding="async"><span>Liqui Moly</span></li>
+                        <li class="svc-brand"><img src="Imagenes/Chevron.webp" alt="Chevron" loading="lazy" decoding="async"><span>Chevron</span></li>
+                        <li class="svc-brand"><img src="Imagenes/Valvoline.webp" alt="Valvoline" loading="lazy" decoding="async"><span>Valvoline</span></li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Refrigerantes</h3>
+                        <span>2 marcas</span>
+                    </div>
+                    <ul class="svc-brands">
+                        <li class="svc-brand"><img src="Imagenes/Snow.webp" alt="Snow" loading="lazy" decoding="async"><span>Snow</span></li>
+                        <li class="svc-brand"><img src="Imagenes/Prestone.webp" alt="Prestone" loading="lazy" decoding="async"><span>Prestone</span></li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Filtros y Componentes</h3>
+                        <span>6 productos</span>
+                    </div>
+                    <ul class="svc-list svc-list--2col">
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">01</span>
+                        <div><p class="svc-name">Filtro de Aire</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">02</span>
+                        <div><p class="svc-name">Filtro de Gas</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">03</span>
+                        <div><p class="svc-name">Filtro de Aceite</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">04</span>
+                        <div><p class="svc-name">Bujías</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">05</span>
+                        <div><p class="svc-name">Supresores</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">06</span>
+                        <div><p class="svc-name">Caña de Bobina</p></div>
+                    </li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <!-- BOTÓN TOGGLE SERVICIOS -->
-        <div class="grupo-toggle-wrap">
-            <button class="grupo-toggle-btn" onclick="toggleGrupo('repuestos')" aria-expanded="false">
-                <span class="grupo-toggle-label">Ver productos</span>
-                <span class="grupo-toggle-sub">Aceites · Refrigerantes · Repuestos · Filtros</span>
-                <div class="grupo-toggle-chevron">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </div>
-            </button>
-        </div>
-
-        <!-- CONTENIDO COLAPSABLE -->
-        <div class="grupo-colapsable" id="grupo-repuestos"> <!-- Aceites y Lubricantes -->
-            <div class="subgrupo ">
-                <div class="subgrupo-header">
-                    <div class="subgrupo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8">
-                            <path
-                                d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
-                        </svg></div>
-                    <div>
-                        <h3 class="subgrupo-title">Aceites y Lubricantes</h3>
-                        <p class="subgrupo-desc">Las marcas más confiables del mercado para proteger el motor de tu
-                            vehículo en cada kilómetro.</p>
-                    </div>
-                </div>
-                <div class="servicios-grid repuestos-grid">
-                    <div class="repuesto-card ">
-                        <div class="repuesto-logo"><img src="Imagenes/Castrol.webp" alt="Castrol"
-                                onerror="this.style.display='none';this.nextElementSibling.style.display='block'" loading="lazy" decoding="async"><span
-                                class="repuesto-fallback" style="display:none">Castrol</span></div>
-                        <h4 class="repuesto-nombre">Castrol EDGE</h4>
-                        <p class="repuesto-desc">Aceite sintético de alto rendimiento para máxima protección del motor
-                            bajo condiciones extremas.</p>
-                    </div>
-                    <div class="repuesto-card ">
-                        <div class="repuesto-logo"><img src="Imagenes/Shell.webp" alt="Shell"
-                                onerror="this.style.display='none';this.nextElementSibling.style.display='block'" loading="lazy" decoding="async"><span
-                                class="repuesto-fallback" style="display:none">Shell</span></div>
-                        <h4 class="repuesto-nombre">Shell Helix</h4>
-                        <p class="repuesto-desc">Aceite premium que mantiene el motor limpio y protegido durante más
-                            tiempo entre cambios.</p>
-                    </div>
-                    <div class="repuesto-card ">
-                        <div class="repuesto-logo"><img src="Imagenes/LiquiMolyLogo.webp" alt="LiquiMoly"
-                                onerror="this.style.display='none';this.nextElementSibling.style.display='block'" loading="lazy" decoding="async"><span
-                                class="repuesto-fallback" style="display:none">Liqui Moly</span></div>
-                        <h4 class="repuesto-nombre">Liqui Moly</h4>
-                        <p class="repuesto-desc">Ingeniería alemana de élite que prioriza la reducción extrema de
-                            fricción y la limpieza del motor.</p>
-                    </div>
-                    <div class="repuesto-card ">
-                        <div class="repuesto-logo"><img src="Imagenes/Chevron.webp" alt="Chevron"
-                                onerror="this.style.display='none';this.nextElementSibling.style.display='block'" loading="lazy" decoding="async"><span
-                                class="repuesto-fallback" style="display:none">Chevron</span></div>
-                        <h4 class="repuesto-nombre">Chevron</h4>
-                        <p class="repuesto-desc">Lubricantes de confianza con tecnología Delo para motores que exigen
-                            resistencia y durabilidad.</p>
-                    </div>
-                    <div class="repuesto-card ">
-                        <div class="repuesto-logo"><img src="Imagenes/Valvoline.webp" alt="Valvoline"
-                                onerror="this.style.display='none';this.nextElementSibling.style.display='block'" loading="lazy" decoding="async"><span
-                                class="repuesto-fallback" style="display:none">Valvoline</span></div>
-                        <h4 class="repuesto-nombre">Valvoline</h4>
-                        <p class="repuesto-desc">Una de las marcas más antiguas y confiables del mundo en lubricantes y
-                            fluidos automotrices.</p>
-                    </div>
-                </div>
-            </div> <!-- Refrigerantes -->
-            <div class="subgrupo subgrupo-alt ">
-                <div class="subgrupo-header">
-                    <div class="subgrupo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8">
-                            <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" />
-                            <path d="M12 6v6l4 2" />
-                        </svg></div>
-                    <div>
-                        <h3 class="subgrupo-title">Refrigerantes</h3>
-                        <p class="subgrupo-desc">Mantén el sistema de refrigeración de tu motor en perfectas condiciones
-                            para evitar el sobrecalentamiento.</p>
-                    </div>
-                </div>
-                <div class="servicios-grid repuestos-grid">
-                    <div class="repuesto-card ">
-                        <div class="repuesto-logo"><img src="Imagenes/Snow.webp" alt="Snow"
-                                onerror="this.style.display='none';this.nextElementSibling.style.display='block'" loading="lazy" decoding="async"><span
-                                class="repuesto-fallback" style="display:none">Snow</span></div>
-                        <h4 class="repuesto-nombre">Refrigerante Snow</h4>
-                        <p class="repuesto-desc">Refrigerante de alta eficiencia que protege el motor del
-                            sobrecalentamiento y la corrosión interna.</p>
-                    </div>
-                    <div class="repuesto-card ">
-                        <div class="repuesto-logo"><img src="Imagenes/Prestone.webp" alt="Prestone"
-                                onerror="this.style.display='none';this.nextElementSibling.style.display='block'" loading="lazy" decoding="async"><span
-                                class="repuesto-fallback" style="display:none">Prestone</span></div>
-                        <h4 class="repuesto-nombre">Prestone</h4>
-                        <p class="repuesto-desc">Marca líder mundial en refrigerantes. Protección superior contra el
-                            calor para todo tipo de motor.</p>
-                    </div>
-                </div>
-            </div> <!-- Filtros y Componentes -->
-            <div class="subgrupo ">
-                <div class="subgrupo-header">
-                    <div class="subgrupo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.8">
-                            <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
-                        </svg></div>
-                    <div>
-                        <h3 class="subgrupo-title">Filtros y Componentes</h3>
-                        <p class="subgrupo-desc">Filtros y piezas esenciales para mantener el rendimiento y la vida útil
-                            de tu vehículo al máximo.</p>
-                    </div>
-                </div>
-                <div class="servicios-grid">
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <path
-                                    d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Filtro de Aire</h4>
-                        <p class="servicio-card-desc">Evita que impurezas ingresen al motor. Un filtro limpio mejora el
-                            rendimiento y reduce el consumo.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Filtro de Gas</h4>
-                        <p class="servicio-card-desc">Componente esencial para sistemas GNV/GLP. Protege los inyectores
-                            y asegura un flujo de gas limpio.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <circle cx="12" cy="12" r="10" />
-                                <line x1="12" y1="8" x2="12" y2="12" />
-                                <line x1="12" y1="16" x2="12.01" y2="16" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Filtro de Aceite</h4>
-                        <p class="servicio-card-desc">Mantiene el aceite del motor limpio de impurezas. Cambio
-                            recomendado en cada servicio de aceite.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <circle cx="12" cy="12" r="3" />
-                                <path
-                                    d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Bujías</h4>
-                        <p class="servicio-card-desc">Bujías de alta calidad para una ignición perfecta. Mejoran el
-                            arranque y reducen el consumo de combustible.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <rect x="2" y="7" width="20" height="14" rx="2" />
-                                <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
-                                <line x1="12" y1="12" x2="12" y2="16" />
-                                <line x1="10" y1="14" x2="14" y2="14" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Supresores</h4>
-                        <p class="servicio-card-desc">Componentes para sistemas de gas que suprimen el retroceso de
-                            llama y protegen el sistema de encendido.</p>
-                    </div>
-                    <div class="servicio-card ">
-                        <div class="servicio-card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="1.8">
-                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-                            </svg></div>
-                        <h4 class="servicio-card-title">Caña de Bobina</h4>
-                        <p class="servicio-card-desc">Pieza clave del sistema de encendido que conduce la alta tensión
-                            desde la bobina hasta las bujías.</p>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /grupo-colapsable repuestos -->
     </section>
+
 
     <!-- ==================== TESTIMONIOS ==================== -->
     <section class="testimonios-section">
@@ -1181,9 +882,89 @@
         </div>
     </footer>
 
+
+    <!-- ==================== ORIENTACIÓN AUTOMÁTICA (globo flotante) ==================== -->
+    <button type="button" class="oa-bubble" id="oaBubble" onclick="toggleOrientacion()" aria-expanded="false"
+        aria-controls="oaPanel">
+        <span class="oa-bubble-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 5h16v11H9l-5 4V5z" />
+                <path d="M9 10h.01M12 10h.01M15 10h.01" />
+            </svg>
+        </span>
+        <span class="oa-bubble-txt">
+            <strong>¿Qué le pasa a tu auto?</strong>
+            <small>Orientación automática</small>
+        </span>
+    </button>
+
+    <section class="oa-panel" id="oaPanel" role="dialog" aria-labelledby="oaTitulo" hidden>
+        <div class="oa-head">
+            <span class="oa-head-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 5h16v11H9l-5 4V5z" />
+                    <path d="M9 10h.01M12 10h.01M15 10h.01" />
+                </svg>
+            </span>
+            <div class="oa-head-txt">
+                <h2 id="oaTitulo">Orientación automática</h2>
+                <p>Te sugerimos servicios según tu problema</p>
+            </div>
+            <button type="button" class="oa-close" onclick="toggleOrientacion()" aria-label="Cerrar orientación">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="oa-body" id="oaBody">
+            <p class="oa-msg oa-msg--bot">Cuéntanos con tus palabras qué le pasa a tu auto. Te decimos qué servicio de
+                AutoGas te puede ayudar.</p>
+            <p class="oa-msg oa-msg--user" id="oaPregunta" hidden></p>
+
+            <div class="ia-resultados oa-card" id="iaResultados" aria-live="polite" hidden>
+                <p class="oa-card-label">Servicios sugeridos</p>
+                <p class="ia-aviso" id="iaAviso" hidden></p>
+                <ol class="ia-lista" id="iaLista"></ol>
+                <p class="oa-note">Un técnico confirma el diagnóstico en el taller.</p>
+                <div class="oa-card-actions">
+                    <a href="../Contacto/contacto.html" class="oa-btn">Cotizar servicio</a>
+                    <button type="button" class="oa-btn-sec" onclick="reiniciarAsistente()">Nueva consulta</button>
+                </div>
+            </div>
+
+            <div class="ia-vacio oa-card" id="iaVacio" aria-live="polite" hidden>
+                <p>No encontramos un servicio específico para tu descripción. Te recomendamos una
+                    <strong>Revisión y Diagnóstico Vehicular</strong>, o cuéntanos tu caso directamente.</p>
+                <div class="oa-card-actions">
+                    <a href="../Contacto/contacto.html" class="oa-btn">Cotizar servicio</a>
+                    <button type="button" class="oa-btn-sec" onclick="reiniciarAsistente()">Nueva consulta</button>
+                </div>
+            </div>
+        </div>
+
+        <form class="oa-form" onsubmit="event.preventDefault(); analizarProblema();">
+            <label for="iaInput" class="sr-only">Describe el problema de tu auto</label>
+            <div class="oa-field">
+                <textarea id="iaInput" rows="2" maxlength="400"
+                    placeholder="Ej.: consume mucho combustible y a veces falla el arranque…"></textarea>
+                <span class="oa-count"><span id="iaCharCount">0</span>/400</span>
+            </div>
+            <button type="submit" class="oa-send" id="iaBtn" aria-label="Analizar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+            </button>
+        </form>
+    </section>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="servicios.js"></script>
-    <script src="diagnostico.js?v=20261022"></script>
+    <script src="diagnostico.js?v=20261029"></script>
 </body>
 
 </html>
