@@ -106,7 +106,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
     display: inline-flex; align-items: center; justify-content: center;
     min-height: 44px; padding: 12px 22px;
     font-family: var(--font-body); font-size: 15px; font-weight: 600; line-height: 1.2;
-    text-decoration: none; border: 1px solid transparent; border-radius: var(--radius);
+    text-decoration: none; background: transparent; border: 1px solid transparent; border-radius: var(--radius);
     cursor: pointer;
     transition: background-color .25s ease, color .25s ease, border-color .25s ease;
 }
