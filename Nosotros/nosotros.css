@@ -17,7 +17,7 @@
     position: absolute; inset: 0;
     background: linear-gradient(180deg, rgba(10,10,10,.30) 0%, rgba(10,10,10,.55) 50%, rgba(10,10,10,.95) 100%);
 }
-.hero-inner { position: relative; width: 100%; padding-top: 120px; padding-bottom: 72px; }
+.hero-inner { position: relative; width: 100%; padding-top: 140px; padding-bottom: 56px; }
 .hero-title {
     font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
     font-size: clamp(52px, 7.6vw, 112px); line-height: 0.88; color: var(--white);
@@ -50,12 +50,6 @@
     margin-top: 14px; font-size: 15px; color: var(--ink-soft);
 }
 
-.cifras {
-    margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(17, 17, 17, 0.15);
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;
-}
-.cifras dt { font-family: var(--font-display); font-weight: 800; font-size: 44px; line-height: 1; }
-.cifras dd { margin-top: 6px; font-size: 15px; color: var(--ink-soft); }
 
 /* ---------- Línea de tiempo ---------- */
 .timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px 24px; }

@@ -309,87 +309,6 @@ a {
 }
 
 /* =============================================
-   IMPACTO / COUNTERS
-============================================= */
-.impacto {
-    background: var(--black-mid);
-    border-top: 1px solid var(--border-dark);
-    border-bottom: 1px solid var(--border-dark);
-    padding: 64px 5%;
-}
-
-.impacto-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.impacto-item {
-    flex: 1;
-    min-width: 180px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 12px;
-}
-
-.impacto-icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--red-soft);
-    border: 1px solid var(--border-red);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--red);
-}
-
-.impacto-num-wrap {
-    display: flex;
-    align-items: baseline;
-    gap: 2px;
-}
-
-.impacto-prefix,
-.impacto-suffix {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 700;
-    font-size: 2rem;
-    color: var(--red);
-}
-
-.impacto-num {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 800;
-    font-size: 3.2rem;
-    line-height: 1;
-    color: var(--white);
-    letter-spacing: -0.02em;
-}
-
-.impacto-lbl {
-    font-family: 'Barlow', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray-text);
-}
-
-.impacto-divider {
-    width: 1px;
-    height: 60px;
-    background: var(--border-dark);
-    flex-shrink: 0;
-}
-
-/* =============================================
    GRUPOS DE SERVICIOS
 ============================================= */
 .grupo {
@@ -1941,18 +1860,8 @@ sin espacio vacío
         height: 380px;
     }
 
-    .impacto-divider {
-        display: none;
-    }
 
-    .impacto-inner {
-        justify-content: center;
-        gap: 32px;
-    }
 
-    .impacto-item {
-        min-width: 140px;
-    }
 
     .resena-form-wrap {
         padding: 32px 28px;
@@ -2086,9 +1995,6 @@ sin espacio vacío
         gap: 12px;
     }
 
-    .impacto-num {
-        font-size: 2.4rem;
-    }
 
     .testimonios-grid {
         grid-template-columns: 1fr;

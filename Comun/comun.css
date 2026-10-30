@@ -324,6 +324,31 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .page-hero-chips li { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 500; color: rgba(255, 255, 255, 0.85); }
 .page-hero-chips svg { color: var(--red); flex: none; }
 
+/* Portada compacta (Tienda y Cotizar): lo importante está justo debajo */
+.page-hero--compacta { min-height: 0; }
+.page-hero--compacta .page-hero-inner { padding-top: 136px; padding-bottom: 56px; }
+.page-hero--compacta .page-hero-title { font-size: clamp(44px, 6vw, 88px); }
+.page-hero--compacta .page-hero-sub { margin-top: 20px; }
+@media (max-width: 600px) { .page-hero--compacta .page-hero-inner { padding-top: 112px; padding-bottom: 44px; } }
+
+/* ---------- Cifras debajo de la portada (Inicio y Nosotros) ----------
+   Los números con data-contar suben de 0 a su valor al aparecer (comun.js). */
+.hero-stats {
+    margin-top: 64px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    animation: fadeIn 1.2s ease .95s both;
+}
+.hero-stats > div { padding: 20px 24px 0 0; }
+.hero-stats dt { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1; color: var(--white); }
+.hero-stats dd { margin-top: 6px; font-size: 14px; color: rgba(255, 255, 255, 0.72); }
+[data-contar] { font-variant-numeric: tabular-nums; }
+@media (max-width: 900px) {
+    .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 8px; }
+}
+@media (max-width: 480px) {
+    .hero-stats dt { font-size: 28px; }
+}
+
 /* ---------- Footer ---------- */
 .footer { background: var(--black); color: rgba(255, 255, 255, 0.75); padding: 80px 0 40px; }
 .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
