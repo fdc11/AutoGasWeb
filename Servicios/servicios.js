@@ -116,77 +116,7 @@ function toggleAcordeon(id) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* -----------------------------------------------
-       1. NAVBAR — scroll behavior
-    ----------------------------------------------- */
-    const navbar = document.getElementById('navbar');
-
-    function handleNavbarScroll() {
-        if (window.scrollY > 60) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    }
-
-    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-    handleNavbarScroll();
-
-
-    /* -----------------------------------------------
-       2. HAMBURGER / MOBILE MENU
-    ----------------------------------------------- */
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
-
-    window.toggleMenu = function toggleMenu() {
-        const nav = document.getElementById('mobileNav');
-        const h = document.getElementById('hamburger');
-        const isOpen = nav.classList.contains('open');
-
-        if (isOpen) {
-            nav.classList.remove('open');
-            h.classList.remove('is-open');
-            document.body.style.overflow = '';
-            nav.querySelectorAll('.mnav-item').forEach(el => el.classList.remove('visible'));
-        } else {
-            nav.classList.add('open');
-            h.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-            nav.querySelectorAll('.mnav-item').forEach((el, i) => {
-                setTimeout(() => el.classList.add('visible'), 60 + i * 60);
-            });
-        }
-    };
-
-    // Cerrar con Escape
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            const nav = document.getElementById('mobileNav');
-            if (nav && nav.classList.contains('open')) window.toggleMenu();
-        }
-    });
-
-
-    /* -----------------------------------------------
-       3. HERO — animate on load
-    ----------------------------------------------- */
-    const heroBg = document.querySelector('.hero-bg');
-    if (heroBg) {
-        setTimeout(() => heroBg.classList.add('loaded'), 100);
-    }
-
-    const heroAnims = [
-        '.hero-badge--anim',
-        '.hero-title--anim',
-        '.hero-sub--anim',
-        '.hero-actions--anim'
-    ];
-
-    heroAnims.forEach((sel, i) => {
-        const el = document.querySelector(sel);
-        if (el) setTimeout(() => el.classList.add('visible'), 200 + i * 160);
-    });
+    /* 1–3. Menú, menú de celular y portada: El menú y el footer ahora están en ../Comun/comun.js y comun.css */
 
 
     /* -----------------------------------------------

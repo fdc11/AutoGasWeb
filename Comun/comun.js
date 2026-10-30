@@ -4,6 +4,7 @@
    1. Menú de celular (panel que entra desde la derecha)
    2. Aparición de elementos al hacer scroll (.reveal)
    3. Año del footer
+   4. Menú transparente sobre la portada, con color al bajar
    Cada página agrega solo lo suyo en su propio JS.
    ===================================================================== */
 (function () {
@@ -75,4 +76,15 @@
     /* ---------- 3. Año del footer ---------- */
     const anio = document.getElementById('anio');
     if (anio) anio.textContent = new Date().getFullYear();
+
+    /* ---------- 4. Menú transparente → con color al bajar ----------
+       Si una página no tiene portada oscura arriba, agrega
+       data-header="solid" al <body> y el menú siempre tendrá color. */
+    const header = document.querySelector('.site-header');
+    if (header) {
+        const siempreSolido = document.body.dataset.header === 'solid';
+        const actualizar = () => header.classList.toggle('is-solid', siempreSolido || window.scrollY > 40);
+        window.addEventListener('scroll', actualizar, { passive: true });
+        actualizar();
+    }
 })();

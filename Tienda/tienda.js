@@ -258,42 +258,10 @@ function todosLosProductos() {
     return Object.values(CATALOGO).flatMap(c => c.productos);
 }
 
-// =============================================
-// NAVBAR — scroll (igual que el resto de páginas)
-// =============================================
-const navbar = $('navbar');
-function actualizarNavbar() {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
-}
-window.addEventListener('scroll', actualizarNavbar, { passive: true });
-
-// =============================================
-// MENÚ MÓVIL
-// =============================================
-function toggleMenu() {
-    const nav = $('mobileNav');
-    const hamburger = $('hamburger');
-    const isOpen = nav.classList.contains('open');
-
-    if (isOpen) {
-        nav.classList.remove('open');
-        hamburger.classList.remove('is-open');
-        document.body.style.overflow = '';
-        nav.querySelectorAll('.mnav-item').forEach(el => el.classList.remove('visible'));
-    } else {
-        nav.classList.add('open');
-        hamburger.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-        nav.querySelectorAll('.mnav-item').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), 60 + i * 60);
-        });
-    }
-}
+// Menú y menú de celular: El menú y el footer ahora están en ../Comun/comun.js
 
 document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
-    const nav = $('mobileNav');
-    if (nav && nav.classList.contains('open')) { toggleMenu(); return; }
     const overlay = $('cartOverlay');
     if (overlay && overlay.classList.contains('open')) toggleCarrito();
 });
@@ -433,7 +401,8 @@ function aplicarRuta(primeraCarga) {
             requestAnimationFrame(() => $('categorias').scrollIntoView({ block: 'start' }));
         }
     }
-    actualizarNavbar();
+    // Avisa al menú (comun.js) que cambió la posición
+    window.dispatchEvent(new Event('scroll'));
 }
 
 window.addEventListener('hashchange', () => aplicarRuta(false));

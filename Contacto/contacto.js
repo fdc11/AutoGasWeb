@@ -44,45 +44,7 @@ function escHtml(str) {
     }[c]));
 }
 
-/* =========================================
-   NAVBAR — scroll + hamburguesa
-========================================= */
-/* =========================================
-   NAVBAR — scroll + hamburguesa
-========================================= */
-function toggleMenu() {
-    const nav = document.getElementById('mobileNav');
-    const hamburger = document.getElementById('hamburger');
-    const isOpen = nav.classList.contains('open');
-
-    if (isOpen) {
-        nav.classList.remove('open');
-        hamburger.classList.remove('is-open');
-        document.body.style.overflow = '';
-        nav.querySelectorAll('.mnav-item').forEach(el => el.classList.remove('visible'));
-    } else {
-        nav.classList.add('open');
-        hamburger.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
-        nav.querySelectorAll('.mnav-item').forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), 60 + i * 60);
-        });
-    }
-}
-
-// Cerrar con Escape
-document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') {
-        const nav = document.getElementById('mobileNav');
-        if (nav && nav.classList.contains('open')) toggleMenu();
-    }
-});
-
-window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    if (window.scrollY > 30) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
-});
+/* Menú y menú de celular: El menú y el footer ahora están en ../Comun/comun.js */
 
 /* =========================================
    SCROLL REVEAL
