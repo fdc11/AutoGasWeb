@@ -7,639 +7,327 @@
         content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light">
+    <title>Nosotros | AutoGas — Talleres de conversión GNV y GLP en el Perú</title>
+    <meta name="description" content="Conoce AutoGas: más de 15 años convirtiendo vehículos a GNV y GLP, 7 sedes en el Perú, convenio FISE y taller autorizado por el MTC.">
+    <link rel="canonical" href="https://autogas-web.vercel.app/Nosotros/nosotros.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:site_name" content="AutoGas Perú">
+    <meta property="og:title" content="Nosotros | AutoGas">
+    <meta property="og:description" content="Más de 15 años convirtiendo vehículos a GNV y GLP. 7 sedes en el Perú.">
+    <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
+    <meta property="og:url" content="https://autogas-web.vercel.app/Nosotros/nosotros.html">
+
+    <!-- Evita parpadeos: estilos mínimos antes de cargar el CSS -->
     <style>
-        html {
-            color-scheme: light only;
-        }
-
-        @media(prefers-color-scheme:dark) {
-
-            html,
-            body {
-                background: #fff !important;
-                color: #080808 !important;
-            }
-        }
-
-        /* Critical CSS (pre-paint) — prevent CLS/FOUC */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: hidden;
-        }
-
-        .navbar {
-            height: 80px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; background: #0A0A0A; }
+        .site-header { height: 72px; }
+        .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
     </style>
-    <title>Nosotros | AutoGas Perú</title>
-    <link rel="preload" as="image" href="Imagenes/BannerNosotros.webp">
-    <link rel="stylesheet" href="nosotros.css?v=20261029">
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preload" as="image" href="../Inicio/Imagenes/AutoGasBanner.webp">
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261030-1">
+    <link rel="stylesheet" href="nosotros.css?v=20261030-1">
 </head>
 
 <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-    <!-- ==================== NAVBAR ==================== -->
-    <header class="navbar" id="navbar">
-        <a href="../Inicio/inicio.html" style="display:inline-flex; align-items:center;">
-            <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas Logo" class="logo">
-        </a>
-        <nav>
+    <!-- ==================== MENÚ ==================== -->
+    <header class="site-header">
+        <nav class="nav container" aria-label="Principal">
+            <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
+                <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+            </a>
+
             <ul class="nav-links">
-                <li><a href="../Inicio/inicio.html">INICIO</a></li>
-                <li><a href="../Nosotros/nosotros.html" class="nav-active">Nosotros</a></li>
+                <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                <li><a href="nosotros.html" aria-current="page">Nosotros</a></li>
                 <li><a href="../Servicios/servicios.html">Servicios</a></li>
                 <li><a href="../Sedes/sedes.html">Sedes</a></li>
-                <li><a href="../Tienda/tienda.html" class="nav-highlight">Tienda</a></li>
-                <li><a href="../Contacto/contacto.html" class="nav-cta">Cotizar</a></li>
+                <li><a href="../Tienda/tienda.html">Tienda</a></li>
             </ul>
+
+            <a class="btn btn-red nav-cta" href="../Contacto/contacto.html">Cotizar</a>
+
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
     </header>
-    <div class="mobile-nav" id="mobileNav" role="dialog" aria-modal="true" aria-label="Menú de navegación">
-        <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" class="mnav-logo" loading="lazy" decoding="async">
-        <div class="mnav-close" onclick="toggleMenu()" aria-label="Cerrar menú"></div>
+
+    <!-- Menú de celular -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
+        <div class="mobile-menu-top">
+            <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
+            <button class="mobile-menu-close" id="navClose" type="button" aria-label="Cerrar menú"></button>
+        </div>
         <ul class="mnav-list">
-            <li class="mnav-item">
-                <span class="mnav-num">01</span>
-                <a href="../Inicio/inicio.html" class="mnav-link" onclick="toggleMenu()">Inicio</a>
-            </li>
-            <li class="mnav-item">
-                <span class="mnav-num">02</span>
-                <a href="../Nosotros/nosotros.html" class="mnav-link" onclick="toggleMenu()">Nosotros</a>
-            </li>
-            <li class="mnav-item">
-                <span class="mnav-num">03</span>
-                <a href="../Servicios/servicios.html" class="mnav-link" onclick="toggleMenu()">Servicios</a>
-            </li>
-            <li class="mnav-item">
-                <span class="mnav-num">04</span>
-                <a href="../Sedes/sedes.html" class="mnav-link" onclick="toggleMenu()">Sedes</a>
-            </li>
-            <li class="mnav-item">
-                <span class="mnav-num">05</span>
-                <a href="../Tienda/tienda.html" class="mnav-link mnav-highlight" onclick="toggleMenu()">Tienda</a>
-            </li>
+            <li class="mnav-item"><span class="mnav-num">01</span><a class="mnav-link" href="../Inicio/inicio.html">Inicio</a></li>
+            <li class="mnav-item"><span class="mnav-num">02</span><a class="mnav-link" href="nosotros.html" aria-current="page">Nosotros</a></li>
+            <li class="mnav-item"><span class="mnav-num">03</span><a class="mnav-link" href="../Servicios/servicios.html">Servicios</a></li>
+            <li class="mnav-item"><span class="mnav-num">04</span><a class="mnav-link" href="../Sedes/sedes.html">Sedes</a></li>
+            <li class="mnav-item"><span class="mnav-num">05</span><a class="mnav-link" href="../Tienda/tienda.html">Tienda</a></li>
         </ul>
-        <a href="../Contacto/contacto.html" class="mnav-cta mnav-item" onclick="toggleMenu()">Cotizar ahora</a>
+        <a class="mnav-cta mnav-item" href="../Contacto/contacto.html">Cotizar ahora</a>
     </div>
-    <!-- ==================== HERO ==================== -->
-    <section class="hero" id="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
 
-        <!-- Diagonal line accent -->
+    <main id="contenido">
 
-
-        <!-- Background watermark -->
-        <div class="hero-watermark">AG</div>
-
-        <div class="hero-content">
-
-            <h1 class="hero-title hero-title--anim">
-                MOVEMOS<br>
-                AL PERÚ<br>
-                <span class="accent">HACIA ADELANTE</span>
-            </h1>
-            <p class="hero-sub hero-sub--anim" style="word-wrap: break-word; hyphens: auto;">
-                Más de 15 años convirtiendo vehículos<br>
-                con tecnología, rigor y compromiso real.
-            </p>
-            <div class="hero-actions hero-actions--anim">
-                <a href="../Contacto/contacto.html" class="btn-primary">
-                    Agenda tu servicio
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </a>
-                <a href="#historia" class="btn-ghost">
-                    Nuestra historia
-                </a>
+        <!-- ==================== PORTADA ==================== -->
+        <section class="hero" aria-labelledby="heroTitulo">
+            <img class="hero-img" src="../Inicio/Imagenes/AutoGasBanner.webp" alt="Fachada de un taller AutoGas" width="1920" height="1440" fetchpriority="high">
+            <div class="hero-shade" aria-hidden="true"></div>
+            <div class="hero-inner container">
+                <h1 class="hero-title" id="heroTitulo">
+                    <span class="hero-line">Movemos al Perú</span>
+                    <span class="hero-line l2">hacia adelante.</span>
+                </h1>
+                <p class="hero-sub">Más de 15 años convirtiendo vehículos a GNV y GLP en el Perú, con técnicos certificados y siete sedes que te atienden de cerca.</p>
             </div>
-        </div>
-        <div class="scroll-indicator">
+        </section>
 
-            <span class="scroll-text"></span>
-        </div>
-    </section>
-    <!-- ==================== IMPACTO / COUNTERS ==================== -->
-    <section class="impacto">
-        <div class="impacto-inner">
-            <div class="impacto-item reveal delay-1">
-                <div class="impacto-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                        <circle cx="9" cy="7" r="4" />
-                        <path d="M23 21v-2a4 4 0 00-3-3.87" />
-                        <path d="M16 3.13a4 4 0 010 7.75" />
-                    </svg>
-                </div>
-                <div class="impacto-num-wrap">
-                    <span class="impacto-prefix">+</span>
-                    <span class="impacto-num" data-target="2000">0</span>
-                </div>
-                <span class="impacto-lbl">Clientes satisfechos</span>
-            </div>
-            <div class="impacto-divider"></div>
-            <div class="impacto-item reveal delay-2">
-                <div class="impacto-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                    </svg>
-                </div>
-                <div class="impacto-num-wrap">
-                    <span class="impacto-prefix">+</span>
-                    <span class="impacto-num" data-target="15">0</span>
-                </div>
-                <span class="impacto-lbl">Años de experiencia</span>
-            </div>
-            <div class="impacto-divider"></div>
-            <div class="impacto-item reveal delay-3">
-                <div class="impacto-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
-                        <circle cx="12" cy="10" r="3" />
-                    </svg>
-                </div>
-                <div class="impacto-num-wrap">
-                    <span class="impacto-num" data-target="7">0</span>
-                </div>
-                <span class="impacto-lbl">Sedes a nivel nacional</span>
-            </div>
-            <div class="impacto-divider"></div>
-            <div class="impacto-item reveal delay-4">
-                <div class="impacto-icon">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                </div>
-                <div class="impacto-num-wrap">
-                    <span class="impacto-num" data-target="100">0</span>
-                    <span class="impacto-suffix">%</span>
-                </div>
-                <span class="impacto-lbl">Respaldo FISE</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== QUIÉNES SOMOS ==================== -->
-    <section class="quienes">
-        <div class="quienes-media reveal-left">
-            <!-- IMG PRINCIPAL: Imagenes/Taller1.webp -->
-            <img src="Imagenes/Taller1.webp" alt="Taller AutoGas" class="q-img-main" loading="lazy" decoding="async">
-            <!-- IMG SECUNDARIA: Imagenes/Taller2.webp -->
-            <img src="Imagenes/Taller2.webp" alt="Equipo AutoGas" class="q-img-secondary" loading="lazy" decoding="async">
-            <div class="q-badge">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-                <span>Taller autorizado FISE</span>
-            </div>
-        </div>
-
-        <div class="quienes-text reveal-right">
-            <div class="section-tag">Quiénes Somos</div>
-            <h2 class="section-title dark">
-                EL TALLER QUE<br>
-                TU AUTO<br>
-                <span class="red-text">MERECE</span>
-            </h2>
-            <p class="section-desc dark">
-                AutoGas nació en Huancayo con una sola convicción: darle al peruano acceso real a tecnología de
-                conversión vehicular de primer nivel. Hoy somos presencia nacional, con 7 sedes y un equipo de técnicos
-                certificados que garantizan cada instalación.
-            </p>
-            <p class="section-desc dark" style="margin-top:14px;">
-                Somos taller autorizado por el Fondo de Inclusión Social Energético, lo que nos permite ofrecer
-                financiamiento accesible y garantizar los más altos estándares en cada conversión.
-            </p>
-            <div class="quienes-tags">
-                <span class="q-tag">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    GNV &amp; GLP
-                </span>
-                <span class="q-tag">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Mantenimiento preventivo
-                </span>
-                <span class="q-tag">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Diagnóstico computarizado
-                </span>
-                <span class="q-tag">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                    Financiamiento FISE
-                </span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== TIMELINE / HISTORIA ==================== -->
-    <section class="historia" id="historia">
-        <div class="historia-header reveal">
-            <div class="section-tag light-tag">Nuestra Historia</div>
-            <h2 class="section-title light">DE HUANCAYO<br>AL <span class="red-text">PERÚ</span></h2>
-        </div>
-
-        <div class="timeline">
-            <div class="timeline-line"></div>
-
-            <div class="timeline-item timeline-item--left reveal-left">
-                <div class="tl-dot"></div>
-                <div class="tl-card">
-                    <span class="tl-year">2009</span>
-                    <p class="tl-text">Fundación en Ica, primer taller de conversión GNV en la región.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item timeline-item--right reveal-right delay-1">
-                <div class="tl-dot"></div>
-                <div class="tl-card">
-                    <span class="tl-year">2013</span>
-                    <p class="tl-text">Certificación oficial FISE — respaldo del Estado Peruano.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item timeline-item--left reveal-left delay-1">
-                <div class="tl-dot"></div>
-                <div class="tl-card">
-                    <span class="tl-year">2016</span>
-                    <p class="tl-text">Expansión a Lima y Arequipa. 500 conversiones completadas.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item timeline-item--right reveal-right delay-2">
-                <div class="tl-dot"></div>
-                <div class="tl-card">
-                    <span class="tl-year">2019</span>
-                    <p class="tl-text">Nuevas sedes en Trujillo, Huancayo y Nasca.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item timeline-item--left reveal-left delay-2">
-                <div class="tl-dot"></div>
-                <div class="tl-card">
-                    <span class="tl-year">2022</span>
-                    <p class="tl-text">Incorporación de diagnóstico computarizado y tecnología GLP Fase 2.</p>
-                </div>
-            </div>
-
-            <div class="timeline-item timeline-item--right reveal-right delay-3">
-                <div class="tl-dot tl-dot--active"></div>
-                <div class="tl-card tl-card--highlight">
-                    <span class="tl-year red-text">2025</span>
-                    <p class="tl-text">7 sedes activas. +2,000 clientes. Red nacional consolidada.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== VALORES ==================== -->
-    <section class="valores">
-        <div class="valores-header reveal">
-            <div class="section-tag">Nuestros Pilares</div>
-            <h2 class="section-title dark">LO QUE NOS<br><span class="red-text">DEFINE</span></h2>
-        </div>
-
-        <div class="valores-grid">
-            <div class="valor-card reveal delay-1">
-                <div class="valor-icon-wrap">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg>
-                </div>
-                <span class="valor-word">Confianza</span>
-            </div>
-            <div class="valor-card reveal delay-2">
-                <div class="valor-icon-wrap">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <polyline points="12 6 12 12 16 14" />
-                        <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-                        <polyline points="22 4 12 14.01 9 11.01" />
-                    </svg>
-                </div>
-                <span class="valor-word">Calidad</span>
-            </div>
-            <div class="valor-card reveal delay-3">
-                <div class="valor-icon-wrap">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-                    </svg>
-                </div>
-                <span class="valor-word">Innovación</span>
-            </div>
-            <div class="valor-card reveal delay-4">
-                <div class="valor-icon-wrap">
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                        <polyline points="9 22 9 12 15 12 15 22" />
-                    </svg>
-                </div>
-                <span class="valor-word">Seguridad</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== EQUIPO ==================== -->
-    <section class="equipo">
-        <div class="equipo-header reveal">
-            <div class="section-tag light-tag">Las personas detrás</div>
-            <h2 class="section-title light">NUESTRO<br><span class="red-text">EQUIPO</span></h2>
-        </div>
-
-        <div class="equipo-grid">
-            <div class="team-card reveal delay-1">
-                <div class="team-photo">
-                    <!-- FOTO: Imagenes/Equipo1.jpg -->
-                    <img src="Imagenes/Equipo1.jpg" alt="Gerente General AutoGas"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" loading="lazy" decoding="async">
-                    <div class="team-photo-placeholder" style="display:none">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
+        <!-- ==================== NUESTRA HISTORIA ==================== -->
+        <section class="section section-white" aria-labelledby="historiaTitulo">
+            <div class="container">
+                <div class="historia-head">
+                    <h2 class="display reveal" id="historiaTitulo">Nuestra historia</h2>
+                    <div class="historia-text reveal">
+                        <!-- PENDIENTE: ciudad, año y por qué empezó AutoGas -->
+                        <p>AutoGas nació en <strong>[CIUDAD]</strong> en <strong>[AÑO]</strong> con una idea simple: [por qué empezó, en una o dos frases reales].</p>
+                        <p>Hoy somos siete sedes en el Perú y un equipo de técnicos que convierten, certifican y mantienen vehículos a GNV y GLP, con convenio FISE para que más personas puedan dar el paso.</p>
                     </div>
                 </div>
-                <div class="team-info">
-                    <span class="team-name">Gerencia General</span>
-                    <span class="team-role">Fundador &amp; Director</span>
-                </div>
-            </div>
 
-            <div class="team-card reveal delay-2">
-                <div class="team-photo">
-                    <img src="Imagenes/Equipo2.jpg" alt="Jefe Técnico AutoGas"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" loading="lazy" decoding="async">
-                    <div class="team-photo-placeholder" style="display:none">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
+                <figure class="equipo reveal">
+                    <!-- PENDIENTE: cuando tengas la foto grupal, guárdala como Imagenes/equipo.webp
+                         y reemplaza el bloque "foto-pendiente" por esta línea:
+                         <img src="Imagenes/equipo.webp" alt="Equipo de AutoGas en el taller" width="1920" height="840" loading="lazy" decoding="async"> -->
+                    <div class="foto-pendiente">
+                        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                        <strong>[Foto grupal del equipo]</strong>
+                        <span>Horizontal, en el taller, con buena luz y todos de frente</span>
                     </div>
+                    <figcaption>
+                        <!-- PENDIENTE: sede donde se tomó la foto -->
+                        <span>El equipo AutoGas en [SEDE]</span>
+                        <span>Las personas que reciben, revisan y entregan tu vehículo.</span>
+                    </figcaption>
+                </figure>
+
+                <dl class="cifras reveal">
+                    <div><dt>7 sedes</dt><dd>en todo el Perú</dd></div>
+                    <div><dt>+15 años</dt><dd>de experiencia en el rubro</dd></div>
+                    <div><dt>+2 000</dt><dd>conversiones realizadas</dd></div>
+                    <div><dt>FISE · MTC</dt><dd>convenio y taller autorizado</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <!-- ==================== LÍNEA DE TIEMPO ==================== -->
+        <section class="section section-dark" aria-labelledby="historiaHitos">
+            <div class="container">
+                <div class="section-head-split reveal">
+                    <h2 class="display" id="historiaHitos">Cómo llegamos hasta aquí</h2>
+                    <p class="lead">Los momentos que nos trajeron de un solo taller a una red nacional.</p>
                 </div>
-                <div class="team-info">
-                    <span class="team-name">Jefe Técnico</span>
-                    <span class="team-role">Especialista GNV / GLP</span>
+                <!-- PENDIENTE: años y textos reales de cada hito -->
+                <ol class="timeline">
+                    <li class="reveal"><p class="tl-year">[AÑO]</p><p>Abrimos el primer taller en [CIUDAD].</p></li>
+                    <li class="reveal"><p class="tl-year">[AÑO]</p><p>Firmamos el convenio con FISE para financiar conversiones a GNV.</p></li>
+                    <li class="reveal"><p class="tl-year">[AÑO]</p><p>[Hito: nuevas sedes en …]</p></li>
+                    <li class="reveal"><p class="tl-year">[AÑO]</p><p>[Hito: nuevo servicio o tecnología]</p></li>
+                    <li class="reveal tl-hoy"><p class="tl-year">Hoy</p><p>Siete sedes: Ica, Lima, Huancayo, Trujillo, Arequipa, Nasca y Chincha.</p></li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ==================== CÓMO TRABAJAMOS ==================== -->
+        <section class="section section-light" aria-labelledby="trabajoTitulo">
+            <div class="container">
+                <div class="section-head-split reveal">
+                    <h2 class="display" id="trabajoTitulo">Cómo trabajamos</h2>
+                    <p class="lead lead-dark">Compromisos que puedes exigirnos en cualquiera de nuestras sedes.</p>
+                </div>
+                <!-- PENDIENTE: dejar solo los compromisos que el taller cumple de verdad -->
+                <ol class="compromisos">
+                    <li class="reveal">
+                        <span class="comp-num">01</span>
+                        <h3>[Presupuesto por escrito antes de empezar]</h3>
+                        <p>[Te explicamos qué se va a hacer y cuánto cuesta antes de tocar tu auto.]</p>
+                    </li>
+                    <li class="reveal">
+                        <span class="comp-num">02</span>
+                        <h3>[Garantía por escrito]</h3>
+                        <p>[Plazo de la garantía y qué cubre.]</p>
+                    </li>
+                    <li class="reveal">
+                        <span class="comp-num">03</span>
+                        <h3>[Técnicos certificados en cada instalación]</h3>
+                        <p>[Quién certifica a los técnicos y cada cuánto se capacitan.]</p>
+                    </li>
+                    <li class="reveal">
+                        <span class="comp-num">04</span>
+                        <h3>[Seguimiento después de la entrega]</h3>
+                        <p>[Cómo te acompañamos después: revisiones, recordatorio de certificación, etc.]</p>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ==================== INSTALACIONES ==================== -->
+        <section class="section section-white" aria-labelledby="instTitulo">
+            <div class="container">
+                <div class="section-head-split reveal">
+                    <h2 class="display" id="instTitulo">Nuestras instalaciones</h2>
+                    <p class="lead lead-dark">Áreas separadas para conversión, mecánica y atención, equipadas para trabajar con orden y seguridad.</p>
+                </div>
+                <div class="instalaciones reveal">
+                    <figure class="inst-big">
+                        <img src="../Inicio/Imagenes/Taller3.webp" alt="Área de trabajo con varios vehículos en atención" width="1920" height="1440" loading="lazy" decoding="async">
+                        <figcaption>Área de trabajo</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="Imagenes/IMG_3214.webp" alt="Bahía de conversión a gas con un auto rojo" width="1920" height="1440" loading="lazy" decoding="async">
+                        <figcaption>Conversión GNV / GLP</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../Servicios/Imagenes/IMG_3217.webp" alt="Elevadores con autos en el área de mecánica" width="1920" height="1440" loading="lazy" decoding="async">
+                        <figcaption>Mecánica</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../Inicio/Imagenes/Taller12.webp" alt="Técnicos revisando el motor de una camioneta" width="1400" height="1867" loading="lazy" decoding="async">
+                        <figcaption>Diagnóstico</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../Inicio/Imagenes/Taller4.webp" alt="Asesores atendiendo a un cliente junto a su auto" width="1920" height="1920" loading="lazy" decoding="async">
+                        <figcaption>Atención al cliente</figcaption>
+                    </figure>
                 </div>
             </div>
+        </section>
 
-            <div class="team-card reveal delay-3">
-                <div class="team-photo">
-                    <img src="Imagenes/Equipo3.jpg" alt="Coordinadora Comercial AutoGas"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" loading="lazy" decoding="async">
-                    <div class="team-photo-placeholder" style="display:none">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                    </div>
+        <!-- ==================== QUIÉN NOS RESPALDA ==================== -->
+        <section class="section section-light" aria-labelledby="respaldoTitulo">
+            <div class="container">
+                <div class="section-head-split reveal">
+                    <h2 class="display" id="respaldoTitulo">Quién nos respalda</h2>
+                    <p class="lead lead-dark">Lo que significa para ti cada uno de nuestros convenios y autorizaciones.</p>
                 </div>
-                <div class="team-info">
-                    <span class="team-name">Coordinación Comercial</span>
-                    <span class="team-role">Atención al Cliente</span>
+                <ul class="respaldo">
+                    <li class="reveal">
+                        <div class="respaldo-logo"><img src="Imagenes/FISE.webp" alt="FISE" width="221" height="228" loading="lazy"></div>
+                        <div><h3>FISE</h3><p>Convenio para que financies tu conversión a GNV.</p></div>
+                    </li>
+                    <li class="reveal">
+                        <div class="respaldo-logo"><img src="Imagenes/AhorroGNV.webp" alt="Programa Ahorro GNV" width="256" height="92" loading="lazy"></div>
+                        <div><h3>Ahorro GNV</h3><p>Programa con el que pagas la conversión en cuotas.</p></div>
+                    </li>
+                    <li class="reveal">
+                        <div class="respaldo-logo"><img src="Imagenes/MTC_Logo.webp" alt="Ministerio de Transportes y Comunicaciones" width="713" height="152" loading="lazy"></div>
+                        <!-- PENDIENTE: número de registro MTC -->
+                        <div><h3>MTC</h3><p>Taller autorizado: tu conversión queda en regla. Registro N.º [NÚMERO].</p></div>
+                    </li>
+                    <li class="reveal">
+                        <div class="respaldo-logo"><img src="Imagenes/MEI_Logo.webp" alt="Ministerio de Energía y Minas" width="1351" height="300" loading="lazy"></div>
+                        <!-- PENDIENTE: qué respaldo da el MINEM -->
+                        <div><h3>MINEM</h3><p>[Qué respaldo da el Ministerio de Energía y Minas a AutoGas]</p></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ==================== CIERRE ==================== -->
+        <section class="cta" aria-labelledby="ctaTitulo">
+            <div class="container cta-inner reveal">
+                <div>
+                    <h2 class="display" id="ctaTitulo">Conoce nuestra red de sedes</h2>
+                    <p class="cta-cities">Ica · Lima · Huancayo · Trujillo · Arequipa · Nasca · Chincha</p>
+                </div>
+                <div class="btn-row">
+                    <a class="btn btn-white btn-lg" href="../Sedes/sedes.html">Ver sedes</a>
+                    <a class="btn btn-ghost-light btn-lg" href="../Contacto/contacto.html">Cotizar ahora</a>
                 </div>
             </div>
-
-            <div class="team-card reveal delay-4">
-                <div class="team-photo">
-                    <img src="Imagenes/Equipo4.jpg" alt="Técnico Senior AutoGas"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'" loading="lazy" decoding="async">
-                    <div class="team-photo-placeholder" style="display:none">
-                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1">
-                            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                    </div>
-                </div>
-                <div class="team-info">
-                    <span class="team-name">Técnico Senior</span>
-                    <span class="team-role">Diagnóstico &amp; Mantenimiento</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== CERTIFICACIONES / MARQUEE ==================== -->
-    <section class="certs">
-        <div class="certs-header reveal">
-            <div class="section-tag">Certificaciones &amp; Alianzas</div>
-            <h2 class="section-title dark">RESPALDADOS POR<br><span class="red-text">LOS MEJORES</span></h2>
-        </div>
-
-        <div class="marquee-wrap">
-            <div class="marquee-track">
-                <!-- Partner logos — usando SVG inline como placeholders para partners reales -->
-                <div class="cert-logo">
-                    <img src="Imagenes/MEI_Logo.webp" alt="MEM"
-                        onerror="this.style.display='none'; this.parentElement.querySelector('.cert-fallback').style.display='block'" loading="lazy" decoding="async">
-                    <span class="cert-fallback" style="display:none">FISE</span>
-                </div>
-                <div class="cert-logo">
-                    <img src="Imagenes/FISE.webp" alt="FISE"
-                        onerror="this.style.display='none'; this.parentElement.querySelector('.cert-fallback').style.display='block'" loading="lazy" decoding="async">
-                    <span class="cert-fallback" style="display:none">FISE</span>
-                </div>
-                <div class="cert-logo">
-                    <img src="Imagenes/AhorroGNV.webp" alt="MTC"
-                        onerror="this.style.display='none'; this.parentElement.querySelector('.cert-fallback').style.display='block'" loading="lazy" decoding="async">
-                    <span class="cert-fallback" style="display:none">FISE</span>
-                </div>
-                <div class="cert-logo">
-                    <img src="Imagenes/MTC_Logo.webp" alt="MTC"
-                        onerror="this.style.display='none'; this.parentElement.querySelector('.cert-fallback').style.display='block'" loading="lazy" decoding="async">
-                    <span class="cert-fallback" style="display:none">FISE</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ==================== CTA SEDES ==================== -->
-    <section class="cta-sedes reveal">
-        <div class="cta-sedes-bg"></div>
-        <div class="cta-sedes-overlay"></div>
-        <div class="cta-sedes-content">
-            <div class="section-tag light-tag">Crecemos contigo</div>
-            <h2 class="cta-title">CONOCE NUESTRA<br>RED DE <span class="red-text">SEDES</span></h2>
-            <p class="cta-desc">Ica · Lima · Arequipa · Trujillo · Huancayo · Nasca · Chincha</p>
-            <a href="../Sedes/sedes.html" class="btn-primary btn-primary--lg">
-                Ver todas las sedes
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-            </a>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
-        <div class="footer-inner">
-            <div class="footer-brand">
-                <a href="../Inicio/inicio.html">
-                    <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" class="footer-logo" loading="lazy" decoding="async" />
-                </a>
-                <p class="footer-tagline">Convierte. Ahorra. Domina.</p>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/autogasica" target="_blank" rel="noopener"
-                        aria-label="Instagram">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" rel="noopener" aria-label="Facebook">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-                        </svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener" aria-label="TikTok">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
-                        </svg>
-                    </a>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="88" height="32" loading="lazy">
+                    <p>Convierte. Ahorra. Domina.<br>Talleres de conversión GNV/GLP en el Perú.</p>
+                    <ul class="social" aria-label="Redes sociales">
+                        <li>
+                            <a href="https://www.instagram.com/autogasica" target="_blank" rel="noopener" aria-label="Instagram de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" rel="noopener" aria-label="Facebook de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener" aria-label="TikTok de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.6-2.7 5.9-5.9 5.9-3.4 0-5.9-2.6-5.9-5.8 0-3.6 3.1-6.2 6.8-5.7v3.2c-1.8-.4-3.5.8-3.5 2.6 0 1.4 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.2z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <nav aria-label="Secciones del sitio">
+                    <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                        <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                        <li><a href="../Tienda/tienda.html">Tienda</a></li>
+                        <li><a href="../Contacto/contacto.html">Cotizar</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h3>WhatsApp por sede</h3>
+                    <ul class="footer-2col">
+                        <li><a href="https://wa.me/51978421654" target="_blank" rel="noopener">Ica</a></li>
+                        <li><a href="https://wa.me/51942623696" target="_blank" rel="noopener">Lima</a></li>
+                        <li><a href="https://wa.me/51942867212" target="_blank" rel="noopener">Huancayo</a></li>
+                        <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener">Trujillo</a></li>
+                        <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener">Arequipa</a></li>
+                        <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener">Nasca</a></li>
+                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener">Chincha</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Legal</h3>
+                    <!-- PENDIENTE: crear estas páginas y poner sus enlaces -->
+                    <ul>
+                        <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
+                        <li><a href="#" data-pendiente>Política de privacidad</a></li>
+                        <li><a href="#" data-pendiente>Términos y condiciones</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="footer-nav">
-                <h4>Navegación</h4>
-                <ul>
-                    <li><a href="../Inicio/inicio.html">Inicio</a></li>
-                    <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
-                    <li><a href="../Servicios/servicios.html">Servicios</a></li>
-                    <li><a href="../Sedes/sedes.html">Sedes</a></li>
-                    <li><a href="../Tienda/tienda.html">Tienda</a></li>
-                    <li><a href="../Contacto/contacto.html">Cotizar</a></li>
-                </ul>
+            <div class="footer-bottom">
+                <!-- PENDIENTE: RUC -->
+                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>Hecho en el Perú</p>
             </div>
-            <div class="footer-nav">
-                <h4>Tienda</h4>
-                <ul>
-                    <li><a href="../Tienda/tienda.html#store">Aceites y Lubricantes</a></li>
-                    <li><a href="../Tienda/tienda.html#store">Repuestos</a></li>
-                    <li><a href="../Tienda/tienda.html#store">Refrigerantes</a></li>
-                    <li><a href="../Tienda/tienda.html#store">Filtros y Componentes</a></li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <h4>Atención por WhatsApp</h4>
-                <ul>
-                    <li>
-                        <a href="https://wa.me/51978421654" target="_blank" rel="noopener">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                            </svg>
-                            Sede Ica
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/51942623696" target="_blank" rel="noopener">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                            </svg>
-                            Sede Lima
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/51942867212" target="_blank" rel="noopener">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                            </svg>
-                            Sede Huancayo
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/51939067488" target="_blank" rel="noopener">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                            </svg>
-                            Sede Nasca
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/51937695830" target="_blank" rel="noopener">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                            </svg>
-                            Sede Trujillo
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/51930210613" target="_blank" rel="noopener">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                            </svg>
-                            Sede Chincha
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://wa.me/51975338252" target="_blank" rel="noopener">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                            </svg>
-                            Sede Arequipa
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 AutoGas Perú. Todos los derechos reservados.</p>
-            <p>Diseñado para quienes exigen lo mejor.</p>
         </div>
     </footer>
 
-    <script src="nosotros.js"></script>
+    <script src="../Comun/comun.js?v=20261030-1"></script>
 </body>
 
 </html>
