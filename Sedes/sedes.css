@@ -195,9 +195,15 @@
 .sin-resultados { padding-top: 48px; font-size: 17px; color: var(--ink-soft); }
 
 @media (max-width: 900px) {
-    .sede, .sede-rev { grid-template-columns: minmax(0, 1fr); padding-block: 56px; }
-    .sede-rev .sede-gal { order: 0; }
+    .sede, .sede-rev { grid-template-columns: minmax(0, 1fr); padding-block: 56px; row-gap: 0; }
     .sede-thumbs { gap: 6px; }
+    /* En celular: primero la ciudad, luego las fotos y después la información */
+    .sede-info { display: contents; }
+    .sede-meta { order: 1; }
+    .sede-ciudad { order: 2; }
+    .sede-gal, .sede-rev .sede-gal { order: 3; margin-top: 20px; }
+    .sede-datos { order: 4; }
+    .sede-tels { order: 5; }
 }
 
 /* ---------- Mapa interactivo (Leaflet) ---------- */
