@@ -36,7 +36,7 @@
 .historia-text p + p { margin-top: 18px; }
 
 .equipo { margin-top: 56px; }
-.equipo img { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; border-radius: var(--radius); }
+.equipo img { width: 100%; height: auto; aspect-ratio: 1507 / 707; object-fit: cover; border-radius: var(--radius); }
 /* Espacio reservado mientras llega la foto grupal */
 .foto-pendiente {
     aspect-ratio: 16 / 7; background: #E9E7E2; border: 2px dashed #B9B5AD; border-radius: var(--radius);
