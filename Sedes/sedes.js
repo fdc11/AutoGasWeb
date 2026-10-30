@@ -1,475 +1,222 @@
-/* =============================================
+/* =====================================================================
    sedes.js — AutoGas
-   Navbar · Hero · Filtros · Modal · Leaflet
-============================================= */
+   Lo propio de la página Sedes (el menú, las animaciones al hacer
+   scroll y el año del footer están en ../Comun/comun.js):
+   1. Galería de cada sede (miniaturas + deslizar en celular)
+   2. Visor de fotos a pantalla completa
+   3. Filtros por servicio
+   4. Barra de ciudades: marca la sede que estás viendo
+   5. Mapa interactivo (Leaflet)
+   ===================================================================== */
 
-/* --------------------------------------------------
-   DATA — Sedes
-   ► Para cambiar el link de Google Maps de cada sede,
-     edita el campo "maps" con la URL que quieras.
-     Tip: abre Google Maps, busca la dirección exacta,
-     y copia la URL del navegador.
--------------------------------------------------- */
-const SEDES_DATA = {
-    ica: {
-        ciudad: 'Ica',
-        region: 'Región Ica',
-        address: 'Av. Fernando León de Vivero N°304 - Ref. Frente al Cementerio General de Saraja',
-        maps: 'https://maps.app.goo.gl/PZdiW36SM2awhmtSA',
-        lat: -14.05906, lng: -75.74256,
-        areas: [
-            { tipo: 'atencion', nombre: 'Atención al Cliente', telefono: '984851714' },
-            { tipo: 'ventas', nombre: 'Ventas', telefono: '978421654' },
-            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '942058613' }
-        ],
-        whatsapp: '51984851714'
-    },
-    lima: {
-        ciudad: 'Lima',
-        region: 'Región Lima',
-        address: 'Jr. San Lino N°6318 - Los Olivos, Lima',
-        maps: 'https://maps.app.goo.gl/c628PPCCC9cx2U5w5',
-        lat: -11.95456, lng: -77.07081,
-        areas: [
-            { tipo: 'atencion', nombre: 'Atención al Cliente', telefono: '942623696' },
-            { tipo: 'ventas', nombre: 'Ventas', telefono: '971799721' },
-            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '969952447' }
-        ],
-        whatsapp: '51942623696'
-    },
-    huancayo: {
-        ciudad: 'Huancayo',
-        region: 'Región Junín',
-        address: 'Prol. Julio Sumar N°698, El Tambo - Huancayo',
-        maps: 'https://maps.app.goo.gl/GkT1hSnraskuAcUq9',
-        lat: -12.04594, lng: -75.21781,
-        areas: [
-            { tipo: 'atencion', nombre: 'Atención al Cliente', telefono: '942867212' },
-            { tipo: 'ventas', nombre: 'Ventas', telefono: '975829713' },
-            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '975750903' }
-        ],
-        whatsapp: '51942867212'
-    },
-    trujillo: {
-        ciudad: 'Trujillo',
-        region: 'Región La Libertad',
-        address: 'Av. Tupac Amaru 1633 - Urb. Alto Mochica',
-        maps: 'https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5',
-        lat: -8.08931, lng: -79.03844,
-        areas: [
-            { tipo: 'ventas', nombre: 'Ventas', telefono: '937695830' },
-            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '974596922' }
-        ],
-        whatsapp: '51937695830'
-    },
-    nasca: {
-        ciudad: 'Nasca',
-        region: 'Región Ica',
-        address: 'Av. Los Incas N°201 - Ref. Frente a la Agencia Ormeño',
-        maps: 'https://maps.app.goo.gl/V51hHVnhix8rHUdR6',
-        lat: -14.82806, lng: -74.94569,
-        areas: [
-            { tipo: 'ventas', nombre: 'Ventas', telefono: '939067488' },
-            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '976812208' }
-        ],
-        whatsapp: '51939067488'
-    },
-    arequipa: {
-        ciudad: 'Arequipa',
-        region: 'Región Arequipa',
-        address: 'Av. Túpac Amaru N°714 - Campo Marte Paucarpata',
-        maps: 'https://maps.app.goo.gl/qG2XawRA8xHF2MTb7',
-        lat: -16.42856, lng: -71.49956,
-        areas: [
-            { tipo: 'ventas', nombre: 'Ventas', telefono: '975338252' },
-            { tipo: 'soporte', nombre: 'Soporte Técnico', telefono: '949496098' }
-        ],
-        whatsapp: '51975338252'
-    },
-    chincha: {
-        ciudad: 'Chincha',
-        region: 'Región Ica',
-        address: 'Prolongación Lima N°636 - Chincha Alta',
-        maps: 'https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA',
-        lat: -13.45056, lng: -76.13681,
-        areas: [
-            { tipo: 'ventas', nombre: 'Ventas', telefono: '930210613' }
-        ],
-        whatsapp: '51930210613'
-    }
+/* ---------------------------------------------------------------
+   Datos para el mapa interactivo.
+   ► La dirección, los teléfonos y las fotos de cada sede se editan
+     directamente en sedes.html. Aquí solo van las coordenadas.
+   ► Para cambiar el link de Google Maps, edita "Cómo llegar" en
+     sedes.html (y "maps" aquí, si lo usas en el mapa).
+--------------------------------------------------------------- */
+const SEDES_MAPA = {
+    ica:      { ciudad: 'Ica',      lat: -14.05906, lng: -75.74256, address: 'Av. Fernando León de Vivero N.º 304 — Ref. frente al Cementerio General de Saraja', areas: ['Atención al cliente', 'Ventas', 'Soporte técnico'] },
+    lima:     { ciudad: 'Lima',     lat: -11.95456, lng: -77.07081, address: 'Jr. San Lino N.º 6318, Los Olivos, Lima', areas: ['Atención al cliente', 'Ventas', 'Soporte técnico'] },
+    huancayo: { ciudad: 'Huancayo', lat: -12.04594, lng: -75.21781, address: 'Prol. Julio Sumar N.º 698, El Tambo, Huancayo', areas: ['Atención al cliente', 'Ventas', 'Soporte técnico'], principal: true },
+    trujillo: { ciudad: 'Trujillo', lat: -8.08931,  lng: -79.03844, address: 'Av. Túpac Amaru 1633, Urb. Alto Mochica', areas: ['Ventas', 'Soporte técnico'] },
+    nasca:    { ciudad: 'Nasca',    lat: -14.82806, lng: -74.94569, address: 'Av. Los Incas N.º 201 — Ref. frente a la agencia Ormeño', areas: ['Ventas', 'Soporte técnico'] },
+    arequipa: { ciudad: 'Arequipa', lat: -16.42856, lng: -71.49956, address: 'Av. Túpac Amaru N.º 714, Campo Marte, Paucarpata', areas: ['Ventas', 'Soporte técnico'] },
+    chincha:  { ciudad: 'Chincha',  lat: -13.45056, lng: -76.13681, address: 'Prolongación Lima N.º 636, Chincha Alta', areas: ['Ventas'] }
 };
 
-/* Área icons (SVG strings) */
-const AREA_ICONS = {
-    atencion: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12 19.79 19.79 0 01.07 3.4 2 2 0 012.03 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`,
-    ventas: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>`,
-    soporte: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41M20 12h2M2 12h2M12 20v2M12 2v2"/></svg>`
-};
+(function () {
+    'use strict';
 
-/* Phone SVG */
-const PHONE_ICON = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 12 19.79 19.79 0 01.07 3.4 2 2 0 012.03 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sedes = Array.from(document.querySelectorAll('.sede'));
 
-/* =============================================
-   DOM READY
-============================================= */
-document.addEventListener('DOMContentLoaded', () => {
-
-    /* -----------------------------------------------
-       1. NAVBAR — scroll behavior
-    ----------------------------------------------- */
-    const navbar = document.getElementById('navbar');
-
-    function handleNavbarScroll() {
-        navbar.classList.toggle('scrolled', window.scrollY > 60);
+    /* ---------- 1. Galería de cada sede ---------- */
+    function fotosDe(sede) {
+        return Array.from(sede.querySelectorAll('.sede-thumb'));
     }
 
-    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-    handleNavbarScroll();
+    function mostrarFoto(sede, i) {
+        const thumbs = fotosDe(sede);
+        if (!thumbs.length) return;
+        const idx = (i + thumbs.length) % thumbs.length;
+        const t = thumbs[idx];
+        const img = sede.querySelector('.sede-foto');
+        const ciudad = sede.querySelector('.sede-ciudad').textContent.trim();
 
+        thumbs.forEach(b => b.removeAttribute('aria-current'));
+        t.setAttribute('aria-current', 'true');
+        sede.dataset.foto = idx;
+        sede.querySelector('.sede-contador').textContent = (idx + 1) + ' / ' + thumbs.length;
 
-    /* -----------------------------------------------
-       2. HAMBURGER / MOBILE MENU
-    ----------------------------------------------- */
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobileNav');
+        const cambiar = () => {
+            img.src = t.dataset.src;
+            img.width = t.dataset.w;
+            img.height = t.dataset.h;
+            img.alt = 'Sede AutoGas ' + ciudad + ', foto ' + (idx + 1) + ' de ' + thumbs.length;
+        };
+        if (reduceMotion) { cambiar(); return; }
+        img.classList.add('is-cambiando');
+        setTimeout(() => {
+            cambiar();
+            const listo = () => img.classList.remove('is-cambiando');
+            if (img.complete) listo(); else img.addEventListener('load', listo, { once: true });
+        }, 180);
+    }
 
-    window.toggleMenu = function toggleMenu() {
-        const nav = document.getElementById('mobileNav');
-        const h = document.getElementById('hamburger');
-        const isOpen = nav.classList.contains('open');
+    sedes.forEach(sede => {
+        fotosDe(sede).forEach((t, i) => t.addEventListener('click', () => mostrarFoto(sede, i)));
+        sede.querySelector('.sede-ampliar').addEventListener('click', () => abrirVisor(sede, Number(sede.dataset.foto || 0)));
 
-        if (isOpen) {
-            nav.classList.remove('open');
-            h.classList.remove('is-open');
-            document.body.style.overflow = '';
-            nav.querySelectorAll('.mnav-item').forEach(el => el.classList.remove('visible'));
-        } else {
-            nav.classList.add('open');
-            h.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-            nav.querySelectorAll('.mnav-item').forEach((el, i) => {
-                setTimeout(() => el.classList.add('visible'), 60 + i * 60);
-            });
-        }
-    };
-
-    // Cerrar con Escape
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            const nav = document.getElementById('mobileNav');
-            if (nav && nav.classList.contains('open')) window.toggleMenu();
-        }
-    });
-
-
-    /* -----------------------------------------------
-       3. HERO — animate on load
-    ----------------------------------------------- */
-    const heroBg = document.querySelector('.hero-bg');
-    if (heroBg) setTimeout(() => heroBg.classList.add('loaded'), 100);
-
-    const heroAnims = ['.hero-badge--anim', '.hero-title--anim', '.hero-sub--anim', '.hero-actions--anim'];
-    heroAnims.forEach((sel, i) => {
-        const el = document.querySelector(sel);
-        if (el) setTimeout(() => el.classList.add('visible'), 200 + i * 160);
-    });
-
-
-    /* -----------------------------------------------
-       4. SCROLL REVEAL — IntersectionObserver
-    ----------------------------------------------- */
-    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
+        // Deslizar con el dedo sobre la foto grande para pasar fotos
+        const main = sede.querySelector('.sede-main');
+        let x0 = null, y0 = null;
+        main.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+        main.addEventListener('touchend', e => {
+            if (x0 === null) return;
+            const dx = e.changedTouches[0].clientX - x0;
+            const dy = e.changedTouches[0].clientY - y0;
+            x0 = null;
+            if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+                e.preventDefault(); // que no abra el visor
+                mostrarFoto(sede, Number(sede.dataset.foto || 0) + (dx < 0 ? 1 : -1));
             }
         });
-    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
-
-    revealEls.forEach(el => revealObserver.observe(el));
-
-
-    /* -----------------------------------------------
-       5. PARALLAX — hero background (desktop only)
-    ----------------------------------------------- */
-    const heroBgEl = document.querySelector('.hero-bg');
-
-    window.addEventListener('scroll', () => {
-        if (!heroBgEl) return;
-        // Desactivar parallax en móvil para evitar glitches visuales
-        if (window.innerWidth <= 768) {
-            heroBgEl.style.transform = '';
-            return;
-        }
-        heroBgEl.style.transform = `scale(1) translateY(${window.scrollY * 0.25}px)`;
-    }, { passive: true });
-
-    // Limpiar parallax al redimensionar a móvil
-    window.addEventListener('resize', () => {
-        if (!heroBgEl) return;
-        if (window.innerWidth <= 768) {
-            heroBgEl.style.transform = '';
-        }
-    }, { passive: true });
-
-
-    /* -----------------------------------------------
-       6. FILTROS — pill filter sin reload
-    ----------------------------------------------- */
-    const filterPills = document.querySelectorAll('.filter-pill');
-    const sedeCards = document.querySelectorAll('.sede-card');
-    const noResults = document.getElementById('noResults');
-
-    filterPills.forEach(pill => {
-        pill.addEventListener('click', () => {
-            filterPills.forEach(p => p.classList.remove('active'));
-            pill.classList.add('active');
-
-            const filter = pill.dataset.filter;
-            let visibleCount = 0;
-
-            sedeCards.forEach((card) => {
-                const servicios = card.dataset.servicios || '';
-                const show = filter === 'todos' || servicios.includes(filter);
-
-                if (show) {
-                    card.classList.remove('hidden');
-                    card.style.opacity = '0';
-                    card.style.transform = 'translateY(24px)';
-                    setTimeout(() => {
-                        card.style.transition = 'opacity 0.45s ease, transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)';
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, visibleCount * 60);
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
-                    card.style.opacity = '';
-                    card.style.transform = '';
-                    card.style.transition = '';
-                }
-            });
-
-            noResults.style.display = visibleCount === 0 ? 'flex' : 'none';
-        });
     });
 
+    /* ---------- 2. Visor de fotos ---------- */
+    const visor = document.getElementById('visor');
+    const vImg = document.getElementById('visorImg');
+    const vCiudad = document.getElementById('visorCiudad');
+    const vCont = document.getElementById('visorContador');
+    let vSede = null, vIdx = 0, vOrigen = null;
 
-    /* -----------------------------------------------
-       7. MODAL — abrir/cerrar
-    ----------------------------------------------- */
-    const modalOverlay = document.getElementById('modalOverlay');
-    const modalClose = document.getElementById('modalClose');
-
-    /**
-     * Builds the content of the modal with data from the specified sede.
-     * @param {string} sedeKey - The key of the sede in SEDES_DATA.
-     */
-    function buildModalContent(sedeKey) {
-        const data = SEDES_DATA[sedeKey];
-        if (!data) return;
-
-        document.getElementById('modalRegion').textContent = data.region;
-        document.getElementById('modalTitle').textContent = data.ciudad;
-        document.getElementById('modalAddressText').textContent = data.address;
-        document.getElementById('modalAddress').href = data.maps;
-
-        // WhatsApp link
-        const waBtn = document.getElementById('modalWhatsApp');
-        waBtn.href = `https://wa.me/${data.whatsapp}?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20${encodeURIComponent(data.ciudad)}`;
-
-        // Áreas
-        const areasEl = document.getElementById('modalAreas');
-        areasEl.innerHTML = data.areas.map(area => `
-            <div class="modal-area-row">
-                <div class="modal-area-icon ${area.tipo}">
-                    ${AREA_ICONS[area.tipo] || ''}
-                </div>
-                <div class="modal-area-info">
-                    <div class="modal-area-name">${area.nombre}</div>
-                    <div class="modal-area-phone">${area.telefono}</div>
-                </div>
-                <a href="tel:${area.telefono.replace(/\D/g, '')}" class="modal-area-call" title="Llamar">
-                    ${PHONE_ICON}
-                </a>
-            </div>
-        `).join('');
+    function pintarVisor() {
+        const thumbs = fotosDe(vSede);
+        vIdx = (vIdx + thumbs.length) % thumbs.length;
+        const ciudad = vSede.querySelector('.sede-ciudad').textContent.trim();
+        vImg.src = thumbs[vIdx].dataset.src;
+        vImg.alt = 'Sede AutoGas ' + ciudad + ', foto ' + (vIdx + 1) + ' de ' + thumbs.length;
+        vCiudad.textContent = ciudad;
+        vCont.textContent = (vIdx + 1) + ' / ' + thumbs.length;
     }
 
-    /**
-     * Opens the sede details modal and disables body scrolling.
-     * @param {string} sedeKey - The key of the sede in SEDES_DATA.
-     */
-    function openModal(sedeKey) {
-        buildModalContent(sedeKey);
-        modalOverlay.classList.add('open');
+    function abrirVisor(sede, i) {
+        if (!visor || typeof visor.showModal !== 'function') return;
+        vSede = sede; vIdx = i; vOrigen = document.activeElement;
+        pintarVisor();
+        visor.showModal();
         document.body.style.overflow = 'hidden';
     }
 
-    /**
-     * Closes the sede details modal and restores body scrolling.
-     */
-    function closeModal() {
-        modalOverlay.classList.remove('open');
-        document.body.style.overflow = '';
+    if (visor) {
+        const mover = d => { vIdx += d; pintarVisor(); };
+        document.getElementById('visorPrev').addEventListener('click', () => mover(-1));
+        document.getElementById('visorNext').addEventListener('click', () => mover(1));
+        document.getElementById('visorCerrar').addEventListener('click', () => visor.close());
+        visor.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') mover(-1);
+            if (e.key === 'ArrowRight') mover(1);
+        });
+        visor.addEventListener('close', () => {
+            document.body.style.overflow = '';
+            // Deja la galería en la última foto vista
+            if (vSede) mostrarFoto(vSede, vIdx);
+            if (vOrigen) vOrigen.focus();
+        });
+        let vx = null;
+        visor.addEventListener('touchstart', e => { vx = e.touches[0].clientX; }, { passive: true });
+        visor.addEventListener('touchend', e => {
+            if (vx === null) return;
+            const dx = e.changedTouches[0].clientX - vx;
+            vx = null;
+            if (Math.abs(dx) > 50) mover(dx < 0 ? 1 : -1);
+        });
     }
 
-    // Botones "Ver detalles" en cards
-    document.querySelectorAll('.sede-card-btn').forEach(btn => {
-        btn.addEventListener('click', () => openModal(btn.dataset.sede));
-    });
+    /* ---------- 3. Filtros por servicio ---------- */
+    const filtros = document.querySelectorAll('.filtro');
+    const saltos = document.querySelectorAll('.sede-salto a');
+    const sinResultados = document.getElementById('sinResultados');
 
-    // Botón cerrar
-    modalClose.addEventListener('click', closeModal);
-
-    // Clic fuera del modal
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) closeModal();
-    });
-
-    // Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modalOverlay.classList.contains('open')) closeModal();
-    });
-
-
-    /* -----------------------------------------------
-       8. LEAFLET MAP — inicialización
-    ----------------------------------------------- */
-    initLeafletMap();
-
-    /**
-     * Initializes the Leaflet map, adds tile layers, and places markers for each sede.
-     */
-    function initLeafletMap() {
-        if (typeof L === 'undefined') return;
-
-        const map = L.map('leafletMap', {
-            center: [-12.5, -75.8],
-            zoom: 6,
-            zoomControl: true,
-            attributionControl: true
+    function aplicarFiltro(filtro) {
+        let visibles = 0;
+        sedes.forEach(sede => {
+            const ok = filtro === 'todos' || (sede.dataset.servicios || '').split(' ').includes(filtro);
+            sede.hidden = !ok;
+            // Alterna foto izquierda / derecha solo entre las que se ven
+            sede.classList.toggle('sede-rev', ok && visibles % 2 === 1);
+            if (ok) visibles++;
         });
+        saltos.forEach(a => {
+            const sede = document.getElementById(a.dataset.sede);
+            a.parentElement.hidden = !sede || sede.hidden;
+        });
+        sinResultados.hidden = visibles !== 0;
+    }
 
-        // OSM standard tiles (free, no API key) + CSS filter for the dark look —
-        // CARTO's dark_all basemap now requires a paid/free-tier API key and
-        // was rendering an "API KEY REQUIRED" watermark over the map.
+    filtros.forEach(btn => btn.addEventListener('click', () => {
+        filtros.forEach(b => b.setAttribute('aria-pressed', b === btn ? 'true' : 'false'));
+        aplicarFiltro(btn.dataset.filtro);
+    }));
+
+    /* ---------- 4. Barra de ciudades ---------- */
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                saltos.forEach(a => a.classList.toggle('is-active', a.dataset.sede === entry.target.id));
+            });
+        }, { rootMargin: '-45% 0px -50% 0px' });
+        sedes.forEach(s => io.observe(s));
+    }
+
+    /* ---------- 5. Mapa interactivo (Leaflet) ---------- */
+    function iniciarMapa() {
+        const el = document.getElementById('leafletMap');
+        if (!el || typeof L === 'undefined') return;
+
+        const map = L.map(el, { center: [-12.5, -75.8], zoom: 6, scrollWheelZoom: false });
+
+        // Mosaicos gratuitos de OpenStreetMap (sin API key); el CSS los oscurece
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             maxZoom: 19
         }).addTo(map);
 
-        function createMarkerIcon(isMain) {
-            const size = isMain ? 14 : 11;
-            return L.divIcon({
+        Object.entries(SEDES_MAPA).forEach(([id, s]) => {
+            const tam = s.principal ? 34 : 28;
+            const icon = L.divIcon({
                 className: '',
-                html: `
-                    <div style="
-                        position:relative;
-                        width:${size * 2 + 8}px;
-                        height:${size * 2 + 8}px;
-                        display:flex;
-                        align-items:center;
-                        justify-content:center;
-                    ">
-                        <div style="
-                            position:absolute;
-                            width:${size * 2 + 8}px;
-                            height:${size * 2 + 8}px;
-                            background:rgba(223,4,21,0.25);
-                            border-radius:50%;
-                            animation:leafletPulse 2s ease-out infinite;
-                        "></div>
-                        <div style="
-                            width:${size}px;
-                            height:${size}px;
-                            background:#df0415;
-                            border:2px solid #fff;
-                            border-radius:50%;
-                            box-shadow:0 0 8px rgba(223,4,21,0.7);
-                            position:relative;
-                            z-index:1;
-                        "></div>
-                    </div>
-                `,
-                iconSize: [size * 2 + 8, size * 2 + 8],
-                iconAnchor: [size + 4, size + 4]
-            });
-        }
-
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes leafletPulse {
-                0%   { transform:scale(0.5); opacity:0.8; }
-                100% { transform:scale(2);   opacity:0; }
-            }
-        `;
-        document.head.appendChild(style);
-
-        Object.entries(SEDES_DATA).forEach(([key, sede]) => {
-            const isMain = key === 'ica';
-            const marker = L.marker([sede.lat, sede.lng], { icon: createMarkerIcon(isMain) });
-
-            const areasHtml = sede.areas
-                .map(a => `<span style="font-size:0.65rem;font-family:'Barlow',sans-serif;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#999;">${a.nombre}</span>`)
-                .join('<br>');
-
-            const popupContent = `
-                <div style="min-width:200px;padding:4px 2px;">
-                    <div class="map-popup-city">${sede.ciudad}</div>
-                    <div class="map-popup-address">${sede.address}</div>
-                    <div style="margin-bottom:12px;line-height:1.8;">${areasHtml}</div>
-                    <button class="map-popup-btn" onclick="window.__openModalFromMap('${key}')">
-                        ${PHONE_ICON}
-                        Ver contacto
-                    </button>
-                </div>
-            `;
-
-            marker.bindPopup(popupContent, {
-                maxWidth: 260,
-                minWidth: 220,
-                closeButton: true,
-                className: 'autogas-popup'
+                html: '<div class="mapa-marcador' + (s.principal ? ' es-principal' : '') + '" style="width:' + tam + 'px;height:' + tam + 'px"><span></span></div>',
+                iconSize: [tam, tam],
+                iconAnchor: [tam / 2, tam / 2]
             });
 
-            marker.on('click', () => highlightCard(key));
-            marker.addTo(map);
+            const popup = document.createElement('div');
+            popup.innerHTML =
+                '<p class="map-popup-city"></p>' +
+                '<p class="map-popup-address"></p>' +
+                '<p class="map-popup-areas"></p>' +
+                '<button type="button" class="map-popup-btn">Ver sede y contacto</button>';
+            popup.querySelector('.map-popup-city').textContent = s.ciudad;
+            popup.querySelector('.map-popup-address').textContent = s.address;
+            popup.querySelector('.map-popup-areas').innerHTML = s.areas.map(a => a.replace(/</g, '&lt;')).join('<br>');
+            popup.querySelector('.map-popup-btn').addEventListener('click', () => {
+                map.closePopup();
+                const sede = document.getElementById(id);
+                if (sede) {
+                    if (sede.hidden) document.querySelector('.filtro[data-filtro="todos"]').click();
+                    sede.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+                }
+            });
+
+            L.marker([s.lat, s.lng], { icon: icon, title: 'Sede ' + s.ciudad, alt: 'Sede ' + s.ciudad })
+                .bindPopup(popup, { maxWidth: 260, minWidth: 220 })
+                .addTo(map);
         });
-
-        window.__openModalFromMap = function (sedeKey) {
-            openModal(sedeKey);
-            map.closePopup();
-        };
     }
 
-
-    /* -----------------------------------------------
-       9. HIGHLIGHT CARD desde mapa
-    ----------------------------------------------- */
-    /**
-     * Highlights the corresponding sede card in the DOM and scrolls it into view.
-     * @param {string} sedeKey - The key of the sede in SEDES_DATA.
-     */
-    function highlightCard(sedeKey) {
-        document.querySelectorAll('.sede-card').forEach(c => c.classList.remove('highlighted'));
-
-        const card = document.getElementById(`card-${sedeKey}`);
-        if (!card) return;
-
-        card.classList.add('highlighted');
-
-        const rect = card.getBoundingClientRect();
-        if (rect.top < 0 || rect.bottom > window.innerHeight) {
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-
-        setTimeout(() => card.classList.remove('highlighted'), 3000);
-    }
-
-    window.highlightSedeCard = highlightCard;
-
-});
+    iniciarMapa();
+})();
