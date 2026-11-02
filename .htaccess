@@ -44,7 +44,7 @@ AddDefaultCharset UTF-8
 # ---------- Bloquear archivos que no deben ser públicos ----------
 # .git, .claude, .agents, .gitignore, .htaccess, etc.
 RedirectMatch 404 /\.(?!well-known/)
-<FilesMatch "\.(sql|tmp|bak|log|md|sh|ini|env)$|^vercel\.json$">
+<FilesMatch "\.(sql|tmp|bak|log|md|sh|ini|env)$|^vercel\.json$|^config\.(local|example)\.php$">
     Require all denied
 </FilesMatch>
 
@@ -61,7 +61,7 @@ RedirectMatch 404 /\.(?!well-known/)
     # CSP de Inicio, Nosotros y Contacto. El hash autoriza SOLO el script
     # <script>document.documentElement.classList.add('js');</script>
     # Si cambias ese script aunque sea un espacio, hay que recalcular el hash.
-    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.googleusercontent.com; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
 </IfModule>
 
 # ---------- Caché del navegador ----------

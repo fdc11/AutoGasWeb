@@ -268,6 +268,39 @@
 .resenas-actions { display: flex; flex-direction: column; gap: 10px; }
 @media (max-width: 900px) { .resenas { grid-template-columns: 1fr; } }
 
+/* Reseñas de Google: pestañas por sede + tarjetas */
+.resenas-stars { margin-top: 6px; font-size: 20px; letter-spacing: 2px; color: #9A5C00; } /* 4,9:1 sobre el fondo hueso (AA) */
+.resenas-tabs { margin: 48px 0 24px; }
+.resenas-lista { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.resenas-lista:empty { display: none; }
+.resena {
+    display: flex; flex-direction: column; gap: 14px; padding: 24px;
+    background: var(--white); border: 1px solid var(--line-light); border-radius: var(--radius);
+}
+.resena-head { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.resena-avatar {
+    flex: none; width: 44px; height: 44px; border-radius: 50%; object-fit: cover;
+    display: grid; place-items: center; background: var(--ink); color: var(--white);
+    font-weight: 700; font-size: 15px;
+}
+.resena-autor { font-weight: 700; color: var(--ink); text-decoration: none; overflow-wrap: anywhere; }
+a.resena-autor:hover { color: var(--red); text-decoration: underline; }
+.resena-meta { margin-top: 2px; font-size: 13px; color: var(--ink-soft); }
+.resena-stars { font-size: 16px; letter-spacing: 2px; color: #9A5C00; } /* 5,4:1 sobre blanco */
+.resena-texto {
+    font-size: 15px; line-height: 1.6; color: var(--ink);
+    display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden;
+}
+.resena-link { margin-top: auto; font-size: 14px; font-weight: 600; color: var(--ink); }
+.resena-link:hover { color: var(--red); }
+.resenas-estado { font-size: 15px; color: var(--ink-soft); }
+.resenas-estado:empty { display: none; }
+.resenas-lista:not(:empty) + .resenas-estado { margin-top: 16px; }
+.resenas-nota { margin-top: 24px; max-width: 760px; font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+.resenas-nota a { color: var(--ink); font-weight: 600; }
+.resenas-panel[aria-busy="true"] .resenas-lista { opacity: .45; transition: opacity .2s; }
+@media (max-width: 900px) { .resenas-lista { grid-template-columns: 1fr; } }
+
 /* ---------- Preguntas frecuentes ---------- */
 .faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 64px; align-items: start; }
 .faq-list { border-top: 1px solid var(--ink); }

@@ -53,3 +53,7 @@ config.php
 db_config.php
 *.sqlite
 *.db
+
+# Clave de Google Places (reseñas): nunca al repositorio
+api/config.local.php
+api/_uso/
