@@ -33,11 +33,15 @@
     font-size: clamp(52px, 7.6vw, 112px); line-height: 0.88; letter-spacing: -0.005em;
     color: var(--white);
 }
-.hero-line { display: block; animation: riseIn 1s var(--ease-out) both; }
-.hero-line.l1 { animation-delay: .15s; }
-.hero-line.l2 { animation-delay: .3s; }
-.hero-line.l3 { animation-delay: .45s; color: var(--red); }
-.hero-copy { animation: riseIn .9s var(--ease-out) .65s both; }
+/* LCP: el texto de la portada es visible desde el primer pintado.
+   Solo se anima el desplazamiento (transform), nunca la opacidad,
+   para que Google mida el LCP en cuanto carga la página. */
+.hero-line { display: block; animation: slideUp .8s var(--ease-out) both; }
+.hero-line.l1 { animation-delay: 0s; }
+.hero-line.l2 { animation-delay: .08s; }
+.hero-line.l3 { animation-delay: .16s; color: var(--red); }
+.hero-copy { animation: slideUp .8s var(--ease-out) .2s both; }
+@keyframes slideUp { from { transform: translateY(24px); } to { transform: none; } }
 .hero-copy p { margin-top: 32px; max-width: 560px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.5; color: rgba(255, 255, 255, 0.86); }
 .hero-copy .btn-row { margin-top: 36px; }
 
@@ -325,4 +329,5 @@
 /* ---------- Accesibilidad: menos movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
     .marquee.is-running .marquee-track { animation: none; }
+    .hero-line, .hero-copy { animation: none; }
 }

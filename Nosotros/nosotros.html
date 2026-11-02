@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta name="theme-color" content="#0A0A0A">
     <meta name="color-scheme" content="light">
     <title>Nosotros | AutoGas — Talleres de conversión GNV y GLP en el Perú</title>
     <meta name="description" content="Conoce AutoGas: más de 15 años convirtiendo vehículos a GNV y GLP, 7 sedes en el Perú, convenio FISE y taller autorizado por el MTC.">
@@ -28,9 +29,11 @@
     </style>
     <script>document.documentElement.classList.add('js');</script>
 
-    <link rel="preload" as="image" href="../Inicio/Imagenes/AutoGasBanner.webp">
+    <link rel="preload" as="image" href="../Inicio/Imagenes/AutoGasBanner.webp" imagesrcset="../Inicio/Imagenes/AutoGasBanner-240.webp 240w, ../Inicio/Imagenes/AutoGasBanner-480.webp 480w, ../Inicio/Imagenes/AutoGasBanner-960.webp 960w, ../Inicio/Imagenes/AutoGasBanner-1440.webp 1440w, ../Inicio/Imagenes/AutoGasBanner.webp 1920w" imagesizes="(max-width: 900px) 160vw, 100vw" fetchpriority="high">
     <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
-    <link rel="stylesheet" href="../Comun/comun.css?v=20261030-4">
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261102-1">
     <link rel="stylesheet" href="nosotros.css?v=20261030-3">
 </head>
 
@@ -41,7 +44,7 @@
     <header class="site-header">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
-                <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
             </a>
 
             <ul class="nav-links">
@@ -63,7 +66,7 @@
     <!-- Menú de celular -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
         <div class="mobile-menu-top">
-            <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
+            <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
             <button class="mobile-menu-close" id="navClose" type="button" aria-label="Cerrar menú"></button>
         </div>
         <ul class="mnav-list">
@@ -80,7 +83,7 @@
 
         <!-- ==================== PORTADA ==================== -->
         <section class="hero" aria-labelledby="heroTitulo">
-            <img class="hero-img" src="../Inicio/Imagenes/AutoGasBanner.webp" alt="Fachada de un taller AutoGas" width="1920" height="1440" fetchpriority="high">
+            <img class="hero-img" src="../Inicio/Imagenes/AutoGasBanner.webp" srcset="../Inicio/Imagenes/AutoGasBanner-240.webp 240w, ../Inicio/Imagenes/AutoGasBanner-480.webp 480w, ../Inicio/Imagenes/AutoGasBanner-960.webp 960w, ../Inicio/Imagenes/AutoGasBanner-1440.webp 1440w, ../Inicio/Imagenes/AutoGasBanner.webp 1920w" sizes="(max-width: 900px) 160vw, 100vw" alt="Fachada de un taller AutoGas" width="1920" height="1440" fetchpriority="high">
             <div class="hero-shade" aria-hidden="true"></div>
             <div class="hero-inner container">
                 <h1 class="hero-title" id="heroTitulo">
@@ -111,7 +114,7 @@
                 </div>
 
                 <figure class="equipo reveal">
-                    <img src="Imagenes/equipo.webp" alt="El equipo de AutoGas con polos rojos frente a la oficina de administración del taller" width="1507" height="707" loading="lazy" decoding="async">
+                    <img src="Imagenes/equipo.webp" srcset="Imagenes/equipo-240.webp 240w, Imagenes/equipo-480.webp 480w, Imagenes/equipo-960.webp 960w, Imagenes/equipo.webp 1507w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 91vw, 1152px" alt="El equipo de AutoGas con polos rojos frente a la oficina de administración del taller" width="1507" height="707" loading="lazy" decoding="async">
                     <figcaption>
                         <!-- PENDIENTE: sede donde se tomó la foto -->
                         <span>El equipo AutoGas en Ica</span>
@@ -181,23 +184,23 @@
                 </div>
                 <div class="instalaciones reveal">
                     <figure class="inst-big">
-                        <img src="../Inicio/Imagenes/Taller3.webp" alt="Área de trabajo con varios vehículos en atención" width="1920" height="1440" loading="lazy" decoding="async">
+                        <img src="../Inicio/Imagenes/Taller3.webp" srcset="../Inicio/Imagenes/Taller3-240.webp 240w, ../Inicio/Imagenes/Taller3-480.webp 480w, ../Inicio/Imagenes/Taller3-960.webp 960w, ../Inicio/Imagenes/Taller3-1440.webp 1440w, ../Inicio/Imagenes/Taller3.webp 1920w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 45vw, 573px" alt="Área de trabajo con varios vehículos en atención" width="1920" height="1440" loading="lazy" decoding="async">
                         <figcaption>Área de trabajo</figcaption>
                     </figure>
                     <figure>
-                        <img src="Imagenes/IMG_3214.webp" alt="Bahía de conversión a gas con un auto rojo" width="1920" height="1440" loading="lazy" decoding="async">
+                        <img src="Imagenes/IMG_3214.webp" srcset="Imagenes/IMG_3214-240.webp 240w, Imagenes/IMG_3214-480.webp 480w, Imagenes/IMG_3214-960.webp 960w, Imagenes/IMG_3214-1440.webp 1440w, Imagenes/IMG_3214.webp 1920w" sizes="(max-width: 900px) 45vw, (max-width: 1400px) 23vw, 284px" alt="Bahía de conversión a gas con un auto rojo" width="1920" height="1440" loading="lazy" decoding="async">
                         <figcaption>Conversión GNV / GLP</figcaption>
                     </figure>
                     <figure>
-                        <img src="../Servicios/Imagenes/IMG_3217.webp" alt="Elevadores con autos en el área de mecánica" width="1920" height="1440" loading="lazy" decoding="async">
+                        <img src="../Servicios/Imagenes/IMG_3217.webp" srcset="../Servicios/Imagenes/IMG_3217-240.webp 240w, ../Servicios/Imagenes/IMG_3217-480.webp 480w, ../Servicios/Imagenes/IMG_3217-960.webp 960w, ../Servicios/Imagenes/IMG_3217-1440.webp 1440w, ../Servicios/Imagenes/IMG_3217.webp 1920w" sizes="(max-width: 900px) 45vw, (max-width: 1400px) 23vw, 284px" alt="Elevadores con autos en el área de mecánica" width="1920" height="1440" loading="lazy" decoding="async">
                         <figcaption>Mecánica</figcaption>
                     </figure>
                     <figure>
-                        <img src="../Inicio/Imagenes/Taller12.webp" alt="Técnicos revisando el motor de una camioneta" width="1400" height="1867" loading="lazy" decoding="async">
+                        <img src="../Inicio/Imagenes/Taller12.webp" srcset="../Inicio/Imagenes/Taller12-240.webp 240w, ../Inicio/Imagenes/Taller12-480.webp 480w, ../Inicio/Imagenes/Taller12-960.webp 960w, ../Inicio/Imagenes/Taller12.webp 1400w" sizes="(max-width: 900px) 45vw, (max-width: 1400px) 23vw, 284px" alt="Técnicos revisando el motor de una camioneta" width="1400" height="1867" loading="lazy" decoding="async">
                         <figcaption>Diagnóstico</figcaption>
                     </figure>
                     <figure>
-                        <img src="../Inicio/Imagenes/Taller4.webp" alt="Asesores atendiendo a un cliente junto a su auto" width="1920" height="1920" loading="lazy" decoding="async">
+                        <img src="../Inicio/Imagenes/Taller4.webp" srcset="../Inicio/Imagenes/Taller4-240.webp 240w, ../Inicio/Imagenes/Taller4-480.webp 480w, ../Inicio/Imagenes/Taller4-960.webp 960w, ../Inicio/Imagenes/Taller4-1440.webp 1440w, ../Inicio/Imagenes/Taller4.webp 1920w" sizes="(max-width: 900px) 45vw, (max-width: 1400px) 23vw, 284px" alt="Asesores atendiendo a un cliente junto a su auto" width="1920" height="1920" loading="lazy" decoding="async">
                         <figcaption>Atención al cliente</figcaption>
                     </figure>
                 </div>
@@ -226,7 +229,7 @@
                         <div><h3>MTC</h3><p>Taller autorizado: tu conversión queda en regla. Registro N.º [NÚMERO].</p></div>
                     </li>
                     <li class="reveal">
-                        <div class="respaldo-logo"><img src="Imagenes/MEI_Logo.webp" alt="Ministerio de Energía y Minas" width="1351" height="300" loading="lazy"></div>
+                        <div class="respaldo-logo"><img src="Imagenes/MEI_Logo.webp" srcset="Imagenes/MEI_Logo-240.webp 240w, Imagenes/MEI_Logo-480.webp 480w, Imagenes/MEI_Logo-960.webp 960w, Imagenes/MEI_Logo.webp 1351w" sizes="(max-width: 900px) 32vw, (max-width: 1400px) 12vw, 120px" alt="Ministerio de Energía y Minas" width="1351" height="300" loading="lazy"></div>
                         <!-- PENDIENTE: qué respaldo da el MINEM -->
                         <div><h3>MINEM</h3><p>[Qué respaldo da el Ministerio de Energía y Minas a AutoGas]</p></div>
                     </li>
@@ -320,7 +323,7 @@
         </div>
     </footer>
 
-    <script src="../Comun/comun.js?v=20261030-3"></script>
+    <script src="../Comun/comun.js?v=20261102-1" defer></script>
 </body>
 
 </html>

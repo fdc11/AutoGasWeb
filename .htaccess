@@ -1,0 +1,90 @@
+# =====================================================================
+#  AutoGas — configuración del servidor (Apache / LiteSpeed)
+#  Equivale a vercel.json para hosting tradicional (cPanel, Hostinger…)
+#  y también funciona en XAMPP local.
+#  Sedes/, Servicios/ y Tienda/ tienen su propio .htaccess con el CSP
+#  de esa página (usan mapa, Supabase o onclick).
+# =====================================================================
+
+Options -Indexes
+DirectoryIndex index.html
+AddDefaultCharset UTF-8
+
+# ---------- Tipos de archivo (por si el hosting no los conoce) ----------
+<IfModule mod_mime.c>
+    AddType image/webp            .webp
+    AddType font/woff2            .woff2
+    AddType video/mp4             .mp4
+    AddType image/svg+xml         .svg
+    AddType image/x-icon          .ico
+    AddType application/xml       .xml
+    AddCharset UTF-8 .html .css .js .xml .txt .svg
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # ---------- Forzar HTTPS (menos en localhost / XAMPP) ----------
+    RewriteCond %{HTTP_HOST} !^(localhost|127\.0\.0\.1)(:\d+)?$ [NC]
+    RewriteCond %{HTTPS} !=on
+    RewriteCond %{HTTP:X-Forwarded-Proto} !https
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # ---------- La raíz va a Inicio con redirect 301 real ----------
+    # %1 = carpeta donde está la web ("/" en el hosting, "/AutoGasWeb/" en XAMPP)
+    # (PROTO respeta https aunque el hosting esté detrás de un proxy/Cloudflare)
+    RewriteRule ^ - [E=PROTO:http]
+    RewriteCond %{HTTPS} =on [OR]
+    RewriteCond %{HTTP:X-Forwarded-Proto} =https
+    RewriteRule ^ - [E=PROTO:https]
+    RewriteCond %{REQUEST_URI} ^(.*/)(index\.html)?$
+    RewriteRule ^(index\.html)?$ %{ENV:PROTO}://%{HTTP_HOST}%1Inicio/inicio.html [R=301,L]
+</IfModule>
+
+# ---------- Bloquear archivos que no deben ser públicos ----------
+# .git, .claude, .agents, .gitignore, .htaccess, etc.
+RedirectMatch 404 /\.(?!well-known/)
+<FilesMatch "\.(sql|tmp|bak|log|md|sh|ini|env)$|^vercel\.json$">
+    Require all denied
+</FilesMatch>
+
+# ---------- Headers de seguridad ----------
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+    # El navegador ignora HSTS si llega por http (localhost), así que es seguro dejarlo fijo
+    Header always set Strict-Transport-Security "max-age=31536000"
+    Header always unset X-Powered-By
+
+    # CSP de Inicio, Nosotros y Contacto. El hash autoriza SOLO el script
+    # <script>document.documentElement.classList.add('js');</script>
+    # Si cambias ese script aunque sea un espacio, hay que recalcular el hash.
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-/x7W7R75k8Roq0WaVRQX9blP4OufE5xbAdzklGxsgpw='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+</IfModule>
+
+# ---------- Caché del navegador ----------
+<IfModule mod_headers.c>
+    # Fuentes: no cambian nunca
+    <FilesMatch "\.(woff2)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+    # Imágenes y videos: 30 días (sin "immutable" porque reemplazas archivos con el mismo nombre)
+    <FilesMatch "\.(webp|jpe?g|png|svg|gif|ico|mp4)$">
+        Header set Cache-Control "public, max-age=2592000"
+    </FilesMatch>
+    # CSS/JS: 1 día; se renuevan al cambiar el ?v= del HTML
+    <FilesMatch "\.(css|js)$">
+        Header set Cache-Control "public, max-age=86400, must-revalidate"
+    </FilesMatch>
+    # HTML: siempre la versión más reciente
+    <FilesMatch "\.(html|xml|txt)$">
+        Header set Cache-Control "no-cache"
+    </FilesMatch>
+</IfModule>
+
+# ---------- Compresión ----------
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/xml application/javascript text/javascript application/json image/svg+xml
+</IfModule>

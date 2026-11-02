@@ -127,3 +127,37 @@
         });
     }
 })();
+
+/* ---------- Acciones sin JavaScript en línea ----------
+   Permite un CSP estricto (sin 'unsafe-inline'). En lugar de
+   onclick="fn('a', 1)" el HTML usa:
+       data-accion="fn" data-args='["a", 1]'
+   "$el" se cambia por el elemento y "$event" por el evento.
+   Para formularios: data-enviar="fn" (hace preventDefault). */
+(function () {
+    'use strict';
+    function ejecutar(el, nombre, e) {
+        const fn = window[nombre];
+        if (typeof fn !== 'function') return;
+        let args = [];
+        if (el.dataset.args) {
+            try { args = JSON.parse(el.dataset.args); } catch (_) { args = []; }
+        }
+        args = args.map(a => (a === '$el' ? el : a === '$event' ? e : a));
+        fn.apply(el, args);
+    }
+    document.addEventListener('click', e => {
+        // Igual que el onclick original: se ejecuta en el elemento y en sus padres
+        let el = e.target.closest('[data-accion]');
+        while (el) {
+            ejecutar(el, el.dataset.accion, e);
+            el = el.parentElement && el.parentElement.closest('[data-accion]');
+        }
+    });
+    document.addEventListener('submit', e => {
+        const form = e.target.closest('[data-enviar]');
+        if (!form) return;
+        e.preventDefault();
+        ejecutar(form, form.dataset.enviar, e);
+    });
+})();

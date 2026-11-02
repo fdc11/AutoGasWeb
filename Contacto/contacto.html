@@ -3,15 +3,26 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta name="theme-color" content="#0A0A0A">
     <meta name="color-scheme" content="light">
     <title>Cotizar | AutoGas — Cotiza tu conversión a GNV o GLP</title>
     <meta name="description" content="Cotiza gratis tu conversión a GNV o GLP o tu servicio de mecánica en 2 pasos. Te respondemos por WhatsApp desde la sede AutoGas más cercana.">
     <link rel="canonical" href="https://autogas-web.vercel.app/Contacto/contacto.html">
-    <link rel="preload" as="image" href="../Inicio/Imagenes/AutoGasBanner.webp">
-    <link rel="stylesheet" href="../Comun/comun.css?v=20261030-4">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:site_name" content="AutoGas Perú">
+    <meta property="og:title" content="Cotiza tu conversión | AutoGas">
+    <meta property="og:description" content="Cotiza gratis tu conversión a GNV o GLP o tu servicio de mecánica. Te respondemos por WhatsApp.">
+    <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
+    <meta property="og:url" content="https://autogas-web.vercel.app/Contacto/contacto.html">
+    <link rel="preload" as="image" href="../Inicio/Imagenes/AutoGasBanner.webp" imagesrcset="../Inicio/Imagenes/AutoGasBanner-240.webp 240w, ../Inicio/Imagenes/AutoGasBanner-480.webp 480w, ../Inicio/Imagenes/AutoGasBanner-960.webp 960w, ../Inicio/Imagenes/AutoGasBanner-1440.webp 1440w, ../Inicio/Imagenes/AutoGasBanner.webp 1920w" imagesizes="(max-width: 900px) 160vw, 100vw" fetchpriority="high">
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261102-1">
     <link rel="stylesheet" href="contacto.css?v=20261030-2">
     <script>document.documentElement.classList.add('js');</script>
     <style>
@@ -29,7 +40,7 @@
     <header class="site-header">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
-                <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
             </a>
 
             <ul class="nav-links">
@@ -51,7 +62,7 @@
     <!-- Menú de celular -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
         <div class="mobile-menu-top">
-            <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
+            <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
             <button class="mobile-menu-close" id="navClose" type="button" aria-label="Cerrar menú"></button>
         </div>
         <ul class="mnav-list">
@@ -67,7 +78,7 @@
     <main id="contenido">
     <!-- ==================== PORTADA ==================== -->
     <section class="page-hero page-hero--compacta" aria-labelledby="heroTitulo">
-        <img class="page-hero-img" src="../Inicio/Imagenes/AutoGasBanner.webp" alt="Fachada de un taller AutoGas" width="1920" height="1440" fetchpriority="high">
+        <img class="page-hero-img" src="../Inicio/Imagenes/AutoGasBanner.webp" srcset="../Inicio/Imagenes/AutoGasBanner-240.webp 240w, ../Inicio/Imagenes/AutoGasBanner-480.webp 480w, ../Inicio/Imagenes/AutoGasBanner-960.webp 960w, ../Inicio/Imagenes/AutoGasBanner-1440.webp 1440w, ../Inicio/Imagenes/AutoGasBanner.webp 1920w" sizes="(max-width: 900px) 160vw, 100vw" alt="Fachada de un taller AutoGas" width="1920" height="1440" fetchpriority="high">
         <div class="page-hero-shade"></div>
         <div class="container page-hero-inner">
             <p class="page-hero-eyebrow">Cotización gratuita</p>
@@ -143,8 +154,8 @@
                                 <p class="campo-error" id="err-modelo" role="alert"></p>
                             </div>
                             <div class="campo">
-                                <label for="anio">Año</label>
-                                <input id="anio" name="anio" type="text" placeholder="2018" inputmode="numeric" maxlength="4" autocomplete="off">
+                                <label for="vehAnio">Año</label>
+                                <input id="vehAnio" name="anio" type="text" placeholder="2018" inputmode="numeric" maxlength="4" autocomplete="off">
                                 <p class="campo-error" id="err-anio" role="alert"></p>
                             </div>
                             </div>
@@ -348,8 +359,8 @@
         </div>
     </footer>
 
-    <script src="../Comun/comun.js?v=20261030-3"></script>
-    <script src="contacto.js?v=20261030-2"></script>
+    <script src="../Comun/comun.js?v=20261102-1" defer></script>
+    <script src="contacto.js?v=20261102-1" defer></script>
 </body>
 
 </html>

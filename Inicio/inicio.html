@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta name="theme-color" content="#0A0A0A">
     <meta name="color-scheme" content="light">
     <title>AutoGas | Conversión a GNV y GLP en Ica, Lima, Huancayo, Trujillo, Arequipa, Nasca y Chincha</title>
     <meta name="description" content="Talleres de conversión vehicular a GNV y GLP con convenio FISE. Certificación anual y quinquenal, mecánica general y repuestos. 7 sedes en el Perú.">
@@ -31,8 +32,10 @@
 
     <link rel="preload" as="image" href="Imagenes/hero-poster.webp">
     <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
-    <link rel="stylesheet" href="../Comun/comun.css?v=20261030-4">
-    <link rel="stylesheet" href="inicio.css?v=20261030-2">
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261102-1">
+    <link rel="stylesheet" href="inicio.css?v=20261102-1">
 
     <!-- Datos estructurados para Google (negocio local con 7 sedes) -->
     <script type="application/ld+json">
@@ -64,7 +67,7 @@
     <header class="site-header" id="siteHeader">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="inicio.html" aria-label="AutoGas, ir al inicio">
-                <img src="Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+                <img loading="lazy" src="Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
             </a>
 
             <ul class="nav-links">
@@ -87,7 +90,7 @@
          (mismo efecto que en Nosotros). -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
         <div class="mobile-menu-top">
-            <img src="Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
+            <img loading="lazy" src="Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
             <button class="mobile-menu-close" id="navClose" type="button" aria-label="Cerrar menú"></button>
         </div>
         <ul class="mnav-list">
@@ -104,10 +107,11 @@
 
         <!-- ==================== PORTADA ==================== -->
         <section class="hero" aria-labelledby="heroTitulo">
-            <!-- Video de fondo: 720p en celular, 1080p en computadora. Sin sonido, en bucle.
+            <!-- Video de fondo: recorte vertical en celular, 720p en tablet/celular horizontal, 1080p en computadora. Sin sonido, en bucle.
                  Mientras carga (o si el usuario ahorra datos / reduce movimiento) se ve la imagen "poster". -->
             <video class="hero-img hero-video" id="heroVideo" autoplay muted loop playsinline preload="metadata"
                 poster="Imagenes/hero-poster.webp" aria-hidden="true" tabindex="-1">
+                <source src="Imagenes/hero-movil.mp4" type="video/mp4" media="(max-width: 900px) and (orientation: portrait)">
                 <source src="Imagenes/hero-720.mp4" type="video/mp4" media="(max-width: 900px)">
                 <source src="Imagenes/hero-1080.mp4" type="video/mp4">
             </video>
@@ -159,7 +163,7 @@
 
                 <div class="bento">
                     <a class="tile tile-main reveal" href="../Servicios/servicios.html#conversion">
-                        <img src="../Nosotros/Imagenes/IMG_3214.webp" alt="Auto rojo en el área de conversión a gas del taller" width="1920" height="1440" loading="lazy" decoding="async">
+                        <img src="../Nosotros/Imagenes/IMG_3214.webp" srcset="../Nosotros/Imagenes/IMG_3214-240.webp 240w, ../Nosotros/Imagenes/IMG_3214-480.webp 480w, ../Nosotros/Imagenes/IMG_3214-960.webp 960w, ../Nosotros/Imagenes/IMG_3214-1440.webp 1440w, ../Nosotros/Imagenes/IMG_3214.webp 1920w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 30vw, 376px" alt="Auto rojo en el área de conversión a gas del taller" width="1920" height="1440" loading="lazy" decoding="async">
                         <div class="tile-body">
                             <p class="tile-kicker">Servicio principal</p>
                             <h3>Conversión a GNV y GLP</h3>
@@ -168,21 +172,21 @@
                         </div>
                     </a>
                     <a class="tile reveal" href="../Servicios/servicios.html#conversion">
-                        <img src="Imagenes/AutoGasBanner.webp" alt="Fachada de la sede AutoGas de Ica" width="1920" height="1440" loading="lazy" decoding="async">
+                        <img src="Imagenes/AutoGasBanner.webp" srcset="Imagenes/AutoGasBanner-240.webp 240w, Imagenes/AutoGasBanner-480.webp 480w, Imagenes/AutoGasBanner-960.webp 960w, Imagenes/AutoGasBanner-1440.webp 1440w, Imagenes/AutoGasBanner.webp 1920w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 30vw, 376px" alt="Fachada de la sede AutoGas de Ica" width="1920" height="1440" loading="lazy" decoding="async">
                         <div class="tile-body">
                             <h3>Certificaciones y trámites</h3>
                             <p>Anual, quinquenal, cambio de características y chip.</p>
                         </div>
                     </a>
                     <a class="tile reveal" href="../Servicios/servicios.html#mecanica">
-                        <img src="../Servicios/Imagenes/IMG_3217.webp" alt="Autos elevados en el área de mecánica" width="1920" height="1440" loading="lazy" decoding="async">
+                        <img src="../Servicios/Imagenes/IMG_3217.webp" srcset="../Servicios/Imagenes/IMG_3217-240.webp 240w, ../Servicios/Imagenes/IMG_3217-480.webp 480w, ../Servicios/Imagenes/IMG_3217-960.webp 960w, ../Servicios/Imagenes/IMG_3217-1440.webp 1440w, ../Servicios/Imagenes/IMG_3217.webp 1920w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 30vw, 376px" alt="Autos elevados en el área de mecánica" width="1920" height="1440" loading="lazy" decoding="async">
                         <div class="tile-body">
                             <h3>Mecánica y mantenimiento</h3>
                             <p>Frenos, motor, afinamiento, diagnóstico por escáner.</p>
                         </div>
                     </a>
                     <a class="tile tile-wide reveal" href="../Tienda/tienda.html">
-                        <img src="Imagenes/Taller13.webp" alt="Técnico cambiando el aceite de un motor" width="1400" height="1867" loading="lazy" decoding="async">
+                        <img src="Imagenes/Taller13.webp" srcset="Imagenes/Taller13-240.webp 240w, Imagenes/Taller13-480.webp 480w, Imagenes/Taller13-960.webp 960w, Imagenes/Taller13.webp 1400w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 60vw, 764px" alt="Técnico cambiando el aceite de un motor" width="1400" height="1867" loading="lazy" decoding="async">
                         <div class="tile-body">
                             <h3>Tienda de repuestos</h3>
                             <p>Aceites, filtros y refrigerantes. Arma tu pedido y envíalo por WhatsApp.</p>
@@ -232,7 +236,7 @@
 
                 <div class="areas">
                     <article class="area-card reveal">
-                        <div class="area-media"><img src="Imagenes/Taller1.webp" alt="Asesora atendiendo a un cliente junto a su camioneta" width="1290" height="1290" loading="lazy" decoding="async"></div>
+                        <div class="area-media"><img src="Imagenes/Taller1.webp" srcset="Imagenes/Taller1-240.webp 240w, Imagenes/Taller1-480.webp 480w, Imagenes/Taller1-960.webp 960w, Imagenes/Taller1.webp 1290w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 30vw, 376px" alt="Asesora atendiendo a un cliente junto a su camioneta" width="1290" height="1290" loading="lazy" decoding="async"></div>
                         <div class="area-body">
                             <span class="area-num">01</span>
                             <h3>Atención al cliente</h3>
@@ -241,7 +245,7 @@
                         </div>
                     </article>
                     <article class="area-card reveal">
-                        <div class="area-media"><img src="Imagenes/Taller11.webp" alt="Cilindros de gas listos para instalar" width="1290" height="1290" loading="lazy" decoding="async"></div>
+                        <div class="area-media"><img src="Imagenes/Taller11.webp" srcset="Imagenes/Taller11-240.webp 240w, Imagenes/Taller11-480.webp 480w, Imagenes/Taller11-960.webp 960w, Imagenes/Taller11.webp 1290w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 30vw, 376px" alt="Cilindros de gas listos para instalar" width="1290" height="1290" loading="lazy" decoding="async"></div>
                         <div class="area-body">
                             <span class="area-num">02</span>
                             <h3>Ventas</h3>
@@ -250,7 +254,7 @@
                         </div>
                     </article>
                     <article class="area-card reveal">
-                        <div class="area-media"><img src="Imagenes/Taller14.webp" alt="Módulo electrónico de un kit de gas instalado" width="1290" height="1776" loading="lazy" decoding="async"></div>
+                        <div class="area-media"><img src="Imagenes/Taller14.webp" srcset="Imagenes/Taller14-240.webp 240w, Imagenes/Taller14-480.webp 480w, Imagenes/Taller14-960.webp 960w, Imagenes/Taller14.webp 1290w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 30vw, 376px" alt="Módulo electrónico de un kit de gas instalado" width="1290" height="1776" loading="lazy" decoding="async"></div>
                         <div class="area-body">
                             <span class="area-num">03</span>
                             <h3>Soporte técnico</h3>
@@ -308,11 +312,11 @@
                     <p class="lead lead-dark">Transformando vehículos con las mejores instalaciones y maquinaria del país.</p>
                 </div>
                 <div class="gallery reveal">
-                    <figure class="g-big"><img src="Imagenes/Taller4.webp" alt="Técnicos y un cliente revisando un auto en el área de trabajo" width="1920" height="1920" loading="lazy" decoding="async"></figure>
-                    <figure><img src="Imagenes/Taller16.webp" alt="Técnico trabajando en el motor de un auto" width="1400" height="1867" loading="lazy" decoding="async"></figure>
-                    <figure><img src="Imagenes/Taller14.webp" alt="Centralita de gas instalada sobre un auto rojo" width="1290" height="1776" loading="lazy" decoding="async"></figure>
-                    <figure><img src="Imagenes/Taller12.webp" alt="Dos técnicos revisando el motor de una camioneta" width="1400" height="1867" loading="lazy" decoding="async"></figure>
-                    <figure><img src="Imagenes/Taller13.webp" alt="Cambio de aceite de motor" width="1400" height="1867" loading="lazy" decoding="async"></figure>
+                    <figure class="g-big"><img src="Imagenes/Taller4.webp" srcset="Imagenes/Taller4-240.webp 240w, Imagenes/Taller4-480.webp 480w, Imagenes/Taller4-960.webp 960w, Imagenes/Taller4-1440.webp 1440w, Imagenes/Taller4.webp 1920w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 45vw, 573px" alt="Técnicos y un cliente revisando un auto en el área de trabajo" width="1920" height="1920" loading="lazy" decoding="async"></figure>
+                    <figure><img src="Imagenes/Taller16.webp" srcset="Imagenes/Taller16-240.webp 240w, Imagenes/Taller16-480.webp 480w, Imagenes/Taller16-960.webp 960w, Imagenes/Taller16.webp 1400w" sizes="(max-width: 900px) 45vw, (max-width: 1400px) 23vw, 284px" alt="Técnico trabajando en el motor de un auto" width="1400" height="1867" loading="lazy" decoding="async"></figure>
+                    <figure><img src="Imagenes/Taller14.webp" srcset="Imagenes/Taller14-240.webp 240w, Imagenes/Taller14-480.webp 480w, Imagenes/Taller14-960.webp 960w, Imagenes/Taller14.webp 1290w" sizes="(max-width: 900px) 45vw, (max-width: 1400px) 23vw, 284px" alt="Centralita de gas instalada sobre un auto rojo" width="1290" height="1776" loading="lazy" decoding="async"></figure>
+                    <figure><img src="Imagenes/Taller12.webp" srcset="Imagenes/Taller12-240.webp 240w, Imagenes/Taller12-480.webp 480w, Imagenes/Taller12-960.webp 960w, Imagenes/Taller12.webp 1400w" sizes="(max-width: 900px) 45vw, (max-width: 1400px) 23vw, 284px" alt="Dos técnicos revisando el motor de una camioneta" width="1400" height="1867" loading="lazy" decoding="async"></figure>
+                    <figure><img src="Imagenes/Taller13.webp" srcset="Imagenes/Taller13-240.webp 240w, Imagenes/Taller13-480.webp 480w, Imagenes/Taller13-960.webp 960w, Imagenes/Taller13.webp 1400w" sizes="(max-width: 900px) 45vw, (max-width: 1400px) 23vw, 284px" alt="Cambio de aceite de motor" width="1400" height="1867" loading="lazy" decoding="async"></figure>
                 </div>
             </div>
         </section>
@@ -353,7 +357,7 @@
                             <button class="sede-tab" type="button" role="tab" id="tab-arequipa" data-sede="arequipa" aria-controls="sede-arequipa" aria-selected="false" tabindex="-1">Arequipa</button>
                         </div>
 
-                        <article class="sede-detail" role="tabpanel" id="sede-trujillo" aria-labelledby="tab-trujillo" data-sede="trujillo">
+                        <div class="sede-detail" role="tabpanel" id="sede-trujillo" aria-labelledby="tab-trujillo" data-sede="trujillo">
                             <div class="sede-photo"><img src="../Sedes/Imagenes/Trujillo.webp" alt="Fachada de la sede AutoGas Trujillo" width="680" height="453" loading="lazy" decoding="async"></div>
                             <div class="sede-info">
                                 <div>
@@ -362,13 +366,13 @@
                                     <p class="sede-address">Av. Túpac Amaru 1633, Urb. Alto Mochica</p>
                                 </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-red" href="https://wa.me/51937695830" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-red" href="https://wa.me/51937695830" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Trujillo (se abre en una pestaña nueva)">WhatsApp</a>
                                     <a class="btn btn-outline" href="https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </article>
+                        </div>
 
-                        <article class="sede-detail" role="tabpanel" id="sede-lima" aria-labelledby="tab-lima" data-sede="lima">
+                        <div class="sede-detail" role="tabpanel" id="sede-lima" aria-labelledby="tab-lima" data-sede="lima">
                             <div class="sede-photo"><img src="../Sedes/Imagenes/Lima.webp" alt="Fachada de la sede AutoGas Lima" width="364" height="273" loading="lazy" decoding="async"></div>
                             <div class="sede-info">
                                 <div>
@@ -377,13 +381,13 @@
                                     <p class="sede-address">Jr. San Lino N.º 6318, Los Olivos</p>
                                 </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-red" href="https://wa.me/51942623696" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-red" href="https://wa.me/51942623696" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Lima (se abre en una pestaña nueva)">WhatsApp</a>
                                     <a class="btn btn-outline" href="https://maps.app.goo.gl/c628PPCCC9cx2U5w5" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </article>
+                        </div>
 
-                        <article class="sede-detail" role="tabpanel" id="sede-huancayo" aria-labelledby="tab-huancayo" data-sede="huancayo">
+                        <div class="sede-detail" role="tabpanel" id="sede-huancayo" aria-labelledby="tab-huancayo" data-sede="huancayo">
                             <div class="sede-photo"><img src="../Sedes/Imagenes/Huancayo.webp" alt="Fachada de la sede AutoGas Huancayo" width="680" height="322" loading="lazy" decoding="async"></div>
                             <div class="sede-info">
                                 <div>
@@ -392,13 +396,13 @@
                                     <p class="sede-address">Prol. Julio Sumar N.º 698, El Tambo</p>
                                 </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-red" href="https://wa.me/51942867212" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-red" href="https://wa.me/51942867212" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Huancayo (se abre en una pestaña nueva)">WhatsApp</a>
                                     <a class="btn btn-outline" href="https://maps.app.goo.gl/GkT1hSnraskuAcUq9" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </article>
+                        </div>
 
-                        <article class="sede-detail" role="tabpanel" id="sede-chincha" aria-labelledby="tab-chincha" data-sede="chincha">
+                        <div class="sede-detail" role="tabpanel" id="sede-chincha" aria-labelledby="tab-chincha" data-sede="chincha">
                             <div class="sede-photo"><img src="../Sedes/Imagenes/Chincha.webp" alt="Fachada de la sede AutoGas Chincha" width="408" height="306" loading="lazy" decoding="async"></div>
                             <div class="sede-info">
                                 <div>
@@ -407,14 +411,14 @@
                                     <p class="sede-address">Prolongación Lima N.º 636, Chincha Alta</p>
                                 </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-red" href="https://wa.me/51930210613" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-red" href="https://wa.me/51930210613" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Chincha (se abre en una pestaña nueva)">WhatsApp</a>
                                     <a class="btn btn-outline" href="https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </article>
+                        </div>
 
-                        <article class="sede-detail is-active" role="tabpanel" id="sede-ica" aria-labelledby="tab-ica" data-sede="ica">
-                            <div class="sede-photo"><img src="../Sedes/Imagenes/Ica.webp" alt="Fachada de la sede AutoGas Ica" width="680" height="382" loading="lazy" decoding="async"></div>
+                        <div class="sede-detail is-active" role="tabpanel" id="sede-ica" aria-labelledby="tab-ica" data-sede="ica">
+                            <div class="sede-photo"><img src="../Sedes/Imagenes/Ica.webp" srcset="../Sedes/Imagenes/Ica-240.webp 240w, ../Sedes/Imagenes/Ica-480.webp 480w, ../Sedes/Imagenes/Ica.webp 680w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 51vw, 680px" alt="Fachada de la sede AutoGas Ica" width="680" height="382" loading="lazy" decoding="async"></div>
                             <div class="sede-info">
                                 <div>
                                     <p class="sede-region">Ica</p>
@@ -422,13 +426,13 @@
                                     <p class="sede-address">Av. Fernando León de Vivero N.º 304, frente al Cementerio General de Saraja</p>
                                 </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-red" href="https://wa.me/51978421654" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-red" href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Ica (se abre en una pestaña nueva)">WhatsApp</a>
                                     <a class="btn btn-outline" href="https://maps.app.goo.gl/PZdiW36SM2awhmtSA" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </article>
+                        </div>
 
-                        <article class="sede-detail" role="tabpanel" id="sede-nasca" aria-labelledby="tab-nasca" data-sede="nasca">
+                        <div class="sede-detail" role="tabpanel" id="sede-nasca" aria-labelledby="tab-nasca" data-sede="nasca">
                             <div class="sede-photo"><img src="../Sedes/Imagenes/Nasca.webp" alt="Fachada de la sede AutoGas Nasca" width="680" height="307" loading="lazy" decoding="async"></div>
                             <div class="sede-info">
                                 <div>
@@ -437,13 +441,13 @@
                                     <p class="sede-address">Av. Los Incas N.º 201, frente a la agencia Ormeño</p>
                                 </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-red" href="https://wa.me/51939067488" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-red" href="https://wa.me/51939067488" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Nasca (se abre en una pestaña nueva)">WhatsApp</a>
                                     <a class="btn btn-outline" href="https://maps.app.goo.gl/V51hHVnhix8rHUdR6" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </article>
+                        </div>
 
-                        <article class="sede-detail" role="tabpanel" id="sede-arequipa" aria-labelledby="tab-arequipa" data-sede="arequipa">
+                        <div class="sede-detail" role="tabpanel" id="sede-arequipa" aria-labelledby="tab-arequipa" data-sede="arequipa">
                             <div class="sede-photo"><img src="../Sedes/Imagenes/Arequipa.webp" alt="Fachada de la sede AutoGas Arequipa" width="1325" height="596" loading="lazy" decoding="async"></div>
                             <div class="sede-info">
                                 <div>
@@ -452,11 +456,11 @@
                                     <p class="sede-address">Av. Túpac Amaru N.º 714, Campo Marte, Paucarpata</p>
                                 </div>
                                 <div class="sede-actions">
-                                    <a class="btn btn-red" href="https://wa.me/51975338252" target="_blank" rel="noopener">WhatsApp</a>
+                                    <a class="btn btn-red" href="https://wa.me/51975338252" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Arequipa (se abre en una pestaña nueva)">WhatsApp</a>
                                     <a class="btn btn-outline" href="https://maps.app.goo.gl/qG2XawRA8xHF2MTb7" target="_blank" rel="noopener">Cómo llegar</a>
                                 </div>
                             </div>
-                        </article>
+                        </div>
 
                         <div class="sede-foot">
                             <p>¿Tu ciudad no está en la lista? <a class="text-link" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escríbenos y te orientamos</a></p>
@@ -646,8 +650,8 @@
         </div>
     </footer>
 
-    <script src="../Comun/comun.js?v=20261030-3"></script>
-    <script src="inicio.js?v=20261030-1"></script>
+    <script src="../Comun/comun.js?v=20261102-1" defer></script>
+    <script src="inicio.js?v=20261030-1" defer></script>
 </body>
 
 </html>

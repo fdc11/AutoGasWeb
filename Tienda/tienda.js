@@ -27,37 +27,37 @@ const CATALOGO = {
                 id: 'ac01', marca: 'Shell', nombre: 'Helix Ultra 5W-40',
                 desc: 'Aceite sintético de última generación. Protección máxima del motor.',
                 precio: 89.90, badge: 'Más vendido',
-                img: 'Imagenes/AceiteShellEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
             },
             {
                 id: 'ac02', marca: 'Castrol', nombre: 'Edge 5W-30',
                 desc: 'Tecnología de titanio FST. Para motores modernos exigentes.',
                 precio: 94.90, badge: null,
-                img: 'Imagenes/AceiteShellEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
             },
             {
                 id: 'ac03', marca: 'Mobil', nombre: 'Super 3000 X1 5W-40',
                 desc: 'Fórmula avanzada para motores gasolina y GNV. Alto desempeño.',
                 precio: 79.90, badge: null,
-                img: 'Imagenes/AceiteShellEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
             },
             {
                 id: 'ac04', marca: 'Valvoline', nombre: 'Advanced Full Synthetic 5W-30',
                 desc: 'Protección superior contra desgaste, depósitos y sludge.',
                 precio: 84.90, badge: 'Nuevo',
-                img: 'Imagenes/AceiteShellEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
             },
             {
                 id: 'ac05', marca: 'Chevron', nombre: 'Havoline 20W-50',
                 desc: 'Para motores con alto kilometraje. Rendimiento garantizado.',
                 precio: 52.90, badge: null,
-                img: 'Imagenes/AceiteShellEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
             },
             {
                 id: 'ac06', marca: 'Shell', nombre: 'Rimula R4 X 15W-40',
                 desc: 'Aceite mineral para motores diésel de trabajo pesado.',
                 precio: 64.90, badge: null,
-                img: 'Imagenes/AceiteShellEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
             },
         ]
     },
@@ -68,25 +68,25 @@ const CATALOGO = {
                 id: 're01', marca: 'Bosch', nombre: 'Bujía Super 4',
                 desc: 'Bujía de encendido de alto rendimiento para todo tipo de motor.',
                 precio: 18.90, badge: 'Original',
-                img: 'Imagenes/PastillasDeFreno.jpg'
+                img: '' /* TODO: foto real (Imagenes/PastillasDeFreno.jpg no existe) */
             },
             {
                 id: 're02', marca: 'NGK', nombre: 'Bujía Iridium IX',
                 desc: 'Punta de iridio ultrafina. Mayor durabilidad y ahorro de combustible.',
                 precio: 29.90, badge: null,
-                img: 'Imagenes/PastillasDeFreno.jpg'
+                img: '' /* TODO: foto real (Imagenes/PastillasDeFreno.jpg no existe) */
             },
             {
                 id: 're03', marca: 'Bosch', nombre: 'Pastillas de Freno BP456',
                 desc: 'Sistema de frenado preciso y silencioso para uso urbano y carretera.',
                 precio: 95.00, badge: null,
-                img: 'Imagenes/PastillasDeFreno.jpg'
+                img: '' /* TODO: foto real (Imagenes/PastillasDeFreno.jpg no existe) */
             },
             {
                 id: 're04', marca: 'Gates', nombre: 'Correa de Distribución K025605XS',
                 desc: 'Alta resistencia a temperaturas extremas. Para motores Toyota/Kia.',
                 precio: 145.00, badge: null,
-                img: 'Imagenes/PastillasDeFreno.jpg'
+                img: '' /* TODO: foto real (Imagenes/PastillasDeFreno.jpg no existe) */
             },
         ]
     },
@@ -97,25 +97,25 @@ const CATALOGO = {
                 id: 'rf01', marca: 'Prestone', nombre: 'All Vehicles Antifreeze 1L',
                 desc: 'Fórmula universal. Compatible con todos los sistemas de refrigeración.',
                 precio: 32.90, badge: 'Universal',
-                img: 'Imagenes/RefrigerantePreston.jpg'
+                img: '' /* TODO: foto real (Imagenes/RefrigerantePreston.jpg no existe) */
             },
             {
                 id: 'rf02', marca: 'Prestone', nombre: 'All Vehicles Antifreeze 4L',
                 desc: 'Pack familiar de larga duración. Protege hasta -37°C.',
                 precio: 95.00, badge: null,
-                img: 'Imagenes/RefrigerantePreston.jpg'
+                img: '' /* TODO: foto real (Imagenes/RefrigerantePreston.jpg no existe) */
             },
             {
                 id: 'rf03', marca: 'Shell', nombre: 'Coolant Premium 1L',
                 desc: 'Refrigerante premium OAT. Larga vida útil, sin silicatos.',
                 precio: 38.90, badge: null,
-                img: 'Imagenes/RefrigerantePreston.jpg'
+                img: '' /* TODO: foto real (Imagenes/RefrigerantePreston.jpg no existe) */
             },
             {
                 id: 'rf04', marca: 'Toyota', nombre: 'Long Life Coolant 1L',
                 desc: 'Refrigerante original Toyota. Para Toyota, Kia, Mazda y Subaru.',
                 precio: 45.00, badge: 'Original',
-                img: 'Imagenes/RefrigerantePreston.jpg'
+                img: '' /* TODO: foto real (Imagenes/RefrigerantePreston.jpg no existe) */
             },
         ]
     },
@@ -126,25 +126,25 @@ const CATALOGO = {
                 id: 'fi01', marca: 'Mann', nombre: 'Filtro de Aceite W712/75',
                 desc: 'Filtración de alta eficiencia para motores gasolina y GNV.',
                 precio: 22.90, badge: null,
-                img: 'Imagenes/FiltroDeAceiteEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/FiltroDeAceiteEjemplo.jpg no existe) */
             },
             {
                 id: 'fi02', marca: 'Bosch', nombre: 'Filtro de Aire S0073',
                 desc: 'Captura el 99.9% de partículas. Más potencia, menos consumo.',
                 precio: 38.90, badge: 'Best Seller',
-                img: 'Imagenes/FiltroDeAceiteEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/FiltroDeAceiteEjemplo.jpg no existe) */
             },
             {
                 id: 'fi03', marca: 'Mann', nombre: 'Filtro de Combustible WK842/2',
                 desc: 'Protege el sistema de inyección. Compatible con múltiples marcas.',
                 precio: 29.90, badge: null,
-                img: 'Imagenes/FiltroDeAceiteEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/FiltroDeAceiteEjemplo.jpg no existe) */
             },
             {
                 id: 'fi04', marca: 'Bosch', nombre: 'Filtro de Habitáculo 1987432362',
                 desc: 'Con carbón activado. Elimina polvo, bacterias y olores del habitáculo.',
                 precio: 45.00, badge: null,
-                img: 'Imagenes/FiltroDeAceiteEjemplo.jpg'
+                img: '' /* TODO: foto real (Imagenes/FiltroDeAceiteEjemplo.jpg no existe) */
             },
         ]
     }
@@ -191,6 +191,15 @@ const IMG_PENDIENTE = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
     '<path d="M70 80h60v50H70z M82 80v-8h36v8" fill="none" stroke="#c4c4c4" stroke-width="5" stroke-linejoin="round"/>' +
     '<text x="100" y="160" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#8a8a8a">Foto pendiente</text>' +
     '</svg>');
+
+// Si una foto de producto no carga (o aún no existe), se muestra IMG_PENDIENTE.
+// Reemplaza al antiguo onerror="..." en línea (bloqueado por el CSP).
+document.addEventListener('error', e => {
+    const img = e.target;
+    if (img.tagName !== 'IMG' || !img.hasAttribute('data-respaldo') || img.dataset.fallo) return;
+    img.dataset.fallo = '1';
+    img.src = IMG_PENDIENTE;
+}, true);
 
 const ICONO_FLECHA = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
 const ICONO_ATRAS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
@@ -273,8 +282,7 @@ function htmlProducto(p, conDescripcion) {
     return `
         <article class="t-prod" data-id="${p.id}">
             <div class="t-prod-media">
-                <img src="${p.img}" alt="${escaparHTML(p.marca + ' ' + p.nombre)}" loading="lazy" decoding="async"
-                     onerror="this.onerror=null;this.src=IMG_PENDIENTE" />
+                <img src="${p.img || IMG_PENDIENTE}" alt="${escaparHTML(p.marca + ' ' + p.nombre)}" loading="lazy" decoding="async" data-respaldo />
                 ${p.badge ? `<span class="t-badge">${escaparHTML(p.badge)}</span>` : ''}
             </div>
             <div class="t-prod-info">
@@ -284,11 +292,11 @@ function htmlProducto(p, conDescripcion) {
                 <p class="t-prod-precio">${soles(p.precio)}</p>
                 <div class="t-prod-actions">
                     <div class="t-qty">
-                        <button type="button" onclick="cambiarQtyCard('${p.id}',-1)" aria-label="Quitar uno">−</button>
+                        <button type="button" data-accion="cambiarQtyCard" data-args='["${p.id}",-1]' aria-label="Quitar uno">−</button>
                         <span data-qty="${p.id}" aria-live="polite">${qtyCard[p.id] || 1}</span>
-                        <button type="button" onclick="cambiarQtyCard('${p.id}',1)" aria-label="Agregar uno">+</button>
+                        <button type="button" data-accion="cambiarQtyCard" data-args='["${p.id}",1]' aria-label="Agregar uno">+</button>
                     </div>
-                    <button type="button" class="t-add" onclick="agregarAlCarritoDesdeCard('${p.id}', this)">Agregar</button>
+                    <button type="button" class="t-add" data-accion="agregarAlCarritoDesdeCard" data-args='["${p.id}","$el"]'>Agregar</button>
                 </div>
             </div>
         </article>`;
@@ -448,7 +456,7 @@ function renderizarProductos(productos) {
             <div class="t-empty">
                 <p class="t-empty-title">Sin resultados</p>
                 <p>No encontramos productos con esa búsqueda. Prueba con otra palabra o escríbenos por WhatsApp.</p>
-                <button type="button" class="t-btn" onclick="limpiarBusqueda()">Limpiar búsqueda</button>
+                <button type="button" class="t-btn" data-accion="limpiarBusqueda">Limpiar búsqueda</button>
             </div>`;
         return;
     }
@@ -510,7 +518,7 @@ function mostrarToastAdd(nombre, qty) {
         toast.setAttribute('role', 'status');
         document.body.appendChild(toast);
     }
-    toast.innerHTML = `${ICONO_CHECK}<span></span><button type="button" onclick="toggleCarrito()">Ver pedido</button>`;
+    toast.innerHTML = `${ICONO_CHECK}<span></span><button type="button" data-accion="toggleCarrito">Ver pedido</button>`;
     toast.querySelector('span').textContent = (qty > 1 ? qty + ' × ' : '') + nombre + ' agregado';
     clearTimeout(_toastAddTimer);
     toast.classList.add('visible');
@@ -560,20 +568,20 @@ function renderizarCarrito() {
         <div class="cart-item" data-id="${item.id}">
             <div class="cart-item-prod">
                 <div class="cart-item-img">
-                    <img src="${item.img}" alt="" onerror="this.onerror=null;this.src=IMG_PENDIENTE" />
+                    <img src="${item.img || IMG_PENDIENTE}" alt="" data-respaldo />
                 </div>
                 <div>
                     <p class="cart-item-marca">${escaparHTML(item.marca)}</p>
                     <p class="cart-item-nombre">${escaparHTML(item.nombre)}</p>
                     <p class="cart-item-meta">${soles(item.precio)} c/u ·
-                        <button type="button" class="cart-link" onclick="eliminarItem('${item.id}')">Quitar</button></p>
+                        <button type="button" class="cart-link" data-accion="eliminarItem" data-args='["${item.id}"]'>Quitar</button></p>
                 </div>
             </div>
             <div class="cart-item-qty">
                 <div class="t-qty">
-                    <button type="button" onclick="cambiarCantidadItem('${item.id}', -1)" aria-label="Quitar uno de ${escaparHTML(item.nombre)}">−</button>
+                    <button type="button" data-accion="cambiarCantidadItem" data-args='["${item.id}",-1]' aria-label="Quitar uno de ${escaparHTML(item.nombre)}">−</button>
                     <span>${item.qty}</span>
-                    <button type="button" onclick="cambiarCantidadItem('${item.id}', 1)" aria-label="Agregar uno de ${escaparHTML(item.nombre)}">+</button>
+                    <button type="button" data-accion="cambiarCantidadItem" data-args='["${item.id}",1]' aria-label="Agregar uno de ${escaparHTML(item.nombre)}">+</button>
                 </div>
             </div>
             <p class="cart-item-sub">${soles(item.precio * item.qty)}</p>
@@ -739,7 +747,7 @@ function mostrarToastWsp() {
                 <div class="toast-wsp-title">¡Pedido listo! Revisa WhatsApp</div>
                 <div class="toast-wsp-sub">Se abrió WhatsApp con tu pedido. Solo dale <strong style="color:#fff">Enviar</strong> para confirmarlo.</div>
             </div>
-            <button type="button" class="toast-wsp-close" onclick="cerrarToastWsp()" aria-label="Cerrar">✕</button>`;
+            <button type="button" class="toast-wsp-close" data-accion="cerrarToastWsp" aria-label="Cerrar">✕</button>`;
         document.body.appendChild(toast);
     }
     setTimeout(() => toast.classList.add('visible'), 50);

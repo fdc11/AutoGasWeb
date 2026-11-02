@@ -61,15 +61,15 @@
 
     /* Paso 1: tu auto */
     $('btnSiguiente').addEventListener('click', () => {
-        const ids = ['servicio', 'marca', 'modelo', 'anio'];
+        const ids = ['servicio', 'marca', 'modelo', 'vehAnio'];
         limpiarErrores(ids);
         let ok = true;
         if (!elegido('servicio')) { error('servicio', 'Elige qué necesitas'); ok = false; }
         if (!valor('marca')) { error('marca', 'Escribe la marca'); ok = false; }
         if (!valor('modelo')) { error('modelo', 'Escribe el modelo'); ok = false; }
-        const anio = parseInt(valor('anio'), 10);
+        const anio = parseInt(valor('vehAnio'), 10);
         const max = new Date().getFullYear() + 1;
-        if (!(anio >= 1980 && anio <= max)) { error('anio', 'Escribe el año (ej.: 2018)'); ok = false; }
+        if (!(anio >= 1980 && anio <= max)) { error('vehAnio', 'Escribe el año (ej.: 2018)'); ok = false; }
         if (!ok) { primerError(ids); return; }
         irAPaso(2);
     });
@@ -107,7 +107,7 @@
     function armarMensaje(cel) {
         const servicio = elegido('servicio').value;
         const combustible = elegido('combustible');
-        const auto = [valor('marca'), valor('modelo'), valor('anio')].join(' ');
+        const auto = [valor('marca'), valor('modelo'), valor('vehAnio')].join(' ');
         const fecha = valor('fecha');
         const lineas = [
             'Hola, soy ' + valor('nombre') + '. Quiero cotizar: ' + servicio + '.',
