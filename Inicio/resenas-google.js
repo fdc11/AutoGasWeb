@@ -8,13 +8,16 @@
       El Inicio calcula solo el PROMEDIO ENTRE SEDES (ponderado por el
       número de reseñas, igual que lo haría Google). Actualiza estos
       números cuando cambien en Google Maps.
-   2) "resenas": las que se muestran (las primeras 6, en este orden).
-      { autor: 'Nombre tal como sale en Google', sede: 'ica',
+   2) "resenas": las que se muestran en el carrusel, en este orden.
+      { autor: 'Gabriel A.', sede: 'ica',
         texto: 'Texto exacto de la reseña' },
 
    Reglas para no meterse en problemas:
-   - Copia reseñas REALES, con el nombre y el texto tal como están en Google.
-     No inventes ni corrijas el texto (solo puedes cortar una muy larga con "…").
+   - Copia reseñas REALES, con el texto tal como está en Google. No inventes
+     ni corrijas el texto (solo puedes cortar una muy larga con "…").
+   - NOMBRE: solo el primer nombre y la inicial del primer apellido
+     ("Gabriel Andrés Aquino Chamorro" -> "Gabriel A."). Este archivo es
+     público (cualquiera puede abrirlo), así que nunca pongas el nombre completo.
    - "sede" tiene que ser una de las claves de "sedes" (ica, lima, ...).
    ===================================================================== */
 window.RESENAS_GOOGLE = {
@@ -30,22 +33,21 @@ window.RESENAS_GOOGLE = {
     },
 
     resenas: [
-        { autor: 'Gabriel Andrés Aquino Chamorro', sede: 'huancayo',
+        { autor: 'Gabriel A.', sede: 'huancayo',
           texto: 'Muy buena experiencia, atencion rápida, buen diagnóstico, sinceros, y precios Justos, muy recomendado desde la atención de las señoritas hasta los mecánicos.' },
-        { autor: 'JAZMIN NICOLLE STHEFANNY GUTIERREZ PRADO', sede: 'ica',
+        { autor: 'Jazmin G.', sede: 'ica',
           texto: 'Si deseas calidad en el servicio y buenos precios, la mejor opción es AutoGas Ica, es por ello que siempre para lleno, aunque de igual manera su atención es veloz y eficaz.' },
-        { autor: 'Pool David Pérez Meléndez', sede: 'lima',
+        { autor: 'Pool P.', sede: 'lima',
           texto: 'Servicio super recomendado. La atención tanto previa cita como la técnica es muy buena. Desde que llegas te asignan un técnico. Cuentan con elevadores, scaner y computadores para la calibración se gas. Se ve que tienen las herramientas…' },
-        { autor: 'Jose Efrain Aleman Bellido', sede: 'arequipa',
+        { autor: 'Jose A.', sede: 'arequipa',
           texto: 'Empresa para la instalación del sistema de gas para autos muy profesionales y con buenos precios. Recomendable' },
-        { autor: 'Luis fernando Vigo perez', sede: 'trujillo',
+        { autor: 'Luis V.', sede: 'trujillo',
           texto: 'Su carro en las manos de los mejores.. garantizado' },
-        { autor: 'David Vizarreta', sede: 'ica',
+        { autor: 'David V.', sede: 'ica',
           texto: 'Felicitar la atención, trabajo y recomendaciones del técnico Yeferson muy atinada su trabajo.' },
-        // De reserva (se muestran si quitas alguna de arriba):
-        { autor: 'storm peru', sede: 'huancayo',
+        { autor: 'Storm P.', sede: 'huancayo',
           texto: 'Un buen lugar donde puedes hacer convertir tu vehículo a glp y gnv te dan un diagnóstico efectivo en cuanto a los problemas que tiene tu vehículo y te dan una pronta solución para que vayas con confianza y tu vehículo quede con una garantía.' },
-        { autor: 'elvis roibimer ruiz perez', sede: 'ica',
+        { autor: 'Elvis R.', sede: 'ica',
           texto: 'Son buenísimos, hoy me atendieron dos personas el supervisor y creo que admirador y excelentes personas, Felicitaciones. Muy buen equipo de trabajo.' }
     ]
 };

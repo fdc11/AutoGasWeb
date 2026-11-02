@@ -810,9 +810,9 @@ los subgrupos alternan */
 
 .rg-sede:hover .rg-go { background: var(--red); }
 
-/* El aviso ocupa toda la fila (con un número impar de sedes, quita el grid-column) */
+/* El aviso ocupa la última celda (7 sedes + aviso = 4 filas de 2).
+   Si el número de sedes pasa a ser par, agrega: grid-column: 1 / -1; */
 .rg-nota {
-    grid-column: 1 / -1;
     display: flex;
     align-items: flex-start;
     gap: 10px;

@@ -110,14 +110,18 @@
 
     /* ---------- 8. Reseñas de Google (todas las sedes) ----------
        Los datos están en resenas-google.js (copiados de Google Maps).
-       Muestra el PROMEDIO ENTRE SEDES, ponderado por el número de reseñas
-       de cada una, y las reseñas con la sede de donde vienen.
+       - Muestra el PROMEDIO ENTRE SEDES, ponderado por el número de reseñas.
+       - Carrusel: se desliza con el dedo o el trackpad (scroll nativo con
+         snap), flechas, contador y barra (escritorio) o puntos (celular).
+       - Avanza solo cada 6 s, salvo que el usuario pida "reducir movimiento".
+         Se pausa con el mouse encima, al enfocarlo con el teclado, al tocarlo,
+         fuera de pantalla y con el botón de pausa (WCAG 2.2.2).
        Todo el texto se inserta con textContent: nada de lo escrito en una
        reseña puede ejecutarse en la página. */
     const RES = window.RESENAS_GOOGLE;
     const resLista = document.getElementById('resLista');
     if (RES && RES.sedes && resLista) {
-        const MOSTRAR = 6;
+        const SVG = 'http://www.w3.org/2000/svg';
         const nodo = (tag, clase, texto) => {
             const n = document.createElement(tag);
             if (clase) n.className = clase;
@@ -126,8 +130,20 @@
         };
         const decimal = n => n.toFixed(1).replace('.', ',');
         const estrellasTxt = n => { const r = Math.round(n); return '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r); };
-        const iniciales = nombre => nombre.split(/\s+/).filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase() || 'G';
+        const iniciales = nombre => nombre.replace(/\./g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase() || 'G';
         const linkSeguro = url => (/^https:\/\//.test(url || '') ? url : '');
+        const dos = n => String(n).padStart(2, '0');
+
+        function comillas() {
+            const s = document.createElementNS(SVG, 'svg');
+            s.setAttribute('class', 'resena-comillas');
+            s.setAttribute('width', '40'); s.setAttribute('height', '32'); s.setAttribute('viewBox', '0 0 40 32');
+            s.setAttribute('fill', 'currentColor'); s.setAttribute('aria-hidden', 'true');
+            const p = document.createElementNS(SVG, 'path');
+            p.setAttribute('d', 'M15 2C8 4 2 10.5 2 19v11h14V16H9.5c.6-4.6 3.6-8 7.5-9.7L15 2zm22 0c-7 2-13 8.5-13 17v11h14V16h-6.5c.6-4.6 3.6-8 7.5-9.7L37 2z');
+            s.append(p);
+            return s;
+        }
 
         // Promedio ponderado entre sedes
         let suma = 0, total = 0;
@@ -144,34 +160,123 @@
                 'Promedio entre sedes en Google · ' + total.toLocaleString('es-PE') + ' reseñas';
         }
 
-        (RES.resenas || [])
-            .filter(r => r && RES.sedes[r.sede] && String(r.texto || '').trim())
-            .slice(0, MOSTRAR)
-            .forEach(r => {
-                const sede = RES.sedes[r.sede];
-                const li = nodo('li', 'resena');
-                li.append(nodo('p', 'resena-sede', 'Sede ' + sede.nombre));
-                li.append(nodo('p', 'resena-texto', '“' + String(r.texto).trim() + '”'));
-                const pie = nodo('div', 'resena-head');
-                const avatar = nodo('span', 'resena-avatar', iniciales(String(r.autor || '')));
-                avatar.setAttribute('aria-hidden', 'true');
-                const quien = nodo('div');
-                quien.append(nodo('p', 'resena-autor', String(r.autor || 'Cliente de Google')));
-                const meta = nodo('p', 'resena-meta');
-                const url = linkSeguro(sede.maps);
-                if (url) {
-                    const a = nodo('a', null, 'Reseña de Google');
-                    a.href = url; a.target = '_blank'; a.rel = 'noopener';
-                    a.setAttribute('aria-label', 'Ver las reseñas de AutoGas ' + sede.nombre + ' en Google Maps (se abre en una pestaña nueva)');
-                    meta.append(a);
-                } else {
-                    meta.textContent = 'Reseña de Google';
-                }
-                quien.append(meta);
-                pie.append(avatar, quien);
-                li.append(pie);
-                resLista.append(li);
-            });
+        // Tarjetas
+        const lista = (RES.resenas || []).filter(r => r && RES.sedes[r.sede] && String(r.texto || '').trim());
+        lista.forEach((r, k) => {
+            const sede = RES.sedes[r.sede];
+            const autor = String(r.autor || 'Cliente de Google');
+            const li = nodo('li', 'resena');
+            li.setAttribute('aria-label', 'Reseña ' + (k + 1) + ' de ' + lista.length);
+            const top = nodo('div', 'resena-top');
+            top.append(comillas(), nodo('span', 'resena-sede', 'Sede ' + sede.nombre));
+            li.append(top, nodo('p', 'resena-texto', String(r.texto).trim()));
+            const pie = nodo('div', 'resena-head');
+            const avatar = nodo('span', 'resena-avatar', iniciales(autor));
+            avatar.setAttribute('aria-hidden', 'true');
+            const quien = nodo('div');
+            quien.append(nodo('p', 'resena-autor', autor));
+            const meta = nodo('p', 'resena-meta');
+            const url = linkSeguro(sede.maps);
+            if (url) {
+                const a = nodo('a', null, 'Reseña de Google');
+                a.href = url; a.target = '_blank'; a.rel = 'noopener';
+                a.setAttribute('aria-label', 'Ver las reseñas de AutoGas ' + sede.nombre + ' en Google Maps (se abre en una pestaña nueva)');
+                meta.append(a);
+            } else {
+                meta.textContent = 'Reseña de Google';
+            }
+            quien.append(meta);
+            pie.append(avatar, quien);
+            li.append(pie);
+            resLista.append(li);
+        });
+
+        // Carrusel
+        const carrusel = document.getElementById('resCarrusel');
+        const controles = document.getElementById('resControles');
+        const btnPrev = document.getElementById('resPrev');
+        const btnNext = document.getElementById('resNext');
+        const btnPausa = document.getElementById('resPausa');
+        const puntos = document.getElementById('resPuntos');
+        const elActual = document.getElementById('resActual');
+        const elPasos = document.getElementById('resPasos');
+        const barra = document.getElementById('resBarra');
+        const tarjetas = Array.from(resLista.children);
+        let pasos = 1, actual = 0, pausadoPorUsuario = false, hover = false, foco = false, enPantalla = false;
+
+        const paso = () => (tarjetas.length > 1 ? tarjetas[1].offsetLeft - tarjetas[0].offsetLeft : resLista.clientWidth) || 1;
+        const visibles = () => Math.max(1, Math.round((resLista.clientWidth + 1) / paso()));
+        const indice = () => Math.min(pasos - 1, Math.round(resLista.scrollLeft / paso()));
+
+        function ir(i) {
+            i = (i + pasos) % pasos;
+            resLista.scrollTo({ left: i * paso(), behavior: reduceMotion ? 'auto' : 'smooth' });
+        }
+
+        function pintarPuntos() {
+            puntos.replaceChildren();
+            for (let k = 0; k < pasos; k++) {
+                const b = nodo('button', 'resenas-punto');
+                b.type = 'button';
+                b.setAttribute('aria-label', 'Ir a la reseña ' + (k + 1) + ' de ' + pasos);
+                b.append(nodo('span'));
+                b.addEventListener('click', () => { pausadoPorUsuario = true; actualizarPausa(); ir(k); });
+                puntos.append(b);
+            }
+        }
+
+        function actualizar() {
+            actual = indice();
+            elActual.textContent = dos(actual + 1);
+            barra.style.width = ((actual + 1) / pasos * 100) + '%';
+            Array.from(puntos.children).forEach((b, k) => b.setAttribute('aria-current', k === actual ? 'true' : 'false'));
+        }
+
+        function medir() {
+            const nuevo = Math.max(1, tarjetas.length - visibles() + 1);
+            if (nuevo !== pasos || !puntos.children.length) { pasos = nuevo; pintarPuntos(); }
+            elPasos.textContent = dos(pasos);
+            controles.hidden = pasos <= 1;
+            actualizar();
+        }
+
+        function actualizarPausa() {
+            btnPausa.classList.toggle('is-pausado', pausadoPorUsuario);
+            btnPausa.setAttribute('aria-label', pausadoPorUsuario ? 'Reanudar el carrusel' : 'Pausar el carrusel');
+        }
+
+        let tick = null;
+        resLista.addEventListener('scroll', () => {
+            if (tick) return;
+            tick = requestAnimationFrame(() => { tick = null; actualizar(); });
+        }, { passive: true });
+        btnPrev.addEventListener('click', () => ir(actual - 1));
+        btnNext.addEventListener('click', () => ir(actual + 1));
+
+        let resizeT;
+        window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(medir, 150); });
+        medir();
+
+        // Avance automático (no si el usuario pidió reducir movimiento)
+        if (!reduceMotion && tarjetas.length > 1) {
+            btnPausa.hidden = false;
+            btnPausa.addEventListener('click', () => { pausadoPorUsuario = !pausadoPorUsuario; actualizarPausa(); });
+            carrusel.addEventListener('mouseenter', () => { hover = true; });
+            carrusel.addEventListener('mouseleave', () => { hover = false; });
+            carrusel.addEventListener('focusin', () => { foco = true; });
+            carrusel.addEventListener('focusout', e => { if (!carrusel.contains(e.relatedTarget)) foco = false; });
+            // Si la persona desliza con el dedo, ya está leyendo: no le movemos el carrusel
+            resLista.addEventListener('touchstart', () => { pausadoPorUsuario = true; actualizarPausa(); }, { passive: true });
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(en => { enPantalla = en[0].isIntersecting; }, { threshold: 0.4 }).observe(carrusel);
+            } else {
+                enPantalla = true;
+            }
+            setInterval(() => {
+                if (pausadoPorUsuario || hover || foco || !enPantalla || document.hidden || pasos <= 1) return;
+                ir(actual + 1);
+            }, 6000);
+        }
     }
 
     /* ---------- 7. Año del footer ---------- */

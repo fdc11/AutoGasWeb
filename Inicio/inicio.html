@@ -35,7 +35,7 @@
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261102-1">
-    <link rel="stylesheet" href="inicio.css?v=20261102-3">
+    <link rel="stylesheet" href="inicio.css?v=20261102-4">
 
     <!-- Datos estructurados para Google (negocio local con 7 sedes) -->
     <script type="application/ld+json">
@@ -492,7 +492,28 @@
                         </div>
                     </div>
                 </div>
-                <ul class="resenas-lista" id="resLista"></ul>
+                <div class="resenas-carrusel" id="resCarrusel" role="region" aria-roledescription="carrusel" aria-label="Reseñas de clientes en Google">
+                    <ul class="resenas-lista" id="resLista" tabindex="0" aria-label="Reseñas (desliza o usa las flechas)"></ul>
+                    <div class="resenas-controles" id="resControles" hidden>
+                        <p class="resenas-progreso" aria-hidden="true">
+                            <span class="resenas-contador"><span id="resActual">01</span> <span class="resenas-contador-total">/ <span id="resPasos">01</span></span></span>
+                            <span class="resenas-barra"><span id="resBarra"></span></span>
+                        </p>
+                        <div class="resenas-puntos" id="resPuntos"></div>
+                        <div class="resenas-botones">
+                            <button class="resenas-btn resenas-btn--pausa" type="button" id="resPausa" aria-label="Pausar el carrusel" hidden>
+                                <svg class="ico-pausa" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" /><rect x="14" y="5" width="4" height="14" /></svg>
+                                <svg class="ico-play" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+                            </button>
+                            <button class="resenas-btn" type="button" id="resPrev" aria-label="Reseñas anteriores">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+                            </button>
+                            <button class="resenas-btn resenas-btn--next" type="button" id="resNext" aria-label="Reseñas siguientes">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -655,8 +676,8 @@
     </footer>
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
-    <script src="resenas-google.js?v=20261102-2" defer></script>
-    <script src="inicio.js?v=20261102-3" defer></script>
+    <script src="resenas-google.js?v=20261102-3" defer></script>
+    <script src="inicio.js?v=20261102-4" defer></script>
 </body>
 
 </html>

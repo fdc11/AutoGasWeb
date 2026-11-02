@@ -268,25 +268,37 @@
 .resenas-actions { display: flex; flex-direction: column; gap: 10px; }
 @media (max-width: 900px) { .resenas { grid-template-columns: 1fr; } }
 
-/* Reseñas de Google: promedio entre sedes + tarjetas con la sede */
+/* Reseñas de Google: promedio entre sedes + carrusel con la sede */
 .resenas-stars { margin-top: 6px; font-size: 20px; letter-spacing: 2px; color: #9A5C00; } /* 4,9:1 sobre el fondo hueso (AA) */
-.resenas-lista { margin-top: 56px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.resenas-carrusel { margin-top: 56px; }
+.resenas-lista {
+    display: flex; gap: 20px; overflow-x: auto; overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none;
+    padding: 4px 0 8px; /* espacio para la sombra al pasar el mouse */
+}
+.resenas-lista::-webkit-scrollbar { display: none; }
+.resenas-lista:focus-visible { outline: 3px solid var(--red); outline-offset: 4px; }
 .resenas-lista:empty { display: none; }
 .resena {
-    display: flex; flex-direction: column; gap: 16px; padding: 28px;
+    flex: 0 0 calc((100% - 40px) / 3); scroll-snap-align: start;
+    display: flex; flex-direction: column; gap: 20px; min-height: 320px; padding: 32px;
     background: var(--white); border: 1px solid var(--line-light); border-radius: var(--radius);
+    transition: transform .25s var(--ease-out), box-shadow .25s;
 }
+.resena:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(17, 17, 17, .08); }
+.resena-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.resena-comillas { flex: none; color: var(--red); }
 .resena-sede {
-    align-self: flex-start; padding: 5px 10px; border: 1px solid var(--red);
+    padding: 5px 10px; border: 1px solid var(--red);
     font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #C40511;
 }
 .resena-texto {
-    flex: 1; font-size: 16px; line-height: 1.6; color: var(--ink);
-    display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden;
+    flex: 1; font-size: 17px; line-height: 1.6; color: var(--ink);
+    display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; overflow: hidden;
 }
-.resena-head { display: flex; align-items: center; gap: 12px; min-width: 0; padding-top: 16px; border-top: 1px solid var(--line-light); }
+.resena-head { display: flex; align-items: center; gap: 12px; min-width: 0; padding-top: 18px; border-top: 1px solid var(--line-light); }
 .resena-avatar {
-    flex: none; width: 40px; height: 40px; border-radius: 50%;
+    flex: none; width: 44px; height: 44px; border-radius: 50%;
     display: grid; place-items: center; background: var(--ink); color: var(--white);
     font-weight: 700; font-size: 14px;
 }
@@ -294,15 +306,54 @@
 .resena-meta { margin-top: 2px; font-size: 13px; color: var(--ink-soft); }
 .resena-meta a { color: var(--ink-soft); }
 .resena-meta a:hover { color: var(--red); }
-@media (max-width: 1100px) { .resenas-lista { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Controles: contador + barra (escritorio), puntos (celular), botones */
+.resenas-controles { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-top: 28px; }
+.resenas-controles[hidden] { display: none; }
+.resenas-progreso { display: flex; align-items: center; gap: 20px; }
+.resenas-contador { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: .04em; color: var(--ink); }
+.resenas-contador-total { color: #6B6B6B; }
+.resenas-barra { position: relative; display: block; width: 240px; height: 2px; background: rgba(17, 17, 17, .15); }
+.resenas-barra span { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--red); transition: width .5s var(--ease-out); }
+.resenas-puntos { display: none; align-items: center; }
+.resenas-punto { width: 24px; height: 44px; display: grid; place-items: center; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.resenas-punto span { display: block; width: 6px; height: 6px; border-radius: 50%; background: rgba(17, 17, 17, .3); transition: width .3s, background .3s, border-radius .3s; }
+.resenas-punto[aria-current="true"] span { width: 18px; height: 4px; border-radius: 0; background: var(--red); }
+.resenas-punto:focus-visible { outline: 3px solid var(--red); outline-offset: -6px; }
+.resenas-botones { display: flex; gap: 8px; }
+.resenas-btn {
+    width: 52px; height: 52px; display: grid; place-items: center; cursor: pointer;
+    background: transparent; color: var(--ink); border: 1px solid var(--ink);
+    transition: background .2s, color .2s, border-color .2s;
+}
+.resenas-btn--next { background: var(--ink); color: var(--white); }
+.resenas-btn:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+.resenas-btn:focus-visible { outline: 3px solid var(--red); outline-offset: 2px; }
+.resenas-btn--pausa { border-color: transparent; }
+.resenas-btn--pausa .ico-play, .resenas-btn--pausa.is-pausado .ico-pausa { display: none; }
+.resenas-btn--pausa.is-pausado .ico-play { display: block; }
+
+@media (max-width: 1100px) { .resena { flex-basis: calc((100% - 20px) / 2); } }
 @media (max-width: 700px) {
-    /* En celular: carrusel horizontal que se desliza con el dedo */
+    /* Celular: una reseña a la vez, asomando la siguiente; se desliza con el dedo */
+    .resenas-carrusel { margin-top: 40px; }
     .resenas-lista {
-        display: flex; gap: 12px; margin-top: 40px; overflow-x: auto; scroll-snap-type: x mandatory;
-        margin-inline: calc(var(--gutter) * -1); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
-        padding-bottom: 8px;
+        gap: 12px; margin-inline: calc(var(--gutter) * -1);
+        padding-inline: var(--gutter); scroll-padding-inline: var(--gutter);
     }
-    .resena { flex: 0 0 85%; scroll-snap-align: start; }
+    .resena { flex-basis: 86%; min-height: 0; padding: 24px; }
+    .resena:hover { transform: none; box-shadow: none; }
+    .resena-texto { font-size: 16px; }
+    .resenas-controles { margin-top: 20px; gap: 12px; }
+    .resenas-progreso { display: none; }
+    .resenas-puntos { display: flex; flex-wrap: wrap; min-width: 0; }
+    .resenas-punto { width: 22px; }
+    .resenas-botones { gap: 6px; flex: none; }
+    .resenas-btn { width: 44px; height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .resenas-lista { scroll-behavior: auto; }
+    .resena, .resena:hover { transition: none; transform: none; }
 }
 
 /* ---------- Preguntas frecuentes ---------- */
