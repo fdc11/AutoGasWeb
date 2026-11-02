@@ -61,7 +61,7 @@
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261102-1">
-    <link rel="stylesheet" href="servicios.css?v=20261030-2">
+    <link rel="stylesheet" href="servicios.css?v=20261102-2">
     <style>
         .site-header { height: 72px; }
         .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
@@ -483,193 +483,71 @@
     </section>
 
 
-    <!-- ==================== TESTIMONIOS ==================== -->
-    <section class="testimonios-section" id="testimonios">
-        <div class="testimonios-inner">
-
-            <!-- Panel izquierdo: título + promedio + controles -->
-            <div class="testimonios-left reveal-left">
-                <div class="section-tag light-tag">Reseñas verificadas</div>
-                <h2 class="section-title light">LO QUE DICEN<br>NUESTROS<br>CLIENTES</h2>
-
-                <!-- Rating promedio — JS lo llena dinámicamente -->
-                <div id="ratingAverage" class="rating-average"></div>
-
-                <!-- Controles de navegación -->
-                <div class="slider-controls">
-                    <button type="button" class="slider-btn" id="sliderPrev" aria-label="Anterior">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polyline points="15 18 9 12 15 6" />
-                        </svg>
-                    </button>
-                    <button type="button" class="slider-btn" id="sliderNext" aria-label="Siguiente">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polyline points="9 18 15 12 9 6" />
-                        </svg>
-                    </button>
-                    <div class="slider-dots" id="sliderDots"></div>
-                </div>
-            </div>
-
-            <!-- Panel derecho: carrusel de cards -->
-            <div class="testimonios-right">
-                <div class="testimonios-slider-wrap">
-                    <div class="testimonios-track" id="testimoniosTrack"></div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- ==================== FORMULARIO RESEÑA ==================== -->
-    <section class="resena-section" id="dejar-resena">
-        <div class="resena-inner">
-            <div class="resena-left reveal-left">
+    <!-- ==================== DEJA TU RESEÑA (en Google Maps) ====================
+         Cada sede lleva directo al formulario de reseña de su ficha en Google Maps
+         (search.google.com/local/writereview?placeid=ID_DE_LA_SEDE).
+         Para añadir una sede: copia un <li> y cambia ciudad, dirección y placeid. -->
+    <section class="rg-section" id="dejar-resena" aria-labelledby="rgTitulo">
+        <div class="rg-inner">
+            <div class="rg-intro reveal-left">
                 <div class="section-tag">Tu opinión importa</div>
-                <h2 class="section-title dark">DEJA TU<br>RESEÑA</h2>
-                <p class="resena-intro">Cuéntanos tu experiencia. Tu feedback nos ayuda a mejorar y ayuda a otros
-                    clientes a elegir mejor.</p>
-                <div class="resena-trust">
-                    <div class="trust-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
-                        <span>Reseñas verificadas</span>
-                    </div>
-                    <div class="trust-item">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <polyline points="12 6 12 12 16 14" />
-                        </svg>
-                        <span>Publicadas en 24 horas</span>
-                    </div>
-                </div>
+                <h2 class="section-title dark" id="rgTitulo">Deja tu reseña<br><span class="red-text">en Google</span></h2>
+                <p class="rg-lead">¿Te atendimos bien? Cuéntaselo a otros conductores en Google Maps. Te toma un minuto y nos ayuda a seguir mejorando.</p>
+                <p class="rg-stars"><span class="rg-stars-icons" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg></span><span>Tu reseña ayuda a otros a elegir con confianza</span></p>
             </div>
-            <div class="resena-form-wrap reveal-right">
-                <form class="resena-form" id="resenaForm" novalidate>
-                    <div class="form-group" aria-hidden="true"
-                        style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;overflow:hidden;">
-                        <label for="resena-web">Sitio web</label>
-                        <input type="text" id="resena-web" name="web" tabindex="-1" autocomplete="off">
-                    </div>
-                    <div class="form-group">
-                        <label for="resena-nombre">Nombre completo</label>
-                        <input type="text" id="resena-nombre" name="nombre" placeholder="Ej. Carlos Mendoza"
-                            autocomplete="name" maxlength="80" required>
-                    </div>
-                    <div class="form-row-two">
-                        <div class="form-group">
-                            <label for="resena-sede">Sede</label>
-                            <div class="select-wrap">
-                                <select id="resena-sede" name="sede" required>
-                                    <option value="" disabled selected>Selecciona tu sede</option>
-                                    <option>Ica</option>
-                                    <option>Nasca</option>
-                                    <option>Huancayo</option>
-                                    <option>Lima</option>
-                                    <option>Trujillo</option>
-                                    <option>Chincha</option>
-                                    <option>Arequipa</option>
-                                </select>
-                                <svg class="select-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2.5">
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="resena-servicio">Servicio recibido</label>
-                            <div class="select-wrap">
-                                <select id="resena-servicio" name="servicio" required>
-                                    <option value="" disabled selected>Selecciona el servicio</option>
-                                    <option>Conversión GNV</option>
-                                    <option>Conversión GLP</option>
-                                    <option>Conversión GNV</option>
-                                    <option>Mantenimiento Preventivo</option>
-                                    <option>Mantenimiento Correctivo</option>
-                                    <option>Revisión Técnica</option>
-                                    <option>Diagnóstico General</option>
-                                    <option>Mecánica General</option>
-                                    <option>Repuestos y accesorios</option>
-                                </select>
-                                <svg class="select-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2.5">
-                                    <polyline points="6 9 12 15 18 9" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Calificación</label>
-                        <div class="star-rating" id="starRating">
-                            <button type="button" class="star-btn" data-value="1" aria-label="1 estrella"><svg viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="1.8">
-                                    <polygon
-                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                </svg></button>
-                            <button type="button" class="star-btn" data-value="2" aria-label="2 estrellas"><svg viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="1.8">
-                                    <polygon
-                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                </svg></button>
-                            <button type="button" class="star-btn" data-value="3" aria-label="3 estrellas"><svg viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="1.8">
-                                    <polygon
-                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                </svg></button>
-                            <button type="button" class="star-btn" data-value="4" aria-label="4 estrellas"><svg viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="1.8">
-                                    <polygon
-                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                </svg></button>
-                            <button type="button" class="star-btn" data-value="5" aria-label="5 estrellas"><svg viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="1.8">
-                                    <polygon
-                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                                </svg></button>
-                        </div>
-                        <input type="hidden" id="resena-calificacion" name="calificacion" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="resena-comentario">Comentario</label>
-                        <textarea id="resena-comentario" name="comentario" rows="4" maxlength="600"
-                            placeholder="Cuéntanos cómo fue tu experiencia..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn-submit" id="btnSubmitResena">
-                        <span class="btn-text">Enviar reseña</span>
-                        <span class="btn-loading" style="display:none;">
-                            <svg class="spinner" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2.5">
-                                <path d="M21 12a9 9 0 11-6.219-8.56" />
-                            </svg>
-                            Enviando...
-                        </span>
-                        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                    <div class="form-success" id="formSuccess" style="display:none;">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2.5">
-                            <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                        Tu reseña fue enviada. ¡Gracias por tu tiempo!
-                    </div>
-                    <div class="form-error" id="formError" style="display:none;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <line x1="12" y1="8" x2="12" y2="12" />
-                            <line x1="12" y1="16" x2="12.01" y2="16" />
-                        </svg>
-                        <span id="formErrorMsg">Error al enviar. Intenta de nuevo.</span>
-                    </div>
-                </form>
+
+            <ol class="rg-pasos reveal-left" aria-label="Cómo dejar tu reseña">
+                <li><span class="rg-num" aria-hidden="true">1</span><span class="rg-paso-txt"><strong>Elige tu sede</strong><span>La sede donde atendieron tu vehículo.</span></span></li>
+                <li><span class="rg-num" aria-hidden="true">2</span><span class="rg-paso-txt"><strong>Marca tus estrellas</strong><span>Se abre Google Maps con el formulario listo.</span></span></li>
+                <li><span class="rg-num" aria-hidden="true">3</span><span class="rg-paso-txt"><strong>Cuenta tu experiencia</strong><span>Unas líneas sobre el servicio que recibiste.</span></span></li>
+            </ol>
+
+            <div class="rg-card reveal-right">
+                <h3 class="rg-card-title">¿En qué sede te atendimos?</h3>
+                <p class="rg-card-sub">Toca tu sede y se abrirá Google Maps con el formulario de reseña listo.</p>
+                <ul class="rg-sedes">
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJ-cH_FMDjEJERt0_WLrs4rQA" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Ica en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Ica</span><span class="rg-dir">Av. Fernando León de Vivero 304</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJqxd8OJ_PBZERg-K0zRF7974" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Lima en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Lima</span><span class="rg-dir">Jr. San Lino 6318, Los Olivos</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJ-RKreZmXDpERY0k7XdvJfQc" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Huancayo en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Huancayo</span><span class="rg-dir">Prol. Julio Sumar 698, El Tambo</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJQ3wZaak9rZERs4gU_sGumN0" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Trujillo en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Trujillo</span><span class="rg-dir">Av. Túpac Amaru 1633, Alto Mochica</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJa5IxeABLQpERaTmDO9vEK6U" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Arequipa en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Arequipa</span><span class="rg-dir">Av. Túpac Amaru 714, Paucarpata</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJ0cJmUPsfFJERTgPEdW6dGq0" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Nasca en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Nasca</span><span class="rg-dir">Av. Los Incas 201</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <!-- PENDIENTE: Chincha (falta el enlace de su ficha en Google Maps) -->
+                    <li class="rg-nota">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10" /><line x1="12" y1="11" x2="12" y2="16" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+                        <span>Se abre Google Maps. Necesitas una cuenta de Google para publicar tu reseña.</span>
+                    </li>
+                </ul>
             </div>
         </div>
     </section>
@@ -845,9 +723,8 @@
         </form>
     </section>
 
-    <script src="vendor/supabase-2.118.0.js" defer></script>
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
-    <script src="servicios.js?v=20261030" defer></script>
+    <script src="servicios.js?v=20261102-2" defer></script>
     <script src="diagnostico.js?v=20261029" defer></script>
 </body>
 

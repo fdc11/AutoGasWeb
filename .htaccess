@@ -3,7 +3,7 @@
 #  Equivale a vercel.json para hosting tradicional (cPanel, Hostinger…)
 #  y también funciona en XAMPP local.
 #  Sedes/, Servicios/ y Tienda/ tienen su propio .htaccess con el CSP
-#  de esa página (usan mapa, Supabase o onclick).
+#  de esa página.
 # =====================================================================
 
 Options -Indexes

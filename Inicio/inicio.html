@@ -35,7 +35,7 @@
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261102-1">
-    <link rel="stylesheet" href="inicio.css?v=20261102-2">
+    <link rel="stylesheet" href="inicio.css?v=20261102-3">
 
     <!-- Datos estructurados para Google (negocio local con 7 sedes) -->
     <script type="application/ld+json">
@@ -472,8 +472,8 @@
         </section>
 
         <!-- ==================== RESEÑAS (Google) ====================
-             Las reseñas se editan en Inicio/resenas-google.js (copiadas de Google Maps).
-             Sin JavaScript quedan los enlaces a Google de cada sede. -->
+             Las reseñas y los puntajes se editan en Inicio/resenas-google.js
+             (copiados de Google Maps). El promedio entre sedes se calcula solo. -->
         <section class="section-tight section-light" aria-labelledby="resenasTitulo">
             <div class="container reveal">
                 <div class="resenas">
@@ -488,28 +488,11 @@
                             <p class="muted" id="resTotal">Reseñas en Google Maps</p>
                         </div>
                         <div class="resenas-actions">
-                            <a class="btn btn-dark" id="resVer" href="https://maps.app.goo.gl/YMV6tFCKN7JVeh2y5" target="_blank" rel="noopener">Ver todas en Google</a>
-                            <a class="btn btn-outline" id="resDejar" href="https://search.google.com/local/writereview?placeid=ChIJ-cH_FMDjEJERt0_WLrs4rQA" target="_blank" rel="noopener">Dejar mi reseña</a>
+                            <a class="btn btn-dark" href="../Servicios/servicios.html#dejar-resena">Dejar mi reseña</a>
                         </div>
                     </div>
                 </div>
-
-                <div class="sede-tabs resenas-tabs" role="tablist" aria-label="Reseñas por sede">
-                    <button class="sede-tab is-active" type="button" role="tab" id="restab-ica" data-resena="ica" aria-controls="resPanel" aria-selected="true">Ica</button>
-                    <button class="sede-tab" type="button" role="tab" id="restab-lima" data-resena="lima" aria-controls="resPanel" aria-selected="false" tabindex="-1">Lima</button>
-                    <button class="sede-tab" type="button" role="tab" id="restab-huancayo" data-resena="huancayo" aria-controls="resPanel" aria-selected="false" tabindex="-1">Huancayo</button>
-                    <button class="sede-tab" type="button" role="tab" id="restab-trujillo" data-resena="trujillo" aria-controls="resPanel" aria-selected="false" tabindex="-1">Trujillo</button>
-                </div>
-
-                <div class="resenas-panel" id="resPanel" role="tabpanel" aria-labelledby="restab-ica">
-                    <ul class="resenas-lista" id="resLista"></ul>
-                    <p class="resenas-estado" id="resEstado" aria-live="polite">Mira lo que opinan nuestros clientes directamente en Google Maps.</p>
-                </div>
-
-                <p class="resenas-nota">
-                    Fuente: <strong>Google Maps</strong>. Reseñas publicadas por clientes de cada sede; mostramos una selección de 4 y 5 estrellas
-                    y el puntaje incluye todas las reseñas. <a href="https://maps.app.goo.gl/YMV6tFCKN7JVeh2y5" id="resNotaLink" target="_blank" rel="noopener">Lee todas en Google Maps</a>.
-                </p>
+                <ul class="resenas-lista" id="resLista"></ul>
             </div>
         </section>
 
@@ -672,8 +655,8 @@
     </footer>
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
-    <script src="resenas-google.js?v=20261102-1" defer></script>
-    <script src="inicio.js?v=20261102-2" defer></script>
+    <script src="resenas-google.js?v=20261102-2" defer></script>
+    <script src="inicio.js?v=20261102-3" defer></script>
 </body>
 
 </html>
