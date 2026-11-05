@@ -20,95 +20,95 @@ const NOMBRES_SEDES = {
 // CATÁLOGO DE PRODUCTOS
 // =============================================
 // Precios en 0.00 a propósito: la administradora carga los precios reales.
-// Para poner la foto de un producto: escribe la ruta en "img" (ej. 'Imagenes/Productos/10111212.webp').
+// Fotos: Imagenes/Productos/<código>.webp (convertidas a WebP de máx. 800 px desde las carpetas por categoría).
 const CATALOGO = {
     aceites: {
         label: 'Aceites y Lubricantes',
         productos: [
-            { id: 'p10110456', sku: '10110456', marca: "ACDelco", nombre: "Aceite ACDelco 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110803', sku: '10110803', marca: "ACDelco", nombre: "Full Synthetic SAE 10W-30 1 L", desc: "Aceite de motor sintético · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110389', sku: '10110389', marca: "Castrol", nombre: "Aceite para engranajes 8W-90", desc: "Aceite de transmisión · 8W-90", precio: 0.00, img: '' },
-            { id: 'p10110919', sku: '10110919', marca: "Castrol", nombre: "Axle GL-5 80W-90 1 L", desc: "Aceite de diferencial · 80W-90 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110635', sku: '10110635', marca: "Castrol", nombre: "Edge 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110640', sku: '10110640', marca: "Castrol", nombre: "Edge 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110380', sku: '10110380', marca: "Castrol", nombre: "GTX 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110937', sku: '10110937', marca: "Castrol", nombre: "GTX 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110800', sku: '10110800', marca: "Castrol", nombre: "GTX Full Synthetic 5W-30 1 GL", desc: "Aceite de motor sintético · 5W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110799', sku: '10110799', marca: "Castrol", nombre: "GTX Full Synthetic 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110014', sku: '10110014', marca: "Castrol", nombre: "GTX Gas 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110015', sku: '10110015', marca: "Castrol", nombre: "GTX Gas 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110279', sku: '10110279', marca: "Castrol", nombre: "HD SAE 50", desc: "Aceite de motor · SAE 50 · Protección contra la descomposición térmica", precio: 0.00, img: '' },
-            { id: 'p10110023', sku: '10110023', marca: "Castrol", nombre: "Magnatec 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110024', sku: '10110024', marca: "Castrol", nombre: "Magnatec 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110025', sku: '10110025', marca: "Castrol", nombre: "Magnatec 10W-40 1 GL", desc: "Aceite de motor · 10W-40 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110401', sku: '10110401', marca: "Castrol", nombre: "Magnatec 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110071', sku: '10110071', marca: "Castrol", nombre: "Magnatec 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110070', sku: '10110070', marca: "Castrol", nombre: "Magnatec 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110084', sku: '10110084', marca: "Castrol", nombre: "Magnatec 5W-40 1 L", desc: "Aceite de motor · 5W-40 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110026', sku: '10110026', marca: "Castrol", nombre: "Magnatec Stop-Start 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110033', sku: '10110033', marca: "Castrol", nombre: "Magnatec Stop-Start 5W-30 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110634', sku: '10110634', marca: "Castrol", nombre: "Transmax 75W-90 1 L", desc: "Aceite de transmisión · 75W-90 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110597', sku: '10110597', marca: "Castrol", nombre: "Vecton LD 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110777', sku: '10110777', marca: "Chevron", nombre: "Semisintético 10W-30 1 L", desc: "Aceite de motor semisintético · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110490', sku: '10110490', marca: "Chevron", nombre: "Semisintético 20W-50 1 L", desc: "Aceite de motor semisintético · 20W-50 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111119', sku: '10111119', marca: "Liqui Moly", nombre: "Aceite de caja GL4-GL5 sintético 75W-90 1 L (LM1407)", desc: "Aceite de transmisión sintético · 75W-90 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111120', sku: '10111120', marca: "Liqui Moly", nombre: "Aceite de caja GL5 sintético 75W-90 1 L", desc: "Aceite de transmisión sintético · 75W-90 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111114', sku: '10111114', marca: "Liqui Moly", nombre: "Aceite de caja sintético 75W-140 1 L", desc: "Aceite de transmisión sintético · 75W-140 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110559', sku: '10110559', marca: "Liqui Moly", nombre: "Aceite para caja de doble embrague 8100", desc: "Aceite de transmisión DCT", precio: 0.00, img: '' },
-            { id: 'p10111240', sku: '10111240', marca: "Liqui Moly", nombre: "Aceite para diésel 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110200', sku: '10110200', marca: "Liqui Moly", nombre: "Aceite para diésel sin aditivo 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10111131', sku: '10111131', marca: "Liqui Moly", nombre: "Molygen New Generation 0W-20 1 L", desc: "Aceite de motor sintético · 0W-20 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111132', sku: '10111132', marca: "Liqui Moly", nombre: "Molygen New Generation 0W-20 4 L", desc: "Aceite de motor sintético · 0W-20 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110935', sku: '10110935', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110928', sku: '10110928', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10111129', sku: '10111129', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111130', sku: '10111130', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-40 4 L / 1 GL", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110929', sku: '10110929', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111319', sku: '10111319', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 1 L (cilindro)", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111212', sku: '10111212', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110470', sku: '10110470', marca: "Liqui Moly", nombre: "Molygen New Generation DPF 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros · Para filtro de partículas", precio: 0.00, img: '' },
-            { id: 'p10111127', sku: '10111127', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111128', sku: '10111128', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10111125', sku: '10111125', marca: "Liqui Moly", nombre: "Special Tec AA 0W-20 1 L", desc: "Aceite de motor sintético · 0W-20 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111126', sku: '10111126', marca: "Liqui Moly", nombre: "Special Tec AA 0W-20 4 L", desc: "Aceite de motor sintético · 0W-20 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110970', sku: '10110970', marca: "Liqui Moly", nombre: "Special Tec AA 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110855', sku: '10110855', marca: "Liqui Moly", nombre: "Special Tec AA 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110968', sku: '10110968', marca: "Liqui Moly", nombre: "Special Tec AA 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110925', sku: '10110925', marca: "Liqui Moly", nombre: "Special Tec AA 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10111116', sku: '10111116', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111115', sku: '10111115', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10111225', sku: '10111225', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 5 L", desc: "Aceite de motor sintético · 5W-40 · 5 litros", precio: 0.00, img: '' },
-            { id: 'p10111243', sku: '10111243', marca: "Liqui Moly", nombre: "Top Tec 4200 5W-30 5 L", desc: "Aceite de motor sintético · 5W-30 · 5 litros", precio: 0.00, img: '' },
-            { id: 'p10111118', sku: '10111118', marca: "Liqui Moly", nombre: "Top Tec 4300 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10111117', sku: '10111117', marca: "Liqui Moly", nombre: "Top Tec 4300 5W-30 5 L", desc: "Aceite de motor sintético · 5W-30 · 5 litros", precio: 0.00, img: '' },
-            { id: 'p10110560', sku: '10110560', marca: "Liqui Moly", nombre: "Top Tec ATF 1200 (LM3681)", desc: "Aceite para transmisión automática", precio: 0.00, img: '' },
-            { id: 'p10111222', sku: '10111222', marca: "Liqui Moly", nombre: "Top Tec ATF 1400", desc: "Aceite para transmisión automática", precio: 0.00, img: '' },
-            { id: 'p10111223', sku: '10111223', marca: "Liqui Moly", nombre: "Top Tec ATF 1800", desc: "Aceite para transmisión automática", precio: 0.00, img: '' },
-            { id: 'p10110585', sku: '10110585', marca: "Mobil", nombre: "Mobil 1 Premium 5W-30 1 GL", desc: "Aceite de motor sintético · 5W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110434', sku: '10110434', marca: "Mobil", nombre: "Super Gas 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110579', sku: '10110579', marca: "Mobil", nombre: "Super Gas 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110433', sku: '10110433', marca: "Mobil", nombre: "Super Gas 5W-30 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110568', sku: '10110568', marca: "Mobil", nombre: "Super Gas 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110563', sku: '10110563', marca: "Mobil", nombre: "Super Sintético 100% 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110017', sku: '10110017', marca: "Shell", nombre: "Helix HX5 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110018', sku: '10110018', marca: "Shell", nombre: "Helix HX5 20W-50 4 L", desc: "Aceite de motor · 20W-50 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110019', sku: '10110019', marca: "Shell", nombre: "Helix HX7 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110020', sku: '10110020', marca: "Shell", nombre: "Helix HX7 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110399', sku: '10110399', marca: "Shell", nombre: "Helix HX7 Professional 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110403', sku: '10110403', marca: "Shell", nombre: "Helix HX7 Professional 10W-40 4 L", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110021', sku: '10110021', marca: "Shell", nombre: "Helix HX8 Professional 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110022', sku: '10110022', marca: "Shell", nombre: "Helix HX8 Professional 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110274', sku: '10110274', marca: "Shell", nombre: "Helix Ultra 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110921', sku: '10110921', marca: "Shell", nombre: "Helix Ultra 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110599', sku: '10110599', marca: "Vistony", nombre: "Attom S300 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110665', sku: '10110665', marca: "Vistony", nombre: "Attom S400 5W-30 API SQ 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110648', sku: '10110648', marca: "Vistony", nombre: "Attom S400 5W-30 API SQ 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110601', sku: '10110601', marca: "Vistony", nombre: "Blindax Super Gas 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110656', sku: '10110656', marca: "Vistony", nombre: "Sintek S200 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110600', sku: '10110600', marca: "Vistony", nombre: "Sintek S200 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: '' },
-            { id: 'p10110655', sku: '10110655', marca: "Vistony", nombre: "Sintek S210 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: '' },
-            { id: 'p10110657', sku: '10110657', marca: "Vistony", nombre: "Sintek S210 10W-40 4 L", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: '' },
-            { id: 'p10110004', sku: '10110004', marca: "Genérico", nombre: "Aceite ATF (Mercon / Dexron III) para dirección", desc: "Aceite para dirección hidráulica", precio: 0.00, img: '' },
+            { id: 'p10110456', sku: '10110456', marca: "ACDelco", nombre: "Aceite ACDelco 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110456.webp' },
+            { id: 'p10110803', sku: '10110803', marca: "ACDelco", nombre: "Full Synthetic SAE 10W-30 1 L", desc: "Aceite de motor sintético · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110803.webp' },
+            { id: 'p10110389', sku: '10110389', marca: "Castrol", nombre: "Aceite para engranajes 8W-90", desc: "Aceite de transmisión · 8W-90", precio: 0.00, img: 'Imagenes/Productos/10110389.webp' },
+            { id: 'p10110919', sku: '10110919', marca: "Castrol", nombre: "Axle GL-5 80W-90 1 L", desc: "Aceite de diferencial · 80W-90 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110919.webp' },
+            { id: 'p10110635', sku: '10110635', marca: "Castrol", nombre: "Edge 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110635.webp' },
+            { id: 'p10110640', sku: '10110640', marca: "Castrol", nombre: "Edge 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110640.webp' },
+            { id: 'p10110380', sku: '10110380', marca: "Castrol", nombre: "GTX 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110380.webp' },
+            { id: 'p10110937', sku: '10110937', marca: "Castrol", nombre: "GTX 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110937.webp' },
+            { id: 'p10110800', sku: '10110800', marca: "Castrol", nombre: "GTX Full Synthetic 5W-30 1 GL", desc: "Aceite de motor sintético · 5W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110800.webp' },
+            { id: 'p10110799', sku: '10110799', marca: "Castrol", nombre: "GTX Full Synthetic 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110799.webp' },
+            { id: 'p10110014', sku: '10110014', marca: "Castrol", nombre: "GTX Gas 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110014.webp' },
+            { id: 'p10110015', sku: '10110015', marca: "Castrol", nombre: "GTX Gas 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110015.webp' },
+            { id: 'p10110279', sku: '10110279', marca: "Castrol", nombre: "HD SAE 50", desc: "Aceite de motor · SAE 50 · Protección contra la descomposición térmica", precio: 0.00, img: 'Imagenes/Productos/10110279.webp' },
+            { id: 'p10110023', sku: '10110023', marca: "Castrol", nombre: "Magnatec 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110023.webp' },
+            { id: 'p10110024', sku: '10110024', marca: "Castrol", nombre: "Magnatec 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110024.webp' },
+            { id: 'p10110025', sku: '10110025', marca: "Castrol", nombre: "Magnatec 10W-40 1 GL", desc: "Aceite de motor · 10W-40 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110025.webp' },
+            { id: 'p10110401', sku: '10110401', marca: "Castrol", nombre: "Magnatec 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110401.webp' },
+            { id: 'p10110071', sku: '10110071', marca: "Castrol", nombre: "Magnatec 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110071.webp' },
+            { id: 'p10110070', sku: '10110070', marca: "Castrol", nombre: "Magnatec 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110070.webp' },
+            { id: 'p10110084', sku: '10110084', marca: "Castrol", nombre: "Magnatec 5W-40 1 L", desc: "Aceite de motor · 5W-40 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110084.webp' },
+            { id: 'p10110026', sku: '10110026', marca: "Castrol", nombre: "Magnatec Stop-Start 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110026.webp' },
+            { id: 'p10110033', sku: '10110033', marca: "Castrol", nombre: "Magnatec Stop-Start 5W-30 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110033.webp' },
+            { id: 'p10110634', sku: '10110634', marca: "Castrol", nombre: "Transmax 75W-90 1 L", desc: "Aceite de transmisión · 75W-90 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110634.webp' },
+            { id: 'p10110597', sku: '10110597', marca: "Castrol", nombre: "Vecton LD 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110597.webp' },
+            { id: 'p10110777', sku: '10110777', marca: "Chevron", nombre: "Semisintético 10W-30 1 L", desc: "Aceite de motor semisintético · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110777.webp' },
+            { id: 'p10110490', sku: '10110490', marca: "Chevron", nombre: "Semisintético 20W-50 1 L", desc: "Aceite de motor semisintético · 20W-50 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110490.webp' },
+            { id: 'p10111119', sku: '10111119', marca: "Liqui Moly", nombre: "Aceite de caja GL4-GL5 sintético 75W-90 1 L (LM1407)", desc: "Aceite de transmisión sintético · 75W-90 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111119.webp' },
+            { id: 'p10111120', sku: '10111120', marca: "Liqui Moly", nombre: "Aceite de caja GL5 sintético 75W-90 1 L", desc: "Aceite de transmisión sintético · 75W-90 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111120.webp' },
+            { id: 'p10111114', sku: '10111114', marca: "Liqui Moly", nombre: "Aceite de caja sintético 75W-140 1 L", desc: "Aceite de transmisión sintético · 75W-140 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111114.webp' },
+            { id: 'p10110559', sku: '10110559', marca: "Liqui Moly", nombre: "Aceite para caja de doble embrague 8100", desc: "Aceite de transmisión DCT", precio: 0.00, img: 'Imagenes/Productos/10110559.webp' },
+            { id: 'p10111240', sku: '10111240', marca: "Liqui Moly", nombre: "Aceite para diésel 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10111240.webp' },
+            { id: 'p10110200', sku: '10110200', marca: "Liqui Moly", nombre: "Aceite para diésel sin aditivo 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110200.webp' },
+            { id: 'p10111131', sku: '10111131', marca: "Liqui Moly", nombre: "Molygen New Generation 0W-20 1 L", desc: "Aceite de motor sintético · 0W-20 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111131.webp' },
+            { id: 'p10111132', sku: '10111132', marca: "Liqui Moly", nombre: "Molygen New Generation 0W-20 4 L", desc: "Aceite de motor sintético · 0W-20 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10111132.webp' },
+            { id: 'p10110935', sku: '10110935', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110935.webp' },
+            { id: 'p10110928', sku: '10110928', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110928.webp' },
+            { id: 'p10111129', sku: '10111129', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111129.webp' },
+            { id: 'p10111130', sku: '10111130', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-40 4 L / 1 GL", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10111130.webp' },
+            { id: 'p10110929', sku: '10110929', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110929.webp' },
+            { id: 'p10111319', sku: '10111319', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 1 L (cilindro)", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111319.webp' },
+            { id: 'p10111212', sku: '10111212', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10111212.webp' },
+            { id: 'p10110470', sku: '10110470', marca: "Liqui Moly", nombre: "Molygen New Generation DPF 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros · Para filtro de partículas", precio: 0.00, img: 'Imagenes/Productos/10110470.webp' },
+            { id: 'p10111127', sku: '10111127', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111127.webp' },
+            { id: 'p10111128', sku: '10111128', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10111128.webp' },
+            { id: 'p10111125', sku: '10111125', marca: "Liqui Moly", nombre: "Special Tec AA 0W-20 1 L", desc: "Aceite de motor sintético · 0W-20 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111125.webp' },
+            { id: 'p10111126', sku: '10111126', marca: "Liqui Moly", nombre: "Special Tec AA 0W-20 4 L", desc: "Aceite de motor sintético · 0W-20 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10111126.webp' },
+            { id: 'p10110970', sku: '10110970', marca: "Liqui Moly", nombre: "Special Tec AA 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110970.webp' },
+            { id: 'p10110855', sku: '10110855', marca: "Liqui Moly", nombre: "Special Tec AA 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110855.webp' },
+            { id: 'p10110968', sku: '10110968', marca: "Liqui Moly", nombre: "Special Tec AA 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110968.webp' },
+            { id: 'p10110925', sku: '10110925', marca: "Liqui Moly", nombre: "Special Tec AA 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110925.webp' },
+            { id: 'p10111116', sku: '10111116', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111116.webp' },
+            { id: 'p10111115', sku: '10111115', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10111115.webp' },
+            { id: 'p10111225', sku: '10111225', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 5 L", desc: "Aceite de motor sintético · 5W-40 · 5 litros", precio: 0.00, img: 'Imagenes/Productos/10111225.webp' },
+            { id: 'p10111243', sku: '10111243', marca: "Liqui Moly", nombre: "Top Tec 4200 5W-30 5 L", desc: "Aceite de motor sintético · 5W-30 · 5 litros", precio: 0.00, img: 'Imagenes/Productos/10111243.webp' },
+            { id: 'p10111118', sku: '10111118', marca: "Liqui Moly", nombre: "Top Tec 4300 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10111118.webp' },
+            { id: 'p10111117', sku: '10111117', marca: "Liqui Moly", nombre: "Top Tec 4300 5W-30 5 L", desc: "Aceite de motor sintético · 5W-30 · 5 litros", precio: 0.00, img: 'Imagenes/Productos/10111117.webp' },
+            { id: 'p10110560', sku: '10110560', marca: "Liqui Moly", nombre: "Top Tec ATF 1200 (LM3681)", desc: "Aceite para transmisión automática", precio: 0.00, img: 'Imagenes/Productos/10110560.webp' },
+            { id: 'p10111222', sku: '10111222', marca: "Liqui Moly", nombre: "Top Tec ATF 1400", desc: "Aceite para transmisión automática", precio: 0.00, img: 'Imagenes/Productos/10111222.webp' },
+            { id: 'p10111223', sku: '10111223', marca: "Liqui Moly", nombre: "Top Tec ATF 1800", desc: "Aceite para transmisión automática", precio: 0.00, img: 'Imagenes/Productos/10111223.webp' },
+            { id: 'p10110585', sku: '10110585', marca: "Mobil", nombre: "Mobil 1 Premium 5W-30 1 GL", desc: "Aceite de motor sintético · 5W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110585.webp' },
+            { id: 'p10110434', sku: '10110434', marca: "Mobil", nombre: "Super Gas 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110434.webp' },
+            { id: 'p10110579', sku: '10110579', marca: "Mobil", nombre: "Super Gas 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110579.webp' },
+            { id: 'p10110433', sku: '10110433', marca: "Mobil", nombre: "Super Gas 5W-30 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110433.webp' },
+            { id: 'p10110568', sku: '10110568', marca: "Mobil", nombre: "Super Gas 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110568.webp' },
+            { id: 'p10110563', sku: '10110563', marca: "Mobil", nombre: "Super Sintético 100% 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110563.webp' },
+            { id: 'p10110017', sku: '10110017', marca: "Shell", nombre: "Helix HX5 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110017.webp' },
+            { id: 'p10110018', sku: '10110018', marca: "Shell", nombre: "Helix HX5 20W-50 4 L", desc: "Aceite de motor · 20W-50 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110018.webp' },
+            { id: 'p10110019', sku: '10110019', marca: "Shell", nombre: "Helix HX7 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110019.webp' },
+            { id: 'p10110020', sku: '10110020', marca: "Shell", nombre: "Helix HX7 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110020.webp' },
+            { id: 'p10110399', sku: '10110399', marca: "Shell", nombre: "Helix HX7 Professional 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110399.webp' },
+            { id: 'p10110403', sku: '10110403', marca: "Shell", nombre: "Helix HX7 Professional 10W-40 4 L", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110403.webp' },
+            { id: 'p10110021', sku: '10110021', marca: "Shell", nombre: "Helix HX8 Professional 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110021.webp' },
+            { id: 'p10110022', sku: '10110022', marca: "Shell", nombre: "Helix HX8 Professional 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110022.webp' },
+            { id: 'p10110274', sku: '10110274', marca: "Shell", nombre: "Helix Ultra 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110274.webp' },
+            { id: 'p10110921', sku: '10110921', marca: "Shell", nombre: "Helix Ultra 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110921.webp' },
+            { id: 'p10110599', sku: '10110599', marca: "Vistony", nombre: "Attom S300 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110599.webp' },
+            { id: 'p10110665', sku: '10110665', marca: "Vistony", nombre: "Attom S400 5W-30 API SQ 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110665.webp' },
+            { id: 'p10110648', sku: '10110648', marca: "Vistony", nombre: "Attom S400 5W-30 API SQ 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110648.webp' },
+            { id: 'p10110601', sku: '10110601', marca: "Vistony", nombre: "Blindax Super Gas 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110601.webp' },
+            { id: 'p10110656', sku: '10110656', marca: "Vistony", nombre: "Sintek S200 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110656.webp' },
+            { id: 'p10110600', sku: '10110600', marca: "Vistony", nombre: "Sintek S200 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: 'Imagenes/Productos/10110600.webp' },
+            { id: 'p10110655', sku: '10110655', marca: "Vistony", nombre: "Sintek S210 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: 'Imagenes/Productos/10110655.webp' },
+            { id: 'p10110657', sku: '10110657', marca: "Vistony", nombre: "Sintek S210 10W-40 4 L", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: 'Imagenes/Productos/10110657.webp' },
+            { id: 'p10110004', sku: '10110004', marca: "Genérico", nombre: "Aceite ATF (Mercon / Dexron III) para dirección", desc: "Aceite para dirección hidráulica", precio: 0.00, img: 'Imagenes/Productos/10110004.webp' },
         ]
     },
     repuestos: {
@@ -125,17 +125,17 @@ const CATALOGO = {
     filtros: {
         label: 'Filtros y Componentes',
         productos: [
-            { id: 'p10111291', sku: '10111291', marca: "ACDelco", nombre: "Elemento filtro de aceite 93171212", desc: "Compatible con Chevrolet Equinox, Orlando, Captiva 2.4", precio: 0.00, img: '' },
-            { id: 'p10111289', sku: '10111289', marca: "ACDelco", nombre: "Filtro de aceite 12737086", desc: "Compatible con Chevrolet Captiva 1.5", precio: 0.00, img: '' },
-            { id: 'p10110639', sku: '10110639', marca: "Bosch", nombre: "Filtro de aceite 0986AF1042", desc: "Compatible con Ford Ranger, Suzuki Jimny, Swift, Toyota Hilux, Land Cruiser, 4Runner", precio: 0.00, img: '' },
-            { id: 'p10110588', sku: '10110588', marca: "Bosch", nombre: "Filtro de aceite 90915-YZZE1", desc: "Compatible con Toyota Tercel, Yaris, Probox", precio: 0.00, img: '' },
-            { id: 'p10111139', sku: '10111139', marca: "Filcar", nombre: "Elemento filtro de aceite 26350-2J000", desc: "Compatible con Hyundai Elantra, Sonata, Tucson, Kia Sportage", precio: 0.00, img: '' },
-            { id: 'p10110755', sku: '10110755', marca: "Hyundai", nombre: "Filtro de aceite 26300-02752", desc: "Compatible con Kia Picanto, Rio, Hyundai Accent, Soluto, Verna, Nissan Frontier 2.4L, Mitsubishi L200 2.4L", precio: 0.00, img: '' },
-            { id: 'p10110079', sku: '10110079', marca: "Hyundai", nombre: "Filtro de aceite 26300-2Y500", desc: "Compatible con Kia Rio, Picanto, Mazda 2, CX-5, Mazda 3", precio: 0.00, img: '' },
-            { id: 'p10110080', sku: '10110080', marca: "Hyundai", nombre: "Filtro de aceite 26300-35505", desc: "Compatible con Kia Sorento, Hyundai Elantra, Sonata, Santa Fe, Tucson, Great Wall H3", precio: 0.00, img: '' },
-            { id: 'p10111302', sku: '10111302', marca: "Hyundai", nombre: "Filtro de aceite 26320-2F000", desc: "Compatible con Hyundai Santa Fe II 06-12, Kia Sorento II, Kia Carnival, Tucson", precio: 0.00, img: '' },
-            { id: 'p10110510', sku: '10110510', marca: "Hyundai", nombre: "Filtro de aceite 26330-4A001", desc: "Compatible con Hyundai H100, H-1, H-350, Kia K2700 (rosca M26x1.5)", precio: 0.00, img: '' },
-            { id: 'p10111300', sku: '10111300', marca: "Hyundai", nombre: "Filtro de aceite 26350-2S000", desc: "Compatible con Hyundai Tucson, Kia Sportage, Sorento, Santa Fe 2.5L 20-22", precio: 0.00, img: '' },
+            { id: 'p10111291', sku: '10111291', marca: "ACDelco", nombre: "Elemento filtro de aceite 93171212", desc: "Compatible con Chevrolet Equinox, Orlando, Captiva 2.4", precio: 0.00, img: 'Imagenes/Productos/10111291.webp' },
+            { id: 'p10111289', sku: '10111289', marca: "ACDelco", nombre: "Filtro de aceite 12737086", desc: "Compatible con Chevrolet Captiva 1.5", precio: 0.00, img: 'Imagenes/Productos/10111289.webp' },
+            { id: 'p10110639', sku: '10110639', marca: "Bosch", nombre: "Filtro de aceite 0986AF1042", desc: "Compatible con Ford Ranger, Suzuki Jimny, Swift, Toyota Hilux, Land Cruiser, 4Runner", precio: 0.00, img: 'Imagenes/Productos/10110639.webp' },
+            { id: 'p10110588', sku: '10110588', marca: "Bosch", nombre: "Filtro de aceite 90915-YZZE1", desc: "Compatible con Toyota Tercel, Yaris, Probox", precio: 0.00, img: 'Imagenes/Productos/10110588.webp' },
+            { id: 'p10111139', sku: '10111139', marca: "Filcar", nombre: "Elemento filtro de aceite 26350-2J000", desc: "Compatible con Hyundai Elantra, Sonata, Tucson, Kia Sportage", precio: 0.00, img: 'Imagenes/Productos/10111139.webp' },
+            { id: 'p10110755', sku: '10110755', marca: "Hyundai", nombre: "Filtro de aceite 26300-02752", desc: "Compatible con Kia Picanto, Rio, Hyundai Accent, Soluto, Verna, Nissan Frontier 2.4L, Mitsubishi L200 2.4L", precio: 0.00, img: 'Imagenes/Productos/10110755.webp' },
+            { id: 'p10110079', sku: '10110079', marca: "Hyundai", nombre: "Filtro de aceite 26300-2Y500", desc: "Compatible con Kia Rio, Picanto, Mazda 2, CX-5, Mazda 3", precio: 0.00, img: 'Imagenes/Productos/10110079.webp' },
+            { id: 'p10110080', sku: '10110080', marca: "Hyundai", nombre: "Filtro de aceite 26300-35505", desc: "Compatible con Kia Sorento, Hyundai Elantra, Sonata, Santa Fe, Tucson, Great Wall H3", precio: 0.00, img: 'Imagenes/Productos/10110080.webp' },
+            { id: 'p10111302', sku: '10111302', marca: "Hyundai", nombre: "Filtro de aceite 26320-2F000", desc: "Compatible con Hyundai Santa Fe II 06-12, Kia Sorento II, Kia Carnival, Tucson", precio: 0.00, img: 'Imagenes/Productos/10111302.webp' },
+            { id: 'p10110510', sku: '10110510', marca: "Hyundai", nombre: "Filtro de aceite 26330-4A001", desc: "Compatible con Hyundai H100, H-1, H-350, Kia K2700 (rosca M26x1.5)", precio: 0.00, img: 'Imagenes/Productos/10110510.webp' },
+            { id: 'p10111300', sku: '10111300', marca: "Hyundai", nombre: "Filtro de aceite 26350-2S000", desc: "Compatible con Hyundai Tucson, Kia Sportage, Sorento, Santa Fe 2.5L 20-22", precio: 0.00, img: 'Imagenes/Productos/10111300.webp' },
             { id: 'p10111154', sku: '10111154', marca: "IHP", nombre: "Elemento filtro de aceite 11427635557", desc: "Compatible con BMW 316i", precio: 0.00, img: '' },
             { id: 'p10111165', sku: '10111165', marca: "IHP", nombre: "Elemento filtro de aceite SH40X20136", desc: "Compatible con Foton Aucan, Changan Hunter F70, JAC T6", precio: 0.00, img: '' },
             { id: 'p10110672', sku: '10110672', marca: "Kusa", nombre: "Filtro de aceite 06D115562", desc: "Compatible con Volkswagen Golf, Amarok VI 2009 (059115651G / 06D115466)", precio: 0.00, img: '' },
@@ -311,7 +311,9 @@ let carritoSedeId = null;
 function cargarCarritoStorage() {
     try {
         const raw = localStorage.getItem('autogas_carrito');
-        if (raw) carritoItems = (JSON.parse(raw) || []).filter(i => buscarProducto(i.id));
+        if (raw) carritoItems = (JSON.parse(raw) || [])
+            .filter(i => buscarProducto(i.id))
+            .map(i => ({ ...i, img: buscarProducto(i.id).img })); // foto siempre al día
         const sede = localStorage.getItem('autogas_sede');
         if (sede && WSP_SEDES[sede]) carritoSedeId = sede;
     } catch (e) { carritoItems = []; }
@@ -412,20 +414,10 @@ function htmlCategoria(id, info, grande) {
 }
 
 // Mosaico: la primera categoría (Aceites) va grande; el resto, al lado.
-// En celular, el resto se convierte en un carrusel horizontal.
+// En celular: Aceites a todo el ancho y las otras 4 en 2×2.
 function renderizarInicio() {
-    const [primera, ...resto] = Object.entries(CATEGORIAS_INFO);
-    $('catsGrid').innerHTML =
-        htmlCategoria(primera[0], primera[1], true) +
-        `<div class="t-cats-rest">
-            <div class="t-cats-rest-head">
-                <h3>Más categorías</h3>
-                <span aria-hidden="true">Desliza ${ICONO_FLECHA}</span>
-            </div>
-            <div class="t-cats-rest-track">
-                ${resto.map(([id, info]) => htmlCategoria(id, info, false)).join('')}
-            </div>
-        </div>`;
+    $('catsGrid').innerHTML = Object.entries(CATEGORIAS_INFO)
+        .map(([id, info], i) => htmlCategoria(id, info, i === 0)).join('');
 
     const top = MAS_PEDIDOS.map(buscarProducto).filter(Boolean);
     $('topGrid').innerHTML = top.map(p => htmlProducto(p, false)).join('');
