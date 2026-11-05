@@ -261,7 +261,7 @@ const CATEGORIAS_INFO = {
         num: '05', corto: 'Aditivos',
         titulo: 'Aditivos y <em>Limpiadores</em>',
         desc: 'Limpiadores de inyectores, tapafugas, antifricción y más de Liqui Moly.',
-        img: 'Imagenes/LiquiMolyLogo-960.webp' /* TODO: cambiar por una foto de la categoría */
+        img: 'Imagenes/LiquiMolyLogo-960.webp', logo: true /* TODO: cambiar por una foto de la categoría (y quitar logo: true) */
     }
 };
 
@@ -298,7 +298,8 @@ let estadoTienda = {
     categoriaActual: null,
     busqueda: '',
     orden: 'default',
-    marca: ''              // '' = todas las marcas
+    sel: {},               // filtros marcados: { marca: ['Castrol'], visc: ['5W-30'], ... }
+    abiertos: {}           // acordeones abiertos: { marca: true }
 };
 
 // =============================================
@@ -357,6 +358,8 @@ function todosLosProductos() {
 
 document.addEventListener('keydown', e => {
     if (e.key !== 'Escape') return;
+    const panel = $('filtersPanel');
+    if (panel && panel.classList.contains('open')) { cerrarFiltros(); return; }
     const overlay = $('cartOverlay');
     if (overlay && overlay.classList.contains('open')) toggleCarrito();
 });
@@ -390,22 +393,39 @@ function htmlProducto(p, conDescripcion) {
 // =============================================
 // VISTA INICIO: categorías + más pedidos
 // =============================================
-function renderizarInicio() {
-    $('catsGrid').innerHTML = Object.entries(CATEGORIAS_INFO).map(([id, info]) => `
-        <a class="t-cat" href="#${id}">
+function htmlCategoria(id, info, grande) {
+    const n = CATALOGO[id].productos.length;
+    const cta = n ? 'Ver ' + n + (n === 1 ? ' producto ' : ' productos ') : 'Próximamente ';
+    return `
+        <a class="t-cat${grande ? ' t-cat--big' : ''}" href="#${id}" data-cat="${id}">
             <div class="t-cat-info">
                 <span class="t-cat-num">${info.num}</span>
                 <h3 class="t-cat-name">${CATALOGO[id].label}</h3>
                 <p class="t-cat-desc">${info.desc}</p>
-                <span class="t-cat-go">${CATALOGO[id].productos.length
-                    ? 'Ver ' + CATALOGO[id].productos.length + (CATALOGO[id].productos.length === 1 ? ' producto ' : ' productos ')
-                    : 'Próximamente '}${ICONO_FLECHA}</span>
+                <span class="t-cat-go">${cta}${ICONO_FLECHA}</span>
             </div>
-            <div class="t-cat-media">
+            <div class="t-cat-media${info.logo ? ' t-cat-media--logo' : ''}">
                 <img src="${info.img}" alt="" loading="lazy" decoding="async" />
             </div>
             <span class="t-cat-bar"></span>
-        </a>`).join('');
+        </a>`;
+}
+
+// Mosaico: la primera categoría (Aceites) va grande; el resto, al lado.
+// En celular, el resto se convierte en un carrusel horizontal.
+function renderizarInicio() {
+    const [primera, ...resto] = Object.entries(CATEGORIAS_INFO);
+    $('catsGrid').innerHTML =
+        htmlCategoria(primera[0], primera[1], true) +
+        `<div class="t-cats-rest">
+            <div class="t-cats-rest-head">
+                <h3>Más categorías</h3>
+                <span aria-hidden="true">Desliza ${ICONO_FLECHA}</span>
+            </div>
+            <div class="t-cats-rest-track">
+                ${resto.map(([id, info]) => htmlCategoria(id, info, false)).join('')}
+            </div>
+        </div>`;
 
     const top = MAS_PEDIDOS.map(buscarProducto).filter(Boolean);
     $('topGrid').innerHTML = top.map(p => htmlProducto(p, false)).join('');
@@ -454,7 +474,8 @@ function aplicarRuta(primeraCarga) {
 
     estadoTienda.vista = ruta.vista;
     estadoTienda.orden = 'default';
-    estadoTienda.marca = '';
+    reiniciarFiltros();
+    cerrarFiltros(false);
     $('ordenSelect').value = 'default';
     $('searchInput').value = '';
 
@@ -526,9 +547,10 @@ function filtrarYRenderizar() {
         ? base.filter(p => normalizar(p.nombre + ' ' + p.marca + ' ' + p.desc + ' ' + (p.sku || '')).includes(qInput))
         : base;
 
-    // Filtro por marca: el menú muestra las marcas que quedan tras la búsqueda
-    renderizarFiltroMarca(prods);
-    if (estadoTienda.marca) prods = prods.filter(p => p.marca === estadoTienda.marca);
+    // Filtros del panel (marca, viscosidad, presentación, tipo)
+    const grupos = gruposDeLaVista();
+    renderizarFiltros(grupos, prods);
+    prods = aplicarFiltros(prods, grupos, null);
 
     const orden = $('ordenSelect').value;
     if (orden === 'asc') prods.sort((a, b) => a.precio - b.precio);
@@ -536,21 +558,250 @@ function filtrarYRenderizar() {
     else if (orden === 'marca') prods.sort((a, b) => a.marca.localeCompare(b.marca));
 
     renderizarProductos(prods);
+    actualizarContadoresFiltros(prods.length);
 }
 
-function renderizarFiltroMarca(prods) {
-    const sel = $('marcaSelect');
-    if (!sel) return;
-    const conteo = {};
-    prods.forEach(p => { conteo[p.marca] = (conteo[p.marca] || 0) + 1; });
-    // "Genérico" siempre al final
-    const marcas = Object.keys(conteo).sort((a, b) =>
-        (a === 'Genérico') - (b === 'Genérico') || a.localeCompare(b, 'es'));
-    if (estadoTienda.marca && !conteo[estadoTienda.marca]) estadoTienda.marca = '';
-    sel.innerHTML = `<option value="">Todas (${prods.length})</option>` +
-        marcas.map(m => `<option value="${escaparHTML(m)}">${escaparHTML(m)} (${conteo[m]})</option>`).join('');
-    sel.value = estadoTienda.marca;
-    sel.closest('.t-sort').hidden = marcas.length < 2;
+// =============================================
+// FILTROS — definición de cada grupo
+// "val" saca el valor del producto; "orden" ordena las opciones.
+// =============================================
+const ORDEN_PRESENTACION = ['1 litro', '4 litros', '5 litros', '1 galón'];
+const ORDEN_TIPO = ['Motor', 'Diésel', 'Transmisión', 'Dirección'];
+
+function numViscosidad(v) {
+    const m = /^(\d+)W-(\d+)$/.exec(v);
+    return m ? (+m[1]) * 1000 + (+m[2]) : 1e9; // "SAE 50" al final
+}
+
+const GRUPOS_FILTRO = {
+    marca: {
+        titulo: 'Marca',
+        val: p => p.marca,
+        orden: (a, b) => (a === 'Genérico') - (b === 'Genérico') || a.localeCompare(b, 'es')
+    },
+    visc: {
+        titulo: 'Viscosidad', pastillas: true,
+        val: p => { const m = /\b(\d{1,2}W-\d{2,3}|SAE \d+)\b/.exec(p.desc); return m ? m[1] : ''; },
+        orden: (a, b) => numViscosidad(a) - numViscosidad(b)
+    },
+    pres: {
+        titulo: 'Presentación',
+        val: p => { const m = /(1 litro|4 litros|5 litros|1 galón)/.exec(p.desc); return m ? m[1] : ''; },
+        orden: (a, b) => ORDEN_PRESENTACION.indexOf(a) - ORDEN_PRESENTACION.indexOf(b)
+    },
+    tipo: {
+        titulo: 'Tipo',
+        val: p => {
+            const d = normalizar(p.desc);
+            if (d.includes('transmision') || d.includes('diferencial')) return 'Transmisión';
+            if (d.includes('diesel')) return 'Diésel';
+            if (d.includes('direccion')) return 'Dirección';
+            return 'Motor';
+        },
+        orden: (a, b) => ORDEN_TIPO.indexOf(a) - ORDEN_TIPO.indexOf(b)
+    }
+};
+
+// Qué filtros tiene cada categoría (las que no salen aquí solo filtran por marca)
+const FILTROS_POR_CATEGORIA = {
+    aceites: ['marca', 'visc', 'pres', 'tipo']
+};
+
+function gruposDeLaVista() {
+    const ids = (estadoTienda.vista === 'cat' && FILTROS_POR_CATEGORIA[estadoTienda.categoriaActual]) || ['marca'];
+    return ids.map(id => ({ id, ...GRUPOS_FILTRO[id] }));
+}
+
+function esMovil() {
+    return window.matchMedia('(max-width: 900px)').matches;
+}
+
+function reiniciarFiltros() {
+    estadoTienda.sel = {};
+    // En escritorio se abren Marca y Viscosidad; en celular solo Marca
+    estadoTienda.abiertos = esMovil() ? { marca: true } : { marca: true, visc: true };
+}
+
+function marcados(grupoId) {
+    return estadoTienda.sel[grupoId] || [];
+}
+
+// Aplica todos los filtros menos "ignorar" (así cada grupo cuenta
+// sus opciones según lo demás que esté marcado)
+function aplicarFiltros(prods, grupos, ignorar) {
+    return prods.filter(p => grupos.every(g => {
+        if (g.id === ignorar) return true;
+        const elegidos = marcados(g.id);
+        return elegidos.length === 0 || elegidos.includes(g.val(p));
+    }));
+}
+
+const ICONO_CHEVRON = '<svg class="t-acc-chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>';
+const ICONO_X = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+
+function htmlAcordeon(id, titulo, badge, cuerpo, extraClase) {
+    const abierto = !!estadoTienda.abiertos[id];
+    return `
+        <div class="t-acc${extraClase ? ' ' + extraClase : ''}">
+            <button type="button" class="t-acc-head" data-acc="${id}" aria-expanded="${abierto}" aria-controls="acc-${id}">
+                <span>${titulo}${badge ? ` <span class="t-acc-badge">(${badge})</span>` : ''}</span>
+                ${ICONO_CHEVRON}
+            </button>
+            <div class="t-acc-body" id="acc-${id}"${abierto ? '' : ' hidden'}>${cuerpo}</div>
+        </div>`;
+}
+
+function renderizarFiltros(grupos, prodsBusqueda) {
+    const catalogo = $('catalogo');
+    const body = $('filtersBody');
+    const vacia = prodsBusqueda.length === 0 && marcadosTotal() === 0;
+
+    // Recordar qué casilla tenía el foco para devolvérselo al redibujar
+    const act = document.activeElement;
+    const foco = act && body.contains(act)
+        ? (act.dataset.acc ? '[data-acc="' + act.dataset.acc + '"]'
+            : act.name ? 'input[name="' + act.name + '"][value="' + CSS.escape(act.value) + '"]' : null)
+        : null;
+
+    let html = '';
+    // "Ordenar por" dentro del panel (solo se ve en celular)
+    const ordenActual = $('ordenSelect').value;
+    const ordenes = [...$('ordenSelect').options].map(o => ({ v: o.value, t: o.textContent }));
+    html += htmlAcordeon('orden', 'Ordenar por', '',
+        ordenes.map(o => `
+            <label class="t-opt">
+                <input type="radio" name="f-orden" value="${o.v}"${o.v === ordenActual ? ' checked' : ''} />
+                <span class="t-opt-name">${escaparHTML(o.t)}</span>
+            </label>`).join(''), 't-acc--movil');
+
+    let gruposVisibles = 0;
+    grupos.forEach(g => {
+        const base = aplicarFiltros(prodsBusqueda, grupos, g.id);
+        const conteo = {};
+        base.forEach(p => { const v = g.val(p); if (v) conteo[v] = (conteo[v] || 0) + 1; });
+        const elegidos = marcados(g.id);
+        elegidos.forEach(v => { if (!(v in conteo)) conteo[v] = 0; });
+        const valores = Object.keys(conteo).sort(g.orden);
+        // Un grupo con una sola opción no sirve para filtrar
+        if (valores.length < 2 && elegidos.length === 0) return;
+        gruposVisibles++;
+        html += htmlAcordeon(g.id, g.titulo, elegidos.length || '',
+            `<div class="t-opts${g.pastillas ? ' t-opts--pastillas' : ''}">` +
+            valores.map(v => `
+                <label class="t-opt">
+                    <input type="checkbox" name="f-${g.id}" value="${escaparHTML(v)}"${elegidos.includes(v) ? ' checked' : ''} />
+                    <span class="t-opt-name">${escaparHTML(v)}</span>
+                    <span class="t-opt-count">${conteo[v]}</span>
+                </label>`).join('') + '</div>');
+    });
+
+    body.innerHTML = html;
+    catalogo.classList.toggle('sin-filtros', gruposVisibles === 0);
+    catalogo.classList.toggle('vacia', vacia);
+    if (foco) { const el = body.querySelector(foco); if (el) el.focus(); }
+
+    renderizarChips(grupos);
+}
+
+function marcadosTotal() {
+    return Object.values(estadoTienda.sel).reduce((s, l) => s + l.length, 0);
+}
+
+function renderizarChips(grupos) {
+    const cont = $('activeChips');
+    const chips = [];
+    grupos.forEach(g => marcados(g.id).forEach(v => chips.push(
+        `<button type="button" class="t-chip" data-quitar-grupo="${g.id}" data-quitar-valor="${escaparHTML(v)}" aria-label="Quitar filtro ${escaparHTML(v)}">${escaparHTML(v)} ${ICONO_X}</button>`)));
+    cont.hidden = chips.length === 0;
+    cont.innerHTML = chips.length
+        ? `<span class="t-chips-label">Filtrando por:</span>${chips.join('')}<button type="button" class="t-chips-clear" data-limpiar-filtros>Limpiar</button>`
+        : '';
+}
+
+function actualizarContadoresFiltros(n) {
+    const total = marcadosTotal();
+    const badge = $('filtersOpenCount');
+    badge.hidden = total === 0;
+    badge.textContent = total;
+    $('filtersApply').textContent = 'Ver ' + n + (n === 1 ? ' producto' : ' productos');
+}
+
+function cambiarFiltro(grupoId, valor, activo) {
+    const lista = marcados(grupoId).filter(v => v !== valor);
+    if (activo) lista.push(valor);
+    estadoTienda.sel = { ...estadoTienda.sel, [grupoId]: lista };
+    filtrarYRenderizar();
+}
+
+function limpiarFiltros() {
+    estadoTienda.sel = {};
+    filtrarYRenderizar();
+}
+
+// ---- Panel en celular: abrir / cerrar ----
+let _focoAntesFiltros = null;
+function abrirFiltros() {
+    const panel = $('filtersPanel');
+    _focoAntesFiltros = document.activeElement;
+    panel.classList.add('open');
+    $('filtersOpen').setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => $('filtersClose').focus(), 50);
+}
+
+function cerrarFiltros(devolverFoco) {
+    const panel = $('filtersPanel');
+    if (!panel || !panel.classList.contains('open')) return;
+    panel.classList.remove('open');
+    $('filtersOpen').setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    if (devolverFoco !== false && _focoAntesFiltros && _focoAntesFiltros.focus) _focoAntesFiltros.focus();
+}
+
+function iniciarFiltros() {
+    const body = $('filtersBody');
+
+    // Abrir / cerrar cada acordeón
+    body.addEventListener('click', e => {
+        const head = e.target.closest('[data-acc]');
+        if (!head) return;
+        const id = head.dataset.acc;
+        estadoTienda.abiertos[id] = !estadoTienda.abiertos[id];
+        head.setAttribute('aria-expanded', estadoTienda.abiertos[id]);
+        $('acc-' + id).hidden = !estadoTienda.abiertos[id];
+    });
+
+    // Marcar / desmarcar opciones
+    body.addEventListener('change', e => {
+        const inp = e.target;
+        if (inp.name === 'f-orden') {
+            $('ordenSelect').value = inp.value;
+            filtrarYRenderizar();
+        } else if (inp.name && inp.name.startsWith('f-')) {
+            cambiarFiltro(inp.name.slice(2), inp.value, inp.checked);
+        }
+    });
+
+    // Etiquetas de filtros activos
+    $('activeChips').addEventListener('click', e => {
+        const chip = e.target.closest('[data-quitar-grupo]');
+        if (chip) { cambiarFiltro(chip.dataset.quitarGrupo, chip.dataset.quitarValor, false); return; }
+        if (e.target.closest('[data-limpiar-filtros]')) limpiarFiltros();
+    });
+
+    $('filtersClearTop').addEventListener('click', limpiarFiltros);
+    $('filtersClearBottom').addEventListener('click', limpiarFiltros);
+    $('filtersOpen').addEventListener('click', abrirFiltros);
+    $('filtersClose').addEventListener('click', () => cerrarFiltros());
+    $('filtersApply').addEventListener('click', () => {
+        cerrarFiltros();
+        $('catalogo').scrollIntoView({ block: 'start' });
+    });
+
+    // Si se agranda la pantalla con el panel abierto, se cierra
+    window.matchMedia('(max-width: 900px)').addEventListener('change', ev => {
+        if (!ev.matches) cerrarFiltros(false);
+    });
 }
 
 function renderizarProductos(productos) {
@@ -572,8 +823,8 @@ function renderizarProductos(productos) {
         grid.innerHTML = `
             <div class="t-empty">
                 <p class="t-empty-title">Sin resultados</p>
-                <p>No encontramos productos con esa búsqueda. Prueba con otra palabra o escríbenos por WhatsApp.</p>
-                <button type="button" class="t-btn" data-accion="limpiarBusqueda">Limpiar búsqueda</button>
+                <p>No encontramos productos con esa búsqueda o filtros. Prueba con otra palabra o escríbenos por WhatsApp.</p>
+                <button type="button" class="t-btn" data-accion="limpiarBusqueda">Limpiar búsqueda y filtros</button>
             </div>`;
         return;
     }
@@ -582,7 +833,7 @@ function renderizarProductos(productos) {
 
 function limpiarBusqueda() {
     $('searchInput').value = '';
-    estadoTienda.marca = '';
+    estadoTienda.sel = {};
     if (estadoTienda.vista === 'buscar') { irACategorias(); return; }
     filtrarYRenderizar();
     $('searchInput').focus();
@@ -895,10 +1146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Buscador y orden dentro de una categoría
     $('searchInput').addEventListener('input', filtrarYRenderizar);
     $('ordenSelect').addEventListener('change', filtrarYRenderizar);
-    $('marcaSelect').addEventListener('change', e => {
-        estadoTienda.marca = e.target.value;
-        filtrarYRenderizar();
-    });
+    iniciarFiltros();
 
     // Carrito
     cargarCarritoStorage();

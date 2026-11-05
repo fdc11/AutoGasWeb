@@ -184,40 +184,68 @@
 
         <!-- VISTA: CATEGORÍA O BÚSQUEDA -->
         <div id="viewCat" hidden>
-            <div class="t-toolbar">
-                <div class="t-toolbar-left">
-                    <div class="t-field-search">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2" stroke-linecap="round" aria-hidden="true">
-                            <circle cx="11" cy="11" r="7" />
-                            <path d="M20 20l-3.5-3.5" />
-                        </svg>
-                        <label for="searchInput" class="sr-only">Buscar en esta categoría</label>
-                        <input type="search" id="searchInput" placeholder="Buscar por nombre o marca…"
-                            autocomplete="off" />
+            <div class="t-catalog" id="catalogo">
+
+                <!-- Filtros: columna en escritorio, panel a pantalla completa en celular -->
+                <aside class="t-fpanel" id="filtersPanel" aria-label="Filtros">
+                    <div class="t-fpanel-head">
+                        <h2 class="t-fpanel-title">Filtros</h2>
+                        <button type="button" class="t-fpanel-clear" id="filtersClearTop">Limpiar todo</button>
+                        <button type="button" class="t-fpanel-close" id="filtersClose" aria-label="Cerrar filtros">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                                <path d="M6 6l12 12M18 6L6 18" />
+                            </svg>
+                        </button>
                     </div>
-                    <p class="t-count" id="prodsCount"></p>
-                </div>
-                <div class="t-filters">
-                <div class="t-sort t-sort--marca">
-                    <label for="marcaSelect">Marca</label>
-                    <select id="marcaSelect">
-                        <option value="">Todas</option>
-                    </select>
-                </div>
-                <div class="t-sort">
-                    <label for="ordenSelect">Ordenar por</label>
-                    <select id="ordenSelect">
-                        <option value="default">Relevancia</option>
-                        <option value="asc">Menor precio</option>
-                        <option value="desc">Mayor precio</option>
-                        <option value="marca">Marca A–Z</option>
-                    </select>
-                </div>
+                    <div class="t-fpanel-body" id="filtersBody"></div>
+                    <div class="t-fpanel-foot">
+                        <button type="button" class="t-fpanel-reset" id="filtersClearBottom">Limpiar</button>
+                        <button type="button" class="t-fpanel-apply" id="filtersApply">Ver productos</button>
+                    </div>
+                </aside>
+
+                <div class="t-results">
+                    <div class="t-toolbar">
+                        <div class="t-toolbar-left">
+                            <div class="t-field-search">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="7" />
+                                    <path d="M20 20l-3.5-3.5" />
+                                </svg>
+                                <label for="searchInput" class="sr-only">Buscar en esta categoría</label>
+                                <input type="search" id="searchInput" placeholder="Buscar por nombre o marca…"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="t-toolbar-row">
+                                <button type="button" class="t-filter-btn" id="filtersOpen" aria-controls="filtersPanel"
+                                    aria-expanded="false">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                                        <path d="M4 6h16M7 12h10M10 18h4" />
+                                    </svg>
+                                    Filtrar <span class="t-filter-btn-count" id="filtersOpenCount" hidden></span>
+                                </button>
+                                <p class="t-count" id="prodsCount"></p>
+                            </div>
+                        </div>
+                        <div class="t-sort">
+                            <label for="ordenSelect">Ordenar por</label>
+                            <select id="ordenSelect">
+                                <option value="default">Relevancia</option>
+                                <option value="asc">Menor precio</option>
+                                <option value="desc">Mayor precio</option>
+                                <option value="marca">Marca A–Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="t-chips" id="activeChips" hidden></div>
+
+                    <div class="t-grid" id="prodsGrid"></div>
                 </div>
             </div>
-
-            <div class="t-grid" id="prodsGrid"></div>
 
             <div class="t-more">
                 <div>
