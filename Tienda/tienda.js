@@ -19,135 +19,213 @@ const NOMBRES_SEDES = {
 // =============================================
 // CATÁLOGO DE PRODUCTOS
 // =============================================
+// Precios en 0.00 a propósito: la administradora carga los precios reales.
+// Para poner la foto de un producto: escribe la ruta en "img" (ej. 'Imagenes/Productos/10111212.webp').
 const CATALOGO = {
     aceites: {
         label: 'Aceites y Lubricantes',
         productos: [
-            {
-                id: 'ac01', marca: 'Shell', nombre: 'Helix Ultra 5W-40',
-                desc: 'Aceite sintético de última generación. Protección máxima del motor.',
-                precio: 89.90, badge: 'Más vendido',
-                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
-            },
-            {
-                id: 'ac02', marca: 'Castrol', nombre: 'Edge 5W-30',
-                desc: 'Tecnología de titanio FST. Para motores modernos exigentes.',
-                precio: 94.90, badge: null,
-                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
-            },
-            {
-                id: 'ac03', marca: 'Mobil', nombre: 'Super 3000 X1 5W-40',
-                desc: 'Fórmula avanzada para motores gasolina y GNV. Alto desempeño.',
-                precio: 79.90, badge: null,
-                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
-            },
-            {
-                id: 'ac04', marca: 'Valvoline', nombre: 'Advanced Full Synthetic 5W-30',
-                desc: 'Protección superior contra desgaste, depósitos y sludge.',
-                precio: 84.90, badge: 'Nuevo',
-                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
-            },
-            {
-                id: 'ac05', marca: 'Chevron', nombre: 'Havoline 20W-50',
-                desc: 'Para motores con alto kilometraje. Rendimiento garantizado.',
-                precio: 52.90, badge: null,
-                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
-            },
-            {
-                id: 'ac06', marca: 'Shell', nombre: 'Rimula R4 X 15W-40',
-                desc: 'Aceite mineral para motores diésel de trabajo pesado.',
-                precio: 64.90, badge: null,
-                img: '' /* TODO: foto real (Imagenes/AceiteShellEjemplo.jpg no existe) */
-            },
+            { id: 'p10110456', sku: '10110456', marca: "ACDelco", nombre: "Aceite ACDelco 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110803', sku: '10110803', marca: "ACDelco", nombre: "Full Synthetic SAE 10W-30 1 L", desc: "Aceite de motor sintético · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110389', sku: '10110389', marca: "Castrol", nombre: "Aceite para engranajes 8W-90", desc: "Aceite de transmisión · 8W-90", precio: 0.00, img: '' },
+            { id: 'p10110919', sku: '10110919', marca: "Castrol", nombre: "Axle GL-5 80W-90 1 L", desc: "Aceite de diferencial · 80W-90 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110635', sku: '10110635', marca: "Castrol", nombre: "Edge 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110640', sku: '10110640', marca: "Castrol", nombre: "Edge 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110380', sku: '10110380', marca: "Castrol", nombre: "GTX 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110937', sku: '10110937', marca: "Castrol", nombre: "GTX 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110800', sku: '10110800', marca: "Castrol", nombre: "GTX Full Synthetic 5W-30 1 GL", desc: "Aceite de motor sintético · 5W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110799', sku: '10110799', marca: "Castrol", nombre: "GTX Full Synthetic 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110014', sku: '10110014', marca: "Castrol", nombre: "GTX Gas 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110015', sku: '10110015', marca: "Castrol", nombre: "GTX Gas 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110279', sku: '10110279', marca: "Castrol", nombre: "HD SAE 50", desc: "Aceite de motor · SAE 50 · Protección contra la descomposición térmica", precio: 0.00, img: '' },
+            { id: 'p10110023', sku: '10110023', marca: "Castrol", nombre: "Magnatec 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110024', sku: '10110024', marca: "Castrol", nombre: "Magnatec 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110025', sku: '10110025', marca: "Castrol", nombre: "Magnatec 10W-40 1 GL", desc: "Aceite de motor · 10W-40 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110401', sku: '10110401', marca: "Castrol", nombre: "Magnatec 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110071', sku: '10110071', marca: "Castrol", nombre: "Magnatec 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110070', sku: '10110070', marca: "Castrol", nombre: "Magnatec 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110084', sku: '10110084', marca: "Castrol", nombre: "Magnatec 5W-40 1 L", desc: "Aceite de motor · 5W-40 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110026', sku: '10110026', marca: "Castrol", nombre: "Magnatec Stop-Start 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110033', sku: '10110033', marca: "Castrol", nombre: "Magnatec Stop-Start 5W-30 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110634', sku: '10110634', marca: "Castrol", nombre: "Transmax 75W-90 1 L", desc: "Aceite de transmisión · 75W-90 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110597', sku: '10110597', marca: "Castrol", nombre: "Vecton LD 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110777', sku: '10110777', marca: "Chevron", nombre: "Semisintético 10W-30 1 L", desc: "Aceite de motor semisintético · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110490', sku: '10110490', marca: "Chevron", nombre: "Semisintético 20W-50 1 L", desc: "Aceite de motor semisintético · 20W-50 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111119', sku: '10111119', marca: "Liqui Moly", nombre: "Aceite de caja GL4-GL5 sintético 75W-90 1 L (LM1407)", desc: "Aceite de transmisión sintético · 75W-90 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111120', sku: '10111120', marca: "Liqui Moly", nombre: "Aceite de caja GL5 sintético 75W-90 1 L", desc: "Aceite de transmisión sintético · 75W-90 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111114', sku: '10111114', marca: "Liqui Moly", nombre: "Aceite de caja sintético 75W-140 1 L", desc: "Aceite de transmisión sintético · 75W-140 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110559', sku: '10110559', marca: "Liqui Moly", nombre: "Aceite para caja de doble embrague 8100", desc: "Aceite de transmisión DCT", precio: 0.00, img: '' },
+            { id: 'p10111240', sku: '10111240', marca: "Liqui Moly", nombre: "Aceite para diésel 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110200', sku: '10110200', marca: "Liqui Moly", nombre: "Aceite para diésel sin aditivo 15W-40 1 GL", desc: "Aceite de motor diésel · 15W-40 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10111131', sku: '10111131', marca: "Liqui Moly", nombre: "Molygen New Generation 0W-20 1 L", desc: "Aceite de motor sintético · 0W-20 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111132', sku: '10111132', marca: "Liqui Moly", nombre: "Molygen New Generation 0W-20 4 L", desc: "Aceite de motor sintético · 0W-20 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110935', sku: '10110935', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110928', sku: '10110928', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10111129', sku: '10111129', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111130', sku: '10111130', marca: "Liqui Moly", nombre: "Molygen New Generation 10W-40 4 L / 1 GL", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110929', sku: '10110929', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111319', sku: '10111319', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 1 L (cilindro)", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111212', sku: '10111212', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110470', sku: '10110470', marca: "Liqui Moly", nombre: "Molygen New Generation DPF 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros · Para filtro de partículas", precio: 0.00, img: '' },
+            { id: 'p10111127', sku: '10111127', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111128', sku: '10111128', marca: "Liqui Moly", nombre: "Molygen New Generation 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10111125', sku: '10111125', marca: "Liqui Moly", nombre: "Special Tec AA 0W-20 1 L", desc: "Aceite de motor sintético · 0W-20 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111126', sku: '10111126', marca: "Liqui Moly", nombre: "Special Tec AA 0W-20 4 L", desc: "Aceite de motor sintético · 0W-20 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110970', sku: '10110970', marca: "Liqui Moly", nombre: "Special Tec AA 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110855', sku: '10110855', marca: "Liqui Moly", nombre: "Special Tec AA 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110968', sku: '10110968', marca: "Liqui Moly", nombre: "Special Tec AA 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110925', sku: '10110925', marca: "Liqui Moly", nombre: "Special Tec AA 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10111116', sku: '10111116', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 1 L", desc: "Aceite de motor sintético · 5W-40 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111115', sku: '10111115', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 4 L", desc: "Aceite de motor sintético · 5W-40 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10111225', sku: '10111225', marca: "Liqui Moly", nombre: "Top Tec 4100 5W-40 5 L", desc: "Aceite de motor sintético · 5W-40 · 5 litros", precio: 0.00, img: '' },
+            { id: 'p10111243', sku: '10111243', marca: "Liqui Moly", nombre: "Top Tec 4200 5W-30 5 L", desc: "Aceite de motor sintético · 5W-30 · 5 litros", precio: 0.00, img: '' },
+            { id: 'p10111118', sku: '10111118', marca: "Liqui Moly", nombre: "Top Tec 4300 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10111117', sku: '10111117', marca: "Liqui Moly", nombre: "Top Tec 4300 5W-30 5 L", desc: "Aceite de motor sintético · 5W-30 · 5 litros", precio: 0.00, img: '' },
+            { id: 'p10110560', sku: '10110560', marca: "Liqui Moly", nombre: "Top Tec ATF 1200 (LM3681)", desc: "Aceite para transmisión automática", precio: 0.00, img: '' },
+            { id: 'p10111222', sku: '10111222', marca: "Liqui Moly", nombre: "Top Tec ATF 1400", desc: "Aceite para transmisión automática", precio: 0.00, img: '' },
+            { id: 'p10111223', sku: '10111223', marca: "Liqui Moly", nombre: "Top Tec ATF 1800", desc: "Aceite para transmisión automática", precio: 0.00, img: '' },
+            { id: 'p10110585', sku: '10110585', marca: "Mobil", nombre: "Mobil 1 Premium 5W-30 1 GL", desc: "Aceite de motor sintético · 5W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110434', sku: '10110434', marca: "Mobil", nombre: "Super Gas 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110579', sku: '10110579', marca: "Mobil", nombre: "Super Gas 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110433', sku: '10110433', marca: "Mobil", nombre: "Super Gas 5W-30 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110568', sku: '10110568', marca: "Mobil", nombre: "Super Gas 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110563', sku: '10110563', marca: "Mobil", nombre: "Super Sintético 100% 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110017', sku: '10110017', marca: "Shell", nombre: "Helix HX5 20W-50 1 L", desc: "Aceite de motor · 20W-50 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110018', sku: '10110018', marca: "Shell", nombre: "Helix HX5 20W-50 4 L", desc: "Aceite de motor · 20W-50 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110019', sku: '10110019', marca: "Shell", nombre: "Helix HX7 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110020', sku: '10110020', marca: "Shell", nombre: "Helix HX7 10W-30 4 L", desc: "Aceite de motor · 10W-30 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110399', sku: '10110399', marca: "Shell", nombre: "Helix HX7 Professional 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110403', sku: '10110403', marca: "Shell", nombre: "Helix HX7 Professional 10W-40 4 L", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110021', sku: '10110021', marca: "Shell", nombre: "Helix HX8 Professional 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110022', sku: '10110022', marca: "Shell", nombre: "Helix HX8 Professional 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110274', sku: '10110274', marca: "Shell", nombre: "Helix Ultra 5W-30 1 L", desc: "Aceite de motor sintético · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110921', sku: '10110921', marca: "Shell", nombre: "Helix Ultra 5W-30 4 L", desc: "Aceite de motor sintético · 5W-30 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110599', sku: '10110599', marca: "Vistony", nombre: "Attom S300 5W-30 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110665', sku: '10110665', marca: "Vistony", nombre: "Attom S400 5W-30 API SQ 1 L", desc: "Aceite de motor · 5W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110648', sku: '10110648', marca: "Vistony", nombre: "Attom S400 5W-30 API SQ 1 GL", desc: "Aceite de motor · 5W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110601', sku: '10110601', marca: "Vistony", nombre: "Blindax Super Gas 20W-50 1 GL", desc: "Aceite de motor · 20W-50 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110656', sku: '10110656', marca: "Vistony", nombre: "Sintek S200 10W-30 1 L", desc: "Aceite de motor · 10W-30 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110600', sku: '10110600', marca: "Vistony", nombre: "Sintek S200 10W-30 1 GL", desc: "Aceite de motor · 10W-30 · 1 galón", precio: 0.00, img: '' },
+            { id: 'p10110655', sku: '10110655', marca: "Vistony", nombre: "Sintek S210 10W-40 1 L", desc: "Aceite de motor · 10W-40 · 1 litro", precio: 0.00, img: '' },
+            { id: 'p10110657', sku: '10110657', marca: "Vistony", nombre: "Sintek S210 10W-40 4 L", desc: "Aceite de motor · 10W-40 · 4 litros", precio: 0.00, img: '' },
+            { id: 'p10110004', sku: '10110004', marca: "Genérico", nombre: "Aceite ATF (Mercon / Dexron III) para dirección", desc: "Aceite para dirección hidráulica", precio: 0.00, img: '' },
         ]
     },
     repuestos: {
         label: 'Repuestos',
         productos: [
-            {
-                id: 're01', marca: 'Bosch', nombre: 'Bujía Super 4',
-                desc: 'Bujía de encendido de alto rendimiento para todo tipo de motor.',
-                precio: 18.90, badge: 'Original',
-                img: '' /* TODO: foto real (Imagenes/PastillasDeFreno.jpg no existe) */
-            },
-            {
-                id: 're02', marca: 'NGK', nombre: 'Bujía Iridium IX',
-                desc: 'Punta de iridio ultrafina. Mayor durabilidad y ahorro de combustible.',
-                precio: 29.90, badge: null,
-                img: '' /* TODO: foto real (Imagenes/PastillasDeFreno.jpg no existe) */
-            },
-            {
-                id: 're03', marca: 'Bosch', nombre: 'Pastillas de Freno BP456',
-                desc: 'Sistema de frenado preciso y silencioso para uso urbano y carretera.',
-                precio: 95.00, badge: null,
-                img: '' /* TODO: foto real (Imagenes/PastillasDeFreno.jpg no existe) */
-            },
-            {
-                id: 're04', marca: 'Gates', nombre: 'Correa de Distribución K025605XS',
-                desc: 'Alta resistencia a temperaturas extremas. Para motores Toyota/Kia.',
-                precio: 145.00, badge: null,
-                img: '' /* TODO: foto real (Imagenes/PastillasDeFreno.jpg no existe) */
-            },
+            { id: 'p10110729', sku: '10110729', marca: "Genérico", nombre: "Sello de tapón de drenaje del cárter", desc: "Para el tapón de drenaje del aceite de motor", precio: 0.00, img: '' },
         ]
     },
     refrigerantes: {
         label: 'Refrigerantes',
         productos: [
-            {
-                id: 'rf01', marca: 'Prestone', nombre: 'All Vehicles Antifreeze 1L',
-                desc: 'Fórmula universal. Compatible con todos los sistemas de refrigeración.',
-                precio: 32.90, badge: 'Universal',
-                img: '' /* TODO: foto real (Imagenes/RefrigerantePreston.jpg no existe) */
-            },
-            {
-                id: 'rf02', marca: 'Prestone', nombre: 'All Vehicles Antifreeze 4L',
-                desc: 'Pack familiar de larga duración. Protege hasta -37°C.',
-                precio: 95.00, badge: null,
-                img: '' /* TODO: foto real (Imagenes/RefrigerantePreston.jpg no existe) */
-            },
-            {
-                id: 'rf03', marca: 'Shell', nombre: 'Coolant Premium 1L',
-                desc: 'Refrigerante premium OAT. Larga vida útil, sin silicatos.',
-                precio: 38.90, badge: null,
-                img: '' /* TODO: foto real (Imagenes/RefrigerantePreston.jpg no existe) */
-            },
-            {
-                id: 'rf04', marca: 'Toyota', nombre: 'Long Life Coolant 1L',
-                desc: 'Refrigerante original Toyota. Para Toyota, Kia, Mazda y Subaru.',
-                precio: 45.00, badge: 'Original',
-                img: '' /* TODO: foto real (Imagenes/RefrigerantePreston.jpg no existe) */
-            },
         ]
     },
     filtros: {
         label: 'Filtros y Componentes',
         productos: [
-            {
-                id: 'fi01', marca: 'Mann', nombre: 'Filtro de Aceite W712/75',
-                desc: 'Filtración de alta eficiencia para motores gasolina y GNV.',
-                precio: 22.90, badge: null,
-                img: '' /* TODO: foto real (Imagenes/FiltroDeAceiteEjemplo.jpg no existe) */
-            },
-            {
-                id: 'fi02', marca: 'Bosch', nombre: 'Filtro de Aire S0073',
-                desc: 'Captura el 99.9% de partículas. Más potencia, menos consumo.',
-                precio: 38.90, badge: 'Best Seller',
-                img: '' /* TODO: foto real (Imagenes/FiltroDeAceiteEjemplo.jpg no existe) */
-            },
-            {
-                id: 'fi03', marca: 'Mann', nombre: 'Filtro de Combustible WK842/2',
-                desc: 'Protege el sistema de inyección. Compatible con múltiples marcas.',
-                precio: 29.90, badge: null,
-                img: '' /* TODO: foto real (Imagenes/FiltroDeAceiteEjemplo.jpg no existe) */
-            },
-            {
-                id: 'fi04', marca: 'Bosch', nombre: 'Filtro de Habitáculo 1987432362',
-                desc: 'Con carbón activado. Elimina polvo, bacterias y olores del habitáculo.',
-                precio: 45.00, badge: null,
-                img: '' /* TODO: foto real (Imagenes/FiltroDeAceiteEjemplo.jpg no existe) */
-            },
+            { id: 'p10111291', sku: '10111291', marca: "ACDelco", nombre: "Elemento filtro de aceite 93171212", desc: "Compatible con Chevrolet Equinox, Orlando, Captiva 2.4", precio: 0.00, img: '' },
+            { id: 'p10111289', sku: '10111289', marca: "ACDelco", nombre: "Filtro de aceite 12737086", desc: "Compatible con Chevrolet Captiva 1.5", precio: 0.00, img: '' },
+            { id: 'p10110639', sku: '10110639', marca: "Bosch", nombre: "Filtro de aceite 0986AF1042", desc: "Compatible con Ford Ranger, Suzuki Jimny, Swift, Toyota Hilux, Land Cruiser, 4Runner", precio: 0.00, img: '' },
+            { id: 'p10110588', sku: '10110588', marca: "Bosch", nombre: "Filtro de aceite 90915-YZZE1", desc: "Compatible con Toyota Tercel, Yaris, Probox", precio: 0.00, img: '' },
+            { id: 'p10111139', sku: '10111139', marca: "Filcar", nombre: "Elemento filtro de aceite 26350-2J000", desc: "Compatible con Hyundai Elantra, Sonata, Tucson, Kia Sportage", precio: 0.00, img: '' },
+            { id: 'p10110755', sku: '10110755', marca: "Hyundai", nombre: "Filtro de aceite 26300-02752", desc: "Compatible con Kia Picanto, Rio, Hyundai Accent, Soluto, Verna, Nissan Frontier 2.4L, Mitsubishi L200 2.4L", precio: 0.00, img: '' },
+            { id: 'p10110079', sku: '10110079', marca: "Hyundai", nombre: "Filtro de aceite 26300-2Y500", desc: "Compatible con Kia Rio, Picanto, Mazda 2, CX-5, Mazda 3", precio: 0.00, img: '' },
+            { id: 'p10110080', sku: '10110080', marca: "Hyundai", nombre: "Filtro de aceite 26300-35505", desc: "Compatible con Kia Sorento, Hyundai Elantra, Sonata, Santa Fe, Tucson, Great Wall H3", precio: 0.00, img: '' },
+            { id: 'p10111302', sku: '10111302', marca: "Hyundai", nombre: "Filtro de aceite 26320-2F000", desc: "Compatible con Hyundai Santa Fe II 06-12, Kia Sorento II, Kia Carnival, Tucson", precio: 0.00, img: '' },
+            { id: 'p10110510', sku: '10110510', marca: "Hyundai", nombre: "Filtro de aceite 26330-4A001", desc: "Compatible con Hyundai H100, H-1, H-350, Kia K2700 (rosca M26x1.5)", precio: 0.00, img: '' },
+            { id: 'p10111300', sku: '10111300', marca: "Hyundai", nombre: "Filtro de aceite 26350-2S000", desc: "Compatible con Hyundai Tucson, Kia Sportage, Sorento, Santa Fe 2.5L 20-22", precio: 0.00, img: '' },
+            { id: 'p10111154', sku: '10111154', marca: "IHP", nombre: "Elemento filtro de aceite 11427635557", desc: "Compatible con BMW 316i", precio: 0.00, img: '' },
+            { id: 'p10111165', sku: '10111165', marca: "IHP", nombre: "Elemento filtro de aceite SH40X20136", desc: "Compatible con Foton Aucan, Changan Hunter F70, JAC T6", precio: 0.00, img: '' },
+            { id: 'p10110672', sku: '10110672', marca: "Kusa", nombre: "Filtro de aceite 06D115562", desc: "Compatible con Volkswagen Golf, Amarok VI 2009 (059115651G / 06D115466)", precio: 0.00, img: '' },
+            { id: 'p10110471', sku: '10110471', marca: "Kusa", nombre: "Filtro de aceite 3007", desc: "Compatible con Kia, Hyundai (rosca 20x1.5)", precio: 0.00, img: '' },
+            { id: 'p10110404', sku: '10110404', marca: "Kusa", nombre: "Filtro de aceite 3001", desc: "Compatible con Toyota Yaris (rosca 3/4-16)", precio: 0.00, img: '' },
+            { id: 'p10110949', sku: '10110949', marca: "Genérico", nombre: "Elemento filtro de aceite 26350-2M000", desc: "Compatible con Hyundai Accent, Elantra 1.6 20-up, Kia Rio 1.6 20-up", precio: 0.00, img: '' },
+            { id: 'p10110093', sku: '10110093', marca: "Maxfil", nombre: "Filtro de aceite 04152-0R010", desc: "Compatible con Toyota 4Runner 2007 (ML19547)", precio: 0.00, img: '' },
+            { id: 'p10110088', sku: '10110088', marca: "Maxfil", nombre: "Filtro de aceite 1056022300", desc: "Compatible con Geely Okavango, Coolray", precio: 0.00, img: '' },
+            { id: 'p10110078', sku: '10110078', marca: "Maxfil", nombre: "Filtro de aceite 1109.X3", desc: "Compatible con Peugeot Boxer, Citroën Jumper, Fiat Fiorino (EO-24070)", precio: 0.00, img: '' },
+            { id: 'p10110091', sku: '10110091', marca: "Maxfil", nombre: "Filtro de aceite 15208-BN30A", desc: "Compatible con Nissan Frontier, NP300", precio: 0.00, img: '' },
+            { id: 'p10110092', sku: '10110092', marca: "Maxfil", nombre: "Filtro de aceite 16400-3XN1A", desc: "Compatible con Nissan Urban", precio: 0.00, img: '' },
+            { id: 'p10110090', sku: '10110090', marca: "Maxfil", nombre: "Filtro de aceite 16405-01T70", desc: "Compatible con Nissan Frontier, Navara, Urban", precio: 0.00, img: '' },
+            { id: 'p10110296', sku: '10110296', marca: "Maxfil", nombre: "Filtro de aceite 7701070114", desc: "Compatible con Nissan NP300, Qashqai", precio: 0.00, img: '' },
+            { id: 'p10111303', sku: '10111303', marca: "Millard", nombre: "Filtro de aceite 030115561P", desc: "Compatible con Volkswagen Golf, Polo, Jetta", precio: 0.00, img: '' },
+            { id: 'p10111175', sku: '10111175', marca: "Millard", nombre: "Filtro de aceite ML-321", desc: "Compatible con Ford Escape, Fusion, Mazda 3, 5, 6, CX-7", precio: 0.00, img: '' },
+            { id: 'p10110297', sku: '10110297', marca: "Millard", nombre: "Filtro de aceite ML10060", desc: "Compatible con Chevrolet Captiva, Colorado, Silverado", precio: 0.00, img: '' },
+            { id: 'p10110300', sku: '10110300', marca: "Millard", nombre: "Filtro de aceite ML11212", desc: "Compatible con Hyundai Elantra, Tucson, Kia Sorento", precio: 0.00, img: '' },
+            { id: 'p10110792', sku: '10110792', marca: "Millard", nombre: "Filtro de aceite ML3387", desc: "Compatible con Chevrolet Onix, Prisma, Spin, Aveo 1.6, Mitsubishi Montero", precio: 0.00, img: '' },
+            { id: 'p10110791', sku: '10110791', marca: "Millard", nombre: "Filtro de aceite ML3593", desc: "Compatible con Kia Picanto, Rio, Hyundai Accent, Soluto, Verna, Nissan Frontier 2.4L, Mitsubishi L200 2.4L", precio: 0.00, img: '' },
+            { id: 'p10111207', sku: '10111207', marca: "Millard", nombre: "Filtro de aceite ML3600", desc: "Compatible con Chery Grand Tiger 4x2 (12-14), Ford EcoSport (04-05), Fiesta (01-04), Focus (01-08), Jeep Cherokee Liberty", precio: 0.00, img: '' },
+            { id: 'p10110794', sku: '10110794', marca: "Millard", nombre: "Filtro de aceite ML3614", desc: "Compatible con Ford Fiesta, EcoSport, Mazda BT-50, Suzuki Grand Vitara, Toyota 4Runner", precio: 0.00, img: '' },
+            { id: 'p10110795', sku: '10110795', marca: "Millard", nombre: "Filtro de aceite ML3807", desc: "Compatible con Kia Sorento, Hyundai Elantra, Sonata, Santa Fe, Tucson, Great Wall H3", precio: 0.00, img: '' },
+            { id: 'p10110606', sku: '10110606', marca: "Millard", nombre: "Filtro de aceite ML4967", desc: "Compatible con Geely Cross 1.5, Toyota Avensis, Corolla, RAV4, Tercel", precio: 0.00, img: '' },
+            { id: 'p10111237', sku: '10111237', marca: "Millard", nombre: "Filtro de aceite ML49675", desc: "Compatible con Geely Cross 1.5, Toyota Avensis, Corolla, RAV4, Tercel", precio: 0.00, img: '' },
+            { id: 'p10110798', sku: '10110798', marca: "Millard", nombre: "Filtro de aceite ML4997", desc: "Compatible con Chevrolet Spark, Chery, Daewoo Tico, Lifan, Suzuki, Toyota", precio: 0.00, img: '' },
+            { id: 'p10110295', sku: '10110295', marca: "Millard", nombre: "Filtro de aceite ML5548", desc: "Compatible con Volkswagen CrossFox, Golf, Polo 1.6", precio: 0.00, img: '' },
+            { id: 'p10110074', sku: '10110074', marca: "Millard", nombre: "Filtro de aceite ML57961", desc: "Compatible con Renault, Mitsubishi L200 2.4L", precio: 0.00, img: '' },
+            { id: 'p10110082', sku: '10110082', marca: "Millard", nombre: "Filtro de aceite ML92095", desc: "Compatible con Chevrolet Sail, Aveo, Spark GT, Aveo 1.2L", precio: 0.00, img: '' },
+            { id: 'p10110069', sku: '10110069', marca: "Millard", nombre: "Filtro de aceite ML96796", desc: "Compatible con Toyota Corolla, Yaris 1.3L, Corolla 1.3L 09-14", precio: 0.00, img: '' },
+            { id: 'p10110977', sku: '10110977', marca: "Renault", nombre: "Filtro de aceite 7700730077", desc: "Compatible con Jeep Cherokee 87-90, Comanche, Wagoneer 87-90, Wrangler 87-90", precio: 0.00, img: '' },
+            { id: 'p10110638', sku: '10110638', marca: "Wanlanda", nombre: "Filtro de aceite WO-51502", desc: "Compatible con Peugeot (BLS-87 / C-2105 / ML5566)", precio: 0.00, img: '' },
+            { id: 'p10110484', sku: '10110484', marca: "Genérico", nombre: "Elemento filtro de aceite 1017100XED95", desc: "Compatible con Great Wall Poer Pick Up", precio: 0.00, img: '' },
+            { id: 'p10110280', sku: '10110280', marca: "Genérico", nombre: "Elemento filtro de aceite 12605566", desc: "Compatible con Chevrolet Captiva 2.4 (FPL-3014K / ML9018)", precio: 0.00, img: '' },
+            { id: 'p10110473', sku: '10110473', marca: "Genérico", nombre: "Elemento filtro de aceite 68079744AA", desc: "Compatible con Jeep Grand Cherokee, Chrysler, Dodge Caravan, Volkswagen", precio: 0.00, img: '' },
+            { id: 'p10110486', sku: '10110486', marca: "Genérico", nombre: "Filtro de aceite 06L-115-562", desc: "Compatible con Volkswagen Golf, Passat, Tiguan 16", precio: 0.00, img: '' },
+            { id: 'p10110637', sku: '10110637', marca: "Genérico", nombre: "Filtro de aceite 06K115562", desc: "Compatible con Volkswagen Tiguan, Polo, Audi 2014", precio: 0.00, img: '' },
+            { id: 'p10110618', sku: '10110618', marca: "Genérico", nombre: "Filtro de aceite 1017110XED95", desc: "Compatible con Great Wall Haval, Poer", precio: 0.00, img: '' },
+            { id: 'p10110694', sku: '10110694', marca: "Genérico", nombre: "Filtro de aceite 1012014-FD2301", desc: "Compatible con Dongfeng ZNA 2022, Rich 7", precio: 0.00, img: '' },
+            { id: 'p10110693', sku: '10110693', marca: "Genérico", nombre: "Filtro de aceite Dongfeng Rich 7", desc: "Compatible con Dongfeng ZNA 2022, Rich 7", precio: 0.00, img: '' },
+            { id: 'p10110509', sku: '10110509', marca: "Genérico", nombre: "Filtro de aceite 1010301FA", desc: "Compatible con Foton Forland TM2, JAC camioncito (BLS-1001 / DL-212)", precio: 0.00, img: '' },
+            { id: 'p10110595', sku: '10110595', marca: "Genérico", nombre: "Filtro de aceite 1010320FD060", desc: "Compatible con JAC T8, T6 (rosca M20x1.5)", precio: 0.00, img: '' },
+            { id: 'p10110325', sku: '10110325', marca: "Genérico", nombre: "Filtro de aceite 1010320FE010", desc: "Compatible con JAC Pickup T6, T8", precio: 0.00, img: '' },
+            { id: 'p10110292', sku: '10110292', marca: "Genérico", nombre: "Filtro de aceite 10103320FE010", desc: "Compatible con JAC Pickup T6, T8 (8104102P3010)", precio: 0.00, img: '' },
+            { id: 'p10110508', sku: '10110508', marca: "Genérico", nombre: "Filtro de aceite 1109-AL", desc: "Compatible con Peugeot, Citroën", precio: 0.00, img: '' },
+            { id: 'p10110485', sku: '10110485', marca: "Genérico", nombre: "Filtro de aceite 1109-T3", desc: "Compatible con Suzuki SX4 1.6L 07, Mini Cooper 06-10, Ford Fiesta MK7 1.5L", precio: 0.00, img: '' },
+            { id: 'p10110287', sku: '10110287', marca: "Genérico", nombre: "Filtro de aceite 126368358", desc: "Compatible con Chevrolet Trailblazer 2.5L 12, Colorado 2.5L", precio: 0.00, img: '' },
+            { id: 'p10110331', sku: '10110331', marca: "Genérico", nombre: "Filtro de aceite 12636838", desc: "Compatible con Chevrolet Trailblazer 2.5L 12, Colorado 2.5L", precio: 0.00, img: '' },
+            { id: 'p10110497', sku: '10110497', marca: "Genérico", nombre: "Filtro de aceite 152082327R", desc: "Compatible con Renault Duster, Logan (152095084R)", precio: 0.00, img: '' },
+            { id: 'p10110496', sku: '10110496', marca: "Genérico", nombre: "Filtro de aceite 1621803009", desc: "Compatible con Mercedes Benz, SsangYong Actyon 2.0L / 2.3L 07-16, Rexton 2.3L, Korando 2.0L", precio: 0.00, img: '' },
+            { id: 'p10110405', sku: '10110405', marca: "Genérico", nombre: "Filtro de aceite 1721803009", desc: "Compatible con SsangYong Korando (A1721840025)", precio: 0.00, img: '' },
+            { id: 'p10110487', sku: '10110487', marca: "Genérico", nombre: "Filtro de aceite 25195785", desc: "Compatible con Chevrolet Aveo 1.4L 14, Optra 1.4L 14, Tracker 16", precio: 0.00, img: '' },
+            { id: 'p10110406', sku: '10110406', marca: "Genérico", nombre: "Filtro de aceite 8-98165071-0", desc: "Compatible con Mazda BT-50, Isuzu (58-98175071-0)", precio: 0.00, img: '' },
+            { id: 'p10110326', sku: '10110326', marca: "Genérico", nombre: "Filtro de aceite 6711803009", desc: "Compatible con SsangYong Korando, Rexton, Tivoli", precio: 0.00, img: '' },
+            { id: 'p10110494', sku: '10110494', marca: "Genérico", nombre: "Filtro de aceite 68001297AA", desc: "Compatible con Audi TT V6 04-10, A3 06-13, Volkswagen Jetta, Eurovan, R32 04-14, Jeep Compass 06-09, Patriot 08", precio: 0.00, img: '' },
+            { id: 'p10110677', sku: '10110677', marca: "Genérico", nombre: "Filtro de aceite 68191349AA", desc: "Compatible con Jeep Grand Cherokee 2014", precio: 0.00, img: '' },
+            { id: 'p10110493', sku: '10110493', marca: "Genérico", nombre: "Filtro de aceite E4G16-1012040", desc: "Compatible con Chery A3 1.6L 10, Tiggo 1.6L 13-16", precio: 0.00, img: '' },
+            { id: 'p10110495', sku: '10110495', marca: "Genérico", nombre: "Filtro de aceite EO 30140", desc: "Compatible con BMW Serie 1, 3, 5, X1, X3, X5, X6, Z4", precio: 0.00, img: '' },
+            { id: 'p10110491', sku: '10110491', marca: "Genérico", nombre: "Filtro de aceite F4J16-1012030", desc: "Compatible con Jetour X70 Plus", precio: 0.00, img: '' },
+            { id: 'p10110330', sku: '10110330', marca: "Genérico", nombre: "Filtro de aceite FE0063", desc: "Compatible con Chevrolet Colorado 2.8L 2017-2024 (94771044)", precio: 0.00, img: '' },
+            { id: 'p10111421', sku: '10111421', marca: "Genérico", nombre: "Filtro de aceite FL-2137", desc: "Compatible con Ford Ranger, Mazda BT-50, Volkswagen Amarok TDI", precio: 0.00, img: '' },
+            { id: 'p10110436', sku: '10110436', marca: "Genérico", nombre: "Filtro de aceite ML19626", desc: "Compatible con Chevrolet Cruze 1.8, Sonic, Tracker 1.8", precio: 0.00, img: '' },
+            { id: 'p10110435', sku: '10110435', marca: "Genérico", nombre: "Filtro de aceite ML32094", desc: "Compatible con JAC 2.8", precio: 0.00, img: '' },
+            { id: 'p10110332', sku: '10110332', marca: "Genérico", nombre: "Filtro de aceite ML44155", desc: "Compatible con Toyota RAV4 2.5L", precio: 0.00, img: '' },
+            { id: 'p10110339', sku: '10110339', marca: "Genérico", nombre: "Filtro de aceite ML65020", desc: "Compatible con Suzuki Alto 1.0, Baleno 1.4, Ertiga 1.4, Swift 1.2", precio: 0.00, img: '' },
+            { id: 'p10110415', sku: '10110415', marca: "Genérico", nombre: "Filtro de aceite ML9814", desc: "Compatible con Peugeot, Citroën Berlingo 1.6", precio: 0.00, img: '' },
+            { id: 'p10110731', sku: '10110731', marca: "Genérico", nombre: "Filtro de aceite MS1-6744-AA", desc: "Compatible con Ford Territory 1.8L 2023", precio: 0.00, img: '' },
         ]
-    }
+    },
+    aditivos: {
+        label: 'Aditivos y Limpiadores',
+        productos: [
+            { id: 'p10110880', sku: '10110880', marca: "Liqui Moly", nombre: "Ceratec 300 ml (3721)", desc: "Protección antifricción con cerámica para el motor · 300 ml", precio: 0.00, img: '' },
+            { id: 'p10110874', sku: '10110874', marca: "Liqui Moly", nombre: "Elevador de octanaje y potencia 200 ml", desc: "Aditivo para gasolina · 200 ml", precio: 0.00, img: '' },
+            { id: 'p10110833', sku: '10110833', marca: "Liqui Moly", nombre: "Limpia contacto 400 ml", desc: "Limpiador de contactos eléctricos · 400 ml", precio: 0.00, img: '' },
+            { id: 'p10110964', sku: '10110964', marca: "Liqui Moly", nombre: "Limpia radiador", desc: "Limpieza del sistema de refrigeración", precio: 0.00, img: '' },
+            { id: 'p10110825', sku: '10110825', marca: "Liqui Moly", nombre: "Limpia válvulas 150 ml", desc: "Limpieza de válvulas y cámara de combustión · 150 ml", precio: 0.00, img: '' },
+            { id: 'p10111217', sku: '10111217', marca: "Liqui Moly", nombre: "Limpiador de cambios automáticos", desc: "Limpieza de la transmisión automática antes del cambio de aceite", precio: 0.00, img: '' },
+            { id: 'p10110822', sku: '10110822', marca: "Liqui Moly", nombre: "Limpiador de catalizador 300 ml", desc: "Limpieza del catalizador y sistema de escape · 300 ml", precio: 0.00, img: '' },
+            { id: 'p10111210', sku: '10111210', marca: "Liqui Moly", nombre: "Limpiador de inyección diésel", desc: "Limpieza del sistema de inyección diésel", precio: 0.00, img: '' },
+            { id: 'p10111109', sku: '10111109', marca: "Liqui Moly", nombre: "Limpiador de inyectores Eco", desc: "Limpieza de inyectores de gasolina", precio: 0.00, img: '' },
+            { id: 'p10111312', sku: '10111312', marca: "Liqui Moly", nombre: "Oil Additiv antifricción de motor 300 ml (2500)", desc: "Reduce fricción y desgaste del motor · 300 ml", precio: 0.00, img: '' },
+            { id: 'p10110823', sku: '10110823', marca: "Liqui Moly", nombre: "Aditivo para buzos hidráulicos 300 ml", desc: "Elimina el ruido de buzos hidráulicos · 300 ml", precio: 0.00, img: '' },
+            { id: 'p10110975', sku: '10110975', marca: "Liqui Moly", nombre: "Aditivo para lavado de motor 300 ml", desc: "Limpieza interna del motor antes del cambio de aceite · 300 ml", precio: 0.00, img: '' },
+            { id: 'p10110824', sku: '10110824', marca: "Liqui Moly", nombre: "Aditivo para vehículos a gas GLP 300 ml", desc: "Protección de válvulas en motores a GLP · 300 ml", precio: 0.00, img: '' },
+            { id: 'p10110688', sku: '10110688', marca: "Liqui Moly", nombre: "Súper limpiador de inyección diésel 250 ml", desc: "Limpieza intensiva del sistema de inyección diésel · 250 ml", precio: 0.00, img: '' },
+            { id: 'p10110826', sku: '10110826', marca: "Liqui Moly", nombre: "Tapa fuga para radiador", desc: "Sella fugas pequeñas del sistema de refrigeración", precio: 0.00, img: '' },
+            { id: 'p10111211', sku: '10111211', marca: "Liqui Moly", nombre: "Tapafugas de aceite de motor 300 ml", desc: "Detiene fugas de aceite del motor · 300 ml", precio: 0.00, img: '' },
+            { id: 'p10110603', sku: '10110603', marca: "Liqui Moly", nombre: "Viscoplus estabilizador de viscosidad (LM2502)", desc: "Estabiliza la viscosidad del aceite de motor", precio: 0.00, img: '' },
+        ]
+    },
 };
 
 // =============================================
@@ -158,13 +236,13 @@ const CATEGORIAS_INFO = {
     aceites: {
         num: '01', corto: 'Aceites',
         titulo: 'Aceites y <em>Lubricantes</em>',
-        desc: 'Shell, Castrol, Mobil, Valvoline. Motor protegido, rendimiento al tope.',
+        desc: 'Liqui Moly, Castrol, Shell, Mobil, Vistony y más. Motor, caja y transmisión.',
         img: 'Imagenes/AceitesCaraEjemplo.webp'
     },
     repuestos: {
         num: '02', corto: 'Repuestos',
         titulo: '<em>Repuestos</em>',
-        desc: 'Bujías, pastillas de freno y correas para las marcas del mercado peruano.',
+        desc: 'Repuestos y accesorios para el mantenimiento de tu auto.',
         img: 'Imagenes/ComponentesCaraEjemplo.webp'
     },
     refrigerantes: {
@@ -176,13 +254,20 @@ const CATEGORIAS_INFO = {
     filtros: {
         num: '04', corto: 'Filtros',
         titulo: 'Filtros y <em>Componentes</em>',
-        desc: 'Filtros de aceite, aire, combustible y habitáculo.',
+        desc: 'Filtros de aceite Millard, Hyundai, Maxfil, Bosch y más, para las marcas del mercado peruano.',
         img: 'Imagenes/RefrigeranteEjemplo.webp'
+    },
+    aditivos: {
+        num: '05', corto: 'Aditivos',
+        titulo: 'Aditivos y <em>Limpiadores</em>',
+        desc: 'Limpiadores de inyectores, tapafugas, antifricción y más de Liqui Moly.',
+        img: 'Imagenes/LiquiMolyLogo-960.webp' /* TODO: cambiar por una foto de la categoría */
     }
 };
 
 // Productos que salen en "Los más pedidos" (por id)
-const MAS_PEDIDOS = ['ac01', 'rf01', 'fi02', 're02'];
+// TODO: cámbialos por los que de verdad más se venden (usa el id: 'p' + código del producto)
+const MAS_PEDIDOS = ['p10111212', 'p10110929', 'p10110795', 'p10110975'];
 
 // Imagen de reemplazo si la foto del producto no existe todavía
 const IMG_PENDIENTE = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
@@ -212,7 +297,8 @@ let estadoTienda = {
     vista: 'home',          // 'home' | 'cat' | 'buscar'
     categoriaActual: null,
     busqueda: '',
-    orden: 'default'
+    orden: 'default',
+    marca: ''              // '' = todas las marcas
 };
 
 // =============================================
@@ -224,7 +310,7 @@ let carritoSedeId = null;
 function cargarCarritoStorage() {
     try {
         const raw = localStorage.getItem('autogas_carrito');
-        if (raw) carritoItems = JSON.parse(raw) || [];
+        if (raw) carritoItems = (JSON.parse(raw) || []).filter(i => buscarProducto(i.id));
         const sede = localStorage.getItem('autogas_sede');
         if (sede && WSP_SEDES[sede]) carritoSedeId = sede;
     } catch (e) { carritoItems = []; }
@@ -283,7 +369,6 @@ function htmlProducto(p, conDescripcion) {
         <article class="t-prod" data-id="${p.id}">
             <div class="t-prod-media">
                 <img src="${p.img || IMG_PENDIENTE}" alt="${escaparHTML(p.marca + ' ' + p.nombre)}" loading="lazy" decoding="async" data-respaldo />
-                ${p.badge ? `<span class="t-badge">${escaparHTML(p.badge)}</span>` : ''}
             </div>
             <div class="t-prod-info">
                 <p class="t-prod-marca">${escaparHTML(p.marca)}</p>
@@ -312,7 +397,9 @@ function renderizarInicio() {
                 <span class="t-cat-num">${info.num}</span>
                 <h3 class="t-cat-name">${CATALOGO[id].label}</h3>
                 <p class="t-cat-desc">${info.desc}</p>
-                <span class="t-cat-go">Ver ${CATALOGO[id].productos.length} productos ${ICONO_FLECHA}</span>
+                <span class="t-cat-go">${CATALOGO[id].productos.length
+                    ? 'Ver ' + CATALOGO[id].productos.length + (CATALOGO[id].productos.length === 1 ? ' producto ' : ' productos ')
+                    : 'Próximamente '}${ICONO_FLECHA}</span>
             </div>
             <div class="t-cat-media">
                 <img src="${info.img}" alt="" loading="lazy" decoding="async" />
@@ -367,6 +454,7 @@ function aplicarRuta(primeraCarga) {
 
     estadoTienda.vista = ruta.vista;
     estadoTienda.orden = 'default';
+    estadoTienda.marca = '';
     $('ordenSelect').value = 'default';
     $('searchInput').value = '';
 
@@ -400,7 +488,7 @@ function aplicarRuta(primeraCarga) {
     } else {
         estadoTienda.categoriaActual = null;
         estadoTienda.busqueda = '';
-        document.title = 'AutoGas | Tienda — Aceites, Refrigerantes, Filtros y Repuestos';
+        document.title = 'AutoGas | Tienda — Aceites, Aditivos, Filtros y Repuestos';
         if (!primeraCarga && (ruta.ancla === 'tienda' || ruta.ancla === 'store' || ruta.ancla === 'categorias')) {
             $('categorias').scrollIntoView({ behavior: 'auto', block: 'start' });
         } else if (!primeraCarga) {
@@ -435,8 +523,12 @@ function filtrarYRenderizar() {
     }
 
     let prods = qInput
-        ? base.filter(p => normalizar(p.nombre + ' ' + p.marca + ' ' + p.desc).includes(qInput))
+        ? base.filter(p => normalizar(p.nombre + ' ' + p.marca + ' ' + p.desc + ' ' + (p.sku || '')).includes(qInput))
         : base;
+
+    // Filtro por marca: el menú muestra las marcas que quedan tras la búsqueda
+    renderizarFiltroMarca(prods);
+    if (estadoTienda.marca) prods = prods.filter(p => p.marca === estadoTienda.marca);
 
     const orden = $('ordenSelect').value;
     if (orden === 'asc') prods.sort((a, b) => a.precio - b.precio);
@@ -446,11 +538,36 @@ function filtrarYRenderizar() {
     renderizarProductos(prods);
 }
 
+function renderizarFiltroMarca(prods) {
+    const sel = $('marcaSelect');
+    if (!sel) return;
+    const conteo = {};
+    prods.forEach(p => { conteo[p.marca] = (conteo[p.marca] || 0) + 1; });
+    // "Genérico" siempre al final
+    const marcas = Object.keys(conteo).sort((a, b) =>
+        (a === 'Genérico') - (b === 'Genérico') || a.localeCompare(b, 'es'));
+    if (estadoTienda.marca && !conteo[estadoTienda.marca]) estadoTienda.marca = '';
+    sel.innerHTML = `<option value="">Todas (${prods.length})</option>` +
+        marcas.map(m => `<option value="${escaparHTML(m)}">${escaparHTML(m)} (${conteo[m]})</option>`).join('');
+    sel.value = estadoTienda.marca;
+    sel.closest('.t-sort').hidden = marcas.length < 2;
+}
+
 function renderizarProductos(productos) {
     const grid = $('prodsGrid');
     const n = productos.length;
     $('prodsCount').innerHTML = `<strong>${n}</strong> producto${n !== 1 ? 's' : ''}`;
 
+    const catVacia = estadoTienda.vista === 'cat' && CATALOGO[estadoTienda.categoriaActual].productos.length === 0;
+    if (catVacia) {
+        grid.innerHTML = `
+            <div class="t-empty">
+                <p class="t-empty-title">Muy pronto</p>
+                <p>Estamos subiendo los productos de esta categoría. Mientras tanto, pregúntanos por WhatsApp en tu sede.</p>
+                <a class="t-btn" href="#tienda">Ver otras categorías</a>
+            </div>`;
+        return;
+    }
     if (n === 0) {
         grid.innerHTML = `
             <div class="t-empty">
@@ -465,6 +582,7 @@ function renderizarProductos(productos) {
 
 function limpiarBusqueda() {
     $('searchInput').value = '';
+    estadoTienda.marca = '';
     if (estadoTienda.vista === 'buscar') { irACategorias(); return; }
     filtrarYRenderizar();
     $('searchInput').focus();
@@ -487,7 +605,7 @@ function agregarAlCarritoDesdeCard(prodId, btn) {
 
     const existente = carritoItems.find(i => i.id === prodId);
     if (existente) existente.qty = Math.min(99, existente.qty + qty);
-    else carritoItems.push({ id: p.id, marca: p.marca, nombre: p.nombre, precio: p.precio, img: p.img, qty });
+    else carritoItems.push({ id: p.id, sku: p.sku, marca: p.marca, nombre: p.nombre, precio: p.precio, img: p.img, qty });
 
     qtyCard[prodId] = 1;
     document.querySelectorAll('[data-qty="' + prodId + '"]').forEach(el => el.textContent = '1');
@@ -718,12 +836,13 @@ function enviarCarritoWsp() {
     const total = carritoItems.reduce((s, i) => s + i.precio * i.qty, 0);
 
     const lineas = carritoItems.map(i =>
-        `- ${i.marca} ${i.nombre} × ${i.qty} — ${soles(i.precio * i.qty)}`).join('\n');
+        `- ${i.marca} ${i.nombre}${i.sku ? ' [Cód. ' + i.sku + ']' : ''} × ${i.qty}` +
+        (i.precio > 0 ? ` — ${soles(i.precio * i.qty)}` : '')).join('\n');
 
     let msg = `Hola AutoGas ${sede} 👋\n\n*Cliente:* ${nombre} ${apellido}\n`;
     if (vehiculo) msg += `*Vehículo:* ${vehiculo}\n`;
     msg += `\n🛒 *Mi pedido:*\n${lineas}\n\n` +
-        `💳 *Total estimado:* ${soles(total)}\n\n` +
+        (total > 0 ? `💳 *Total estimado:* ${soles(total)}\n\n` : `💳 *Precio:* por confirmar con la sede\n\n`) +
         `Por favor confirmar disponibilidad antes de coordinar recojo o entrega.`;
 
     window.open(`https://wa.me/${numero}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
@@ -776,6 +895,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Buscador y orden dentro de una categoría
     $('searchInput').addEventListener('input', filtrarYRenderizar);
     $('ordenSelect').addEventListener('change', filtrarYRenderizar);
+    $('marcaSelect').addEventListener('change', e => {
+        estadoTienda.marca = e.target.value;
+        filtrarYRenderizar();
+    });
 
     // Carrito
     cargarCarritoStorage();

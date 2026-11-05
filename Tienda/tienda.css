@@ -669,6 +669,17 @@ body {
     color: var(--t-ink);
 }
 
+.t-filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.t-sort[hidden] {
+    display: none;
+}
+
 .t-sort {
     display: flex;
     align-items: center;
@@ -1831,6 +1842,7 @@ body {
 
     .t-toolbar-left,
 .t-field-search,
+.t-filters,
 .t-sort {
         width: 100%;
     }
