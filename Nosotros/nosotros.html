@@ -34,7 +34,7 @@
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="nosotros.css?v=20261106-2">
+    <link rel="stylesheet" href="nosotros.css?v=20261106-3">
 </head>
 
 <body>
@@ -175,6 +175,36 @@
             </div>
         </section>
 
+        <!-- ==================== VIDEO: CONÓCENOS ==================== -->
+        <section class="section section-dark video-sec" aria-labelledby="videoTitulo">
+            <div class="container video-grid">
+                <div class="video-texto reveal">
+                    <p class="video-eyebrow">Conócenos en 1 minuto</p>
+                    <h2 class="display" id="videoTitulo">Míralo <span>tú mismo</span></h2>
+                    <p class="lead">Te mostramos el taller tal como es: cómo trabajamos tu auto, dónde esperas y por qué tantos conductores vuelven.</p>
+                    <ul class="video-puntos">
+                        <li><strong>Transparencia total.</strong> Ves el avance de tu vehículo, nada se oculta.</li>
+                        <li><strong>Productos de calidad.</strong> Aceites y repuestos de marcas reconocidas.</li>
+                        <li><strong>Sala de espera cómoda.</strong> Esperas tranquilo mientras trabajamos.</li>
+                        <li><strong>Confianza y amabilidad.</strong> Te explicamos cada paso.</li>
+                    </ul>
+                </div>
+                <figure class="video-marco reveal">
+                    <video id="videoNosotros" class="video-vertical" preload="none" playsinline controls
+                        poster="Imagenes/nosotros-video-poster.webp" width="720" height="1280"
+                        aria-label="Video: recorrido por el taller AutoGas">
+                        <source src="Imagenes/nosotros-video-720.mp4" type="video/mp4" media="(min-width: 901px)">
+                        <source src="Imagenes/nosotros-video-480.mp4" type="video/mp4">
+                        Tu navegador no puede reproducir este video.
+                    </video>
+                    <button type="button" class="video-play" aria-label="Reproducir el video del taller" hidden>
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.29-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14z"/></svg>
+                        <span>Ver video · 0:51</span>
+                    </button>
+                </figure>
+            </div>
+        </section>
+
         <!-- ==================== INSTALACIONES ==================== -->
         <section class="section section-white" aria-labelledby="instTitulo">
             <div class="container">
@@ -307,11 +337,11 @@
                 </div>
                 <div>
                     <h3>Legal</h3>
-                    <!-- PENDIENTE: crear estas páginas y poner sus enlaces -->
+                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
                     <ul>
                         <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
-                        <li><a href="#" data-pendiente>Política de privacidad</a></li>
-                        <li><a href="#" data-pendiente>Términos y condiciones</a></li>
+                        <li><a href="../Legal/privacidad.html">Política de privacidad</a></li>
+                        <li><a href="../Legal/terminos.html">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>
@@ -324,6 +354,7 @@
     </footer>
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
+    <script src="nosotros-video.js?v=20261106-1" defer></script>
 </body>
 
 </html>

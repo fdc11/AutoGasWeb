@@ -35,7 +35,7 @@
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="inicio.css?v=20261106-2">
+    <link rel="stylesheet" href="inicio.css?v=20261106-3">
 
     <!-- Datos estructurados para Google (negocio local con 7 sedes) -->
     <script type="application/ld+json">
@@ -193,6 +193,26 @@
                         </div>
                     </a>
                 </div>
+            </div>
+        </section>
+
+        <!-- ==================== VIDEO: INYECCIÓN DIRECTA ==================== -->
+        <section class="section section-dark expertos" aria-labelledby="expertosTitulo">
+            <div class="container">
+                <div class="section-head-split reveal">
+                    <h2 class="display" id="expertosTitulo">Expertos en <span>inyección directa</span></h2>
+                    <p class="lead">Mira cómo convertimos un Jetour Dashing a GNV: kit Nevo Sky Direct, inyectores Fenix, filtro KME y la toma de carga, paso a paso.</p>
+                </div>
+                <figure class="expertos-marco reveal">
+                    <video id="videoExpertos" class="expertos-video" preload="none" playsinline controls poster="Imagenes/expertos-video-poster.webp" width="1280" height="720" aria-label="Video: conversión a gas de un auto con inyección directa en AutoGas">
+                        <source src="Imagenes/expertos-video-720.mp4" type="video/mp4" media="(min-width: 701px)">
+                        <source src="Imagenes/expertos-video-480.mp4" type="video/mp4">
+                    </video>
+                    <button type="button" class="expertos-play" aria-label="Reproducir el video de conversión a gas" hidden>
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
+                        <span>Ver video · 1:10</span>
+                    </button>
+                </figure>
             </div>
         </section>
 
@@ -659,11 +679,11 @@
                 </div>
                 <div>
                     <h3>Legal</h3>
-                    <!-- PENDIENTE: crear estas páginas y poner sus enlaces -->
+                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
                     <ul>
                         <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
-                        <li><a href="#" data-pendiente>Política de privacidad</a></li>
-                        <li><a href="#" data-pendiente>Términos y condiciones</a></li>
+                        <li><a href="../Legal/privacidad.html">Política de privacidad</a></li>
+                        <li><a href="../Legal/terminos.html">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>
@@ -678,6 +698,7 @@
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
     <script src="resenas-google.js?v=20261102-3" defer></script>
     <script src="inicio.js?v=20261102-4" defer></script>
+    <script src="inicio-video.js?v=20261106-1" defer></script>
 </body>
 
 </html>

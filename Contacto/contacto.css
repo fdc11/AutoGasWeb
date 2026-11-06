@@ -140,3 +140,7 @@
 @media (prefers-reduced-motion: reduce) {
     .paso, .listo { animation: none; }
 }
+
+.nota-legal { margin-top: 0.5rem; font-size: 0.8125rem; line-height: 1.5; color: #6B6B6B; }
+.nota-legal a { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
+.nota-legal a:hover { color: var(--red); }

@@ -1,0 +1,72 @@
+/* =====================================================================
+   legal.css — Política de privacidad y Términos y condiciones
+   Lo compartido (fuentes, colores, menú, footer) está en ../Comun/comun.css
+   ===================================================================== */
+.legal-hero { background: var(--black); }
+.legal-hero .page-hero-inner { padding-bottom: 3rem; }
+
+.legal { background: var(--white); color: var(--ink, #111); padding-block: clamp(3.5rem, 7vw, 6rem); }
+.legal-grid {
+    display: grid; grid-template-columns: 15rem minmax(0, 46rem);
+    gap: 4rem; justify-content: center; align-items: start;
+}
+
+/* Índice lateral */
+.legal-indice { position: sticky; top: calc(var(--header-h) + 1.5rem); }
+.legal-indice p {
+    font-size: 0.75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-soft); margin-bottom: 0.875rem;
+}
+.legal-indice ol { display: grid; gap: 0.125rem; border-left: 2px solid #E6E4DF; }
+.legal-indice a {
+    display: block; padding: 0.4375rem 0 0.4375rem 1rem; margin-left: -2px;
+    border-left: 2px solid transparent;
+    font-size: 0.875rem; line-height: 1.35; color: var(--ink-soft); text-decoration: none;
+}
+.legal-indice a:hover { color: var(--black); border-left-color: var(--red); }
+
+/* Documento */
+.legal-doc { font-size: 1.0625rem; line-height: 1.7; color: #2B2B2B; }
+.legal-doc > * + * { margin-top: 1.125rem; }
+.legal-meta { font-size: 0.875rem; color: var(--ink-soft); }
+.legal-doc h2 {
+    margin-top: 3rem; padding-top: 1rem; scroll-margin-top: calc(var(--header-h) + 1rem);
+    font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    font-size: 1.625rem; line-height: 1.1; color: var(--black);
+}
+.legal-doc ul:not(.legal-datos) { display: grid; gap: 0.625rem; padding-left: 0; }
+.legal-doc ul:not(.legal-datos) li { position: relative; padding-left: 1.5rem; }
+.legal-doc ul:not(.legal-datos) li::before {
+    content: ''; position: absolute; left: 0.25rem; top: 0.7em;
+    width: 0.4375rem; height: 0.4375rem; border-radius: 50%; background: var(--red);
+}
+.legal-doc a { color: var(--red); text-underline-offset: 0.2em; }
+.legal-doc strong { color: var(--black); }
+
+/* Ficha con los datos de la empresa */
+.legal-datos {
+    display: grid; gap: 0; border: 1px solid #E6E4DF; border-radius: var(--radius); overflow: hidden;
+}
+.legal-datos li {
+    display: grid; grid-template-columns: minmax(9rem, 14rem) 1fr; gap: 1rem;
+    padding: 0.875rem 1.25rem; font-size: 0.9375rem;
+}
+.legal-datos li + li { border-top: 1px solid #E6E4DF; }
+.legal-datos span { color: var(--ink-soft); }
+
+/* Contacto al final */
+.legal-ayuda {
+    margin-top: 3.5rem; padding: 1.75rem; border-radius: var(--radius);
+    background: #F4F3F0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem;
+}
+.legal-ayuda p { font-size: 1rem; margin: 0; }
+
+@media (max-width: 900px) {
+    .legal-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .legal-indice { position: static; }
+    .legal-indice ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+    .legal-indice ol { grid-template-columns: 1fr; }
+    .legal-datos li { grid-template-columns: 1fr; gap: 0.125rem; }
+}

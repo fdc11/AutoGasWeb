@@ -2562,3 +2562,6 @@ body {
         flex: 1 1 100%;
     }
 }
+
+.cart-legal { margin-top: 0.625rem; font-size: 0.75rem; line-height: 1.45; color: var(--t-muted); text-align: center; }
+.cart-legal a { color: inherit; text-decoration: underline; }
