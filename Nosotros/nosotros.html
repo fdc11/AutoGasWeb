@@ -34,7 +34,8 @@
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="nosotros.css?v=20261106-3">
+    <link rel="stylesheet" href="../Comun/reel.css?v=20261106-1">
+    <link rel="stylesheet" href="nosotros.css?v=20261106-4">
 </head>
 
 <body>
@@ -176,32 +177,72 @@
         </section>
 
         <!-- ==================== VIDEO: CONÓCENOS ==================== -->
-        <section class="section section-dark video-sec" aria-labelledby="videoTitulo">
-            <div class="container video-grid">
-                <div class="video-texto reveal">
-                    <p class="video-eyebrow">Conócenos en 1 minuto</p>
-                    <h2 class="display" id="videoTitulo">Míralo <span>tú mismo</span></h2>
-                    <p class="lead">Te mostramos el taller tal como es: cómo trabajamos tu auto, dónde esperas y por qué tantos conductores vuelven.</p>
-                    <ul class="video-puntos">
-                        <li><strong>Transparencia total.</strong> Ves el avance de tu vehículo, nada se oculta.</li>
-                        <li><strong>Productos de calidad.</strong> Aceites y repuestos de marcas reconocidas.</li>
-                        <li><strong>Sala de espera cómoda.</strong> Esperas tranquilo mientras trabajamos.</li>
-                        <li><strong>Confianza y amabilidad.</strong> Te explicamos cada paso.</li>
-                    </ul>
-                </div>
-                <figure class="video-marco reveal">
-                    <video id="videoNosotros" class="video-vertical" preload="none" playsinline controls
-                        poster="Imagenes/nosotros-video-poster.webp" width="720" height="1280"
+        <!-- ==================== VIDEO: CONÓCENOS (reel vertical) ====================
+             Vista previa muda en bucle (~1 MB). El video con sonido solo se descarga
+             al tocar la bocina, el video o una escena. Lógica: ../Comun/reel.js -->
+        <section class="reel reel--vertical" data-reel aria-labelledby="videoTitulo">
+            <h2 class="reel-sr" id="videoTitulo">Míralo tú mismo</h2>
+            <div class="reel-escena">
+                <span class="reel-gigante" aria-hidden="true"><span class="w-mira reel-relleno">Míra</span><span class="w-lo reel-contorno-rojo">lo</span></span>
+                <figure class="reel-marco">
+                    <video class="reel-video" preload="none" playsinline muted controls
+                        poster="Imagenes/nosotros-video-poster-480.webp" width="720" height="1280"
+                        data-preview="Imagenes/nosotros-teaser.mp4" data-preview-mapa="1,2,3,4,5,6"
+                        data-full-hd="Imagenes/nosotros-video-720.mp4" data-full-sd="Imagenes/nosotros-video-480.mp4"
                         aria-label="Video: recorrido por el taller AutoGas">
-                        <source src="Imagenes/nosotros-video-720.mp4" type="video/mp4" media="(min-width: 901px)">
                         <source src="Imagenes/nosotros-video-480.mp4" type="video/mp4">
-                        Tu navegador no puede reproducir este video.
                     </video>
-                    <button type="button" class="video-play" aria-label="Reproducir el video del taller" hidden>
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.14v13.72a1 1 0 0 0 1.52.85l10.29-6.86a1 1 0 0 0 0-1.7L9.52 4.29A1 1 0 0 0 8 5.14z"/></svg>
-                        <span>Ver video · 0:51</span>
+                    <div class="reel-barras" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+                    <span class="reel-ahora" aria-live="polite"></span>
+                    <button type="button" class="reel-sonido" aria-pressed="false" aria-label="Activar el sonido del video" hidden>
+                        <svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+                        <svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
                     </button>
                 </figure>
+                <span class="reel-gigante" aria-hidden="true"><span class="w-tu reel-contorno">tú</span><span class="w-mismo reel-rojo">mismo</span></span>
+            </div>
+            <div class="container reel-pie">
+                <div class="reel-intro">
+                    <p class="reel-eyebrow">Conócenos en 51 segundos</p>
+                    <p>El taller tal como es: cómo trabajamos tu auto, dónde esperas y por qué tantos conductores vuelven.</p>
+                </div>
+                <ol class="reel-tira" aria-label="Escenas del video">
+                    <li><button type="button" class="reel-esc" data-t="0" data-nombre="Bienvenida" aria-label="Ver desde 0:00: Bienvenida">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/nosotros-cap-1.webp" alt="" width="360" height="640" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Bienvenida<small>0:00</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="6" data-nombre="Atención" aria-label="Ver desde 0:06: Atención">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/nosotros-cap-2.webp" alt="" width="360" height="640" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Atención<small>0:06</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="12" data-nombre="Cambio de aceite" aria-label="Ver desde 0:12: Cambio de aceite">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/nosotros-cap-3.webp" alt="" width="360" height="640" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Cambio de aceite<small>0:12</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="19" data-nombre="Mantenimiento" aria-label="Ver desde 0:19: Mantenimiento">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/nosotros-cap-4.webp" alt="" width="360" height="640" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Mantenimiento<small>0:19</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="25" data-nombre="Sala de espera" aria-label="Ver desde 0:25: Sala de espera">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/nosotros-cap-5.webp" alt="" width="360" height="640" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Sala de espera<small>0:25</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="35" data-nombre="Equipos KME" aria-label="Ver desde 0:35: Equipos KME">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/nosotros-cap-6.webp" alt="" width="360" height="640" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Equipos KME<small>0:35</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="41" data-nombre="Instalaciones" aria-label="Ver desde 0:41: Instalaciones">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/nosotros-cap-7.webp" alt="" width="360" height="640" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Instalaciones<small>0:41</small></span>
+                    </button></li>
+                </ol>
             </div>
         </section>
 
@@ -354,7 +395,7 @@
     </footer>
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
-    <script src="nosotros-video.js?v=20261106-1" defer></script>
+    <script src="../Comun/reel.js?v=20261106-1" defer></script>
 </body>
 
 </html>

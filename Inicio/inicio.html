@@ -35,7 +35,8 @@
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="inicio.css?v=20261106-3">
+    <link rel="stylesheet" href="../Comun/reel.css?v=20261106-1">
+    <link rel="stylesheet" href="inicio.css?v=20261106-4">
 
     <!-- Datos estructurados para Google (negocio local con 7 sedes) -->
     <script type="application/ld+json">
@@ -196,23 +197,71 @@
             </div>
         </section>
 
-        <!-- ==================== VIDEO: INYECCIÓN DIRECTA ==================== -->
-        <section class="section section-dark expertos" aria-labelledby="expertosTitulo">
-            <div class="container">
-                <div class="section-head-split reveal">
-                    <h2 class="display" id="expertosTitulo">Expertos en <span>inyección directa</span></h2>
-                    <p class="lead">Mira cómo convertimos un Jetour Dashing a GNV: kit Nevo Sky Direct, inyectores Fenix, filtro KME y la toma de carga, paso a paso.</p>
-                </div>
-                <figure class="expertos-marco reveal">
-                    <video id="videoExpertos" class="expertos-video" preload="none" playsinline controls poster="Imagenes/expertos-video-poster.webp" width="1280" height="720" aria-label="Video: conversión a gas de un auto con inyección directa en AutoGas">
-                        <source src="Imagenes/expertos-video-720.mp4" type="video/mp4" media="(min-width: 701px)">
+        <!-- ==================== VIDEO: INYECCIÓN DIRECTA (reel horizontal) ====================
+             Vista previa muda en bucle (~2 MB en PC, ~1 MB en celular). El video con sonido
+             solo se descarga al tocar la bocina, el video o una escena. Lógica: ../Comun/reel.js -->
+        <section class="reel reel--horizontal" data-reel aria-labelledby="expertosTitulo">
+            <div class="reel-escena">
+                <span class="reel-gigante" aria-hidden="true"><span class="reel-relleno">Exper</span><span class="reel-contorno-rojo">tos</span></span>
+                <figure class="reel-marco">
+                    <video class="reel-video" preload="none" playsinline muted controls
+                        poster="Imagenes/expertos-video-poster.webp" width="1280" height="720"
+                        data-preview="Imagenes/expertos-teaser-480.mp4" data-preview-hd="Imagenes/expertos-teaser-720.mp4" data-preview-mapa="0,1,2,3,4,5,6"
+                        data-full-hd="Imagenes/expertos-video-720.mp4" data-full-sd="Imagenes/expertos-video-480.mp4"
+                        aria-label="Video: conversión a gas de un auto con inyección directa en AutoGas">
                         <source src="Imagenes/expertos-video-480.mp4" type="video/mp4">
                     </video>
-                    <button type="button" class="expertos-play" aria-label="Reproducir el video de conversión a gas" hidden>
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>
-                        <span>Ver video · 1:10</span>
+                    <div class="reel-barras" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span><span><i></i></span></div>
+                    <span class="reel-ahora" aria-live="polite"></span>
+                    <button type="button" class="reel-sonido" aria-pressed="false" aria-label="Activar el sonido del video" hidden>
+                        <svg class="ico-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>
+                        <svg class="ico-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
                     </button>
                 </figure>
+            </div>
+            <div class="container reel-pie">
+                <div class="reel-intro">
+                    <p class="reel-eyebrow">Conversión a GNV · 1:10</p>
+                    <h2 class="reel-titulo" id="expertosTitulo"><span class="reel-sr">Expertos </span>en <span>inyección directa</span></h2>
+                    <p>Un Jetour Dashing a GNV, paso a paso: kit Nevo Sky Direct, inyectores Fenix, filtro KME y tanques.</p>
+                </div>
+                <ol class="reel-tira" aria-label="Escenas del video">
+                    <li><button type="button" class="reel-esc" data-t="4" data-nombre="Jetour Dashing" aria-label="Ver desde 0:04: Jetour Dashing">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/expertos-cap-1.webp" alt="" width="400" height="225" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Jetour Dashing<small>0:04</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="12" data-nombre="Más conversiones" aria-label="Ver desde 0:12: Más conversiones">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/expertos-cap-2.webp" alt="" width="400" height="225" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Más conversiones<small>0:12</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="28" data-nombre="Nevo Sky Direct" aria-label="Ver desde 0:28: Nevo Sky Direct">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/expertos-cap-3.webp" alt="" width="400" height="225" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Nevo Sky Direct<small>0:28</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="34" data-nombre="Inyectores Fenix" aria-label="Ver desde 0:34: Inyectores Fenix">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/expertos-cap-4.webp" alt="" width="400" height="225" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Inyectores Fenix<small>0:34</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="42" data-nombre="Filtro KME" aria-label="Ver desde 0:42: Filtro KME">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/expertos-cap-5.webp" alt="" width="400" height="225" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Filtro KME<small>0:42</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="46" data-nombre="Toma de carga" aria-label="Ver desde 0:46: Toma de carga">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/expertos-cap-6.webp" alt="" width="400" height="225" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Toma de carga<small>0:46</small></span>
+                    </button></li>
+                    <li><button type="button" class="reel-esc" data-t="54" data-nombre="Tanques GNV" aria-label="Ver desde 0:54: Tanques GNV">
+                        <span class="reel-esc-linea" aria-hidden="true"><i></i></span>
+                        <img src="Imagenes/expertos-cap-7.webp" alt="" width="400" height="225" loading="lazy" decoding="async">
+                        <span class="reel-esc-txt">Tanques GNV<small>0:54</small></span>
+                    </button></li>
+                </ol>
             </div>
         </section>
 
@@ -698,7 +747,7 @@
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
     <script src="resenas-google.js?v=20261102-3" defer></script>
     <script src="inicio.js?v=20261102-4" defer></script>
-    <script src="inicio-video.js?v=20261106-1" defer></script>
+    <script src="../Comun/reel.js?v=20261106-1" defer></script>
 </body>
 
 </html>
