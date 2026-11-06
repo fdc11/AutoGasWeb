@@ -100,7 +100,7 @@
     --transition-fast: 0.22s ease;
     --font-body: 'Barlow', sans-serif;
     --font-cond: 'Barlow Condensed', sans-serif;
-    --nav-h: 72px; /* alto del menú (igual que comun.css) */
+    --nav-h: 4.5rem; /* alto del menú (igual que comun.css) */
 }
 
 html {
@@ -151,8 +151,8 @@ ul {
     --t-red-text: #c10510;
     --t-green: #1a8a4a;
     --t-green-dark: #146e3a;
-    --t-radius: 3px;
-    --t-max: 1320px;
+    --t-radius: 0.1875rem;
+    --t-max: 82.5rem;
 }
 
 html,
@@ -182,7 +182,7 @@ body {
 }
 
 :focus-visible {
-    outline: 3px solid rgba(227, 6, 19, .55);
+    outline: 0.1875rem solid rgba(227, 6, 19, .55);
     outline-offset: 2px;
 }
 
@@ -210,9 +210,9 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    min-height: 48px;
-    padding: 0 26px;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding: 0 1.625rem;
     border: 0;
     border-radius: var(--t-radius);
     background: var(--red);
@@ -256,10 +256,10 @@ body {
     position: relative;
     max-width: var(--t-max);
     margin: 0 auto;
-    padding: 150px 5% 72px;
+    padding: 9.375rem 5% 4.5rem;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 1.125rem;
 }
 
 .t-title em,
@@ -271,8 +271,8 @@ body {
 .t-search {
     display: flex;
     align-items: center;
-    max-width: 640px;
-    margin-top: 10px;
+    max-width: 40rem;
+    margin-top: 0.625rem;
     background: #fff;
     border-radius: var(--t-radius);
     overflow: hidden;
@@ -280,17 +280,17 @@ body {
 }
 
 .t-search svg {
-    margin-left: 18px;
+    margin-left: 1.125rem;
     flex-shrink: 0;
 }
 
 .t-search input {
     flex: 1;
     min-width: 0;
-    height: 56px;
+    height: 3.5rem;
     border: 0;
     outline: 0;
-    padding: 0 14px;
+    padding: 0 0.875rem;
     font: inherit;
     font-size: 1rem;
     color: var(--t-ink);
@@ -307,7 +307,7 @@ body {
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    padding: 0 32px;
+    padding: 0 2rem;
     cursor: pointer;
     transition: background var(--transition-fast);
 }
@@ -324,15 +324,15 @@ body {
 }
 
 .t-cathead-inner {
-    padding: 128px 5% 44px;
-    gap: 12px;
+    padding: 8rem 5% 2.75rem;
+    gap: 0.75rem;
 }
 
 .t-crumb {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
     font-size: .9rem;
     color: #cfcfcf;
 }
@@ -340,7 +340,7 @@ body {
 .t-crumb a {
     color: #cfcfcf;
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-underline-offset: 0.1875rem;
 }
 
 .t-crumb a:hover {
@@ -365,7 +365,7 @@ body {
     font-size: 1.05rem;
     line-height: 1.5;
     color: #d0d0d0;
-    max-width: 620px;
+    max-width: 38.75rem;
     margin: 0;
 }
 
@@ -378,7 +378,7 @@ body {
     z-index: 900;
     background: #fff;
     border-bottom: 1px solid var(--t-line);
-    box-shadow: 0 4px 18px rgba(0, 0, 0, .05);
+    box-shadow: 0 0.25rem 1.125rem rgba(0, 0, 0, .05);
 }
 
 .t-catbar-inner {
@@ -387,7 +387,7 @@ body {
     padding: 0 5%;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0.75rem;
     overflow-x: auto;
     scrollbar-width: none;
 }
@@ -399,10 +399,10 @@ body {
 .t-catbar-back {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin: 10px 0;
-    min-height: 44px;
-    padding: 0 18px 0 14px;
+    gap: 0.5rem;
+    margin: 0.625rem 0;
+    min-height: 2.75rem;
+    padding: 0 1.125rem 0 0.875rem;
     border-radius: var(--t-radius);
     background: var(--t-ink);
     color: #fff;
@@ -427,9 +427,9 @@ body {
 .t-tab {
     display: inline-flex;
     align-items: center;
-    padding: 0 18px;
-    min-height: 64px;
-    border-bottom: 3px solid transparent;
+    padding: 0 1.125rem;
+    min-height: 4rem;
+    border-bottom: 0.1875rem solid transparent;
     font-family: var(--font-cond);
     font-size: 1rem;
     font-weight: 700;
@@ -455,11 +455,11 @@ body {
 .t-main {
     max-width: var(--t-max);
     margin: 0 auto;
-    padding: 72px 5% 88px;
+    padding: 4.5rem 5% 5.5rem;
 }
 
 .t-main.is-cat {
-    padding-top: 32px;
+    padding-top: 2rem;
 }
 
 .t-head {
@@ -467,14 +467,14 @@ body {
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 32px;
-    scroll-margin-top: calc(var(--nav-h) + 24px);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    scroll-margin-top: calc(var(--nav-h) + 1.5rem);
 }
 
 .t-head--top {
-    margin-top: 80px;
-    margin-bottom: 26px;
+    margin-top: 5rem;
+    margin-bottom: 1.625rem;
 }
 
 .t-title {
@@ -494,7 +494,7 @@ body {
 .t-head-desc {
     font-size: 1rem;
     color: var(--t-muted);
-    max-width: 340px;
+    max-width: 21.25rem;
     margin: 0;
 }
 
@@ -502,15 +502,15 @@ body {
 .t-cats {
     display: grid;
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr);
-    grid-auto-rows: minmax(270px, auto);
-    gap: 20px;
+    grid-auto-rows: minmax(16.875rem, auto);
+    gap: 1.25rem;
 }
 
 /* Mosaico: la tarjeta grande ocupa dos filas; el resto se acomoda al lado */
 .t-cats .t-cat--big {
     grid-row: span 2;
     grid-template-columns: 1fr;
-    grid-template-rows: minmax(300px, 1fr) auto;
+    grid-template-rows: minmax(18.75rem, 1fr) auto;
 }
 
 .t-cat--big .t-cat-media {
@@ -518,7 +518,7 @@ body {
 }
 
 .t-cat--big .t-cat-info {
-    padding: 32px 36px 36px;
+    padding: 2rem 2.25rem 2.25rem;
 }
 
 .t-cat--big .t-cat-name {
@@ -527,11 +527,11 @@ body {
 
 .t-cat--big .t-cat-desc {
     font-size: 1rem;
-    max-width: 380px;
+    max-width: 23.75rem;
 }
 
 .t-cat:not(.t-cat--big) .t-cat-info {
-    padding: 26px 22px 24px;
+    padding: 1.625rem 1.375rem 1.5rem;
 }
 
 .t-cat:not(.t-cat--big) .t-cat-name {
@@ -560,7 +560,7 @@ body {
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    min-height: 260px;
+    min-height: 16.25rem;
     background: var(--t-card);
     border: 1px solid var(--t-line);
     border-radius: var(--t-radius);
@@ -571,14 +571,14 @@ body {
 
 .t-cat:hover {
     border-color: var(--red);
-    box-shadow: 0 14px 34px rgba(0, 0, 0, .08);
+    box-shadow: 0 0.875rem 2.125rem rgba(0, 0, 0, .08);
 }
 
 .t-cat-info {
-    padding: 30px 30px 28px;
+    padding: 1.875rem 1.875rem 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .t-cat-num {
@@ -606,10 +606,10 @@ body {
 
 .t-cat-go {
     margin-top: auto;
-    padding-top: 12px;
+    padding-top: 0.75rem;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
     font-family: var(--font-cond);
     font-size: .95rem;
     font-weight: 700;
@@ -623,13 +623,13 @@ body {
 }
 
 .t-cat:hover .t-cat-go svg {
-    transform: translateX(5px);
+    transform: translateX(0.3125rem);
 }
 
 .t-cat-media {
     position: relative;
     background: var(--black-card);
-    min-height: 220px;
+    min-height: 13.75rem;
 }
 
 .t-cat-media img {
@@ -649,8 +649,8 @@ body {
     position: absolute;
     left: 0;
     bottom: 0;
-    height: 3px;
-    width: 64px;
+    height: 0.1875rem;
+    width: 4rem;
     background: var(--red);
     transition: width .45s cubic-bezier(.65, 0, .35, 1);
 }
@@ -665,25 +665,25 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 24px;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .t-toolbar-left {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 18px;
+    gap: 1.125rem;
 }
 
 .t-field-search {
     display: flex;
     align-items: center;
-    gap: 10px;
-    width: 340px;
+    gap: 0.625rem;
+    width: 21.25rem;
     max-width: 100%;
-    min-height: 48px;
-    padding: 0 14px;
+    min-height: 3rem;
+    padding: 0 0.875rem;
     background: #fff;
     border: 1px solid #d6d6d6;
     border-radius: var(--t-radius);
@@ -723,7 +723,7 @@ body {
 .t-sort {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
     font-size: .95rem;
     color: var(--t-ink-2);
 }
@@ -731,8 +731,8 @@ body {
 .t-sort select {
     font: inherit;
     font-size: .95rem;
-    min-height: 48px;
-    padding: 0 14px;
+    min-height: 3rem;
+    padding: 0 0.875rem;
     border: 1px solid #d6d6d6;
     border-radius: var(--t-radius);
     background: #fff;
@@ -743,8 +743,8 @@ body {
 /* ---- Grilla de productos ---- */
 .t-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(16.25rem, 1fr));
+    gap: 1.25rem;
 }
 
 .t-prod {
@@ -759,7 +759,7 @@ body {
 
 .t-prod:hover {
     border-color: #d0d0d0;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, .07);
+    box-shadow: 0 0.75rem 1.875rem rgba(0, 0, 0, .07);
 }
 
 .t-prod-media {
@@ -785,8 +785,8 @@ body {
 
 .t-badge {
     position: absolute;
-    top: 14px;
-    left: 14px;
+    top: 0.875rem;
+    left: 0.875rem;
     background: var(--red);
     color: #fff;
     font-family: var(--font-cond);
@@ -794,7 +794,7 @@ body {
     font-weight: 700;
     letter-spacing: .1em;
     text-transform: uppercase;
-    padding: 4px 10px;
+    padding: 0.25rem 0.625rem;
     border-radius: 2px;
 }
 
@@ -802,8 +802,8 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    padding: 18px 20px 20px;
+    gap: 0.375rem;
+    padding: 1.125rem 1.25rem 1.25rem;
 }
 
 .t-prod-marca {
@@ -838,13 +838,13 @@ body {
     font-size: 1.9rem;
     font-weight: 800;
     color: var(--t-ink);
-    margin: 10px 0 14px;
+    margin: 0.625rem 0 0.875rem;
 }
 
 .t-prod-actions {
     margin-top: auto;
     display: flex;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .t-qty {
@@ -857,8 +857,8 @@ body {
 }
 
 .t-qty button {
-    width: 42px;
-    height: 46px;
+    width: 2.625rem;
+    height: 2.875rem;
     border: 0;
     background: transparent;
     font: inherit;
@@ -872,7 +872,7 @@ body {
 }
 
 .t-qty span {
-    min-width: 24px;
+    min-width: 1.5rem;
     text-align: center;
     font-weight: 700;
     font-size: 1.05rem;
@@ -880,7 +880,7 @@ body {
 
 .t-add {
     flex: 1;
-    min-height: 48px;
+    min-height: 3rem;
     border: 0;
     border-radius: var(--t-radius);
     background: var(--red);
@@ -894,7 +894,7 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 0.5rem;
     transition: background var(--transition-fast);
 }
 
@@ -908,7 +908,7 @@ body {
 
 .t-empty {
     grid-column: 1 / -1;
-    padding: 56px 24px;
+    padding: 3.5rem 1.5rem;
     text-align: center;
     background: #fff;
     border: 1px dashed #d0d0d0;
@@ -920,30 +920,30 @@ body {
     font-size: 1.5rem;
     font-weight: 800;
     text-transform: uppercase;
-    margin: 0 0 6px;
+    margin: 0 0 0.375rem;
 }
 
 .t-empty p {
     color: var(--t-muted);
-    margin: 0 0 18px;
+    margin: 0 0 1.125rem;
 }
 
 /* ---- Bloque "¿Buscas otra cosa?" ---- */
 .t-more {
-    margin-top: 56px;
+    margin-top: 3.5rem;
     background: var(--t-ink);
     color: #fff;
     border-radius: var(--t-radius);
-    padding: 32px 36px;
+    padding: 2rem 2.25rem;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
+    gap: 1.5rem;
 }
 
 .t-more .t-label {
-    margin-bottom: 6px;
+    margin-bottom: 0.375rem;
 }
 
 .t-more-title {
@@ -958,15 +958,15 @@ body {
 .t-more-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .t-more-links a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    min-height: 46px;
-    padding: 0 18px;
+    gap: 0.5rem;
+    min-height: 2.875rem;
+    padding: 0 1.125rem;
     border: 1px solid rgba(255, 255, 255, .25);
     border-radius: var(--t-radius);
     color: #fff;
@@ -1002,25 +1002,25 @@ body {
 .t-brands-inner {
     max-width: var(--t-max);
     margin: 0 auto;
-    padding: 44px 5%;
+    padding: 2.75rem 5%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 28px;
+    gap: 1.75rem;
 }
 
 .t-brands-logos {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 36px;
+    gap: 2.25rem;
 }
 
 .t-brands-logos img {
-    height: 48px;
+    height: 3rem;
     width: auto;
-    max-width: 130px;
+    max-width: 8.125rem;
     object-fit: contain;
 }
 
@@ -1029,11 +1029,11 @@ body {
 ============================================= */
 .cart-fab {
     position: fixed;
-    right: 32px;
-    bottom: 32px;
+    right: 2rem;
+    bottom: 2rem;
     z-index: 1100;
-    width: 60px;
-    height: 60px;
+    width: 3.75rem;
+    height: 3.75rem;
     border: 0;
     border-radius: var(--t-radius);
     background: var(--red);
@@ -1042,7 +1042,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 10px 28px var(--red-glow);
+    box-shadow: 0 0.625rem 1.75rem var(--red-glow);
     transition: transform var(--transition-fast), background var(--transition-fast);
 }
 
@@ -1053,12 +1053,12 @@ body {
 
 .cart-count {
     position: absolute;
-    top: -8px;
-    right: -8px;
-    min-width: 24px;
-    height: 24px;
-    padding: 0 6px;
-    border-radius: 12px;
+    top: -0.5rem;
+    right: -0.5rem;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 0.375rem;
+    border-radius: 0.75rem;
     background: #fff;
     color: var(--red);
     font-family: var(--font-body);
@@ -1067,7 +1067,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, .2);
+    box-shadow: 0 2px 0.375rem rgba(0, 0, 0, .2);
 }
 
 .cart-pulse-ring {
@@ -1106,7 +1106,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 32px;
+    padding: 2rem;
     opacity: 0;
     pointer-events: none;
     transition: opacity .25s ease;
@@ -1119,16 +1119,16 @@ body {
 
 .cart-modal {
     width: 100%;
-    max-width: 1180px;
-    max-height: calc(100dvh - 64px);
+    max-width: 73.75rem;
+    max-height: calc(100dvh - 4rem);
     background: #fff;
     color: var(--t-ink);
     border-radius: var(--t-radius);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, .45);
-    transform: translateY(18px);
+    box-shadow: 0 1.875rem 5rem rgba(0, 0, 0, .45);
+    transform: translateY(1.125rem);
     transition: transform .3s cubic-bezier(.2, .8, .2, 1);
 }
 
@@ -1141,11 +1141,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding: 18px 28px;
+    gap: 1rem;
+    padding: 1.125rem 1.75rem;
     background: var(--t-ink);
     color: #fff;
-    border-bottom: 3px solid var(--red);
+    border-bottom: 0.1875rem solid var(--red);
 }
 
 .cart-eyebrow {
@@ -1174,8 +1174,8 @@ body {
 }
 
 .cart-close {
-    width: 44px;
-    height: 44px;
+    width: 2.75rem;
+    height: 2.75rem;
     border: 1px solid rgba(255, 255, 255, .2);
     border-radius: var(--t-radius);
     background: transparent;
@@ -1197,8 +1197,8 @@ body {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 8px;
-    padding: 64px 24px;
+    gap: 0.5rem;
+    padding: 4rem 1.5rem;
     color: #9a9a9a;
 }
 
@@ -1208,12 +1208,12 @@ body {
     font-weight: 800;
     text-transform: uppercase;
     color: var(--t-ink);
-    margin: 10px 0 0;
+    margin: 0.625rem 0 0;
 }
 
 .cart-empty-sub {
     color: var(--t-muted);
-    margin: 0 0 14px;
+    margin: 0 0 0.875rem;
 }
 
 .cart-body {
@@ -1227,20 +1227,20 @@ body {
     min-width: 0;
     display: flex;
     flex-direction: column;
-    padding: 8px 32px 24px;
+    padding: 0.5rem 2rem 1.5rem;
     overflow-y: auto;
 }
 
 .cart-thead,
 .cart-item {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 140px 110px;
-    gap: 16px;
+    grid-template-columns: minmax(0, 1fr) 8.75rem 6.875rem;
+    gap: 1rem;
     align-items: center;
 }
 
 .cart-thead {
-    padding: 16px 0 12px;
+    padding: 1rem 0 0.75rem;
     border-bottom: 1px solid var(--t-line);
     font-family: var(--font-cond);
     font-size: .82rem;
@@ -1259,20 +1259,20 @@ body {
 }
 
 .cart-item {
-    padding: 20px 0;
+    padding: 1.25rem 0;
     border-bottom: 1px solid #eee;
 }
 
 .cart-item-prod {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1rem;
     min-width: 0;
 }
 
 .cart-item-img {
-    width: 84px;
-    height: 84px;
+    width: 5.25rem;
+    height: 5.25rem;
     flex-shrink: 0;
     border: 1px solid var(--t-line);
     border-radius: var(--t-radius);
@@ -1304,7 +1304,7 @@ body {
     font-weight: 700;
     line-height: 1.1;
     text-transform: uppercase;
-    margin: 2px 0 4px;
+    margin: 2px 0 0.25rem;
 }
 
 .cart-item-meta {
@@ -1321,7 +1321,7 @@ body {
     font-size: .9rem;
     color: var(--t-muted);
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-underline-offset: 0.1875rem;
     cursor: pointer;
 }
 
@@ -1344,22 +1344,22 @@ body {
 
 .cart-left-foot {
     margin-top: auto;
-    padding-top: 20px;
+    padding-top: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 0.75rem;
 }
 
 .cart-left-foot .cart-link {
-    min-height: 44px;
+    min-height: 2.75rem;
 }
 
 .cart-link-strong {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    min-height: 44px;
+    gap: 0.5rem;
+    min-height: 2.75rem;
     border: 0;
     background: none;
     padding: 0;
@@ -1381,17 +1381,17 @@ body {
     min-width: 0;
     background: var(--t-bg);
     border-left: 1px solid var(--t-line);
-    padding: 24px 32px;
+    padding: 1.5rem 2rem;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 1.375rem;
 }
 
 .cart-block {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 0.875rem;
 }
 
 .cart-fieldset {
@@ -1412,7 +1412,7 @@ body {
 }
 
 .cart-fieldset legend.cart-step {
-    margin-bottom: 14px;
+    margin-bottom: 0.875rem;
 }
 
 .cart-step span {
@@ -1422,13 +1422,13 @@ body {
 .cart-row2 {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
+    gap: 0.75rem;
 }
 
 .cart-field {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 0.375rem;
 }
 
 .cart-field label {
@@ -1443,8 +1443,8 @@ body {
 }
 
 .cart-input {
-    height: 50px;
-    padding: 0 14px;
+    height: 3.125rem;
+    padding: 0 0.875rem;
     border: 1px solid var(--t-line-strong);
     border-radius: var(--t-radius);
     background: #fff;
@@ -1461,12 +1461,12 @@ body {
 .cart-input:focus {
     outline: 0;
     border-color: var(--t-ink);
-    box-shadow: 0 0 0 3px rgba(17, 17, 17, .08);
+    box-shadow: 0 0 0 0.1875rem rgba(17, 17, 17, .08);
 }
 
 .cart-input.error {
     border-color: var(--red);
-    box-shadow: 0 0 0 3px rgba(227, 6, 19, .15);
+    box-shadow: 0 0 0 0.1875rem rgba(227, 6, 19, .15);
 }
 
 .cart-help {
@@ -1477,16 +1477,16 @@ body {
 .cart-sedes-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 8px;
+    gap: 0.5rem;
     border-radius: var(--t-radius);
 }
 
 .cart-sedes-grid.error {
-    box-shadow: 0 0 0 3px rgba(227, 6, 19, .2);
+    box-shadow: 0 0 0 0.1875rem rgba(227, 6, 19, .2);
 }
 
 .cart-sede {
-    min-height: 46px;
+    min-height: 2.875rem;
     border: 1px solid var(--t-line-strong);
     border-radius: var(--t-radius);
     background: #fff;
@@ -1519,16 +1519,16 @@ body {
     background: #fff;
     border: 1px solid var(--t-line);
     border-radius: var(--t-radius);
-    padding: 18px 20px;
+    padding: 1.125rem 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
 }
 
 .cart-sum-row {
     display: flex;
     justify-content: space-between;
-    gap: 12px;
+    gap: 0.75rem;
     font-size: .95rem;
     color: var(--t-ink-2);
 }
@@ -1537,9 +1537,9 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 12px;
+    gap: 0.75rem;
     border-top: 1px solid var(--t-line);
-    padding-top: 12px;
+    padding-top: 0.75rem;
     margin-top: 2px;
     font-family: var(--font-cond);
     font-size: 1.1rem;
@@ -1558,11 +1558,11 @@ body {
 .cart-cta {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .cart-btn-wsp {
-    min-height: 56px;
+    min-height: 3.5rem;
     border: 0;
     border-radius: var(--t-radius);
     background: var(--t-green);
@@ -1575,7 +1575,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 0.625rem;
     cursor: pointer;
     transition: background var(--transition-fast);
 }
@@ -1607,21 +1607,21 @@ body {
 .toast-add {
     position: fixed;
     left: 50%;
-    bottom: 32px;
+    bottom: 2rem;
     z-index: 2100;
-    transform: translate(-50%, 20px);
+    transform: translate(-50%, 1.25rem);
     display: flex;
     align-items: center;
-    gap: 10px;
-    max-width: calc(100vw - 32px);
-    padding: 14px 20px;
+    gap: 0.625rem;
+    max-width: calc(100vw - 2rem);
+    padding: 0.875rem 1.25rem;
     background: var(--t-ink);
     color: #fff;
-    border-left: 3px solid var(--t-green);
+    border-left: 0.1875rem solid var(--t-green);
     border-radius: var(--t-radius);
     font-size: .95rem;
     font-weight: 600;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    box-shadow: 0 0.625rem 1.875rem rgba(0, 0, 0, .25);
     opacity: 0;
     pointer-events: none;
     transition: opacity .25s ease, transform .25s ease;
@@ -1633,14 +1633,14 @@ body {
 }
 
 .toast-add button {
-    margin-left: 6px;
+    margin-left: 0.375rem;
     border: 0;
     background: none;
     color: #fff;
     font: inherit;
     font-weight: 700;
     text-decoration: underline;
-    text-underline-offset: 3px;
+    text-underline-offset: 0.1875rem;
     cursor: pointer;
     pointer-events: all;
 }
@@ -1653,20 +1653,20 @@ body {
 
 .toast-wsp {
     position: fixed;
-    right: 24px;
-    bottom: 24px;
+    right: 1.5rem;
+    bottom: 1.5rem;
     z-index: 2100;
-    width: min(380px, calc(100vw - 32px));
+    width: min(23.75rem, calc(100vw - 2rem));
     display: flex;
-    gap: 12px;
-    padding: 18px;
+    gap: 0.75rem;
+    padding: 1.125rem;
     background: var(--t-ink);
     color: #fff;
-    border-left: 3px solid var(--t-green);
+    border-left: 0.1875rem solid var(--t-green);
     border-radius: var(--t-radius);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, .3);
+    box-shadow: 0 0.875rem 2.5rem rgba(0, 0, 0, .3);
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(1.25rem);
     pointer-events: none;
     transition: opacity .3s ease, transform .3s ease;
 }
@@ -1687,7 +1687,7 @@ body {
     font-size: 1.1rem;
     font-weight: 800;
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 0.25rem;
 }
 
 .toast-wsp-sub {
@@ -1698,8 +1698,8 @@ body {
 
 .toast-wsp-close {
     align-self: flex-start;
-    width: 32px;
-    height: 32px;
+    width: 2rem;
+    height: 2rem;
     border: 0;
     background: none;
     color: #cfcfcf;
@@ -1759,32 +1759,32 @@ body {
     .cart-right {
         border-left: 0;
         border-top: 1px solid var(--t-line);
-        padding: 20px 16px 0;
+        padding: 1.25rem 1rem 0;
     }
 
     .cart-left {
-        padding: 4px 16px 12px;
+        padding: 0.25rem 1rem 0.75rem;
     }
 
     .cart-cta {
         position: sticky;
         bottom: 0;
-        margin: 0 -16px;
-        padding: 12px 16px 16px;
+        margin: 0 -1rem;
+        padding: 0.75rem 1rem 1rem;
         background: #fff;
         border-top: 1px solid #e1e1e1;
-        box-shadow: 0 -8px 24px rgba(0, 0, 0, .08);
+        box-shadow: 0 -0.5rem 1.5rem rgba(0, 0, 0, .08);
     }
 }
 
 @media (max-width: 768px) {
 
     .t-cathead-inner {
-        padding: 112px 5% 32px;
+        padding: 7rem 5% 2rem;
     }
 
     .t-main {
-        padding: 48px 4% 72px;
+        padding: 3rem 4% 4.5rem;
     }
 
     .t-cat {
@@ -1801,7 +1801,7 @@ body {
     .t-cats {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         grid-auto-rows: auto;
-        gap: 12px;
+        gap: 0.75rem;
     }
 
     .t-cats .t-cat--big {
@@ -1812,12 +1812,12 @@ body {
     .t-cats .t-cat--big .t-cat-media {
         order: 0;
         aspect-ratio: auto;
-        min-height: 190px;
+        min-height: 11.875rem;
     }
 
     .t-cat--big .t-cat-info {
-        padding: 18px 16px 20px;
-        gap: 6px;
+        padding: 1.125rem 1rem 1.25rem;
+        gap: 0.375rem;
     }
 
     .t-cat--big .t-cat-name {
@@ -1837,8 +1837,8 @@ body {
     }
 
     .t-cat:not(.t-cat--big) .t-cat-info {
-        padding: 12px 12px 16px;
-        gap: 4px;
+        padding: 0.75rem 0.75rem 1rem;
+        gap: 0.25rem;
     }
 
     .t-cat:not(.t-cat--big) .t-cat-num {
@@ -1854,7 +1854,7 @@ body {
     }
 
     .t-cat:not(.t-cat--big) .t-cat-go {
-        padding-top: 8px;
+        padding-top: 0.5rem;
         font-size: .75rem;
         letter-spacing: .1em;
     }
@@ -1864,7 +1864,7 @@ body {
     }
 
     .t-cat:not(.t-cat--big) .t-cat-bar {
-        width: 36px;
+        width: 2.25rem;
     }
 
     .t-cats .t-cat-media--logo {
@@ -1873,21 +1873,21 @@ body {
     }
 
     .t-tab {
-        min-height: 56px;
-        padding: 0 12px;
+        min-height: 3.5rem;
+        padding: 0 0.75rem;
     }
 
     .t-more {
-        padding: 26px 20px;
+        padding: 1.625rem 1.25rem;
     }
 
     .t-brands-logos {
-        gap: 24px;
+        gap: 1.5rem;
     }
 
     .t-brands-logos img {
-        height: 36px;
-        max-width: 100px;
+        height: 2.25rem;
+        max-width: 6.25rem;
     }
 
     .cart-thead {
@@ -1897,7 +1897,7 @@ body {
     .cart-item {
         grid-template-columns: minmax(0, 1fr) auto;
         grid-template-areas: "prod prod" "qty sub";
-        gap: 12px;
+        gap: 0.75rem;
     }
 
     .cart-item-prod {
@@ -1914,8 +1914,8 @@ body {
     }
 
     .cart-item-img {
-        width: 68px;
-        height: 68px;
+        width: 4.25rem;
+        height: 4.25rem;
     }
 
     .cart-sedes-grid {
@@ -1923,14 +1923,14 @@ body {
     }
 
     .cart-fab {
-        right: 18px;
-        bottom: 18px;
+        right: 1.125rem;
+        bottom: 1.125rem;
     }
 }
 
 @media (max-width: 560px) {
     .t-search button {
-        padding: 0 18px;
+        padding: 0 1.125rem;
     }
 
     .t-search svg {
@@ -1939,11 +1939,11 @@ body {
 
     .t-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
+        gap: 0.75rem;
     }
 
     .t-prod-info {
-        padding: 14px 12px 14px;
+        padding: 0.875rem 0.75rem 0.875rem;
     }
 
     .t-prod-nombre {
@@ -1956,7 +1956,7 @@ body {
 
     .t-prod-precio {
         font-size: 1.5rem;
-        margin: 6px 0 10px;
+        margin: 0.375rem 0 0.625rem;
     }
 
     .t-prod-actions {
@@ -1993,18 +1993,18 @@ body {
 }
 
 /* Buscador dentro de la portada (estilo compartido de ../Comun/comun.css) */
-.page-hero .t-search { margin-top: 32px; animation: riseIn .9s var(--ease-out) .5s both; }
+.page-hero .t-search { margin-top: 2rem; animation: riseIn .9s var(--ease-out) .5s both; }
 
 
 /* =============================================
    CATÁLOGO CON FILTROS (acordeón)
    Escritorio: columna a la izquierda.
-   Celular (≤900px): panel a pantalla completa.
+   Celular (≤56.25rem): panel a pantalla completa.
    ============================================= */
 .t-catalog {
     display: flex;
     align-items: flex-start;
-    gap: 32px;
+    gap: 2rem;
 }
 
 .t-results {
@@ -2019,9 +2019,9 @@ body {
 
 .t-fpanel {
     position: sticky;
-    top: calc(var(--nav-h) + 88px);
-    flex: 0 0 280px;
-    max-height: calc(100vh - var(--nav-h) - 110px);
+    top: calc(var(--nav-h) + 5.5rem);
+    flex: 0 0 17.5rem;
+    max-height: calc(100vh - var(--nav-h) - 6.875rem);
     display: flex;
     flex-direction: column;
 }
@@ -2030,7 +2030,7 @@ body {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    padding: 0 2px 12px;
+    padding: 0 2px 0.75rem;
 }
 
 .t-fpanel-title {
@@ -2044,7 +2044,7 @@ body {
 .t-fpanel-clear {
     border: 0;
     background: none;
-    padding: 6px 0;
+    padding: 0.375rem 0;
     font: inherit;
     font-size: .9rem;
     font-weight: 600;
@@ -2067,10 +2067,10 @@ body {
 .t-fpanel-body {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 0.5rem;
     overflow-y: auto;
     overscroll-behavior: contain;
-    padding-bottom: 4px;
+    padding-bottom: 0.25rem;
 }
 
 /* ---- Acordeón ---- */
@@ -2082,12 +2082,12 @@ body {
 
 .t-acc-head {
     width: 100%;
-    min-height: 54px;
+    min-height: 3.375rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    padding: 0 16px;
+    gap: 0.75rem;
+    padding: 0 1rem;
     border: 0;
     border-radius: var(--t-radius);
     background: #efefef;
@@ -2123,7 +2123,7 @@ body {
 }
 
 .t-acc-body {
-    padding: 8px 16px 12px;
+    padding: 0.5rem 1rem 0.75rem;
 }
 
 /* ---- Opciones ---- */
@@ -2135,15 +2135,15 @@ body {
 .t-opt {
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-height: 42px;
+    gap: 0.75rem;
+    min-height: 2.625rem;
     font-size: .95rem;
     cursor: pointer;
 }
 
 .t-opt input {
-    width: 18px;
-    height: 18px;
+    width: 1.125rem;
+    height: 1.125rem;
     margin: 0;
     flex-shrink: 0;
     accent-color: var(--red);
@@ -2163,15 +2163,15 @@ body {
 .t-opts--pastillas {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 8px;
-    padding-top: 6px;
+    gap: 0.5rem;
+    padding-top: 0.375rem;
 }
 
 .t-opts--pastillas .t-opt {
     position: relative;
-    gap: 6px;
-    min-height: 40px;
-    padding: 0 12px;
+    gap: 0.375rem;
+    min-height: 2.5rem;
+    padding: 0 0.75rem;
     border: 1px solid #d0d0d0;
     border-radius: var(--t-radius);
     background: #fff;
@@ -2227,8 +2227,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
-    margin: -6px 0 20px;
+    gap: 0.5rem;
+    margin: -0.375rem 0 1.25rem;
 }
 
 .t-chips[hidden] {
@@ -2244,9 +2244,9 @@ body {
 .t-chip {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    min-height: 36px;
-    padding: 0 12px;
+    gap: 0.5rem;
+    min-height: 2.25rem;
+    padding: 0 0.75rem;
     border: 1px solid var(--t-ink);
     border-radius: var(--t-radius);
     background: var(--t-ink);
@@ -2264,7 +2264,7 @@ body {
 .t-chips-clear {
     border: 0;
     background: none;
-    padding: 8px 4px;
+    padding: 0.5rem 0.25rem;
     font: inherit;
     font-size: .9rem;
     font-weight: 600;
@@ -2275,7 +2275,7 @@ body {
 .t-toolbar-row {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 1.125rem;
 }
 
 /* ---- Celular y tablet: panel a pantalla completa ---- */
@@ -2307,8 +2307,8 @@ body {
 
     .t-fpanel-head {
         align-items: center;
-        min-height: 64px;
-        padding: 0 8px 0 20px;
+        min-height: 4rem;
+        padding: 0 0.5rem 0 1.25rem;
         border-bottom: 1px solid var(--t-line);
     }
 
@@ -2320,8 +2320,8 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 48px;
-        height: 48px;
+        width: 3rem;
+        height: 3rem;
         border: 0;
         background: none;
         color: var(--t-ink);
@@ -2330,7 +2330,7 @@ body {
 
     .t-fpanel-body {
         flex: 1;
-        padding: 12px 10px 16px;
+        padding: 0.75rem 0.625rem 1rem;
     }
 
     .t-acc--movil {
@@ -2343,7 +2343,7 @@ body {
     }
 
     .t-acc-head {
-        min-height: 56px;
+        min-height: 3.5rem;
         font-size: 1.05rem;
     }
 
@@ -2352,14 +2352,14 @@ body {
     }
 
     .t-opt {
-        min-height: 48px;
+        min-height: 3rem;
         font-size: 1rem;
         border-bottom: 1px solid #f0f0f0;
     }
 
     .t-opt input {
-        width: 20px;
-        height: 20px;
+        width: 1.25rem;
+        height: 1.25rem;
     }
 
     /* En celular la viscosidad también va como lista */
@@ -2370,21 +2370,21 @@ body {
     }
 
     .t-opts--pastillas .t-opt {
-        min-height: 48px;
+        min-height: 3rem;
         padding: 0;
         border: 0;
         border-bottom: 1px solid #f0f0f0;
         border-radius: 0;
         font-weight: 400;
         font-size: 1rem;
-        gap: 12px;
+        gap: 0.75rem;
     }
 
     .t-opts--pastillas .t-opt input {
         position: static;
         opacity: 1;
-        width: 20px;
-        height: 20px;
+        width: 1.25rem;
+        height: 1.25rem;
     }
 
     .t-opts--pastillas .t-opt-name {
@@ -2407,15 +2407,15 @@ body {
 
     .t-fpanel-foot {
         display: flex;
-        gap: 10px;
-        padding: 12px 16px calc(16px + env(safe-area-inset-bottom));
+        gap: 0.625rem;
+        padding: 0.75rem 1rem calc(1rem + env(safe-area-inset-bottom));
         border-top: 1px solid var(--t-line);
         background: #fff;
     }
 
     .t-fpanel-reset,
     .t-fpanel-apply {
-        min-height: 52px;
+        min-height: 3.25rem;
         border-radius: var(--t-radius);
         font-family: var(--font-cond);
         font-size: 1.05rem;
@@ -2426,7 +2426,7 @@ body {
     }
 
     .t-fpanel-reset {
-        flex: 0 0 120px;
+        flex: 0 0 7.5rem;
         border: 1px solid var(--t-ink);
         background: #fff;
         color: var(--t-ink);
@@ -2447,9 +2447,9 @@ body {
     .t-filter-btn {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        min-height: 48px;
-        padding: 0 18px;
+        gap: 0.625rem;
+        min-height: 3rem;
+        padding: 0 1.125rem;
         border: 0;
         border-radius: var(--t-radius);
         background: var(--t-ink);
@@ -2470,11 +2470,11 @@ body {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-width: 22px;
-        height: 22px;
-        padding: 0 6px;
+        min-width: 1.375rem;
+        height: 1.375rem;
+        padding: 0 0.375rem;
         box-sizing: border-box;
-        border-radius: 11px;
+        border-radius: 0.6875rem;
         background: var(--red);
         font-family: var(--font-body, inherit);
         font-size: .8rem;
@@ -2519,5 +2519,46 @@ body {
     .t-fpanel,
     .t-fpanel.open {
         transition: none;
+    }
+}
+
+
+/* =============================================
+   COLUMNAS FIJAS EN PC Y LAPTOP
+   Siempre 3 productos por fila desde 901 px (con o sin columna de filtros).
+   ============================================= */
+@media (min-width: 901px) {
+    .t-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* "Los más pedidos" son 4: van en una sola fila */
+    #topGrid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+/* Laptops angostas: columna de filtros un poco más fina para que entren las 3 */
+@media (min-width: 901px) and (max-width: 1200px) {
+    .t-fpanel {
+        flex-basis: 15rem;
+    }
+
+    .t-catalog {
+        gap: 1.5rem;
+    }
+
+    /* Tarjetas más angostas: el botón Agregar baja debajo de la cantidad */
+    .t-prod-actions {
+        flex-wrap: wrap;
+    }
+
+    .t-qty {
+        flex: 1 1 100%;
+        justify-content: space-between;
+    }
+
+    .t-add {
+        flex: 1 1 100%;
     }
 }
