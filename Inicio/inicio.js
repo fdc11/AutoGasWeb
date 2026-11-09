@@ -1,127 +1,118 @@
 /* =====================================================================
-   inicio.js — AutoGas
-   (El menú, la aparición al hacer scroll y el año del footer
-    están en ../Comun/comun.js)
-   3. Calculadora de ahorro
-   4. Sedes: pestañas + mapa
-   5. Carrusel de marcas
-   6. Video de portada
-   7. Año del footer
-   8. Reseñas de Google (todas las sedes)
+   inicio.js — AutoGas · Página de Inicio
+   1. Video de portada (respeta "reducir movimiento" y "ahorro de datos")
+   2. Video del taller: botón de play propio, se descarga solo al reproducir
+   3. Sedes: pestañas accesibles (clic y flechas del teclado)
+   4. Carrusel de marcas: bucle continuo
+   5. Reseñas (copiadas a mano en resenas-google.js): promedio + carrusel
+   Lo compartido (menú de celular, .reveal, cifras que cuentan, año del
+   footer) está en ../Comun/comun.js.
    ===================================================================== */
 (function () {
     'use strict';
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ahorraDatos = !!(navigator.connection && navigator.connection.saveData);
 
-    /* ---------- 3. Calculadora de ahorro ----------
-       Con gas se paga aprox. el 40% de lo que se gasta en gasolina.
-       Para cambiar la referencia, modifica FACTOR_GAS. */
-    const FACTOR_GAS = 0.40;
-    const gastoInput = document.getElementById('calcGasto');
-    const outGas = document.getElementById('calcGas');
-    const outAhorro = document.getElementById('calcAhorro');
-    const outAnual = document.getElementById('calcAnual');
-    const form = document.getElementById('calc');
-
-    const soles = n => 'S/ ' + Math.round(n).toLocaleString('es-PE');
-
-    function calcular() {
-        const gasto = Math.min(99999, Math.max(0, parseFloat(gastoInput.value) || 0));
-        const conGas = gasto * FACTOR_GAS;
-        const ahorro = gasto - conGas;
-        outGas.textContent = soles(conGas);
-        outAhorro.textContent = soles(ahorro);
-        outAnual.textContent = soles(ahorro * 12);
-    }
-
-    if (gastoInput && outGas && outAhorro && outAnual) {
-        gastoInput.addEventListener('input', calcular);
-        calcular();
-    }
-    if (form) form.addEventListener('submit', e => e.preventDefault());
-
-    /* ---------- 4. Sedes: pestañas + mapa ----------
-       Se muestra UNA sede a la vez. Se elige con las pestañas
-       (clic o flechas del teclado) o tocando un punto del mapa. */
-    const tabs = Array.from(document.querySelectorAll('.sede-tab[data-sede]'));
-    const panels = document.querySelectorAll('.sede-detail[data-sede]');
-    const pins = document.querySelectorAll('.pin[data-sede]');
-
-    function activarSede(id, enfocar) {
-        tabs.forEach(t => {
-            const on = t.dataset.sede === id;
-            t.classList.toggle('is-active', on);
-            t.setAttribute('aria-selected', on ? 'true' : 'false');
-            t.tabIndex = on ? 0 : -1;
-            if (on && enfocar) t.focus();
-            // En celular las pestañas se deslizan: dejamos visible la elegida
-            if (on) t.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
-        });
-        panels.forEach(p => p.classList.toggle('is-active', p.dataset.sede === id));
-        pins.forEach(p => p.classList.toggle('is-active', p.dataset.sede === id));
-    }
-
-    tabs.forEach((t, i) => {
-        t.addEventListener('click', () => activarSede(t.dataset.sede));
-        t.addEventListener('keydown', e => {
-            let j = null;
-            if (e.key === 'ArrowRight') j = (i + 1) % tabs.length;
-            if (e.key === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
-            if (e.key === 'Home') j = 0;
-            if (e.key === 'End') j = tabs.length - 1;
-            if (j === null) return;
-            e.preventDefault();
-            activarSede(tabs[j].dataset.sede, true);
-        });
-    });
-    pins.forEach(p => p.addEventListener('click', () => activarSede(p.dataset.sede)));
-
-    /* ---------- 5. Carrusel de marcas ----------
-       Se duplica la lista para que el movimiento sea continuo.
-       La copia se oculta a lectores de pantalla. */
-    const marquee = document.querySelector('.marquee');
-    const track = marquee && marquee.querySelector('.marquee-track');
-    const list = track && track.querySelector('.marquee-list');
-    if (marquee && track && list && !reduceMotion) {
-        const copia = list.cloneNode(true);
-        copia.setAttribute('aria-hidden', 'true');
-        copia.querySelectorAll('img').forEach(img => { img.alt = ''; });
-        track.appendChild(copia);
-        marquee.classList.add('is-running');
-    }
-
-    /* ---------- 6. Video de portada ----------
-       Si el usuario pidió menos movimiento o ahorro de datos, no se
-       descarga el video y queda la imagen fija (poster). */
-    const video = document.getElementById('heroVideo');
-    if (video) {
-        const ahorraDatos = navigator.connection && navigator.connection.saveData;
+    /* ---------- 1. Video de portada ---------- */
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
         if (reduceMotion || ahorraDatos) {
-            video.removeAttribute('autoplay');
-            video.pause();
-            video.querySelectorAll('source').forEach(s => s.remove());
-            video.load();
+            heroVideo.removeAttribute('autoplay');
+            heroVideo.pause();
+            heroVideo.querySelectorAll('source').forEach(s => s.remove());
+            heroVideo.load();
         } else {
-            const p = video.play();
-            if (p && p.catch) p.catch(() => { /* el navegador bloqueó el autoplay: queda el poster */ });
+            const p = heroVideo.play();
+            if (p && p.catch) p.catch(() => { /* autoplay bloqueado: queda el poster */ });
         }
     }
 
-    /* ---------- 8. Reseñas de Google (todas las sedes) ----------
-       Los datos están en resenas-google.js (copiados de Google Maps).
+    /* ---------- 2. Video del taller ---------- */
+    const video = document.getElementById('videoExpertos');
+    const play = document.getElementById('videoPlay');
+    if (video && play) {
+        const marco = video.closest('.ig-video');
+        // Con JS mostramos nuestro botón y ocultamos los controles hasta empezar
+        video.controls = false;
+        play.hidden = false;
+
+        const reproducir = () => {
+            play.hidden = true;
+            video.controls = true;
+            marco.classList.add('is-playing');
+            const p = video.play();
+            if (p && p.catch) p.catch(() => { play.hidden = false; marco.classList.remove('is-playing'); });
+        };
+        play.addEventListener('click', reproducir);
+
+        video.addEventListener('ended', () => {
+            video.controls = false;
+            video.currentTime = 0;
+            play.hidden = false;
+            marco.classList.remove('is-playing');
+        });
+
+        // Si la persona baja y el video queda fuera de pantalla, se pausa
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(entries => {
+                entries.forEach(e => { if (!e.isIntersecting && !video.paused) video.pause(); });
+            }, { threshold: 0.2 }).observe(video);
+        }
+    }
+
+    /* ---------- 3. Sedes ---------- */
+    const tabs = Array.from(document.querySelectorAll('.ig-sede-tab'));
+    if (tabs.length) {
+        const activar = (tab, enfocar) => {
+            tabs.forEach(t => {
+                const on = t === tab;
+                t.classList.toggle('is-active', on);
+                t.setAttribute('aria-selected', on ? 'true' : 'false');
+                t.tabIndex = on ? 0 : -1;
+                const panel = document.getElementById(t.getAttribute('aria-controls'));
+                if (panel) panel.hidden = !on;
+            });
+            if (enfocar) tab.focus();
+        };
+        tabs.forEach((t, i) => {
+            t.addEventListener('click', () => activar(t, false));
+            t.addEventListener('keydown', e => {
+                let j = null;
+                if (e.key === 'ArrowDown' || e.key === 'ArrowRight') j = (i + 1) % tabs.length;
+                else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') j = (i - 1 + tabs.length) % tabs.length;
+                else if (e.key === 'Home') j = 0;
+                else if (e.key === 'End') j = tabs.length - 1;
+                if (j === null) return;
+                e.preventDefault();
+                activar(tabs[j], true);
+            });
+        });
+    }
+
+    /* ---------- 4. Carrusel de marcas ----------
+       Se duplica la lista para que el movimiento no tenga cortes.
+       La copia se oculta a lectores de pantalla. */
+    const mq = document.getElementById('marcasCarrusel');
+    const mqList = mq && mq.querySelector('.ig-mq-list');
+    if (mq && mqList && !reduceMotion) {
+        const copia = mqList.cloneNode(true);
+        copia.setAttribute('aria-hidden', 'true');
+        copia.querySelectorAll('img').forEach(img => { img.alt = ''; });
+        mq.appendChild(copia);
+        mq.classList.add('is-running');
+    }
+
+    /* ---------- 5. Reseñas ----------
+       Datos en resenas-google.js (copiados a mano desde Google Maps).
        - Muestra el PROMEDIO ENTRE SEDES, ponderado por el número de reseñas.
-       - Carrusel: se desliza con el dedo o el trackpad (scroll nativo con
-         snap), flechas, contador y barra (escritorio) o puntos (celular).
-       - Avanza solo cada 6 s, salvo que el usuario pida "reducir movimiento".
-         Se pausa con el mouse encima, al enfocarlo con el teclado, al tocarlo,
-         fuera de pantalla y con el botón de pausa (WCAG 2.2.2).
-       Todo el texto se inserta con textContent: nada de lo escrito en una
-       reseña puede ejecutarse en la página. */
+       - Carrusel con scroll nativo (dedo/trackpad), flechas, contador y barra.
+       - Avanza solo cada 6 s salvo "reducir movimiento"; se pausa con el mouse
+         encima, con el foco, al tocarlo, fuera de pantalla y con el botón (WCAG 2.2.2).
+       Todo el texto entra con textContent: nada de una reseña se ejecuta. */
     const RES = window.RESENAS_GOOGLE;
     const resLista = document.getElementById('resLista');
     if (RES && RES.sedes && resLista) {
-        const SVG = 'http://www.w3.org/2000/svg';
         const nodo = (tag, clase, texto) => {
             const n = document.createElement(tag);
             if (clase) n.className = clase;
@@ -129,21 +120,21 @@
             return n;
         };
         const decimal = n => n.toFixed(1).replace('.', ',');
-        const estrellasTxt = n => { const r = Math.round(n); return '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r); };
+        const estrellas = n => { const r = Math.round(n); return '★★★★★'.slice(0, r) + '☆☆☆☆☆'.slice(0, 5 - r); };
         const iniciales = nombre => nombre.replace(/\./g, '').split(/\s+/).filter(Boolean).slice(0, 2).map(p => p[0]).join('').toUpperCase() || 'G';
         const linkSeguro = url => (/^https:\/\//.test(url || '') ? url : '');
         const dos = n => String(n).padStart(2, '0');
-
-        function comillas() {
+        const comillas = () => {
+            const SVG = 'http://www.w3.org/2000/svg';
             const s = document.createElementNS(SVG, 'svg');
-            s.setAttribute('class', 'resena-comillas');
-            s.setAttribute('width', '40'); s.setAttribute('height', '32'); s.setAttribute('viewBox', '0 0 40 32');
+            s.setAttribute('class', 'ig-resena-q');
+            s.setAttribute('width', '32'); s.setAttribute('height', '26'); s.setAttribute('viewBox', '0 0 40 32');
             s.setAttribute('fill', 'currentColor'); s.setAttribute('aria-hidden', 'true');
             const p = document.createElementNS(SVG, 'path');
             p.setAttribute('d', 'M15 2C8 4 2 10.5 2 19v11h14V16H9.5c.6-4.6 3.6-8 7.5-9.7L15 2zm22 0c-7 2-13 8.5-13 17v11h14V16h-6.5c.6-4.6 3.6-8 7.5-9.7L37 2z');
             s.append(p);
             return s;
-        }
+        };
 
         // Promedio ponderado entre sedes
         let suma = 0, total = 0;
@@ -152,12 +143,13 @@
         });
         if (total) {
             const prom = Math.round((suma / total) * 10) / 10;
-            const p = document.getElementById('resPuntaje'), e = document.getElementById('resEstrellas');
+            const p = document.getElementById('resPuntaje');
+            const e = document.getElementById('resEstrellas');
             p.textContent = decimal(prom); p.hidden = false;
-            e.textContent = estrellasTxt(prom); e.hidden = false;
+            e.textContent = estrellas(prom); e.hidden = false;
             e.setAttribute('aria-label', decimal(prom) + ' de 5 estrellas');
             document.getElementById('resTotal').textContent =
-                'Promedio entre sedes en Google · ' + total.toLocaleString('es-PE') + ' reseñas';
+                'Promedio en Google · ' + total.toLocaleString('es-PE') + ' reseñas';
         }
 
         // Tarjetas
@@ -165,17 +157,19 @@
         lista.forEach((r, k) => {
             const sede = RES.sedes[r.sede];
             const autor = String(r.autor || 'Cliente de Google');
-            const li = nodo('li', 'resena');
+            const li = nodo('li', 'ig-resena');
             li.setAttribute('aria-label', 'Reseña ' + (k + 1) + ' de ' + lista.length);
-            const top = nodo('div', 'resena-top');
-            top.append(comillas(), nodo('span', 'resena-sede', 'Sede ' + sede.nombre));
-            li.append(top, nodo('p', 'resena-texto', String(r.texto).trim()));
-            const pie = nodo('div', 'resena-head');
-            const avatar = nodo('span', 'resena-avatar', iniciales(autor));
+
+            const top = nodo('div', 'ig-resena-top');
+            // Sin estrellas por reseña: el archivo no guarda la nota de cada una
+            top.append(comillas(), nodo('span', 'ig-resena-sede', 'Sede ' + sede.nombre));
+
+            const pie = nodo('div', 'ig-resena-pie');
+            const avatar = nodo('span', 'ig-resena-avatar', iniciales(autor));
             avatar.setAttribute('aria-hidden', 'true');
             const quien = nodo('div');
-            quien.append(nodo('p', 'resena-autor', autor));
-            const meta = nodo('p', 'resena-meta');
+            quien.append(nodo('p', 'ig-resena-autor', autor));
+            const meta = nodo('p', 'ig-resena-meta');
             const url = linkSeguro(sede.maps);
             if (url) {
                 const a = nodo('a', null, 'Reseña de Google');
@@ -187,7 +181,8 @@
             }
             quien.append(meta);
             pie.append(avatar, quien);
-            li.append(pie);
+
+            li.append(top, nodo('p', 'ig-resena-txt', String(r.texto).trim()), pie);
             resLista.append(li);
         });
 
@@ -197,7 +192,6 @@
         const btnPrev = document.getElementById('resPrev');
         const btnNext = document.getElementById('resNext');
         const btnPausa = document.getElementById('resPausa');
-        const puntos = document.getElementById('resPuntos');
         const elActual = document.getElementById('resActual');
         const elPasos = document.getElementById('resPasos');
         const barra = document.getElementById('resBarra');
@@ -212,34 +206,17 @@
             i = (i + pasos) % pasos;
             resLista.scrollTo({ left: i * paso(), behavior: reduceMotion ? 'auto' : 'smooth' });
         }
-
-        function pintarPuntos() {
-            puntos.replaceChildren();
-            for (let k = 0; k < pasos; k++) {
-                const b = nodo('button', 'resenas-punto');
-                b.type = 'button';
-                b.setAttribute('aria-label', 'Ir a la reseña ' + (k + 1) + ' de ' + pasos);
-                b.append(nodo('span'));
-                b.addEventListener('click', () => { pausadoPorUsuario = true; actualizarPausa(); ir(k); });
-                puntos.append(b);
-            }
-        }
-
         function actualizar() {
             actual = indice();
             elActual.textContent = dos(actual + 1);
             barra.style.width = ((actual + 1) / pasos * 100) + '%';
-            Array.from(puntos.children).forEach((b, k) => b.setAttribute('aria-current', k === actual ? 'true' : 'false'));
         }
-
         function medir() {
-            const nuevo = Math.max(1, tarjetas.length - visibles() + 1);
-            if (nuevo !== pasos || !puntos.children.length) { pasos = nuevo; pintarPuntos(); }
+            pasos = Math.max(1, tarjetas.length - visibles() + 1);
             elPasos.textContent = dos(pasos);
             controles.hidden = pasos <= 1;
             actualizar();
         }
-
         function actualizarPausa() {
             btnPausa.classList.toggle('is-pausado', pausadoPorUsuario);
             btnPausa.setAttribute('aria-label', pausadoPorUsuario ? 'Reanudar el carrusel' : 'Pausar el carrusel');
@@ -257,7 +234,6 @@
         window.addEventListener('resize', () => { clearTimeout(resizeT); resizeT = setTimeout(medir, 150); });
         medir();
 
-        // Avance automático (no si el usuario pidió reducir movimiento)
         if (!reduceMotion && tarjetas.length > 1) {
             btnPausa.hidden = false;
             btnPausa.addEventListener('click', () => { pausadoPorUsuario = !pausadoPorUsuario; actualizarPausa(); });
@@ -278,8 +254,4 @@
             }, 6000);
         }
     }
-
-    /* ---------- 7. Año del footer ---------- */
-    const anio = document.getElementById('anio');
-    if (anio) anio.textContent = new Date().getFullYear();
 })();
