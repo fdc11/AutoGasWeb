@@ -30,11 +30,12 @@
     </style>
     <script>document.documentElement.classList.add('js');</script>
 
-    <link rel="preload" as="image" href="Imagenes/hero-poster.webp">
+    <link rel="preload" as="image" href="Imagenes/Taller4-1440.webp" imagesrcset="Imagenes/Taller4-480.webp 480w, Imagenes/Taller4-960.webp 960w, Imagenes/Taller4-1440.webp 1440w, Imagenes/Taller4.webp 1920w" imagesizes="100vw" fetchpriority="high">
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="inicio.css?v=20261109-1">
+    <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
+    <link rel="stylesheet" href="inicio.css?v=20261109-2">
 
     <!-- Datos estructurados para Google (negocio local con 7 sedes) -->
     <script type="application/ld+json">
@@ -60,7 +61,7 @@
 </head>
 
 <!-- data-header="solid": en Inicio el menú es blanco desde arriba (ver comun.js) -->
-<body class="pg-inicio" data-header="solid">
+<body class="pg-corp pg-inicio" data-header="solid">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
     <!-- ==================== BARRA SUPERIOR ==================== -->
@@ -120,14 +121,7 @@
 
         <!-- ==================== PORTADA ==================== -->
         <section class="ig-hero" aria-labelledby="heroTitulo">
-            <!-- Video de fondo: recorte vertical en celular, 720p en tablet, 1080p en computadora. Sin sonido, en bucle.
-                 Si el usuario ahorra datos o reduce movimiento, queda la imagen "poster" (ver inicio.js). -->
-            <video class="ig-hero-media" id="heroVideo" autoplay muted loop playsinline preload="metadata"
-                poster="Imagenes/hero-poster.webp" aria-hidden="true" tabindex="-1">
-                <source src="Imagenes/hero-movil.mp4" type="video/mp4" media="(max-width: 900px) and (orientation: portrait)">
-                <source src="Imagenes/hero-720.mp4" type="video/mp4" media="(max-width: 900px)">
-                <source src="Imagenes/hero-1080.mp4" type="video/mp4">
-            </video>
+            <img class="ig-hero-media" src="Imagenes/Taller4-1440.webp" srcset="Imagenes/Taller4-480.webp 480w, Imagenes/Taller4-960.webp 960w, Imagenes/Taller4-1440.webp 1440w, Imagenes/Taller4.webp 1920w" sizes="100vw" alt="" width="1440" height="1440" fetchpriority="high">
             <div class="ig-hero-shade" aria-hidden="true"></div>
             <div class="container ig-hero-in">
                 <p class="ig-lbl ig-lbl-light ig-in">Conversión vehicular a gas</p>
@@ -635,7 +629,7 @@
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
     <script src="resenas-google.js?v=20261102-3" defer></script>
-    <script src="inicio.js?v=20261109-1" defer></script>
+    <script src="inicio.js?v=20261109-2" defer></script>
 </body>
 
 </html>

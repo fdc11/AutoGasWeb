@@ -1,6 +1,6 @@
 /* =====================================================================
    inicio.js — AutoGas · Página de Inicio
-   1. Video de portada (respeta "reducir movimiento" y "ahorro de datos")
+   1. (La portada ahora es una foto fija, sin video)
    2. Video del taller: botón de play propio, se descarga solo al reproducir
    3. Sedes: pestañas accesibles (clic y flechas del teclado)
    4. Carrusel de marcas: bucle continuo
@@ -13,20 +13,6 @@
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const ahorraDatos = !!(navigator.connection && navigator.connection.saveData);
-
-    /* ---------- 1. Video de portada ---------- */
-    const heroVideo = document.getElementById('heroVideo');
-    if (heroVideo) {
-        if (reduceMotion || ahorraDatos) {
-            heroVideo.removeAttribute('autoplay');
-            heroVideo.pause();
-            heroVideo.querySelectorAll('source').forEach(s => s.remove());
-            heroVideo.load();
-        } else {
-            const p = heroVideo.play();
-            if (p && p.catch) p.catch(() => { /* autoplay bloqueado: queda el poster */ });
-        }
-    }
 
     /* ---------- 2. Video del taller ---------- */
     const video = document.getElementById('videoExpertos');
