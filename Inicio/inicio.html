@@ -77,7 +77,7 @@
     <header class="site-header" id="siteHeader">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="inicio.html" aria-label="AutoGas, ir al inicio">
-                <img src="Imagenes/AutoGasLogoNegro.png" alt="AutoGas" width="600" height="141">
+                <img src="Imagenes/AutoGasLogoNegro.png" alt="AutoGas" width="600" height="142">
             </a>
 
             <ul class="nav-links">
@@ -477,16 +477,35 @@
                 </ul>
                 <!-- La copia para el bucle continuo la genera inicio.js -->
             </div>
-            <div class="container ig-respaldo">
-                <!-- PENDIENTE: número de registro MTC -->
-                <p>Taller autorizado por el MTC · Registro N.º [NÚMERO] · Convenio FISE</p>
-                <div class="ig-respaldo-logos">
-                    <img src="Imagenes/FISE.webp" alt="FISE" width="58" height="60" loading="lazy">
-                    <img src="Imagenes/MINEM.webp" alt="Ministerio de Energía y Minas" width="60" height="60" loading="lazy">
-                    <img src="Imagenes/MTC.webp" alt="Ministerio de Transportes y Comunicaciones" width="60" height="60" loading="lazy">
-                </div>
-            </div>
         </section>
+
+        <!-- ==================== RESPALDO: convenios y autorizaciones ==================== -->
+        <section class="ig-resp" aria-labelledby="respaldoTitulo">
+            <div class="container ig-resp-in">
+                <div class="ig-resp-intro reveal">
+                    <p class="ig-lbl">Respaldo</p>
+                    <h2 class="ig-h2" id="respaldoTitulo">Convenios y autorizaciones</h2>
+                    <p class="ig-txt">Trabajamos dentro de los programas y la normativa del Estado peruano para conversiones a gas vehicular.</p>
+                </div>
+                <ul class="ig-resp-grid">
+                    <li class="ig-resp-card reveal">
+                        <div class="ig-resp-logo"><img src="Imagenes/respaldo/FISE.png" alt="FISE" width="480" height="200" loading="lazy"></div>
+                        <h3>Convenio FISE</h3>
+                        <p>Taller afiliado al programa Ahorro GNV para financiar tu conversión sin cuota inicial.</p>
+                    </li>
+                    <li class="ig-resp-card reveal">
+                        <div class="ig-resp-logo"><img src="Imagenes/respaldo/MINEM.png" alt="Ministerio de Energía y Minas" width="480" height="200" loading="lazy"></div>
+                        <h3>Programa del MINEM</h3>
+                        <p>Ahorro GNV es una iniciativa del Ministerio de Energía y Minas para masificar el gas natural.</p>
+                    </li>
+                    <li class="ig-resp-card reveal">
+                        <div class="ig-resp-logo"><img src="Imagenes/respaldo/MTC.png" alt="Ministerio de Transportes y Comunicaciones" width="480" height="200" loading="lazy"></div>
+                        <h3>Autorizado por el MTC</h3>
+                        <p>Conversiones y certificaciones bajo la normativa del Ministerio de Transportes y Comunicaciones.</p>
+                    </li>
+                </ul>
+            </div>
+</section>
 
         <!-- ==================== PREGUNTAS FRECUENTES ==================== -->
         <section class="ig-sec ig-bg-white ig-faq-sec" aria-labelledby="faqTitulo">

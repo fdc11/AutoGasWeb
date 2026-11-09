@@ -269,13 +269,26 @@
 }
 .ig-mq li:hover img { filter: none; opacity: 1; transform: scale(1.06); }
 @keyframes igMarquee { to { transform: translateX(-100%); } }
-.ig-respaldo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; margin-top: 3.5rem; }
-.ig-respaldo p { font-size: 0.875rem; color: #666; }
-.ig-respaldo-logos { display: flex; align-items: center; gap: 1.75rem; }
-.ig-respaldo-logos img { height: 3.25rem; width: auto; }
+
+/* ---------- Respaldo: convenios y autorizaciones ---------- */
+.ig-resp { background: #F6F6F4; color: var(--ink); padding-block: clamp(5rem, 8vw, 7rem); }
+.ig-resp-in { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr); gap: 4rem; align-items: center; }
+.ig-resp-intro { display: flex; flex-direction: column; gap: 1.25rem; }
+.ig-resp-intro .ig-h2 { font-size: clamp(1.875rem, 2.8vw, 2.5rem); }
+.ig-resp-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.ig-resp-card {
+    display: flex; flex-direction: column; gap: 0.625rem;
+    padding: 2rem 1.75rem 2.25rem; background: var(--white); border: 1px solid #E6E6E3;
+    transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+.ig-resp-card:hover { border-color: #CFCFCB; box-shadow: 0 1.25rem 2.5rem -1.5rem rgba(0, 0, 0, 0.22); transform: translateY(-0.25rem); }
+.ig-resp-logo { height: 7rem; margin-bottom: 1.25rem; padding-bottom: 1.5rem; border-bottom: 1px solid #ECECEA; box-sizing: content-box; }
+.ig-resp-logo img { width: 100%; height: 100%; object-fit: contain; }
+.ig-resp-card h3 { font-size: 1.1875rem; font-weight: 600; }
+.ig-resp-card p { font-size: 0.9375rem; line-height: 1.6; color: #555; }
 
 /* ---------- Preguntas frecuentes ---------- */
-.ig-faq-sec { border-top: 1px solid #ECECEA; }
+.ig-faq-sec { border-top: 0; }
 .ig-faq { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 5rem; align-items: start; }
 .ig-faq-intro { display: flex; flex-direction: column; gap: 1.375rem; }
 .ig-faq-intro .ig-txt { max-width: 44ch; }
@@ -313,6 +326,7 @@
 @media (max-width: 1100px) {
     .ig-svc-grid, .ig-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .ig-res-list { grid-auto-columns: calc((100% - 1.5rem) / 2); }
+    .ig-resp-in { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
     .ig-split-txt--r { padding-left: 3rem; }
     .ig-split-txt--l { padding-right: 3rem; }
 }
@@ -348,11 +362,12 @@
     .ig-gal-big { grid-row: span 2; }
 
     .ig-sede-img { height: 14rem; }
+    .ig-resp-in { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
     .ig-mq li { width: 9rem; height: 3.75rem; margin-inline: 0.875rem; }
 }
 
 @media (max-width: 600px) {
-    .ig-svc-grid, .ig-steps, .ig-ben, .ig-checks { grid-template-columns: minmax(0, 1fr); }
+    .ig-svc-grid, .ig-steps, .ig-ben, .ig-checks, .ig-resp-grid { grid-template-columns: minmax(0, 1fr); }
     .ig-res-list { grid-auto-columns: 88%; gap: 1rem; }
     .ig-resena { padding: 1.75rem; }
     .ig-res-prog { display: none; }
