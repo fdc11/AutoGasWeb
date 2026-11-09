@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="color-scheme" content="light">
+    <style>
+        /* Critical CSS (pre-paint) — prevent CLS/FOUC */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            height: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        html {
+            color-scheme: light only;
+        }
+
+        @media(prefers-color-scheme:dark) {
+
+            html,
+            body {
+                background: #fff !important;
+                color: #080808 !important;
+            }
+        }
+    </style>
+    <title>Servicios | AutoGas — Conversión GNV/GLP, certificaciones y mecánica</title>
+    <meta name="description" content="Conversión a GNV y GLP con kits certificados, certificación anual y quinquenal, mecánica general, diagnóstico por scanner y repuestos en las 7 sedes de AutoGas.">
+    <link rel="canonical" href="https://autogas-web.vercel.app/Servicios/servicios.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:site_name" content="AutoGas Perú">
+    <meta property="og:title" content="Servicios | AutoGas">
+    <meta property="og:description" content="Conversión a GNV y GLP, certificaciones, mecánica general y repuestos en 7 sedes del Perú.">
+    <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
+    <meta property="og:url" content="https://autogas-web.vercel.app/Servicios/servicios.html">
+
+    <link rel="preload" as="image" href="Imagenes/IMG_3217.webp" imagesrcset="Imagenes/IMG_3217-240.webp 240w, Imagenes/IMG_3217-480.webp 480w, Imagenes/IMG_3217-960.webp 960w, Imagenes/IMG_3217-1440.webp 1440w, Imagenes/IMG_3217.webp 1920w" imagesizes="(max-width: 900px) 160vw, 100vw" fetchpriority="high">
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
+    <link rel="stylesheet" href="servicios.css?v=20261106-2">
+    <style>
+        .site-header { height: 72px; }
+        .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
+    </style>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <!-- ==================== MENÚ ==================== -->
+    <header class="site-header">
+        <nav class="nav container" aria-label="Principal">
+            <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
+                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                <li><a href="../Servicios/servicios.html" aria-current="page">Servicios</a></li>
+                <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                <li><a href="../Tienda/tienda.html">Tienda</a></li>
+            </ul>
+
+            <a class="btn btn-red nav-cta" href="../Contacto/contacto.html">Cotizar</a>
+
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Menú de celular -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
+        <div class="mobile-menu-top">
+            <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
+            <button class="mobile-menu-close" id="navClose" type="button" aria-label="Cerrar menú"></button>
+        </div>
+        <ul class="mnav-list">
+            <li class="mnav-item"><span class="mnav-num">01</span><a class="mnav-link" href="../Inicio/inicio.html">Inicio</a></li>
+            <li class="mnav-item"><span class="mnav-num">02</span><a class="mnav-link" href="../Nosotros/nosotros.html">Nosotros</a></li>
+            <li class="mnav-item"><span class="mnav-num">03</span><a class="mnav-link" href="../Servicios/servicios.html" aria-current="page">Servicios</a></li>
+            <li class="mnav-item"><span class="mnav-num">04</span><a class="mnav-link" href="../Sedes/sedes.html">Sedes</a></li>
+            <li class="mnav-item"><span class="mnav-num">05</span><a class="mnav-link" href="../Tienda/tienda.html">Tienda</a></li>
+        </ul>
+        <a class="mnav-cta mnav-item" href="../Contacto/contacto.html">Cotizar ahora</a>
+    </div>
+
+    <main id="contenido">
+    <!-- ==================== PORTADA ==================== -->
+    <section class="page-hero" id="hero" aria-labelledby="heroTitulo">
+        <img class="page-hero-img" src="Imagenes/IMG_3217.webp" srcset="Imagenes/IMG_3217-240.webp 240w, Imagenes/IMG_3217-480.webp 480w, Imagenes/IMG_3217-960.webp 960w, Imagenes/IMG_3217-1440.webp 1440w, Imagenes/IMG_3217.webp 1920w" sizes="(max-width: 900px) 160vw, 100vw" alt="Elevadores con autos en el área de mecánica de AutoGas" width="1920" height="1440" fetchpriority="high">
+        <div class="page-hero-shade"></div>
+        <div class="container page-hero-inner">
+            <p class="page-hero-eyebrow">Servicios AutoGas</p>
+            <h1 class="page-hero-title" id="heroTitulo">
+                <span class="page-hero-line">Todo lo que tu vehículo</span>
+                <span class="page-hero-line l2">necesita.</span>
+            </h1>
+            <p class="page-hero-sub">Conversiones certificadas, mecánica general y repuestos de primera línea. Un solo taller, todo resuelto.</p>
+            <div class="btn-row page-hero-actions">
+                <a class="btn btn-red btn-lg" href="../Contacto/contacto.html">Cotizar ahora</a>
+                <a class="btn btn-ghost-light btn-lg" href="#mecanica">Ver servicios</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== ÍNDICE DE CATEGORÍAS ==================== -->
+    <section class="svc-index">
+        <div class="svc-index-inner">
+            <div class="svc-index-head reveal">
+                <div>
+                    <span class="svc-tag">Nuestros servicios</span>
+                    <h2 class="svc-index-title">¿Qué necesita<br><span>tu auto?</span></h2>
+                </div>
+                <p>Elige una categoría y mira todos sus servicios de un vistazo. ¿No sabes cuál es? Usa la
+                    orientación automática, abajo a la derecha.</p>
+            </div>
+            <nav class="svc-index-nav" aria-label="Categorías de servicio">
+                <a href="#mecanica" class="svc-index-card">
+                    <span class="svc-index-num">01</span>
+                    <span class="svc-index-txt"><strong>Mecánica general</strong><small>10 servicios</small></span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+                </a>
+                <a href="#conversion" class="svc-index-card">
+                    <span class="svc-index-num">02</span>
+                    <span class="svc-index-txt"><strong>Conversión GNV &amp; GLP</strong><small>14 servicios</small></span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+                </a>
+                <a href="#repuestos" class="svc-index-card">
+                    <span class="svc-index-num">03</span>
+                    <span class="svc-index-txt"><strong>Repuestos &amp; accesorios</strong><small>Aceites, refrigerantes, filtros</small></span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+                </a>
+            </nav>
+        </div>
+    </section>
+
+
+    <!-- ==================== GRUPO 1: MECÁNICA GENERAL ==================== -->
+    <section class="svc-cat" id="mecanica">
+        <div class="svc-cat-inner">
+            <div class="svc-aside reveal-left">
+                <span class="svc-bignum" aria-hidden="true">01</span>
+                <span class="svc-tag">Grupo de servicios</span>
+                <h2 class="svc-title">Mecánica<br>general</h2>
+                <p class="svc-desc">Diagnóstico con scanner y mecánicos capacitados. Solo recomendamos lo estrictamente necesario.</p>
+                <div class="svc-photo">
+                    <img width="1290" height="1290" src="Imagenes/Taller3.webp" srcset="Imagenes/Taller3-240.webp 240w, Imagenes/Taller3-480.webp 480w, Imagenes/Taller3-960.webp 960w, Imagenes/Taller3.webp 1290w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 91vw, 440px" alt="Mecánicos de AutoGas revisando un motor con scanner" loading="lazy" decoding="async">
+                    <span class="svc-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Scanner OBD2 incluido</span>
+                </div>
+                <div class="svc-actions"><a href="../Contacto/contacto.html" class="svc-btn">Cotizar servicio</a></div>
+            </div>
+            <div class="svc-body reveal-right">
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Reparaciones</h3>
+                        <span>4 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">01</span>
+                        <div>
+                            <p class="svc-name">Frenos, Dirección y Refrigeración</p>
+                            <p class="svc-hint">Los tres sistemas de seguridad</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">02</span>
+                        <div>
+                            <p class="svc-name">Sistema de Embrague</p>
+                            <p class="svc-hint">Cambios suaves, sin patinar</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">03</span>
+                        <div>
+                            <p class="svc-name">Diagnóstico y Reparación de Culata</p>
+                            <p class="svc-hint">Evita daños mayores al motor</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">04</span>
+                        <div>
+                            <p class="svc-name">Reparación Completa de Motor</p>
+                            <p class="svc-hint">Desmontaje y reparación total</p>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Mantenimiento Preventivo</h3>
+                        <span>6 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">05</span>
+                        <div>
+                            <p class="svc-name">Cambio de Aceite</p>
+                            <p class="svc-hint">Motor, caja y corona</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">06</span>
+                        <div>
+                            <p class="svc-name">Diagnóstico de Baterías</p>
+                            <p class="svc-hint">Que no te deje sin arranque</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">07</span>
+                        <div>
+                            <p class="svc-name">Revisión y Diagnóstico Vehicular</p>
+                            <p class="svc-hint">Scanner y revisión general</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">08</span>
+                        <div>
+                            <p class="svc-name">Limpieza de Inyectores</p>
+                            <p class="svc-hint">Más potencia, menos consumo</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">09</span>
+                        <div>
+                            <p class="svc-name">Afinamiento Electrónico</p>
+                            <p class="svc-hint">Motor calibrado y eficiente</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">10</span>
+                        <div>
+                            <p class="svc-name">Cambio de Fluidos</p>
+                            <p class="svc-hint">Frenos, dirección y refrigeración</p>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GRUPO 2: CONVERSIÓN GNV/GLP ==================== -->
+    <section class="svc-cat svc-cat--dark" id="conversion">
+        <div class="svc-cat-inner">
+            <div class="svc-aside reveal-left">
+                <span class="svc-bignum" aria-hidden="true">02</span>
+                <span class="svc-tag">Grupo de servicios</span>
+                <h2 class="svc-title">Conversión<br><span>GNV &amp; GLP</span></h2>
+                <p class="svc-desc">Ahorra hasta 60% en combustible. Especialistas certificados con respaldo FISE.</p>
+                <div class="svc-photo">
+                    <img width="1200" height="1200" src="../Inicio/Imagenes/InstalacionKit.webp" srcset="../Inicio/Imagenes/InstalacionKit-240.webp 240w, ../Inicio/Imagenes/InstalacionKit-480.webp 480w, ../Inicio/Imagenes/InstalacionKit-960.webp 960w, ../Inicio/Imagenes/InstalacionKit.webp 1200w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 91vw, 440px" alt="Técnico instalando un kit de gas en el motor" loading="lazy" decoding="async">
+                    <span class="svc-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>Respaldo FISE oficial</span>
+                </div>
+                <div class="svc-actions"><a href="../Contacto/contacto.html" class="svc-btn">Cotizar conversión</a></div>
+            </div>
+            <div class="svc-body reveal-right">
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Tipos de Conversión</h3>
+                        <span>4 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">01</span>
+                        <div>
+                            <p class="svc-name">Conversión a GLP</p>
+                            <p class="svc-hint">Ahorra hasta 50% en combustible</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">02</span>
+                        <div>
+                            <p class="svc-name">Conversión a GNV</p>
+                            <p class="svc-hint">Ahorra hasta 60% · financiamiento FISE</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">03</span>
+                        <div>
+                            <p class="svc-name">Inyección Directa</p>
+                            <p class="svc-hint">Para motores de inyección directa</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">04</span>
+                        <div>
+                            <p class="svc-name">Diesel Dual Fuel</p>
+                            <p class="svc-hint">Gas y diésel en el mismo motor</p>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Certificaciones y Trámites</h3>
+                        <span>4 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">05</span>
+                        <div>
+                            <p class="svc-name">Certificación Anual GNV/GLP</p>
+                            <p class="svc-hint">Revisión obligatoria cada año</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">06</span>
+                        <div>
+                            <p class="svc-name">Trámite Cambio de Características</p>
+                            <p class="svc-hint">La conversión en tus documentos</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">07</span>
+                        <div>
+                            <p class="svc-name">Inspección Quinquenal</p>
+                            <p class="svc-hint">Cilindros, cada 5 años</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">08</span>
+                        <div>
+                            <p class="svc-name">Financiamiento FISE</p>
+                            <p class="svc-hint">Te asesoramos sin costo</p>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Mantenimiento del Sistema de Gas</h3>
+                        <span>6 servicios</span>
+                    </div>
+                    <ul class="svc-list">
+                    <li class="svc-item">
+                        <span class="svc-num">09</span>
+                        <div>
+                            <p class="svc-name">Desbloqueo de Chip</p>
+                            <p class="svc-hint">Corrige fallas electrónicas</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">10</span>
+                        <div>
+                            <p class="svc-name">Escaneo y Calibración</p>
+                            <p class="svc-hint">Sistema de gas afinado</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">11</span>
+                        <div>
+                            <p class="svc-name">Cambio de Filtros de Gas</p>
+                            <p class="svc-hint">Protege los inyectores</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">12</span>
+                        <div>
+                            <p class="svc-name">Revisión de Fugas</p>
+                            <p class="svc-hint">Tu seguridad primero</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">13</span>
+                        <div>
+                            <p class="svc-name">Limpieza de Obturador</p>
+                            <p class="svc-hint">Evita fallas en el arranque</p>
+                        </div>
+                    </li>
+                    <li class="svc-item">
+                        <span class="svc-num">14</span>
+                        <div>
+                            <p class="svc-name">Inspección de Conductores</p>
+                            <p class="svc-hint">Mangueras de gas y agua</p>
+                        </div>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== GRUPO 3: REPUESTOS & ACCESORIOS ==================== -->
+    <section class="svc-cat" id="repuestos">
+        <div class="svc-cat-inner">
+            <div class="svc-aside reveal-left">
+                <span class="svc-bignum" aria-hidden="true">03</span>
+                <span class="svc-tag">Grupo de servicios</span>
+                <h2 class="svc-title">Repuestos &amp;<br>accesorios</h2>
+                <p class="svc-desc">Stock permanente de marcas reconocidas. Te lo instalamos en la sede.</p>
+                <div class="svc-photo">
+                    <img width="1400" height="1867" src="Imagenes/Taller12.webp" srcset="Imagenes/Taller12-240.webp 240w, Imagenes/Taller12-480.webp 480w, Imagenes/Taller12-960.webp 960w, Imagenes/Taller12.webp 1400w" sizes="(max-width: 900px) 91vw, (max-width: 1400px) 91vw, 440px" alt="Repuestos disponibles en AutoGas" loading="lazy" decoding="async">
+                    <span class="svc-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><polyline points="20 6 9 17 4 12" /></svg>Stock disponible</span>
+                </div>
+                <div class="svc-actions"><a href="../Tienda/tienda.html" class="svc-btn svc-btn--dark">Ver en la tienda <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a></div>
+            </div>
+            <div class="svc-body reveal-right">
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Aceites y Lubricantes</h3>
+                        <span>5 marcas</span>
+                    </div>
+                    <ul class="svc-brands">
+                        <li class="svc-brand"><img width="1920" height="487" src="Imagenes/Castrol.webp" srcset="Imagenes/Castrol-240.webp 240w, Imagenes/Castrol-480.webp 480w, Imagenes/Castrol-960.webp 960w, Imagenes/Castrol-1440.webp 1440w, Imagenes/Castrol.webp 1920w" sizes="(max-width: 900px) 30vw, (max-width: 1400px) 11vw, 110px" alt="" loading="lazy" decoding="async"><span>Castrol</span></li>
+                        <li class="svc-brand"><img width="233" height="216" src="Imagenes/Shell.webp" alt="" loading="lazy" decoding="async"><span>Shell</span></li>
+                        <li class="svc-brand"><img width="278" height="181" src="Imagenes/LiquiMolyLogo.webp" alt="" loading="lazy" decoding="async"><span>Liqui Moly</span></li>
+                        <li class="svc-brand"><img width="1920" height="1663" src="Imagenes/Chevron.webp" srcset="Imagenes/Chevron-240.webp 240w, Imagenes/Chevron-480.webp 480w, Imagenes/Chevron-960.webp 960w, Imagenes/Chevron-1440.webp 1440w, Imagenes/Chevron.webp 1920w" sizes="(max-width: 900px) 14vw, (max-width: 1400px) 5vw, 51px" alt="" loading="lazy" decoding="async"><span>Chevron</span></li>
+                        <li class="svc-brand"><img width="272" height="185" src="Imagenes/Valvoline.webp" alt="" loading="lazy" decoding="async"><span>Valvoline</span></li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Refrigerantes</h3>
+                        <span>2 marcas</span>
+                    </div>
+                    <ul class="svc-brands">
+                        <li class="svc-brand"><img width="390" height="129" src="Imagenes/Snow.webp" alt="" loading="lazy" decoding="async"><span>Snow</span></li>
+                        <li class="svc-brand"><img width="600" height="324" src="Imagenes/Prestone.webp" alt="" loading="lazy" decoding="async"><span>Prestone</span></li>
+                    </ul>
+                </div>
+                <div class="svc-group">
+                    <div class="svc-group-head">
+                        <h3>Filtros y Componentes</h3>
+                        <span>6 productos</span>
+                    </div>
+                    <ul class="svc-list svc-list--2col">
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">01</span>
+                        <div><p class="svc-name">Filtro de Aire</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">02</span>
+                        <div><p class="svc-name">Filtro de Gas</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">03</span>
+                        <div><p class="svc-name">Filtro de Aceite</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">04</span>
+                        <div><p class="svc-name">Bujías</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">05</span>
+                        <div><p class="svc-name">Supresores</p></div>
+                    </li>
+                    <li class="svc-item svc-item--compact">
+                        <span class="svc-num">06</span>
+                        <div><p class="svc-name">Caña de Bobina</p></div>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ==================== DEJA TU RESEÑA (en Google Maps) ====================
+         Cada sede lleva directo al formulario de reseña de su ficha en Google Maps
+         (search.google.com/local/writereview?placeid=ID_DE_LA_SEDE).
+         Para añadir una sede: copia un <li> y cambia ciudad, dirección y placeid. -->
+    <section class="rg-section" id="dejar-resena" aria-labelledby="rgTitulo">
+        <div class="rg-inner">
+            <div class="rg-intro reveal-left">
+                <div class="section-tag">Tu opinión importa</div>
+                <h2 class="section-title dark" id="rgTitulo">Deja tu reseña<br><span class="red-text">en Google</span></h2>
+                <p class="rg-lead">¿Te atendimos bien? Cuéntaselo a otros conductores en Google Maps. Te toma un minuto y nos ayuda a seguir mejorando.</p>
+                <p class="rg-stars"><span class="rg-stars-icons" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg></span><span>Tu reseña ayuda a otros a elegir con confianza</span></p>
+            </div>
+
+            <ol class="rg-pasos reveal-left" aria-label="Cómo dejar tu reseña">
+                <li><span class="rg-num" aria-hidden="true">1</span><span class="rg-paso-txt"><strong>Elige tu sede</strong><span>La sede donde atendieron tu vehículo.</span></span></li>
+                <li><span class="rg-num" aria-hidden="true">2</span><span class="rg-paso-txt"><strong>Marca tus estrellas</strong><span>Se abre Google Maps con el formulario listo.</span></span></li>
+                <li><span class="rg-num" aria-hidden="true">3</span><span class="rg-paso-txt"><strong>Cuenta tu experiencia</strong><span>Unas líneas sobre el servicio que recibiste.</span></span></li>
+            </ol>
+
+            <div class="rg-card reveal-right">
+                <h3 class="rg-card-title">¿En qué sede te atendimos?</h3>
+                <p class="rg-card-sub">Toca tu sede y se abrirá Google Maps con el formulario de reseña listo.</p>
+                <ul class="rg-sedes">
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJ-cH_FMDjEJERt0_WLrs4rQA" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Ica en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Ica</span><span class="rg-dir">Av. Fernando León de Vivero 304</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJqxd8OJ_PBZERg-K0zRF7974" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Lima en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Lima</span><span class="rg-dir">Jr. San Lino 6318, Los Olivos</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJ-RKreZmXDpERY0k7XdvJfQc" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Huancayo en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Huancayo</span><span class="rg-dir">Prol. Julio Sumar 698, El Tambo</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJQ3wZaak9rZERs4gU_sGumN0" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Trujillo en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Trujillo</span><span class="rg-dir">Av. Túpac Amaru 1633, Alto Mochica</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJa5IxeABLQpERaTmDO9vEK6U" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Arequipa en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Arequipa</span><span class="rg-dir">Av. Túpac Amaru 714, Paucarpata</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJ0cJmUPsfFJERTgPEdW6dGq0" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Nasca en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Nasca</span><span class="rg-dir">Av. Los Incas 201</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="rg-sede" href="https://search.google.com/local/writereview?placeid=ChIJM_hyxFoVEJERtGtN-oqjcE0" target="_blank" rel="noopener" aria-label="Dejar una reseña de AutoGas Chincha en Google Maps (se abre en una pestaña nueva)">
+                            <span class="rg-sede-txt"><span class="rg-ciudad">Chincha</span><span class="rg-dir">Prolongación Lima 636</span></span>
+                            <span class="rg-go" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8H13M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                        </a>
+                    </li>
+                    <li class="rg-nota">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10" /><line x1="12" y1="11" x2="12" y2="16" /><line x1="12" y1="8" x2="12.01" y2="8" /></svg>
+                        <span>Se abre Google Maps. Necesitas una cuenta de Google para publicar tu reseña.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA SEDES ==================== -->
+    <section class="cta-sedes reveal">
+        <div class="cta-sedes-bg"></div>
+        <div class="cta-sedes-overlay"></div>
+        <div class="cta-sedes-content">
+            <div class="section-tag light-tag">Crecemos contigo</div>
+            <h2 class="cta-title">CONOCE NUESTRA<br>RED DE <span class="red-text">SEDES</span></h2>
+            <p class="cta-desc">Ica · Lima · Arequipa · Trujillo · Huancayo · Nasca · Chincha </p>
+            <a href="../Sedes/sedes.html" class="btn-primary btn-primary--lg">
+                Ver todas las sedes
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="88" height="32" loading="lazy">
+                    <p>Convierte. Ahorra. Domina.<br>Talleres de conversión GNV/GLP en el Perú.</p>
+                    <ul class="social" aria-label="Redes sociales">
+                        <li>
+                            <a href="https://www.instagram.com/autogasica" target="_blank" rel="noopener" aria-label="Instagram de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" rel="noopener" aria-label="Facebook de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener" aria-label="TikTok de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.6-2.7 5.9-5.9 5.9-3.4 0-5.9-2.6-5.9-5.8 0-3.6 3.1-6.2 6.8-5.7v3.2c-1.8-.4-3.5.8-3.5 2.6 0 1.4 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.2z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <nav aria-label="Secciones del sitio">
+                    <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                        <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                        <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                        <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                        <li><a href="../Tienda/tienda.html">Tienda</a></li>
+                        <li><a href="../Contacto/contacto.html">Cotizar</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h3>WhatsApp por sede</h3>
+                    <ul class="footer-2col">
+                        <li><a href="https://wa.me/51978421654" target="_blank" rel="noopener">Ica</a></li>
+                        <li><a href="https://wa.me/51942623696" target="_blank" rel="noopener">Lima</a></li>
+                        <li><a href="https://wa.me/51942867212" target="_blank" rel="noopener">Huancayo</a></li>
+                        <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener">Trujillo</a></li>
+                        <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener">Arequipa</a></li>
+                        <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener">Nasca</a></li>
+                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener">Chincha</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Legal</h3>
+                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
+                    <ul>
+                        <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
+                        <li><a href="../Legal/privacidad.html">Política de privacidad</a></li>
+                        <li><a href="../Legal/terminos.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <!-- PENDIENTE: RUC -->
+                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>Hecho en el Perú</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ==================== ORIENTACIÓN AUTOMÁTICA (globo flotante) ==================== -->
+    <button type="button" class="oa-bubble" id="oaBubble" data-accion="toggleOrientacion" aria-expanded="false"
+        aria-controls="oaPanel">
+        <span class="oa-bubble-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 5h16v11H9l-5 4V5z" />
+                <path d="M9 10h.01M12 10h.01M15 10h.01" />
+            </svg>
+        </span>
+        <span class="oa-bubble-txt">
+            <strong>¿Qué le pasa a tu auto?</strong>
+            <small>Orientación automática</small>
+        </span>
+    </button>
+
+    <section class="oa-panel" id="oaPanel" role="dialog" aria-labelledby="oaTitulo" hidden>
+        <div class="oa-head">
+            <span class="oa-head-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 5h16v11H9l-5 4V5z" />
+                    <path d="M9 10h.01M12 10h.01M15 10h.01" />
+                </svg>
+            </span>
+            <div class="oa-head-txt">
+                <h2 id="oaTitulo">Orientación automática</h2>
+                <p>Te sugerimos servicios según tu problema</p>
+            </div>
+            <button type="button" class="oa-close" data-accion="toggleOrientacion" aria-label="Cerrar orientación">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18" />
+                </svg>
+            </button>
+        </div>
+
+        <div class="oa-body" id="oaBody">
+            <p class="oa-msg oa-msg--bot">Cuéntanos con tus palabras qué le pasa a tu auto. Te decimos qué servicio de
+                AutoGas te puede ayudar.</p>
+            <p class="oa-msg oa-msg--user" id="oaPregunta" hidden></p>
+
+            <div class="ia-resultados oa-card" id="iaResultados" aria-live="polite" hidden>
+                <p class="oa-card-label">Servicios sugeridos</p>
+                <p class="ia-aviso" id="iaAviso" hidden></p>
+                <ol class="ia-lista" id="iaLista"></ol>
+                <p class="oa-note">Un técnico confirma el diagnóstico en el taller.</p>
+                <div class="oa-card-actions">
+                    <a href="../Contacto/contacto.html" class="oa-btn">Cotizar servicio</a>
+                    <button type="button" class="oa-btn-sec" data-accion="reiniciarAsistente">Nueva consulta</button>
+                </div>
+            </div>
+
+            <div class="ia-vacio oa-card" id="iaVacio" aria-live="polite" hidden>
+                <p>No encontramos un servicio específico para tu descripción. Te recomendamos una
+                    <strong>Revisión y Diagnóstico Vehicular</strong>, o cuéntanos tu caso directamente.</p>
+                <div class="oa-card-actions">
+                    <a href="../Contacto/contacto.html" class="oa-btn">Cotizar servicio</a>
+                    <button type="button" class="oa-btn-sec" data-accion="reiniciarAsistente">Nueva consulta</button>
+                </div>
+            </div>
+        </div>
+
+        <form class="oa-form" data-enviar="analizarProblema">
+            <label for="iaInput" class="sr-only">Describe el problema de tu auto</label>
+            <div class="oa-field">
+                <textarea id="iaInput" rows="2" maxlength="400"
+                    placeholder="Ej.: consume mucho combustible y a veces falla el arranque…"></textarea>
+                <span class="oa-count"><span id="iaCharCount">0</span>/400</span>
+            </div>
+            <button type="submit" class="oa-send" id="iaBtn" aria-label="Analizar">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+            </button>
+        </form>
+    </section>
+
+    <script src="../Comun/comun.js?v=20261102-1" defer></script>
+    <script src="servicios.js?v=20261102-2" defer></script>
+    <script src="diagnostico.js?v=20261029" defer></script>
+</body>
+
+</html>
