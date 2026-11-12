@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#FFFFFF">
     <meta name="color-scheme" content="light">
     <title>Cotizar | AutoGas — Cotiza tu conversión a GNV o GLP</title>
     <meta name="description" content="Cotiza gratis tu conversión a GNV o GLP o tu servicio de mecánica en 2 pasos. Te respondemos por WhatsApp desde la sede AutoGas más cercana.">
@@ -18,29 +18,41 @@
     <meta property="og:description" content="Cotiza gratis tu conversión a GNV o GLP o tu servicio de mecánica. Te respondemos por WhatsApp.">
     <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
     <meta property="og:url" content="https://autogas-web.vercel.app/Contacto/contacto.html">
-    <link rel="preload" as="image" href="../Nosotros/Imagenes/BannerNosotros.webp" imagesrcset="../Nosotros/Imagenes/BannerNosotros-240.webp 240w, ../Nosotros/Imagenes/BannerNosotros-480.webp 480w, ../Nosotros/Imagenes/BannerNosotros-960.webp 960w, ../Nosotros/Imagenes/BannerNosotros-1440.webp 1440w, ../Nosotros/Imagenes/BannerNosotros.webp 1920w" imagesizes="(max-width: 900px) 160vw, 100vw" fetchpriority="high">
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
+    <link rel="preload" as="image" href="../Tienda/Imagenes/IMG_3214-1440.webp" imagesrcset="../Tienda/Imagenes/IMG_3214-480.webp 480w, ../Tienda/Imagenes/IMG_3214-960.webp 960w, ../Tienda/Imagenes/IMG_3214-1440.webp 1440w" imagesizes="100vw">
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
-    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="contacto.css?v=20261106-3">
-    <script>document.documentElement.classList.add('js');</script>
+    <!-- Evita parpadeos: estilos mínimos antes de cargar el CSS -->
     <style>
-        html, body { margin: 0; padding: 0; background: #0A0A0A; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; background: #FFFFFF; }
         .site-header { height: 72px; }
         .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
     </style>
+    <script>document.documentElement.classList.add('js');</script>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
+    <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
+    <link rel="stylesheet" href="contacto.css?v=20261112-1">
 </head>
 
-<body>
-
+<!-- pg-corp + data-header="solid": menú blanco (../Comun/corporativo.css y comun.js) -->
+<body class="pg-corp pg-cotizar" data-header="solid">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+    <!-- ==================== BARRA SUPERIOR ==================== -->
+    <div class="ig-topbar">
+        <div class="container ig-topbar-in">
+            <p>7 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
+            <a href="../Inicio/inicio.html#fise">Financia tu conversión con FISE
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+    </div>
+
     <!-- ==================== MENÚ ==================== -->
-    <header class="site-header">
+    <header class="site-header" id="siteHeader">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
-                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+                <img src="../Inicio/Imagenes/AutoGasLogoNegro.png" alt="AutoGas" width="600" height="142">
             </a>
 
             <ul class="nav-links">
@@ -51,7 +63,11 @@
                 <li><a href="../Tienda/tienda.html">Tienda</a></li>
             </ul>
 
-            <a class="btn btn-red nav-cta" href="../Contacto/contacto.html" aria-current="page">Cotizar</a>
+            <a class="ig-nav-wa" href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas (se abre en una pestaña nueva)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+                WhatsApp
+            </a>
+            <a class="btn btn-red nav-cta" href="contacto.html" aria-current="page">Cotizar</a>
 
             <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
                 <span></span><span></span><span></span>
@@ -59,7 +75,7 @@
         </nav>
     </header>
 
-    <!-- Menú de celular -->
+    <!-- Menú de celular (comportamiento en ../Comun/comun.js) -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
         <div class="mobile-menu-top">
             <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
@@ -72,30 +88,32 @@
             <li class="mnav-item"><span class="mnav-num">04</span><a class="mnav-link" href="../Sedes/sedes.html">Sedes</a></li>
             <li class="mnav-item"><span class="mnav-num">05</span><a class="mnav-link" href="../Tienda/tienda.html">Tienda</a></li>
         </ul>
-        <a class="mnav-cta mnav-item" href="../Contacto/contacto.html" aria-current="page">Cotizar ahora</a>
+        <a class="mnav-cta mnav-item" href="../Contacto/contacto.html">Cotizar ahora</a>
     </div>
 
-    <main id="contenido">
-    <!-- ==================== PORTADA ==================== -->
-    <section class="page-hero page-hero--compacta" aria-labelledby="heroTitulo">
-        <img class="page-hero-img" src="../Nosotros/Imagenes/BannerNosotros.webp" srcset="../Nosotros/Imagenes/BannerNosotros-240.webp 240w, ../Nosotros/Imagenes/BannerNosotros-480.webp 480w, ../Nosotros/Imagenes/BannerNosotros-960.webp 960w, ../Nosotros/Imagenes/BannerNosotros-1440.webp 1440w, ../Nosotros/Imagenes/BannerNosotros.webp 1920w" sizes="(max-width: 900px) 160vw, 100vw" alt="Sala de espera de una sede AutoGas" width="1920" height="1440" fetchpriority="high">
-        <div class="page-hero-shade"></div>
-        <div class="container page-hero-inner">
-            <p class="page-hero-eyebrow">Cotización gratuita</p>
-            <h1 class="page-hero-title" id="heroTitulo">
-                <span class="page-hero-line">Cotiza tu</span>
-                <span class="page-hero-line l2">conversión.</span>
-            </h1>
-            <p class="page-hero-sub">Cuéntanos de tu auto en 2 pasos y te respondemos por WhatsApp con el precio. Sin costo y sin compromiso.</p>
-        </div>
-    </section>
+            <main id="contenido">
+
+        <!-- ==================== PORTADA ==================== -->
+        <section class="ig-hero ig-hero--page ct-hero" aria-labelledby="heroTitulo">
+            <img class="ig-hero-media" src="../Tienda/Imagenes/IMG_3214-1440.webp" srcset="../Tienda/Imagenes/IMG_3214-480.webp 480w, ../Tienda/Imagenes/IMG_3214-960.webp 960w, ../Tienda/Imagenes/IMG_3214-1440.webp 1440w" sizes="100vw" alt="" width="1440" height="1080" fetchpriority="high" decoding="async">
+            <div class="ig-hero-shade" aria-hidden="true"></div>
+            <div class="container ig-hero-in">
+                <nav class="ct-crumbs ig-in" aria-label="Estás aquí">
+                    <a href="../Inicio/inicio.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Cotizar</span>
+                </nav>
+                <p class="ig-lbl ct-hero-lbl ig-in">Cotización gratuita</p>
+                <h1 class="ig-hero-title ig-in ig-d1" id="heroTitulo">Cotiza tu conversión</h1>
+                <p class="ig-hero-text ig-in ig-d2">Cuéntanos de tu auto en 2 pasos y te respondemos por WhatsApp con el precio. Sin costo y sin compromiso.</p>
+            </div>
+        </section>
 
         <!-- ==================== FORMULARIO + CÓMO FUNCIONA ==================== -->
         <section class="cotizar" aria-labelledby="formTitulo">
             <div class="container cotizar-grid">
 
                 <aside class="cotizar-info">
-                    <h2 class="display display-md">Así <span class="rojo">funciona</span></h2>
+                    <p class="ig-lbl">Cómo funciona</p>
+                    <h2 class="ig-h2 ct-h2">Tu precio en tres pasos</h2>
                     <ol class="como-funciona">
                         <li><span class="cf-num">01</span><span><strong>Nos cuentas de tu auto</strong>Dos pasos, menos de un minuto.</span></li>
                         <li><span class="cf-num">02</span><span><strong>Te respondemos por WhatsApp</strong>La sede que elijas te manda el precio y resuelve tus dudas.</span></li>
@@ -103,7 +121,7 @@
                     </ol>
                     <div class="aviso-fise">
                         <span class="aviso-fise-logo">FISE</span>
-                        <p>¿Quieres financiar tu conversión? Somos taller del convenio FISE y te ayudamos con el trámite.</p>
+                        <div><p class="aviso-fise-t">¿Quieres financiar tu conversión?</p><p>Somos taller del convenio FISE y te ayudamos con el trámite.</p><a class="ig-more" href="../Inicio/inicio.html#fise">Ver cómo funciona <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
                     </div>
                     <p class="directo-titulo">¿Prefieres escribir directo?</p>
                     <ul class="directo">
@@ -156,7 +174,7 @@
                             <div class="campo">
                                 <label for="vehAnio">Año</label>
                                 <input id="vehAnio" name="anio" type="text" placeholder="2018" inputmode="numeric" maxlength="4" autocomplete="off">
-                                <p class="campo-error" id="err-anio" role="alert"></p>
+                                <p class="campo-error" id="err-vehAnio" role="alert"></p>
                             </div>
                             </div>
 
@@ -184,7 +202,7 @@
                             </details>
 
                             <div class="acciones acciones-fin">
-                                <button type="button" class="btn btn-red btn-lg" id="btnSiguiente">Siguiente</button>
+                                <button type="button" class="ig-btn ig-btn-red" id="btnSiguiente">Siguiente <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
                             </div>
                         </div>
 
@@ -237,8 +255,8 @@
                             </div>
 
                             <div class="acciones">
-                                <button type="button" class="btn btn-outline btn-lg" id="btnAtras">Atrás</button>
-                                <button type="submit" class="btn btn-red btn-lg btn-wa"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> Enviar por WhatsApp</button>
+                                <button type="button" class="ig-btn ig-btn-line" id="btnAtras">Atrás</button>
+                                <button type="submit" class="ig-btn ig-btn-red btn-wa"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> Enviar por WhatsApp</button>
                             </div>
                             <p class="nota-envio">Se abrirá WhatsApp con tu mensaje ya escrito. Cotizar no tiene costo.</p>
                             <p class="nota-legal">Usamos tus datos solo para responder tu cotización. Más información en nuestra <a href="../Legal/privacidad.html">Política de privacidad</a>.</p>
@@ -247,13 +265,14 @@
 
                     <!-- LISTO -->
                     <div class="listo" id="listo" hidden>
+                        <span class="listo-ok" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12l5 5L20 7"/></svg></span>
                         <p class="listo-eyebrow">Listo</p>
-                        <h2 class="paso-titulo" id="listoTitulo" tabindex="-1">Te abrimos <span class="rojo">WhatsApp</span></h2>
+                        <h2 class="paso-titulo" id="listoTitulo" tabindex="-1">Te abrimos WhatsApp</h2>
                         <p class="listo-texto">Solo dale a enviar. Este es el mensaje que le llega a la sede <strong id="listoSede"></strong>:</p>
                         <pre class="listo-mensaje" id="listoMensaje"></pre>
                         <div class="acciones">
-                            <a class="btn btn-red btn-lg btn-wa" id="listoWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> Abrir WhatsApp</a>
-                            <button type="button" class="btn btn-outline btn-lg" id="btnOtra">Hacer otra cotización</button>
+                            <a class="ig-btn ig-btn-red btn-wa" id="listoWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> Abrir WhatsApp</a>
+                            <button type="button" class="ig-btn ig-btn-line" id="btnOtra">Hacer otra cotización</button>
                         </div>
                     </div>
                 </div>
@@ -261,35 +280,55 @@
         </section>
 
         <!-- ==================== PREGUNTAS FRECUENTES ==================== -->
-        <section class="section section-white" aria-labelledby="faqTitulo">
-            <div class="container cotizar-grid">
-                <h2 class="display display-md reveal" id="faqTitulo">Antes de <span class="rojo">cotizar</span></h2>
-                <div class="faq reveal">
+        <section class="ig-sec ig-bg-white" aria-labelledby="faqTitulo">
+            <div class="container ct-faq-grid">
+                <div class="ct-faq-intro reveal">
+                    <p class="ig-lbl">Preguntas</p>
+                    <h2 class="ig-h2" id="faqTitulo">Antes de cotizar</h2>
+                    <p class="ig-txt">Si tu duda no está aquí, escríbenos por WhatsApp y te respondemos.</p>
+                    <a class="ig-more" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escribir por WhatsApp <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                </div>
+                <div class="ct-faqs reveal">
                     <!-- PENDIENTE: confirmar tiempo de respuesta -->
-                    <details>
-                        <summary>¿Cuánto demoran en responder?</summary>
-                        <p>En horario de atención, normalmente el mismo día. [PENDIENTE: confirmar tiempo real].</p>
+                    <details class="ct-faq" name="faq">
+                        <summary>¿Cuánto demoran en responder?<span class="ct-faq-pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+                        <p>En horario de atención, normalmente el mismo día. [TIEMPO REAL DE RESPUESTA].</p>
                     </details>
-                    <details>
-                        <summary>¿Cuánto cuesta la conversión?</summary>
+                    
+                    <details class="ct-faq" name="faq">
+                        <summary>¿Cuánto cuesta la conversión?<span class="ct-faq-pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
                         <p>Depende del motor y del tipo de kit. Por eso te pedimos marca, modelo y año: con eso la sede te da un precio exacto.</p>
                     </details>
                     <!-- PENDIENTE: requisitos FISE -->
-                    <details>
-                        <summary>¿Puedo financiarla con FISE?</summary>
-                        <p>Sí, somos taller del convenio FISE. Si calificas, te ayudamos con el trámite. [PENDIENTE: requisitos].</p>
+                    <details class="ct-faq" name="faq">
+                        <summary>¿Puedo financiarla con FISE?<span class="ct-faq-pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+                        <p>Sí, somos taller del convenio FISE. Si calificas, te ayudamos con el trámite. [REQUISITOS].</p>
                     </details>
                     <!-- PENDIENTE: documentos -->
-                    <details>
-                        <summary>¿Qué llevo el día de la cita?</summary>
-                        <p>Tu DNI, la tarjeta de propiedad del vehículo y el auto. [PENDIENTE: confirmar documentos].</p>
+                    <details class="ct-faq" name="faq">
+                        <summary>¿Qué llevo el día de la cita?<span class="ct-faq-pm" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+                        <p>Tu DNI, la tarjeta de propiedad del vehículo y el auto. [CONFIRMAR DOCUMENTOS].</p>
                     </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== CIERRE ==================== -->
+        <section class="ig-cta" aria-labelledby="ctaTitulo">
+            <img class="ig-cta-img" src="../Inicio/Imagenes/TallerBahias-1440.webp" alt="" width="1440" height="648" loading="lazy" decoding="async">
+            <div class="container ig-cta-in reveal">
+                <div>
+                    <h2 class="ig-h2" id="ctaTitulo">¿Prefieres venir en persona?</h2>
+                    <p>Tenemos 7 sedes en el Perú. Encuentra la más cercana y visítanos.</p>
+                </div>
+                <div class="ig-btns">
+                    <a class="ig-btn ig-btn-red" href="../Sedes/sedes.html">Ver nuestras sedes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- ==================== FOOTER (igual en todo el sitio) ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -324,7 +363,7 @@
                     <ul>
                         <li><a href="../Inicio/inicio.html">Inicio</a></li>
                         <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
-                        <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
                         <li><a href="../Sedes/sedes.html">Sedes</a></li>
                         <li><a href="../Tienda/tienda.html">Tienda</a></li>
                         <li><a href="../Contacto/contacto.html">Cotizar</a></li>
@@ -354,14 +393,14 @@
             </div>
             <div class="footer-bottom">
                 <!-- PENDIENTE: RUC -->
-                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>© <span id="anio">2026</span> AutoGas Perú </p>
                 <p>Hecho en el Perú</p>
             </div>
         </div>
     </footer>
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
-    <script src="contacto.js?v=20261102-1" defer></script>
+    <script src="contacto.js?v=20261112-1" defer></script>
 </body>
 
 </html>

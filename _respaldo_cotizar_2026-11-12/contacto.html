@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="color-scheme" content="light">
+    <title>Cotizar | AutoGas — Cotiza tu conversión a GNV o GLP</title>
+    <meta name="description" content="Cotiza gratis tu conversión a GNV o GLP o tu servicio de mecánica en 2 pasos. Te respondemos por WhatsApp desde la sede AutoGas más cercana.">
+    <link rel="canonical" href="https://autogas-web.vercel.app/Contacto/contacto.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:site_name" content="AutoGas Perú">
+    <meta property="og:title" content="Cotiza tu conversión | AutoGas">
+    <meta property="og:description" content="Cotiza gratis tu conversión a GNV o GLP o tu servicio de mecánica. Te respondemos por WhatsApp.">
+    <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
+    <meta property="og:url" content="https://autogas-web.vercel.app/Contacto/contacto.html">
+    <link rel="preload" as="image" href="../Nosotros/Imagenes/BannerNosotros.webp" imagesrcset="../Nosotros/Imagenes/BannerNosotros-240.webp 240w, ../Nosotros/Imagenes/BannerNosotros-480.webp 480w, ../Nosotros/Imagenes/BannerNosotros-960.webp 960w, ../Nosotros/Imagenes/BannerNosotros-1440.webp 1440w, ../Nosotros/Imagenes/BannerNosotros.webp 1920w" imagesizes="(max-width: 900px) 160vw, 100vw" fetchpriority="high">
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
+    <link rel="stylesheet" href="contacto.css?v=20261106-3">
+    <script>document.documentElement.classList.add('js');</script>
+    <style>
+        html, body { margin: 0; padding: 0; background: #0A0A0A; }
+        .site-header { height: 72px; }
+        .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
+    </style>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <!-- ==================== MENÚ ==================== -->
+    <header class="site-header">
+        <nav class="nav container" aria-label="Principal">
+            <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
+                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                <li><a href="../Tienda/tienda.html">Tienda</a></li>
+            </ul>
+
+            <a class="btn btn-red nav-cta" href="../Contacto/contacto.html" aria-current="page">Cotizar</a>
+
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Menú de celular -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
+        <div class="mobile-menu-top">
+            <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
+            <button class="mobile-menu-close" id="navClose" type="button" aria-label="Cerrar menú"></button>
+        </div>
+        <ul class="mnav-list">
+            <li class="mnav-item"><span class="mnav-num">01</span><a class="mnav-link" href="../Inicio/inicio.html">Inicio</a></li>
+            <li class="mnav-item"><span class="mnav-num">02</span><a class="mnav-link" href="../Nosotros/nosotros.html">Nosotros</a></li>
+            <li class="mnav-item"><span class="mnav-num">03</span><a class="mnav-link" href="../Servicios/servicios.html">Servicios</a></li>
+            <li class="mnav-item"><span class="mnav-num">04</span><a class="mnav-link" href="../Sedes/sedes.html">Sedes</a></li>
+            <li class="mnav-item"><span class="mnav-num">05</span><a class="mnav-link" href="../Tienda/tienda.html">Tienda</a></li>
+        </ul>
+        <a class="mnav-cta mnav-item" href="../Contacto/contacto.html" aria-current="page">Cotizar ahora</a>
+    </div>
+
+    <main id="contenido">
+    <!-- ==================== PORTADA ==================== -->
+    <section class="page-hero page-hero--compacta" aria-labelledby="heroTitulo">
+        <img class="page-hero-img" src="../Nosotros/Imagenes/BannerNosotros.webp" srcset="../Nosotros/Imagenes/BannerNosotros-240.webp 240w, ../Nosotros/Imagenes/BannerNosotros-480.webp 480w, ../Nosotros/Imagenes/BannerNosotros-960.webp 960w, ../Nosotros/Imagenes/BannerNosotros-1440.webp 1440w, ../Nosotros/Imagenes/BannerNosotros.webp 1920w" sizes="(max-width: 900px) 160vw, 100vw" alt="Sala de espera de una sede AutoGas" width="1920" height="1440" fetchpriority="high">
+        <div class="page-hero-shade"></div>
+        <div class="container page-hero-inner">
+            <p class="page-hero-eyebrow">Cotización gratuita</p>
+            <h1 class="page-hero-title" id="heroTitulo">
+                <span class="page-hero-line">Cotiza tu</span>
+                <span class="page-hero-line l2">conversión.</span>
+            </h1>
+            <p class="page-hero-sub">Cuéntanos de tu auto en 2 pasos y te respondemos por WhatsApp con el precio. Sin costo y sin compromiso.</p>
+        </div>
+    </section>
+
+        <!-- ==================== FORMULARIO + CÓMO FUNCIONA ==================== -->
+        <section class="cotizar" aria-labelledby="formTitulo">
+            <div class="container cotizar-grid">
+
+                <aside class="cotizar-info">
+                    <h2 class="display display-md">Así <span class="rojo">funciona</span></h2>
+                    <ol class="como-funciona">
+                        <li><span class="cf-num">01</span><span><strong>Nos cuentas de tu auto</strong>Dos pasos, menos de un minuto.</span></li>
+                        <li><span class="cf-num">02</span><span><strong>Te respondemos por WhatsApp</strong>La sede que elijas te manda el precio y resuelve tus dudas.</span></li>
+                        <li><span class="cf-num">03</span><span><strong>Agendas tu cita</strong>Eliges el día y llevas tu auto al taller.</span></li>
+                    </ol>
+                    <div class="aviso-fise">
+                        <span class="aviso-fise-logo">FISE</span>
+                        <p>¿Quieres financiar tu conversión? Somos taller del convenio FISE y te ayudamos con el trámite.</p>
+                    </div>
+                    <p class="directo-titulo">¿Prefieres escribir directo?</p>
+                    <ul class="directo">
+                        <li><a href="https://wa.me/51978421654" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>Ica</a></li>
+                        <li><a href="https://wa.me/51942623696" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>Lima</a></li>
+                        <li><a href="https://wa.me/51942867212" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>Huancayo</a></li>
+                        <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>Trujillo</a></li>
+                        <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>Nasca</a></li>
+                        <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>Arequipa</a></li>
+                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>Chincha</a></li>
+                    </ul>
+                </aside>
+
+                <div class="cotizar-caja">
+                    <!-- Formulario: al enviar abre WhatsApp de la sede elegida con el mensaje listo -->
+                    <form id="cotForm" novalidate>
+                        <div class="progreso">
+                            <p class="progreso-paso" id="progresoPaso">Paso 1 de 2</p>
+                            <p class="progreso-sigue" id="progresoSigue">Sigue: tus datos</p>
+                        </div>
+                        <div class="progreso-barra" aria-hidden="true"><span id="progresoBarra"></span></div>
+
+                        <!-- PASO 1 -->
+                        <div class="paso" id="paso1">
+                            <h2 class="paso-titulo" id="formTitulo" tabindex="-1">Tu auto</h2>
+
+                            <fieldset class="grupo">
+                                <legend>¿Qué necesitas?</legend>
+                                <div class="opciones">
+                                    <label class="opcion"><input type="radio" name="servicio" value="Conversión a GLP"><span>Conversión a GLP</span></label>
+                                    <label class="opcion"><input type="radio" name="servicio" value="Conversión a GNV"><span>Conversión a GNV</span></label>
+                                    <label class="opcion"><input type="radio" name="servicio" value="Mecánica general"><span>Mecánica general</span></label>
+                                    <label class="opcion"><input type="radio" name="servicio" value="Mantenimiento de gas"><span>Mantenimiento de gas</span></label>
+                                    <label class="opcion"><input type="radio" name="servicio" value="Otro"><span>Otro</span></label>
+                                </div>
+                                <p class="campo-error" id="err-servicio" role="alert"></p>
+                            </fieldset>
+
+                            <div class="campos campos-3">
+                            <div class="campo">
+                                <label for="marca">Marca</label>
+                                <input id="marca" name="marca" type="text" placeholder="Toyota" autocomplete="off">
+                                <p class="campo-error" id="err-marca" role="alert"></p>
+                            </div>
+                            <div class="campo">
+                                <label for="modelo">Modelo</label>
+                                <input id="modelo" name="modelo" type="text" placeholder="Yaris" autocomplete="off">
+                                <p class="campo-error" id="err-modelo" role="alert"></p>
+                            </div>
+                            <div class="campo">
+                                <label for="vehAnio">Año</label>
+                                <input id="vehAnio" name="anio" type="text" placeholder="2018" inputmode="numeric" maxlength="4" autocomplete="off">
+                                <p class="campo-error" id="err-anio" role="alert"></p>
+                            </div>
+                            </div>
+
+                            <fieldset class="grupo">
+                                <legend>¿Qué combustible usa hoy? <span class="opcional">(opcional)</span></legend>
+                                <div class="opciones">
+                                    <label class="opcion"><input type="radio" name="combustible" value="Gasolina"><span>Gasolina</span></label>
+                                    <label class="opcion"><input type="radio" name="combustible" value="Diésel"><span>Diésel</span></label>
+                                    <label class="opcion"><input type="radio" name="combustible" value="Ya tengo gas"><span>Ya tengo gas</span></label>
+                                </div>
+                            </fieldset>
+
+                            <details class="mas-detalles">
+                                <summary>Más detalles <span class="opcional">(opcional)</span></summary>
+                                <div class="campos">
+                                    <div class="campo">
+                                        <label for="placa">Placa <span class="opcional">(opcional)</span></label>
+                                        <input id="placa" name="placa" type="text" placeholder="ABC-123" autocomplete="off" maxlength="8">
+                                    </div>
+                                    <div class="campo">
+                                        <label for="km">Kilometraje <span class="opcional">(opcional)</span></label>
+                                        <input id="km" name="km" type="text" placeholder="85 000" inputmode="numeric" autocomplete="off">
+                                    </div>
+                                </div>
+                            </details>
+
+                            <div class="acciones acciones-fin">
+                                <button type="button" class="btn btn-red btn-lg" id="btnSiguiente">Siguiente</button>
+                            </div>
+                        </div>
+
+                        <!-- PASO 2 -->
+                        <div class="paso" id="paso2" hidden>
+                            <h2 class="paso-titulo" id="paso2Titulo" tabindex="-1">Tus datos</h2>
+
+                            <div class="campos">
+                            <div class="campo">
+                                <label for="nombre">Nombre</label>
+                                <input id="nombre" name="nombre" type="text" placeholder="Carlos Ramírez" autocomplete="name">
+                                <p class="campo-error" id="err-nombre" role="alert"></p>
+                            </div>
+                            <div class="campo">
+                                <label for="celular">Celular</label>
+                                <input id="celular" name="celular" type="tel" placeholder="987 654 321" autocomplete="tel" inputmode="numeric" maxlength="11">
+                                <p class="campo-error" id="err-celular" role="alert"></p>
+                            </div>
+                            </div>
+
+                            <fieldset class="grupo">
+                                <legend>¿En qué sede?</legend>
+                                <div class="opciones opciones-sedes">
+                                    <label class="opcion"><input type="radio" name="sede" value="51978421654" data-ciudad="Ica"><span>Ica</span></label>
+                                    <label class="opcion"><input type="radio" name="sede" value="51942623696" data-ciudad="Lima"><span>Lima</span></label>
+                                    <label class="opcion"><input type="radio" name="sede" value="51942867212" data-ciudad="Huancayo"><span>Huancayo</span></label>
+                                    <label class="opcion"><input type="radio" name="sede" value="51937695830" data-ciudad="Trujillo"><span>Trujillo</span></label>
+                                    <label class="opcion"><input type="radio" name="sede" value="51939067488" data-ciudad="Nasca"><span>Nasca</span></label>
+                                    <label class="opcion"><input type="radio" name="sede" value="51975338252" data-ciudad="Arequipa"><span>Arequipa</span></label>
+                                    <label class="opcion"><input type="radio" name="sede" value="51930210613" data-ciudad="Chincha"><span>Chincha</span></label>
+                                </div>
+                                <p class="campo-error" id="err-sede" role="alert"></p>
+                            </fieldset>
+
+                            <div class="campos">
+                            <div class="campo">
+                                <label for="fecha">Fecha preferida <span class="opcional">(opcional)</span></label>
+                                <input id="fecha" name="fecha" type="date">
+                            </div>
+                            <div class="campo">
+                                <label for="nota">Comentario <span class="opcional">(opcional)</span></label>
+                                <input id="nota" name="nota" type="text" placeholder="Ej.: solo puedo en la tarde" maxlength="200">
+                            </div>
+                            </div>
+
+                            <!-- Anti-spam: los humanos no ven este campo -->
+                            <div class="trampa" aria-hidden="true">
+                                <label for="empresa">Empresa</label>
+                                <input type="text" id="empresa" name="empresa" tabindex="-1" autocomplete="off">
+                            </div>
+
+                            <div class="acciones">
+                                <button type="button" class="btn btn-outline btn-lg" id="btnAtras">Atrás</button>
+                                <button type="submit" class="btn btn-red btn-lg btn-wa"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> Enviar por WhatsApp</button>
+                            </div>
+                            <p class="nota-envio">Se abrirá WhatsApp con tu mensaje ya escrito. Cotizar no tiene costo.</p>
+                            <p class="nota-legal">Usamos tus datos solo para responder tu cotización. Más información en nuestra <a href="../Legal/privacidad.html">Política de privacidad</a>.</p>
+                        </div>
+                    </form>
+
+                    <!-- LISTO -->
+                    <div class="listo" id="listo" hidden>
+                        <p class="listo-eyebrow">Listo</p>
+                        <h2 class="paso-titulo" id="listoTitulo" tabindex="-1">Te abrimos <span class="rojo">WhatsApp</span></h2>
+                        <p class="listo-texto">Solo dale a enviar. Este es el mensaje que le llega a la sede <strong id="listoSede"></strong>:</p>
+                        <pre class="listo-mensaje" id="listoMensaje"></pre>
+                        <div class="acciones">
+                            <a class="btn btn-red btn-lg btn-wa" id="listoWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> Abrir WhatsApp</a>
+                            <button type="button" class="btn btn-outline btn-lg" id="btnOtra">Hacer otra cotización</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PREGUNTAS FRECUENTES ==================== -->
+        <section class="section section-white" aria-labelledby="faqTitulo">
+            <div class="container cotizar-grid">
+                <h2 class="display display-md reveal" id="faqTitulo">Antes de <span class="rojo">cotizar</span></h2>
+                <div class="faq reveal">
+                    <!-- PENDIENTE: confirmar tiempo de respuesta -->
+                    <details>
+                        <summary>¿Cuánto demoran en responder?</summary>
+                        <p>En horario de atención, normalmente el mismo día. [PENDIENTE: confirmar tiempo real].</p>
+                    </details>
+                    <details>
+                        <summary>¿Cuánto cuesta la conversión?</summary>
+                        <p>Depende del motor y del tipo de kit. Por eso te pedimos marca, modelo y año: con eso la sede te da un precio exacto.</p>
+                    </details>
+                    <!-- PENDIENTE: requisitos FISE -->
+                    <details>
+                        <summary>¿Puedo financiarla con FISE?</summary>
+                        <p>Sí, somos taller del convenio FISE. Si calificas, te ayudamos con el trámite. [PENDIENTE: requisitos].</p>
+                    </details>
+                    <!-- PENDIENTE: documentos -->
+                    <details>
+                        <summary>¿Qué llevo el día de la cita?</summary>
+                        <p>Tu DNI, la tarjeta de propiedad del vehículo y el auto. [PENDIENTE: confirmar documentos].</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="88" height="32" loading="lazy">
+                    <p>Convierte. Ahorra. Domina.<br>Talleres de conversión GNV/GLP en el Perú.</p>
+                    <ul class="social" aria-label="Redes sociales">
+                        <li>
+                            <a href="https://www.instagram.com/autogasica" target="_blank" rel="noopener" aria-label="Instagram de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" rel="noopener" aria-label="Facebook de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener" aria-label="TikTok de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.6-2.7 5.9-5.9 5.9-3.4 0-5.9-2.6-5.9-5.8 0-3.6 3.1-6.2 6.8-5.7v3.2c-1.8-.4-3.5.8-3.5 2.6 0 1.4 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.2z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <nav aria-label="Secciones del sitio">
+                    <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                        <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                        <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                        <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                        <li><a href="../Tienda/tienda.html">Tienda</a></li>
+                        <li><a href="../Contacto/contacto.html">Cotizar</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h3>WhatsApp por sede</h3>
+                    <ul class="footer-2col">
+                        <li><a href="https://wa.me/51978421654" target="_blank" rel="noopener">Ica</a></li>
+                        <li><a href="https://wa.me/51942623696" target="_blank" rel="noopener">Lima</a></li>
+                        <li><a href="https://wa.me/51942867212" target="_blank" rel="noopener">Huancayo</a></li>
+                        <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener">Trujillo</a></li>
+                        <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener">Arequipa</a></li>
+                        <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener">Nasca</a></li>
+                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener">Chincha</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Legal</h3>
+                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
+                    <ul>
+                        <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
+                        <li><a href="../Legal/privacidad.html">Política de privacidad</a></li>
+                        <li><a href="../Legal/terminos.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <!-- PENDIENTE: RUC -->
+                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>Hecho en el Perú</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../Comun/comun.js?v=20261102-1" defer></script>
+    <script src="contacto.js?v=20261102-1" defer></script>
+</body>
+
+</html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#FFFFFF">
     <meta name="color-scheme" content="light">
     <title>Sedes | AutoGas — 7 talleres de conversión GNV y GLP en el Perú</title>
     <meta name="description" content="Encuentra tu sede AutoGas más cercana: Ica, Lima, Huancayo, Trujillo, Nasca, Arequipa y Chincha. Direcciones, teléfonos, WhatsApp y fotos de cada taller.">
@@ -23,29 +23,40 @@
     <!-- Evita parpadeos: estilos mínimos antes de cargar el CSS -->
     <style>
         *, *::before, *::after { box-sizing: border-box; }
-        html, body { margin: 0; padding: 0; background: #0A0A0A; }
+        html, body { margin: 0; padding: 0; background: #FFFFFF; }
         .site-header { height: 72px; }
         .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
     </style>
     <script>document.documentElement.classList.add('js');</script>
 
     <link rel="preload" as="image" href="../Inicio/Imagenes/peru-mapa.svg">
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
+    <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
     <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-    <link rel="stylesheet" href="sedes.css?v=20261106-2">
+    <link rel="stylesheet" href="sedes.css?v=20261112-1">
 </head>
 
-<body>
+<!-- pg-corp + data-header="solid": menú blanco (../Comun/corporativo.css y comun.js) -->
+<body class="pg-corp pg-sedes" data-header="solid">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+    <!-- ==================== BARRA SUPERIOR ==================== -->
+    <div class="ig-topbar">
+        <div class="container ig-topbar-in">
+            <p>7 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
+            <a href="../Inicio/inicio.html#fise">Financia tu conversión con FISE
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+    </div>
+
     <!-- ==================== MENÚ ==================== -->
-    <header class="site-header">
+    <header class="site-header" id="siteHeader">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
-                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+                <img src="../Inicio/Imagenes/AutoGasLogoNegro.png" alt="AutoGas" width="600" height="142">
             </a>
 
             <ul class="nav-links">
@@ -56,6 +67,10 @@
                 <li><a href="../Tienda/tienda.html">Tienda</a></li>
             </ul>
 
+            <a class="ig-nav-wa" href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas (se abre en una pestaña nueva)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+                WhatsApp
+            </a>
             <a class="btn btn-red nav-cta" href="../Contacto/contacto.html">Cotizar</a>
 
             <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
@@ -64,7 +79,7 @@
         </nav>
     </header>
 
-    <!-- Menú de celular -->
+    <!-- Menú de celular (comportamiento en ../Comun/comun.js) -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
         <div class="mobile-menu-top">
             <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
@@ -80,82 +95,66 @@
         <a class="mnav-cta mnav-item" href="../Contacto/contacto.html">Cotizar ahora</a>
     </div>
 
-    <main id="contenido">
+            <main id="contenido">
 
-        <!-- ==================== PORTADA: mapa SVG en la mitad derecha ==================== -->
-        <section class="hero-sedes" aria-labelledby="heroTitulo">
-            <div class="hero-mapa">
-                <div class="mapa-marco">
-                    <img src="../Inicio/Imagenes/peru-mapa.svg" alt="Mapa del Perú con las siete sedes de AutoGas" width="515" height="775" fetchpriority="high">
-                        <a class="pin pin-izq" href="#ica" style="left: 49.51%; top: 77.68%" aria-label="Ir a la sede Ica">
-                            <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Ica</span>
-                        </a>
-                        <a class="pin pin-izq" href="#lima" style="left: 40.19%; top: 66.84%" aria-label="Ir a la sede Lima">
-                            <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Lima</span>
-                        </a>
-                        <a class="pin" href="#huancayo" style="left: 55.34%; top: 63.74%" aria-label="Ir a la sede Huancayo">
-                            <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Huancayo</span>
-                        </a>
-                        <a class="pin" href="#trujillo" style="left: 28.35%; top: 44.26%" aria-label="Ir a la sede Trujillo">
-                            <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Trujillo</span>
-                        </a>
-                        <a class="pin" href="#nasca" style="left: 51.84%; top: 82.58%" aria-label="Ir a la sede Nasca">
-                            <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Nasca</span>
-                        </a>
-                        <a class="pin pin-izq" href="#arequipa" style="left: 74.76%; top: 87.74%" aria-label="Ir a la sede Arequipa">
-                            <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Arequipa</span>
-                        </a>
-                        <a class="pin" href="#chincha" style="left: 45.24%; top: 73.55%" aria-label="Ir a la sede Chincha">
-                            <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Chincha</span>
-                        </a>
+        <!-- ==================== PORTADA: mapa del Perú con las sedes ==================== -->
+        <section class="sd-hero" aria-labelledby="heroTitulo">
+            <div class="container sd-hero-in">
+                <div class="sd-hero-copy">
+                    <nav class="sd-crumbs ig-in" aria-label="Estás aquí">
+                        <a href="../Inicio/inicio.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Sedes</span>
+                    </nav>
+                    <p class="ig-lbl sd-hero-lbl ig-in">7 ciudades · un solo estándar</p>
+                    <h1 class="sd-hero-title ig-in ig-d1" id="heroTitulo">Nuestras sedes</h1>
+                    <p class="sd-hero-text ig-in ig-d2">Presencia nacional con atención especializada en GNV y GLP. Toca una ciudad del mapa para ir directo a su sede.</p>
+                    <div class="ig-btns ig-in ig-d3">
+                        <a class="ig-btn ig-btn-red" href="#sedes">Ver todas las sedes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                        <a class="ig-btn ig-btn-lw" href="#mapa">Ver en el mapa</a>
+                    </div>
+                    <!-- PENDIENTE: confirmar cifras -->
+                    <dl class="sd-cifras ig-in ig-d3">
+                        <div><dt data-contar>7</dt><dd>Ciudades</dd></div>
+                        <div><dt data-contar>+2 000</dt><dd>Conversiones</dd></div>
+                        <div><dt>FISE</dt><dd>Convenio</dd></div>
+                        <div><dt data-contar>+15</dt><dd>Años</dd></div>
+                    </dl>
                 </div>
-                <div class="hero-mapa-fade" aria-hidden="true"></div>
-            </div>
-
-            <div class="container hero-inner">
-                <div class="hero-copy">
-                    <p class="hero-eyebrow">7 ciudades · 1 solo estándar</p>
-                    <h1 class="hero-title" id="heroTitulo">
-                        <span class="hero-line">Nuestras</span>
-                        <span class="hero-line l2">sedes</span>
-                    </h1>
-                    <p class="hero-sub">Presencia nacional con atención especializada en GNV y GLP en cada punto del país. Toca una ciudad del mapa para ir directo a su sede.</p>
-                    <div class="btn-row hero-btns">
-                        <a class="btn btn-red btn-lg" href="#sedes">Ver todas las sedes</a>
-                        <a class="btn btn-ghost-light btn-lg" href="#mapa">Ver en mapa</a>
+                <div class="sd-mapa">
+                    <div class="mapa-marco">
+                        <img src="../Inicio/Imagenes/peru-mapa.svg" alt="Mapa del Perú con las siete sedes de AutoGas" width="515" height="775" fetchpriority="high">
+                        <a class="pin pin-izq" href="#ica" style="left: 49.51%; top: 77.68%" aria-label="Ir a la sede Ica"> <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Ica</span> </a>
+                        <a class="pin pin-izq" href="#lima" style="left: 40.19%; top: 66.84%" aria-label="Ir a la sede Lima"> <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Lima</span> </a>
+                        <a class="pin" href="#huancayo" style="left: 55.34%; top: 63.74%" aria-label="Ir a la sede Huancayo"> <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Huancayo</span> </a>
+                        <a class="pin" href="#trujillo" style="left: 28.35%; top: 44.26%" aria-label="Ir a la sede Trujillo"> <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Trujillo</span> </a>
+                        <a class="pin" href="#nasca" style="left: 51.84%; top: 82.58%" aria-label="Ir a la sede Nasca"> <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Nasca</span> </a>
+                        <a class="pin pin-izq" href="#arequipa" style="left: 74.76%; top: 87.74%" aria-label="Ir a la sede Arequipa"> <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Arequipa</span> </a>
+                        <a class="pin" href="#chincha" style="left: 45.24%; top: 73.55%" aria-label="Ir a la sede Chincha"> <span class="pin-dot" aria-hidden="true"></span><span class="pin-label" aria-hidden="true">Chincha</span> </a>
                     </div>
                 </div>
             </div>
-
-            <div class="hero-cifras">
-                <!-- PENDIENTE: confirmar cifras -->
-                <dl class="container">
-                    <div><dt data-contar>7</dt><dd>ciudades</dd></div>
-                    <div><dt data-contar>+2 000</dt><dd>conversiones realizadas</dd></div>
-                    <div><dt>FISE</dt><dd>convenio para financiar tu conversión</dd></div>
-                    <div><dt data-contar>+15</dt><dd>años de experiencia</dd></div>
-                </dl>
-            </div>
         </section>
 
-        <!-- ==================== SEDES: una fila por sede ==================== -->
-        <section class="sedes" id="sedes" aria-labelledby="sedesTitulo">
-            <div class="container sedes-head">
-                <div class="section-head-split reveal">
-                    <h2 class="display" id="sedesTitulo">Encuentra tu<br><span class="rojo">sede más cercana</span></h2>
-                    <p class="lead lead-dark">Selecciona el tipo de servicio que necesitas y encuentra la sede AutoGas más cercana a ti.</p>
+        <!-- ==================== BUSCADOR + SEDES ==================== -->
+        <section class="sd-lista" id="sedes" aria-labelledby="sedesTitulo">
+            <div class="container">
+                <div class="ig-head reveal">
+                    <div class="ig-head-t">
+                        <p class="ig-lbl">Sedes</p>
+                        <h2 class="ig-h2" id="sedesTitulo">Encuentra tu sede más cercana</h2>
+                    </div>
+                    <p class="ig-txt ig-head-p">Elige el tipo de atención que necesitas y te mostramos las sedes que la ofrecen.</p>
                 </div>
-                <div class="filtros" role="group" aria-label="Filtrar sedes por servicio">
+            </div>
+            <div class="sd-barra">
+                <div class="container sd-barra-in">
+                    <div class="filtros" role="group" aria-label="Filtrar sedes por servicio">
                     <button type="button" class="filtro" data-filtro="todos" aria-pressed="true">Todas las sedes</button>
                     <button type="button" class="filtro" data-filtro="atencion" aria-pressed="false">Atención al cliente</button>
                     <button type="button" class="filtro" data-filtro="ventas" aria-pressed="false">Ventas</button>
                     <button type="button" class="filtro" data-filtro="soporte" aria-pressed="false">Soporte técnico</button>
                 </div>
-            </div>
-
-            <!-- Barra para saltar a cada ciudad (queda pegada debajo del menú) -->
-            <nav class="sede-salto" aria-label="Ir a una sede">
-                <ul class="container">
+                    <nav class="sede-salto" aria-label="Ir a una sede">
+                <ul>
                     <li><a href="#ica" data-sede="ica">Ica</a></li>
                     <li><a href="#lima" data-sede="lima">Lima</a></li>
                     <li><a href="#huancayo" data-sede="huancayo">Huancayo</a></li>
@@ -165,7 +164,8 @@
                     <li><a href="#chincha" data-sede="chincha">Chincha</a></li>
                 </ul>
             </nav>
-
+                </div>
+            </div>
             <div class="container sedes-lista">
                 <!-- ===== ICA ===== -->
                 <article class="sede" id="ica" data-servicios="atencion ventas soporte" aria-labelledby="tit-ica">
@@ -184,11 +184,6 @@
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/Taller4.webp" data-w="1920" data-h="1920" aria-label="Ver foto 4 de 5 de la sede Ica"><img src="../Inicio/Imagenes/Taller4.webp" srcset="../Inicio/Imagenes/Taller4-240.webp 240w, ../Inicio/Imagenes/Taller4-480.webp 480w, ../Inicio/Imagenes/Taller4-960.webp 960w, ../Inicio/Imagenes/Taller4-1440.webp 1440w, ../Inicio/Imagenes/Taller4.webp 1920w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1920" height="1920" loading="lazy" decoding="async"></button></li>
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/Diagnostico.webp" data-w="1920" data-h="1280" aria-label="Ver foto 5 de 5 de la sede Ica"><img src="../Inicio/Imagenes/Diagnostico.webp" srcset="../Inicio/Imagenes/Diagnostico-240.webp 240w, ../Inicio/Imagenes/Diagnostico-480.webp 480w, ../Inicio/Imagenes/Diagnostico-960.webp 960w, ../Inicio/Imagenes/Diagnostico-1440.webp 1440w, ../Inicio/Imagenes/Diagnostico.webp 1920w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1920" height="1280" loading="lazy" decoding="async"></button></li>
                         </ul>
-                        <div class="sede-acciones">
-                            <a class="btn btn-red" href="https://wa.me/51984851714?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Ica" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Ica (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
-                            <a class="btn btn-outline" href="https://maps.app.goo.gl/PZdiW36SM2awhmtSA" target="_blank" rel="noopener">Cómo llegar</a>
-                            <a class="btn btn-outline" href="../Contacto/contacto.html">Agendar cita</a>
-                        </div>
                     </div>
 
                     <div class="sede-info reveal">
@@ -199,6 +194,7 @@
                             <!-- PENDIENTE: horario real de la sede -->
                             <p class="sede-horario"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>[HORARIO: Lun–Sáb, 8:00 a. m. – 6:00 p. m.]</span></p>
                         </div>
+                        <p class="sede-tels-t">Teléfonos</p>
                         <ul class="sede-tels" aria-label="Teléfonos de la sede Ica">
                             <li>
                                 <a class="sede-tel" href="tel:+51984851714">
@@ -219,6 +215,11 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="sede-acciones">
+                            <a class="ig-btn ig-btn-red" href="https://wa.me/51984851714?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Ica" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Ica (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
+                            <a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/PZdiW36SM2awhmtSA" target="_blank" rel="noopener">Cómo llegar</a>
+                            <a class="ig-btn ig-btn-line" href="../Contacto/contacto.html">Agendar cita</a>
+                        </div>
                     </div>
                 </article>
                 <!-- ===== LIMA ===== -->
@@ -238,11 +239,6 @@
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/Taller1.webp" data-w="1290" data-h="1290" aria-label="Ver foto 4 de 5 de la sede Lima"><img src="../Inicio/Imagenes/Taller1.webp" srcset="../Inicio/Imagenes/Taller1-240.webp 240w, ../Inicio/Imagenes/Taller1-480.webp 480w, ../Inicio/Imagenes/Taller1-960.webp 960w, ../Inicio/Imagenes/Taller1.webp 1290w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1290" height="1290" loading="lazy" decoding="async"></button></li>
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/MecanicaSedan.webp" data-w="1290" data-h="1290" aria-label="Ver foto 5 de 5 de la sede Lima"><img src="../Inicio/Imagenes/MecanicaSedan.webp" srcset="../Inicio/Imagenes/MecanicaSedan-240.webp 240w, ../Inicio/Imagenes/MecanicaSedan-480.webp 480w, ../Inicio/Imagenes/MecanicaSedan-960.webp 960w, ../Inicio/Imagenes/MecanicaSedan.webp 1290w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1290" height="1290" loading="lazy" decoding="async"></button></li>
                         </ul>
-                        <div class="sede-acciones">
-                            <a class="btn btn-red" href="https://wa.me/51942623696?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Lima" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Lima (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
-                            <a class="btn btn-outline" href="https://maps.app.goo.gl/c628PPCCC9cx2U5w5" target="_blank" rel="noopener">Cómo llegar</a>
-                            <a class="btn btn-outline" href="../Contacto/contacto.html">Agendar cita</a>
-                        </div>
                     </div>
 
                     <div class="sede-info reveal">
@@ -253,6 +249,7 @@
                             <!-- PENDIENTE: horario real de la sede -->
                             <p class="sede-horario"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>[HORARIO: Lun–Sáb, 8:00 a. m. – 6:00 p. m.]</span></p>
                         </div>
+                        <p class="sede-tels-t">Teléfonos</p>
                         <ul class="sede-tels" aria-label="Teléfonos de la sede Lima">
                             <li>
                                 <a class="sede-tel" href="tel:+51942623696">
@@ -273,6 +270,11 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="sede-acciones">
+                            <a class="ig-btn ig-btn-red" href="https://wa.me/51942623696?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Lima" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Lima (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
+                            <a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/c628PPCCC9cx2U5w5" target="_blank" rel="noopener">Cómo llegar</a>
+                            <a class="ig-btn ig-btn-line" href="../Contacto/contacto.html">Agendar cita</a>
+                        </div>
                     </div>
                 </article>
                 <!-- ===== HUANCAYO ===== -->
@@ -293,11 +295,6 @@
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/InyectoresGas.webp" data-w="1080" data-h="1872" aria-label="Ver foto 4 de 5 de la sede Huancayo"><img src="../Inicio/Imagenes/InyectoresGas.webp" srcset="../Inicio/Imagenes/InyectoresGas-240.webp 240w, ../Inicio/Imagenes/InyectoresGas-480.webp 480w, ../Inicio/Imagenes/InyectoresGas-960.webp 960w, ../Inicio/Imagenes/InyectoresGas.webp 1080w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1080" height="1872" loading="lazy" decoding="async"></button></li>
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/Taller12.webp" data-w="1400" data-h="1867" aria-label="Ver foto 5 de 5 de la sede Huancayo"><img src="../Inicio/Imagenes/Taller12.webp" srcset="../Inicio/Imagenes/Taller12-240.webp 240w, ../Inicio/Imagenes/Taller12-480.webp 480w, ../Inicio/Imagenes/Taller12-960.webp 960w, ../Inicio/Imagenes/Taller12.webp 1400w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1400" height="1867" loading="lazy" decoding="async"></button></li>
                         </ul>
-                        <div class="sede-acciones">
-                            <a class="btn btn-red" href="https://wa.me/51942867212?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Huancayo" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Huancayo (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
-                            <a class="btn btn-outline" href="https://maps.app.goo.gl/GkT1hSnraskuAcUq9" target="_blank" rel="noopener">Cómo llegar</a>
-                            <a class="btn btn-outline" href="../Contacto/contacto.html">Agendar cita</a>
-                        </div>
                     </div>
 
                     <div class="sede-info reveal">
@@ -308,6 +305,7 @@
                             <!-- PENDIENTE: horario real de la sede -->
                             <p class="sede-horario"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>[HORARIO: Lun–Sáb, 8:00 a. m. – 6:00 p. m.]</span></p>
                         </div>
+                        <p class="sede-tels-t">Teléfonos</p>
                         <ul class="sede-tels" aria-label="Teléfonos de la sede Huancayo">
                             <li>
                                 <a class="sede-tel" href="tel:+51942867212">
@@ -328,6 +326,11 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="sede-acciones">
+                            <a class="ig-btn ig-btn-red" href="https://wa.me/51942867212?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Huancayo" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Huancayo (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
+                            <a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/GkT1hSnraskuAcUq9" target="_blank" rel="noopener">Cómo llegar</a>
+                            <a class="ig-btn ig-btn-line" href="../Contacto/contacto.html">Agendar cita</a>
+                        </div>
                     </div>
                 </article>
                 <!-- ===== TRUJILLO ===== -->
@@ -347,11 +350,6 @@
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/ReductorGNV.webp" data-w="918" data-h="918" aria-label="Ver foto 4 de 5 de la sede Trujillo"><img src="../Inicio/Imagenes/ReductorGNV.webp" srcset="../Inicio/Imagenes/ReductorGNV-240.webp 240w, ../Inicio/Imagenes/ReductorGNV-480.webp 480w, ../Inicio/Imagenes/ReductorGNV.webp 918w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="918" height="918" loading="lazy" decoding="async"></button></li>
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/SoporteTecnico.webp" data-w="1920" data-h="1280" aria-label="Ver foto 5 de 5 de la sede Trujillo"><img src="../Inicio/Imagenes/SoporteTecnico.webp" srcset="../Inicio/Imagenes/SoporteTecnico-240.webp 240w, ../Inicio/Imagenes/SoporteTecnico-480.webp 480w, ../Inicio/Imagenes/SoporteTecnico-960.webp 960w, ../Inicio/Imagenes/SoporteTecnico-1440.webp 1440w, ../Inicio/Imagenes/SoporteTecnico.webp 1920w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1920" height="1280" loading="lazy" decoding="async"></button></li>
                         </ul>
-                        <div class="sede-acciones">
-                            <a class="btn btn-red" href="https://wa.me/51937695830?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Trujillo" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Trujillo (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
-                            <a class="btn btn-outline" href="https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5" target="_blank" rel="noopener">Cómo llegar</a>
-                            <a class="btn btn-outline" href="../Contacto/contacto.html">Agendar cita</a>
-                        </div>
                     </div>
 
                     <div class="sede-info reveal">
@@ -362,6 +360,7 @@
                             <!-- PENDIENTE: horario real de la sede -->
                             <p class="sede-horario"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>[HORARIO: Lun–Sáb, 8:00 a. m. – 6:00 p. m.]</span></p>
                         </div>
+                        <p class="sede-tels-t">Teléfonos</p>
                         <ul class="sede-tels" aria-label="Teléfonos de la sede Trujillo">
                             <li>
                                 <a class="sede-tel" href="tel:+51937695830">
@@ -376,6 +375,11 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="sede-acciones">
+                            <a class="ig-btn ig-btn-red" href="https://wa.me/51937695830?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Trujillo" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Trujillo (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
+                            <a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5" target="_blank" rel="noopener">Cómo llegar</a>
+                            <a class="ig-btn ig-btn-line" href="../Contacto/contacto.html">Agendar cita</a>
+                        </div>
                     </div>
                 </article>
                 <!-- ===== NASCA ===== -->
@@ -395,11 +399,6 @@
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/ReductorGLP.webp" data-w="1279" data-h="1279" aria-label="Ver foto 4 de 5 de la sede Nasca"><img src="../Inicio/Imagenes/ReductorGLP.webp" srcset="../Inicio/Imagenes/ReductorGLP-240.webp 240w, ../Inicio/Imagenes/ReductorGLP-480.webp 480w, ../Inicio/Imagenes/ReductorGLP-960.webp 960w, ../Inicio/Imagenes/ReductorGLP.webp 1279w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1279" height="1279" loading="lazy" decoding="async"></button></li>
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/TallerNave.webp" data-w="1440" data-h="1440" aria-label="Ver foto 5 de 5 de la sede Nasca"><img src="../Inicio/Imagenes/TallerNave.webp" srcset="../Inicio/Imagenes/TallerNave-240.webp 240w, ../Inicio/Imagenes/TallerNave-480.webp 480w, ../Inicio/Imagenes/TallerNave-960.webp 960w, ../Inicio/Imagenes/TallerNave.webp 1440w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1440" height="1440" loading="lazy" decoding="async"></button></li>
                         </ul>
-                        <div class="sede-acciones">
-                            <a class="btn btn-red" href="https://wa.me/51939067488?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Nasca" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Nasca (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
-                            <a class="btn btn-outline" href="https://maps.app.goo.gl/V51hHVnhix8rHUdR6" target="_blank" rel="noopener">Cómo llegar</a>
-                            <a class="btn btn-outline" href="../Contacto/contacto.html">Agendar cita</a>
-                        </div>
                     </div>
 
                     <div class="sede-info reveal">
@@ -410,6 +409,7 @@
                             <!-- PENDIENTE: horario real de la sede -->
                             <p class="sede-horario"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>[HORARIO: Lun–Sáb, 8:00 a. m. – 6:00 p. m.]</span></p>
                         </div>
+                        <p class="sede-tels-t">Teléfonos</p>
                         <ul class="sede-tels" aria-label="Teléfonos de la sede Nasca">
                             <li>
                                 <a class="sede-tel" href="tel:+51939067488">
@@ -424,6 +424,11 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="sede-acciones">
+                            <a class="ig-btn ig-btn-red" href="https://wa.me/51939067488?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Nasca" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Nasca (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
+                            <a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/V51hHVnhix8rHUdR6" target="_blank" rel="noopener">Cómo llegar</a>
+                            <a class="ig-btn ig-btn-line" href="../Contacto/contacto.html">Agendar cita</a>
+                        </div>
                     </div>
                 </article>
                 <!-- ===== AREQUIPA ===== -->
@@ -443,11 +448,6 @@
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/InstalacionKit.webp" data-w="1200" data-h="1200" aria-label="Ver foto 4 de 5 de la sede Arequipa"><img src="../Inicio/Imagenes/InstalacionKit.webp" srcset="../Inicio/Imagenes/InstalacionKit-240.webp 240w, ../Inicio/Imagenes/InstalacionKit-480.webp 480w, ../Inicio/Imagenes/InstalacionKit-960.webp 960w, ../Inicio/Imagenes/InstalacionKit.webp 1200w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1200" height="1200" loading="lazy" decoding="async"></button></li>
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/TallerBahias.webp" data-w="1920" data-h="864" aria-label="Ver foto 5 de 5 de la sede Arequipa"><img src="../Inicio/Imagenes/TallerBahias.webp" srcset="../Inicio/Imagenes/TallerBahias-240.webp 240w, ../Inicio/Imagenes/TallerBahias-480.webp 480w, ../Inicio/Imagenes/TallerBahias-960.webp 960w, ../Inicio/Imagenes/TallerBahias-1440.webp 1440w, ../Inicio/Imagenes/TallerBahias.webp 1920w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1920" height="864" loading="lazy" decoding="async"></button></li>
                         </ul>
-                        <div class="sede-acciones">
-                            <a class="btn btn-red" href="https://wa.me/51975338252?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Arequipa" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Arequipa (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
-                            <a class="btn btn-outline" href="https://maps.app.goo.gl/qG2XawRA8xHF2MTb7" target="_blank" rel="noopener">Cómo llegar</a>
-                            <a class="btn btn-outline" href="../Contacto/contacto.html">Agendar cita</a>
-                        </div>
                     </div>
 
                     <div class="sede-info reveal">
@@ -458,6 +458,7 @@
                             <!-- PENDIENTE: horario real de la sede -->
                             <p class="sede-horario"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>[HORARIO: Lun–Sáb, 8:00 a. m. – 6:00 p. m.]</span></p>
                         </div>
+                        <p class="sede-tels-t">Teléfonos</p>
                         <ul class="sede-tels" aria-label="Teléfonos de la sede Arequipa">
                             <li>
                                 <a class="sede-tel" href="tel:+51975338252">
@@ -472,6 +473,11 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="sede-acciones">
+                            <a class="ig-btn ig-btn-red" href="https://wa.me/51975338252?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Arequipa" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Arequipa (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
+                            <a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/qG2XawRA8xHF2MTb7" target="_blank" rel="noopener">Cómo llegar</a>
+                            <a class="ig-btn ig-btn-line" href="../Contacto/contacto.html">Agendar cita</a>
+                        </div>
                     </div>
                 </article>
                 <!-- ===== CHINCHA ===== -->
@@ -491,11 +497,6 @@
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/CentralitaGas.webp" data-w="1078" data-h="1737" aria-label="Ver foto 4 de 5 de la sede Chincha"><img src="../Inicio/Imagenes/CentralitaGas.webp" srcset="../Inicio/Imagenes/CentralitaGas-240.webp 240w, ../Inicio/Imagenes/CentralitaGas-480.webp 480w, ../Inicio/Imagenes/CentralitaGas-960.webp 960w, ../Inicio/Imagenes/CentralitaGas.webp 1078w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1078" height="1737" loading="lazy" decoding="async"></button></li>
                                 <li><button class="sede-thumb" type="button" data-src="../Inicio/Imagenes/Diagnostico.webp" data-w="1920" data-h="1280" aria-label="Ver foto 5 de 5 de la sede Chincha"><img src="../Inicio/Imagenes/Diagnostico.webp" srcset="../Inicio/Imagenes/Diagnostico-240.webp 240w, ../Inicio/Imagenes/Diagnostico-480.webp 480w, ../Inicio/Imagenes/Diagnostico-960.webp 960w, ../Inicio/Imagenes/Diagnostico-1440.webp 1440w, ../Inicio/Imagenes/Diagnostico.webp 1920w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 10vw, 119px" alt="" width="1920" height="1280" loading="lazy" decoding="async"></button></li>
                         </ul>
-                        <div class="sede-acciones">
-                            <a class="btn btn-red" href="https://wa.me/51930210613?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Chincha" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Chincha (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
-                            <a class="btn btn-outline" href="https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA" target="_blank" rel="noopener">Cómo llegar</a>
-                            <a class="btn btn-outline" href="../Contacto/contacto.html">Agendar cita</a>
-                        </div>
                     </div>
 
                     <div class="sede-info reveal">
@@ -506,6 +507,7 @@
                             <!-- PENDIENTE: horario real de la sede -->
                             <p class="sede-horario"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>[HORARIO: Lun–Sáb, 8:00 a. m. – 6:00 p. m.]</span></p>
                         </div>
+                        <p class="sede-tels-t">Teléfonos</p>
                         <ul class="sede-tels" aria-label="Teléfonos de la sede Chincha">
                             <li>
                                 <a class="sede-tel" href="tel:+51930210613">
@@ -514,6 +516,11 @@
                                 </a>
                             </li>
                         </ul>
+                        <div class="sede-acciones">
+                            <a class="ig-btn ig-btn-red" href="https://wa.me/51930210613?text=Hola%2C%20quisiera%20informaci%C3%B3n%20sobre%20las%20conversiones%20GNV%2FGLP%20en%20la%20sede%20Chincha" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Chincha (se abre en una pestaña nueva)"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg> WhatsApp</a>
+                            <a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA" target="_blank" rel="noopener">Cómo llegar</a>
+                            <a class="ig-btn ig-btn-line" href="../Contacto/contacto.html">Agendar cita</a>
+                        </div>
                     </div>
                 </article>
                 <p class="sin-resultados" id="sinResultados" hidden>No hay sedes con ese servicio disponible actualmente.</p>
@@ -521,11 +528,14 @@
         </section>
 
         <!-- ==================== MAPA INTERACTIVO ==================== -->
-        <section class="section section-dark" id="mapa" aria-labelledby="mapaTitulo">
+        <section class="ig-sec ig-bg-bone" id="mapa" aria-labelledby="mapaTitulo">
             <div class="container">
-                <div class="section-head-split reveal">
-                    <h2 class="display" id="mapaTitulo">Encuentra tu<br><span class="rojo">sede en el mapa</span></h2>
-                    <p class="lead">Acércate, arrastra y toca un punto para ver la dirección y los servicios de cada sede.</p>
+                <div class="ig-head reveal">
+                    <div class="ig-head-t">
+                        <p class="ig-lbl">Mapa</p>
+                        <h2 class="ig-h2" id="mapaTitulo">Encuentra tu sede en el mapa</h2>
+                    </div>
+                    <p class="ig-txt ig-head-p">Acércate, arrastra y toca un punto para ver la dirección y los servicios de cada sede.</p>
                 </div>
                 <div class="mapa-wrap reveal">
                     <div id="leafletMap" role="region" aria-label="Mapa interactivo de sedes"></div>
@@ -534,17 +544,22 @@
         </section>
 
         <!-- ==================== CIERRE ==================== -->
-        <section class="cierre" aria-labelledby="cierreTitulo">
-            <img class="cierre-img" src="../Servicios/Imagenes/IMG_3217.webp" srcset="../Servicios/Imagenes/IMG_3217-240.webp 240w, ../Servicios/Imagenes/IMG_3217-480.webp 480w, ../Servicios/Imagenes/IMG_3217-960.webp 960w, ../Servicios/Imagenes/IMG_3217-1440.webp 1440w, ../Servicios/Imagenes/IMG_3217.webp 1920w" sizes="(max-width: 900px) 100vw, (max-width: 1400px) 100vw, 1920px" alt="" width="1920" height="1440" loading="lazy" decoding="async">
-            <div class="container cierre-inner reveal">
-                <h2 class="display" id="cierreTitulo">¿No encuentras una sede <span class="rojo">cerca?</span></h2>
-                <p class="lead">Contáctanos y te orientamos al punto de atención más cercano a tu ubicación.</p>
-                <a class="btn btn-red btn-lg" href="../Contacto/contacto.html">Contáctanos ahora</a>
+        <section class="ig-cta" aria-labelledby="ctaTitulo">
+            <img class="ig-cta-img" src="../Inicio/Imagenes/TallerBahias-1440.webp" alt="" width="1440" height="648" loading="lazy" decoding="async">
+            <div class="container ig-cta-in reveal">
+                <div>
+                    <h2 class="ig-h2" id="ctaTitulo">¿No encuentras una sede cerca?</h2>
+                    <p>Contáctanos y te orientamos al punto de atención más cercano a tu ubicación.</p>
+                </div>
+                <div class="ig-btns">
+                    <a class="ig-btn ig-btn-red" href="../Contacto/contacto.html">Contáctanos ahora <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    <a class="ig-btn ig-btn-lw" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- ==================== FOOTER (igual en todo el sitio) ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -579,8 +594,8 @@
                     <ul>
                         <li><a href="../Inicio/inicio.html">Inicio</a></li>
                         <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
-                        <li><a href="../Servicios/servicios.html">Servicios</a></li>
-                        <li><a href="sedes.html">Sedes</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
+                        <li><a href="../Sedes/sedes.html">Sedes</a></li>
                         <li><a href="../Tienda/tienda.html">Tienda</a></li>
                         <li><a href="../Contacto/contacto.html">Cotizar</a></li>
                     </ul>
@@ -609,7 +624,7 @@
             </div>
             <div class="footer-bottom">
                 <!-- PENDIENTE: RUC -->
-                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>© <span id="anio">2026</span> AutoGas Perú </p>
                 <p>Hecho en el Perú</p>
             </div>
         </div>
@@ -630,7 +645,7 @@
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
     <script src="vendor/leaflet/leaflet.js" defer></script>
-    <script src="sedes.js?v=20261030-1" defer></script>
+    <script src="sedes.js?v=20261112-1" defer></script>
 </body>
 
 </html>

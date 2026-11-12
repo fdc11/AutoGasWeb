@@ -1,0 +1,146 @@
+/* =====================================================================
+   contacto.css — AutoGas (página Cotizar)
+   Solo lo propio de esta página. Lo compartido (fuentes, colores,
+   botones, menú, portada, footer y animaciones) está en ../Comun/comun.css
+   ===================================================================== */
+
+.rojo { color: var(--red); }
+.opcional { font-weight: 400; color: #6B6B6B; }
+
+/* ---------- Formulario + cómo funciona ---------- */
+.cotizar { background: var(--bone); color: var(--ink); padding-block: clamp(4rem, 8vw, 6.5rem); }
+.cotizar-grid {
+    display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: clamp(2rem, 5vw, 5rem); align-items: start;
+}
+@media (max-width: 900px) { .cotizar-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Columna izquierda (queda fija mientras llenas el formulario) */
+.cotizar-info { position: sticky; top: calc(var(--header-h) + 1.5rem); }
+@media (max-width: 900px) { .cotizar-info { position: static; order: 2; } }
+
+.como-funciona { margin-top: 2rem; border-top: 1px solid var(--line-light); }
+.como-funciona li {
+    display: grid; grid-template-columns: 3rem 1fr; gap: 0.75rem;
+    padding: 1.25rem 0; border-bottom: 1px solid var(--line-light);
+    font-size: 0.9375rem; line-height: 1.5; color: var(--ink-soft);
+}
+.como-funciona strong { display: block; margin-bottom: 0.25rem; font-size: 1.125rem; color: var(--ink); }
+.cf-num { font-family: var(--font-display); font-weight: 800; font-size: 2rem; line-height: 1; color: var(--red); }
+
+.aviso-fise {
+    margin-top: 1.5rem; padding: 1.25rem; display: flex; gap: 1rem; align-items: center;
+    background: var(--white); border: 1px solid var(--line-light); border-radius: var(--radius);
+}
+.aviso-fise-logo { flex: none; font-family: var(--font-display); font-weight: 800; font-size: 1.625rem; }
+.aviso-fise p { font-size: 0.9375rem; line-height: 1.5; color: var(--ink-soft); }
+
+.directo-titulo {
+    margin: 2rem 0 0.75rem; font-size: 0.8125rem; font-weight: 600; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--ink-soft);
+}
+.directo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.625rem 1rem; }
+.directo a {
+    display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2rem;
+    text-decoration: none; font-weight: 600; font-size: 0.9375rem; color: var(--ink);
+    transition: color .2s ease;
+}
+.directo a:hover { color: var(--red); }
+
+/* Caja del formulario */
+.cotizar-caja {
+    background: var(--white); border: 1px solid var(--line-light); border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+}
+
+.progreso { display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; }
+.progreso-paso { font-size: 0.8125rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.progreso-sigue { font-size: 0.9375rem; color: var(--ink-soft); }
+.progreso-barra { margin-top: 0.75rem; height: 0.1875rem; background: #E9E7E2; }
+.progreso-barra span { display: block; height: 100%; width: 50%; background: var(--red); transition: width .5s var(--ease-out); }
+
+.paso { animation: pasoIn .45s var(--ease-out) both; }
+@keyframes pasoIn { from { opacity: 0; transform: translateY(0.75rem); } to { opacity: 1; transform: none; } }
+.paso-titulo {
+    margin-top: 1.75rem; font-family: var(--font-display); font-weight: 800; text-transform: uppercase;
+    font-size: 2.25rem; line-height: 1;
+}
+.paso-titulo:focus { outline: none; }
+
+.grupo { margin: 1.5rem 0 0; padding: 0; border: 0; min-width: 0; }
+.grupo legend, .campo label { display: block; margin-bottom: 0.5rem; padding: 0; font-size: 0.9375rem; font-weight: 600; color: var(--ink); }
+
+/* Opciones para tocar (son radios de verdad: funcionan con teclado) */
+.opciones { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.opciones-sedes { display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); }
+.opcion { position: relative; display: block; }
+.opcion input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opcion span {
+    display: flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0.625rem 1rem;
+    border: 1px solid rgba(17, 17, 17, 0.22); border-radius: var(--radius); background: var(--white);
+    font-size: 0.9375rem; font-weight: 600; color: var(--ink); cursor: pointer; text-align: center;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+}
+.opcion:hover span { border-color: var(--ink); }
+.opcion input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.opcion input:focus-visible + span { outline: 2px solid var(--red); outline-offset: 2px; }
+
+.campos { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr)); gap: 1rem; }
+.campos-3 { grid-template-columns: repeat(auto-fit, minmax(9.375rem, 1fr)); }
+.campo input {
+    display: block; width: 100%; height: 3.25rem; padding: 0 0.875rem;
+    border: 1px solid rgba(17, 17, 17, 0.22); border-radius: var(--radius); background: var(--white);
+    font-family: var(--font-body); font-size: 1rem; color: var(--ink);
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+.campo input::placeholder { color: #9A9A9A; }
+.campo input:hover { border-color: rgba(17, 17, 17, 0.45); }
+.campo input:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 0.1875rem rgba(17, 17, 17, 0.08); }
+.campo input[aria-invalid="true"] { border-color: var(--red-hover); }
+.campo-error { margin-top: 0.375rem; font-size: 0.875rem; color: var(--red-hover); }
+.campo-error:empty { display: none; }
+
+.mas-detalles { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--line-light); }
+.mas-detalles summary { cursor: pointer; font-weight: 600; font-size: 0.9375rem; min-height: 2rem; display: flex; align-items: center; gap: 0.375rem; }
+.mas-detalles .campos { margin-top: 1rem; }
+
+.trampa { position: absolute; left: -624.9375rem; width: 1px; height: 1px; overflow: hidden; }
+
+.acciones { margin-top: 2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.75rem; }
+.acciones-fin { justify-content: flex-end; }
+.btn-wa { gap: 0.625rem; }
+.nota-envio { margin-top: 1rem; font-size: 0.875rem; line-height: 1.5; color: #6B6B6B; }
+
+/* Pantalla "Listo" */
+.listo { animation: pasoIn .45s var(--ease-out) both; }
+.listo-eyebrow { font-size: 0.8125rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); }
+.listo .paso-titulo { margin-top: 0.625rem; font-size: 2.5rem; }
+.listo-texto { margin-top: 1rem; font-size: 1rem; line-height: 1.55; color: var(--ink-soft); }
+.listo-mensaje {
+    margin: 1.25rem 0 0; padding: 1.25rem; background: var(--bone); border-left: 0.1875rem solid #25D366;
+    white-space: pre-wrap; font-family: var(--font-body); font-size: 0.9375rem; line-height: 1.6; color: var(--ink);
+}
+
+@media (max-width: 480px) {
+    .acciones .btn { width: 100%; }
+}
+
+/* ---------- Preguntas frecuentes ---------- */
+.faq { border-top: 1px solid var(--line-light); }
+.faq details { border-bottom: 1px solid var(--line-light); }
+.faq summary {
+    list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    padding: 1.375rem 0; font-weight: 600; font-size: 1.125rem;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: '+'; flex: none; font-size: 1.625rem; line-height: 1; color: var(--red); transition: transform .3s ease; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq p { margin: 0 0 1.375rem; max-width: 40rem; font-size: 1rem; line-height: 1.6; color: var(--ink-soft); }
+
+@media (prefers-reduced-motion: reduce) {
+    .paso, .listo { animation: none; }
+}
+
+.nota-legal { margin-top: 0.5rem; font-size: 0.8125rem; line-height: 1.5; color: #6B6B6B; }
+.nota-legal a { color: inherit; text-decoration: underline; text-underline-offset: 0.2em; }
+.nota-legal a:hover { color: var(--red); }
