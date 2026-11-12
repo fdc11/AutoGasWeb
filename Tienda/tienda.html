@@ -6,36 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#FFFFFF">
     <meta name="color-scheme" content="light" />
+    <!-- Evita parpadeos: estilos mínimos antes de cargar el CSS -->
     <style>
-        /* Critical CSS (pre-paint) — prevent CLS/FOUC */
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            overflow-x: clip;
-        }
-
-        .navbar {
-            height: 80px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
-
-        html {
-            color-scheme: light only;
-        }
-
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; background: #FFFFFF; }
+        .site-header { height: 72px; }
+        .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
     </style>
     <title>AutoGas | Tienda — Aceites, Aditivos, Filtros y Repuestos</title>
     <meta name="description" content="Tienda AutoGas: aceites, refrigerantes, filtros y repuestos de marcas líderes. Arma tu pedido y envíalo por WhatsApp a tu sede más cercana.">
@@ -48,27 +26,33 @@
     <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
     <meta property="og:url" content="https://autogas-web.vercel.app/Tienda/tienda.html">
 
-    <link rel="preload" as="image" href="Imagenes/IMG_3214.webp" imagesrcset="Imagenes/IMG_3214-240.webp 240w, Imagenes/IMG_3214-480.webp 480w, Imagenes/IMG_3214-960.webp 960w, Imagenes/IMG_3214-1440.webp 1440w, Imagenes/IMG_3214.webp 1920w" imagesizes="(max-width: 900px) 160vw, 100vw" fetchpriority="high">
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
+    <link rel="preload" as="image" href="Imagenes/IMG_3214-1440.webp" imagesrcset="Imagenes/IMG_3214-480.webp 480w, Imagenes/IMG_3214-960.webp 960w, Imagenes/IMG_3214-1440.webp 1440w" imagesizes="100vw">
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="tienda.css?v=20261106-4">
-    <style>
-        .site-header { height: 72px; }
-        .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
-    </style>
+    <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
+    <link rel="stylesheet" href="tienda.css?v=20261112-1">
 </head>
 
-<body>
-
+<!-- pg-corp + data-header="solid": menú blanco (../Comun/corporativo.css y comun.js) -->
+<body class="pg-corp pg-tienda" data-header="solid">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+    <!-- ==================== BARRA SUPERIOR ==================== -->
+    <div class="ig-topbar">
+        <div class="container ig-topbar-in">
+            <p>7 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
+            <a href="../Inicio/inicio.html#fise">Financia tu conversión con FISE
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+    </div>
+
     <!-- ==================== MENÚ ==================== -->
-    <header class="site-header">
+    <header class="site-header" id="siteHeader">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
-                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+                <img src="../Inicio/Imagenes/AutoGasLogoNegro.png" alt="AutoGas" width="600" height="142">
             </a>
 
             <ul class="nav-links">
@@ -76,9 +60,8 @@
                 <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
                 <li><a href="../Servicios/servicios.html">Servicios</a></li>
                 <li><a href="../Sedes/sedes.html">Sedes</a></li>
-                <li><a href="../Tienda/tienda.html" aria-current="page">Tienda</a></li>
+                <li><a href="tienda.html" aria-current="page">Tienda</a></li>
             </ul>
-
             <a class="btn btn-red nav-cta" href="../Contacto/contacto.html">Cotizar</a>
 
             <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
@@ -87,7 +70,7 @@
         </nav>
     </header>
 
-    <!-- Menú de celular -->
+    <!-- Menú de celular (comportamiento en ../Comun/comun.js) -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
         <div class="mobile-menu-top">
             <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
@@ -98,35 +81,36 @@
             <li class="mnav-item"><span class="mnav-num">02</span><a class="mnav-link" href="../Nosotros/nosotros.html">Nosotros</a></li>
             <li class="mnav-item"><span class="mnav-num">03</span><a class="mnav-link" href="../Servicios/servicios.html">Servicios</a></li>
             <li class="mnav-item"><span class="mnav-num">04</span><a class="mnav-link" href="../Sedes/sedes.html">Sedes</a></li>
-            <li class="mnav-item"><span class="mnav-num">05</span><a class="mnav-link" href="../Tienda/tienda.html" aria-current="page">Tienda</a></li>
+            <li class="mnav-item"><span class="mnav-num">05</span><a class="mnav-link" href="tienda.html" aria-current="page">Tienda</a></li>
         </ul>
         <a class="mnav-cta mnav-item" href="../Contacto/contacto.html">Cotizar ahora</a>
     </div>
 
-    <main id="contenido">
+            <main id="contenido">
 
     <!-- ==================== PORTADA (inicio de tienda) ==================== -->
-    <section class="page-hero page-hero--compacta" id="tHero" aria-labelledby="heroTitulo">
-        <img class="page-hero-img" src="Imagenes/IMG_3214.webp" srcset="Imagenes/IMG_3214-240.webp 240w, Imagenes/IMG_3214-480.webp 480w, Imagenes/IMG_3214-960.webp 960w, Imagenes/IMG_3214-1440.webp 1440w, Imagenes/IMG_3214.webp 1920w" sizes="(max-width: 900px) 160vw, 100vw" alt="" width="1920" height="1440" decoding="async" fetchpriority="high">
-        <div class="page-hero-shade"></div>
-        <div class="container page-hero-inner">
-            <p class="page-hero-eyebrow">Tienda AutoGas</p>
-            <h1 class="page-hero-title" id="heroTitulo">
-                <span class="page-hero-line">Productos que tu auto</span>
-                <span class="page-hero-line l2">merece.</span>
-            </h1>
-            <p class="page-hero-sub">Marcas líderes. Precios directos. A un mensaje de tu sede más cercana.</p>
-            <form class="t-search" id="heroSearchForm" role="search">
-                    <label for="heroSearch" class="sr-only">Buscar producto</label>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" aria-hidden="true">
-                        <circle cx="11" cy="11" r="7" />
-                        <path d="M20 20l-3.5-3.5" />
-                    </svg>
-                    <input type="search" id="heroSearch" placeholder="Busca un producto o marca: 5W-30, Prestone, filtro…"
-                        autocomplete="off" />
-                    <button type="submit">Buscar</button>
-                </form>
+    <section class="ig-hero ig-hero--page t-hero" id="tHero" aria-labelledby="heroTitulo">
+        <img class="ig-hero-media" src="Imagenes/IMG_3214-1440.webp" srcset="Imagenes/IMG_3214-480.webp 480w, Imagenes/IMG_3214-960.webp 960w, Imagenes/IMG_3214-1440.webp 1440w" sizes="100vw" alt="" width="1440" height="1080" fetchpriority="high" decoding="async">
+        <div class="ig-hero-shade" aria-hidden="true"></div>
+        <div class="container ig-hero-in">
+            <nav class="t-crumbs ig-in" aria-label="Estás aquí">
+                <a href="../Inicio/inicio.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Tienda</span>
+            </nav>
+            <h1 class="ig-hero-title ig-in ig-d1" id="heroTitulo">Productos que tu auto merece</h1>
+            <p class="ig-hero-text ig-in ig-d2">Marcas líderes y precios directos, a un mensaje de tu sede más cercana.</p>
+            <form class="t-search ig-in ig-d3" id="heroSearchForm" role="search">
+                <label for="heroSearch" class="sr-only">Buscar producto</label>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+                <input type="search" id="heroSearch" placeholder="Busca por producto, marca o código. Ej.: 5W-30" autocomplete="off">
+                <button type="submit">Buscar</button>
+            </form>
+            <div class="t-quick ig-in ig-d3">
+                <span>Lo más buscado:</span>
+                <a href="#buscar=5W-30">Aceite 5W-30</a>
+                <a href="#buscar=filtro%20de%20aceite">Filtro de aceite</a>
+                <a href="#buscar=inyectores">Limpiador de inyectores</a>
+                <a href="#buscar=Liqui%20Moly">Liqui Moly</a>
+            </div>
         </div>
     </section>
 
@@ -134,7 +118,7 @@
     <section class="t-cathead" id="catHead" hidden>
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="t-cathead-img" id="catHeadImg" decoding="async" />
         <div class="t-cathead-overlay"></div>
-        <div class="t-cathead-inner">
+        <div class="container t-cathead-inner">
             <nav class="t-crumb" aria-label="Ruta">
                 <a href="#tienda">Tienda</a>
                 <span aria-hidden="true">/</span>
@@ -147,7 +131,7 @@
 
     <!-- ==================== BARRA DE CATEGORÍAS (fija) ==================== -->
     <div class="t-catbar" id="catBar" hidden>
-        <div class="t-catbar-inner">
+        <div class="container t-catbar-inner">
             <a href="#tienda" class="t-catbar-back">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -164,27 +148,65 @@
 
         <!-- VISTA: INICIO DE TIENDA -->
         <div id="viewHome">
-            <div class="t-head" id="categorias">
-                <div>
-                    <span class="t-label">Nuestra tienda</span>
-                    <h2 class="t-title">Lo que tu auto<br /><em>necesita</em></h2>
+            <section class="t-bens" aria-label="Por qué comprar en AutoGas">
+                <div class="container">
+                    <ul>
+                        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Marcas líderes</strong><span>Liqui Moly, Castrol, Shell, Mobil, Bosch y más.</span></div></li>
+                        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Asesoría para tu auto</strong><span>Te decimos qué aceite o filtro lleva tu motor.</span></div></li>
+                        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Pedido por WhatsApp</strong><span>Arma tu pedido y lo envías a tu sede.</span></div></li>
+                        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>7 sedes en el Perú</strong><span>Ica, Lima, Huancayo, Trujillo y más.</span></div></li>
+                    </ul>
                 </div>
-                <p class="t-head-desc">Elige una categoría y encuentra el producto ideal.</p>
-            </div>
-            <div class="t-cats" id="catsGrid"></div>
+            </section>
 
-            <div class="t-head t-head--top">
-                <div>
-                    <span class="t-label">Los más pedidos</span>
-                    <h2 class="t-title t-title--sm">Lo que más <em>se llevan</em></h2>
+            <section class="t-sec" id="categorias" aria-labelledby="catsTitulo">
+                <div class="container">
+                    <div class="ig-head">
+                        <div class="ig-head-t">
+                            <p class="ig-lbl">Categorías</p>
+                            <h2 class="ig-h2" id="catsTitulo">Lo que tu auto necesita</h2>
+                        </div>
+                        <p class="ig-txt ig-head-p">Elige una categoría y encuentra el producto ideal para tu motor.</p>
+                    </div>
+                    <div class="t-cats" id="catsGrid"></div>
                 </div>
-            </div>
-            <div class="t-grid" id="topGrid"></div>
+            </section>
+
+            <section class="t-sec t-sec--top" aria-labelledby="topTitulo">
+                <div class="container">
+                    <div class="ig-head">
+                        <div class="ig-head-t">
+                            <p class="ig-lbl">Los más pedidos</p>
+                            <h2 class="ig-h2" id="topTitulo">Lo que más se llevan</h2>
+                        </div>
+                        <a class="ig-more" href="#aceites">Ver aceites y lubricantes <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </div>
+                    <div class="t-grid t-grid--4" id="topGrid"></div>
+                </div>
+            </section>
+
+            <section class="ig-sec ig-bg-dark" aria-labelledby="comoTitulo">
+                <div class="container">
+                    <div class="ig-head">
+                        <div class="ig-head-t">
+                            <p class="ig-lbl t-lbl-light">Cómo comprar</p>
+                            <h2 class="ig-h2" id="comoTitulo">Tu pedido en tres pasos</h2>
+                        </div>
+                        <p class="ig-txt ig-head-p">Sin registrarte y sin pagar en línea. Todo se coordina directamente con tu sede.</p>
+                    </div>
+                    <ol class="t-how">
+                        <li><span>01</span><strong>Agrega tus productos</strong><p>Elige lo que necesitas y la cantidad. Tu pedido se guarda mientras navegas.</p></li>
+                        <li><span>02</span><strong>Completa tus datos y elige tu sede</strong><p>Tu nombre, tu vehículo y la sede más cercana entre nuestras 7 ciudades.</p></li>
+                        <li><span>03</span><strong>Envía por WhatsApp</strong><p>Te llega el pedido listo y la sede te confirma precio, stock e instalación.</p></li>
+                    </ol>
+                </div>
+            </section>
         </div>
 
         <!-- VISTA: CATEGORÍA O BÚSQUEDA -->
         <div id="viewCat" hidden>
-            <div class="t-catalog" id="catalogo">
+            <section class="t-catsec">
+            <div class="container t-catalog" id="catalogo">
 
                 <!-- Filtros: columna en escritorio, panel a pantalla completa en celular -->
                 <aside class="t-fpanel" id="filtersPanel" aria-label="Filtros">
@@ -247,36 +269,56 @@
                 </div>
             </div>
 
-            <div class="t-more">
+            </section>
+            <section class="t-more">
+                <div class="container t-more-in">
                 <div>
-                    <span class="t-label t-label--light">¿Buscas otra cosa?</span>
-                    <p class="t-more-title">Sigue explorando la tienda</p>
+                    <p class="ig-lbl t-lbl-light">¿Buscas otra cosa?</p>
+                    <h2 class="ig-h2 t-more-title">Sigue explorando la tienda</h2>
                 </div>
                 <div class="t-more-links" id="moreLinks"></div>
             </div>
+            </section>
+
         </div>
     </div>
 
     <!-- ==================== MARCAS ==================== -->
-    <section class="t-brands">
-        <div class="t-brands-inner">
-            <span class="t-label t-label--muted">Marcas que trabajamos</span>
-            <div class="t-brands-logos">
-                <img width="900" height="338" src="Imagenes/ShellLogo.webp" srcset="Imagenes/ShellLogo-240.webp 240w, Imagenes/ShellLogo-480.webp 480w, Imagenes/ShellLogo.webp 900w" sizes="(max-width: 900px) 26vw, (max-width: 1400px) 13vw, 128px" alt="Shell" loading="lazy" decoding="async" />
-                <img width="1920" height="487" src="Imagenes/CastrolLogo.webp" srcset="Imagenes/CastrolLogo-240.webp 240w, Imagenes/CastrolLogo-480.webp 480w, Imagenes/CastrolLogo-960.webp 960w, Imagenes/CastrolLogo-1440.webp 1440w, Imagenes/CastrolLogo.webp 1920w" sizes="(max-width: 900px) 27vw, (max-width: 1400px) 13vw, 130px" alt="Castrol" loading="lazy" decoding="async" />
-                <img width="1920" height="1255" src="Imagenes/LiquiMolyLogo.webp" srcset="Imagenes/LiquiMolyLogo-240.webp 240w, Imagenes/LiquiMolyLogo-480.webp 480w, Imagenes/LiquiMolyLogo-960.webp 960w, Imagenes/LiquiMolyLogo-1440.webp 1440w, Imagenes/LiquiMolyLogo.webp 1920w" sizes="(max-width: 900px) 15vw, (max-width: 1400px) 8vw, 73px" alt="Liqui Moly" loading="lazy" decoding="async" />
-                <img width="1920" height="1080" src="Imagenes/ValvolineLogo.webp" srcset="Imagenes/ValvolineLogo-240.webp 240w, Imagenes/ValvolineLogo-480.webp 480w, Imagenes/ValvolineLogo-960.webp 960w, Imagenes/ValvolineLogo-1440.webp 1440w, Imagenes/ValvolineLogo.webp 1920w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 9vw, 85px" alt="Valvoline" loading="lazy" decoding="async" />
-                <img width="1920" height="2143" src="Imagenes/ChevronLogo.webp" srcset="Imagenes/ChevronLogo-240.webp 240w, Imagenes/ChevronLogo-480.webp 480w, Imagenes/ChevronLogo-960.webp 960w, Imagenes/ChevronLogo-1440.webp 1440w, Imagenes/ChevronLogo.webp 1920w" sizes="(max-width: 900px) 9vw, (max-width: 1400px) 5vw, 43px" alt="Chevron" loading="lazy" decoding="async" />
-                <img width="600" height="263" src="Imagenes/PrestoneLogo.webp" alt="Prestone" loading="lazy" decoding="async" />
-                <img width="390" height="129" src="Imagenes/SnowLogo.webp" alt="Snow" loading="lazy" decoding="async" />
+    <section class="ig-sec ig-bg-white t-brands" aria-labelledby="marcasTitulo">
+        <div class="container">
+            <div class="t-brands-head">
+                <p class="ig-lbl">Marcas</p>
+                <h2 class="ig-h2" id="marcasTitulo">Marcas que trabajamos</h2>
             </div>
+            <ul class="t-brands-grid">
+                    <li class="t-brand"><img src="../Servicios/Imagenes/aceites/LiquiMoly.png" alt="Liqui Moly" width="480" height="200" loading="lazy" decoding="async"><span>Liqui Moly</span></li>
+                    <li class="t-brand"><img src="../Servicios/Imagenes/aceites/Castrol.png" alt="Castrol" width="480" height="200" loading="lazy" decoding="async"><span>Castrol</span></li>
+                    <li class="t-brand"><img src="../Servicios/Imagenes/aceites/Shell.png" alt="Shell" width="480" height="200" loading="lazy" decoding="async"><span>Shell</span></li>
+                    <li class="t-brand"><img src="../Servicios/Imagenes/aceites/Valvoline.png" alt="Valvoline" width="480" height="200" loading="lazy" decoding="async"><span>Valvoline</span></li>
+                    <li class="t-brand"><img src="../Servicios/Imagenes/aceites/Chevron.png" alt="Chevron" width="480" height="200" loading="lazy" decoding="async"><span>Chevron</span></li>
+                    <li class="t-brand"><img src="../Servicios/Imagenes/aceites/Prestone.png" alt="Prestone" width="480" height="200" loading="lazy" decoding="async"><span>Prestone</span></li>
+                    <li class="t-brand"><img src="../Servicios/Imagenes/aceites/Snow.png" alt="Snow" width="480" height="200" loading="lazy" decoding="async"><span>Snow</span></li>
+            </ul>
         </div>
     </section>
 
-
+    <!-- ==================== CIERRE ==================== -->
+    <section class="ig-cta" aria-labelledby="ctaTitulo">
+        <img class="ig-cta-img" src="../Inicio/Imagenes/TallerBahias-1440.webp" alt="" width="1440" height="648" loading="lazy" decoding="async">
+        <div class="container ig-cta-in">
+            <div>
+                <h2 class="ig-h2" id="ctaTitulo">¿No encuentras lo que buscas?</h2>
+                <p>Escríbenos con la marca y el modelo de tu auto, y te decimos qué producto necesita.</p>
+            </div>
+            <div class="ig-btns">
+                <a class="ig-btn ig-btn-red" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escribir por WhatsApp <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                <a class="ig-btn ig-btn-lw" href="../Sedes/sedes.html">Ver sedes</a>
+            </div>
+        </div>
+    </section>
     </main>
 
-    <!-- ==================== FOOTER ==================== -->
+    <!-- ==================== FOOTER (igual en todo el sitio) ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -299,11 +341,6 @@
                                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.6-2.7 5.9-5.9 5.9-3.4 0-5.9-2.6-5.9-5.8 0-3.6 3.1-6.2 6.8-5.7v3.2c-1.8-.4-3.5.8-3.5 2.6 0 1.4 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.2z"/></svg>
                             </a>
                         </li>
-                        <li>
-                            <a href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
-                            </a>
-                        </li>
                     </ul>
                 </div>
                 <nav aria-label="Secciones del sitio">
@@ -311,7 +348,7 @@
                     <ul>
                         <li><a href="../Inicio/inicio.html">Inicio</a></li>
                         <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
-                        <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                        <li><a href="servicios.html">Servicios</a></li>
                         <li><a href="../Sedes/sedes.html">Sedes</a></li>
                         <li><a href="../Tienda/tienda.html">Tienda</a></li>
                         <li><a href="../Contacto/contacto.html">Cotizar</a></li>
@@ -341,7 +378,7 @@
             </div>
             <div class="footer-bottom">
                 <!-- PENDIENTE: RUC -->
-                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>© <span id="anio">2026</span> AutoGas Perú </p>
                 <p>Hecho en el Perú</p>
             </div>
         </div>
@@ -475,7 +512,7 @@
     </div>
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
-    <script src="tienda.js?v=20261106-3" defer></script>
+    <script src="tienda.js?v=20261112-1" defer></script>
 </body>
 
 </html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="color-scheme" content="light" />
+    <style>
+        /* Critical CSS (pre-paint) — prevent CLS/FOUC */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-x: clip;
+        }
+
+        .navbar {
+            height: 80px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        html {
+            color-scheme: light only;
+        }
+
+    </style>
+    <title>AutoGas | Tienda — Aceites, Aditivos, Filtros y Repuestos</title>
+    <meta name="description" content="Tienda AutoGas: aceites, refrigerantes, filtros y repuestos de marcas líderes. Arma tu pedido y envíalo por WhatsApp a tu sede más cercana.">
+    <link rel="canonical" href="https://autogas-web.vercel.app/Tienda/tienda.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:site_name" content="AutoGas Perú">
+    <meta property="og:title" content="Tienda | AutoGas">
+    <meta property="og:description" content="Aceites, aditivos, filtros y repuestos de marcas líderes. Pide por WhatsApp a tu sede.">
+    <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
+    <meta property="og:url" content="https://autogas-web.vercel.app/Tienda/tienda.html">
+
+    <link rel="preload" as="image" href="Imagenes/IMG_3214.webp" imagesrcset="Imagenes/IMG_3214-240.webp 240w, Imagenes/IMG_3214-480.webp 480w, Imagenes/IMG_3214-960.webp 960w, Imagenes/IMG_3214-1440.webp 1440w, Imagenes/IMG_3214.webp 1920w" imagesizes="(max-width: 900px) 160vw, 100vw" fetchpriority="high">
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
+    <link rel="stylesheet" href="tienda.css?v=20261106-4">
+    <style>
+        .site-header { height: 72px; }
+        .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
+    </style>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+    <!-- ==================== MENÚ ==================== -->
+    <header class="site-header">
+        <nav class="nav container" aria-label="Principal">
+            <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
+                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                <li><a href="../Tienda/tienda.html" aria-current="page">Tienda</a></li>
+            </ul>
+
+            <a class="btn btn-red nav-cta" href="../Contacto/contacto.html">Cotizar</a>
+
+            <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Menú de celular -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
+        <div class="mobile-menu-top">
+            <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
+            <button class="mobile-menu-close" id="navClose" type="button" aria-label="Cerrar menú"></button>
+        </div>
+        <ul class="mnav-list">
+            <li class="mnav-item"><span class="mnav-num">01</span><a class="mnav-link" href="../Inicio/inicio.html">Inicio</a></li>
+            <li class="mnav-item"><span class="mnav-num">02</span><a class="mnav-link" href="../Nosotros/nosotros.html">Nosotros</a></li>
+            <li class="mnav-item"><span class="mnav-num">03</span><a class="mnav-link" href="../Servicios/servicios.html">Servicios</a></li>
+            <li class="mnav-item"><span class="mnav-num">04</span><a class="mnav-link" href="../Sedes/sedes.html">Sedes</a></li>
+            <li class="mnav-item"><span class="mnav-num">05</span><a class="mnav-link" href="../Tienda/tienda.html" aria-current="page">Tienda</a></li>
+        </ul>
+        <a class="mnav-cta mnav-item" href="../Contacto/contacto.html">Cotizar ahora</a>
+    </div>
+
+    <main id="contenido">
+
+    <!-- ==================== PORTADA (inicio de tienda) ==================== -->
+    <section class="page-hero page-hero--compacta" id="tHero" aria-labelledby="heroTitulo">
+        <img class="page-hero-img" src="Imagenes/IMG_3214.webp" srcset="Imagenes/IMG_3214-240.webp 240w, Imagenes/IMG_3214-480.webp 480w, Imagenes/IMG_3214-960.webp 960w, Imagenes/IMG_3214-1440.webp 1440w, Imagenes/IMG_3214.webp 1920w" sizes="(max-width: 900px) 160vw, 100vw" alt="" width="1920" height="1440" decoding="async" fetchpriority="high">
+        <div class="page-hero-shade"></div>
+        <div class="container page-hero-inner">
+            <p class="page-hero-eyebrow">Tienda AutoGas</p>
+            <h1 class="page-hero-title" id="heroTitulo">
+                <span class="page-hero-line">Productos que tu auto</span>
+                <span class="page-hero-line l2">merece.</span>
+            </h1>
+            <p class="page-hero-sub">Marcas líderes. Precios directos. A un mensaje de tu sede más cercana.</p>
+            <form class="t-search" id="heroSearchForm" role="search">
+                    <label for="heroSearch" class="sr-only">Buscar producto</label>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7" />
+                        <path d="M20 20l-3.5-3.5" />
+                    </svg>
+                    <input type="search" id="heroSearch" placeholder="Busca un producto o marca: 5W-30, Prestone, filtro…"
+                        autocomplete="off" />
+                    <button type="submit">Buscar</button>
+                </form>
+        </div>
+    </section>
+
+    <!-- ==================== CABECERA DE CATEGORÍA ==================== -->
+    <section class="t-cathead" id="catHead" hidden>
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="" class="t-cathead-img" id="catHeadImg" decoding="async" />
+        <div class="t-cathead-overlay"></div>
+        <div class="t-cathead-inner">
+            <nav class="t-crumb" aria-label="Ruta">
+                <a href="#tienda">Tienda</a>
+                <span aria-hidden="true">/</span>
+                <span id="crumbActual">Categoría</span>
+            </nav>
+            <h1 class="t-cathead-title" id="catTitle">Categoría</h1>
+            <p class="t-cathead-desc" id="catDesc"></p>
+        </div>
+    </section>
+
+    <!-- ==================== BARRA DE CATEGORÍAS (fija) ==================== -->
+    <div class="t-catbar" id="catBar" hidden>
+        <div class="t-catbar-inner">
+            <a href="#tienda" class="t-catbar-back">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M19 12H5M11 18l-6-6 6-6" />
+                </svg>
+                Todas las categorías
+            </a>
+            <nav class="t-tabs" aria-label="Categorías" id="catTabs"></nav>
+        </div>
+    </div>
+
+    <!-- ==================== TIENDA ==================== -->
+    <div class="t-main" id="store">
+
+        <!-- VISTA: INICIO DE TIENDA -->
+        <div id="viewHome">
+            <div class="t-head" id="categorias">
+                <div>
+                    <span class="t-label">Nuestra tienda</span>
+                    <h2 class="t-title">Lo que tu auto<br /><em>necesita</em></h2>
+                </div>
+                <p class="t-head-desc">Elige una categoría y encuentra el producto ideal.</p>
+            </div>
+            <div class="t-cats" id="catsGrid"></div>
+
+            <div class="t-head t-head--top">
+                <div>
+                    <span class="t-label">Los más pedidos</span>
+                    <h2 class="t-title t-title--sm">Lo que más <em>se llevan</em></h2>
+                </div>
+            </div>
+            <div class="t-grid" id="topGrid"></div>
+        </div>
+
+        <!-- VISTA: CATEGORÍA O BÚSQUEDA -->
+        <div id="viewCat" hidden>
+            <div class="t-catalog" id="catalogo">
+
+                <!-- Filtros: columna en escritorio, panel a pantalla completa en celular -->
+                <aside class="t-fpanel" id="filtersPanel" aria-label="Filtros">
+                    <div class="t-fpanel-head">
+                        <h2 class="t-fpanel-title">Filtros</h2>
+                        <button type="button" class="t-fpanel-clear" id="filtersClearTop">Limpiar todo</button>
+                        <button type="button" class="t-fpanel-close" id="filtersClose" aria-label="Cerrar filtros">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                                <path d="M6 6l12 12M18 6L6 18" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="t-fpanel-body" id="filtersBody"></div>
+                    <div class="t-fpanel-foot">
+                        <button type="button" class="t-fpanel-reset" id="filtersClearBottom">Limpiar</button>
+                        <button type="button" class="t-fpanel-apply" id="filtersApply">Ver productos</button>
+                    </div>
+                </aside>
+
+                <div class="t-results">
+                    <div class="t-toolbar">
+                        <div class="t-toolbar-left">
+                            <div class="t-field-search">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                                    <circle cx="11" cy="11" r="7" />
+                                    <path d="M20 20l-3.5-3.5" />
+                                </svg>
+                                <label for="searchInput" class="sr-only">Buscar en esta categoría</label>
+                                <input type="search" id="searchInput" placeholder="Buscar por nombre o marca…"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="t-toolbar-row">
+                                <button type="button" class="t-filter-btn" id="filtersOpen" aria-controls="filtersPanel"
+                                    aria-expanded="false">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                                        <path d="M4 6h16M7 12h10M10 18h4" />
+                                    </svg>
+                                    Filtrar <span class="t-filter-btn-count" id="filtersOpenCount" hidden></span>
+                                </button>
+                                <p class="t-count" id="prodsCount"></p>
+                            </div>
+                        </div>
+                        <div class="t-sort">
+                            <label for="ordenSelect">Ordenar por</label>
+                            <select id="ordenSelect">
+                                <option value="default">Relevancia</option>
+                                <option value="asc">Menor precio</option>
+                                <option value="desc">Mayor precio</option>
+                                <option value="marca">Marca A–Z</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="t-chips" id="activeChips" hidden></div>
+
+                    <div class="t-grid" id="prodsGrid"></div>
+                </div>
+            </div>
+
+            <div class="t-more">
+                <div>
+                    <span class="t-label t-label--light">¿Buscas otra cosa?</span>
+                    <p class="t-more-title">Sigue explorando la tienda</p>
+                </div>
+                <div class="t-more-links" id="moreLinks"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MARCAS ==================== -->
+    <section class="t-brands">
+        <div class="t-brands-inner">
+            <span class="t-label t-label--muted">Marcas que trabajamos</span>
+            <div class="t-brands-logos">
+                <img width="900" height="338" src="Imagenes/ShellLogo.webp" srcset="Imagenes/ShellLogo-240.webp 240w, Imagenes/ShellLogo-480.webp 480w, Imagenes/ShellLogo.webp 900w" sizes="(max-width: 900px) 26vw, (max-width: 1400px) 13vw, 128px" alt="Shell" loading="lazy" decoding="async" />
+                <img width="1920" height="487" src="Imagenes/CastrolLogo.webp" srcset="Imagenes/CastrolLogo-240.webp 240w, Imagenes/CastrolLogo-480.webp 480w, Imagenes/CastrolLogo-960.webp 960w, Imagenes/CastrolLogo-1440.webp 1440w, Imagenes/CastrolLogo.webp 1920w" sizes="(max-width: 900px) 27vw, (max-width: 1400px) 13vw, 130px" alt="Castrol" loading="lazy" decoding="async" />
+                <img width="1920" height="1255" src="Imagenes/LiquiMolyLogo.webp" srcset="Imagenes/LiquiMolyLogo-240.webp 240w, Imagenes/LiquiMolyLogo-480.webp 480w, Imagenes/LiquiMolyLogo-960.webp 960w, Imagenes/LiquiMolyLogo-1440.webp 1440w, Imagenes/LiquiMolyLogo.webp 1920w" sizes="(max-width: 900px) 15vw, (max-width: 1400px) 8vw, 73px" alt="Liqui Moly" loading="lazy" decoding="async" />
+                <img width="1920" height="1080" src="Imagenes/ValvolineLogo.webp" srcset="Imagenes/ValvolineLogo-240.webp 240w, Imagenes/ValvolineLogo-480.webp 480w, Imagenes/ValvolineLogo-960.webp 960w, Imagenes/ValvolineLogo-1440.webp 1440w, Imagenes/ValvolineLogo.webp 1920w" sizes="(max-width: 900px) 18vw, (max-width: 1400px) 9vw, 85px" alt="Valvoline" loading="lazy" decoding="async" />
+                <img width="1920" height="2143" src="Imagenes/ChevronLogo.webp" srcset="Imagenes/ChevronLogo-240.webp 240w, Imagenes/ChevronLogo-480.webp 480w, Imagenes/ChevronLogo-960.webp 960w, Imagenes/ChevronLogo-1440.webp 1440w, Imagenes/ChevronLogo.webp 1920w" sizes="(max-width: 900px) 9vw, (max-width: 1400px) 5vw, 43px" alt="Chevron" loading="lazy" decoding="async" />
+                <img width="600" height="263" src="Imagenes/PrestoneLogo.webp" alt="Prestone" loading="lazy" decoding="async" />
+                <img width="390" height="129" src="Imagenes/SnowLogo.webp" alt="Snow" loading="lazy" decoding="async" />
+            </div>
+        </div>
+    </section>
+
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="88" height="32" loading="lazy">
+                    <p>Convierte. Ahorra. Domina.<br>Talleres de conversión GNV/GLP en el Perú.</p>
+                    <ul class="social" aria-label="Redes sociales">
+                        <li>
+                            <a href="https://www.instagram.com/autogasica" target="_blank" rel="noopener" aria-label="Instagram de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/IcaAutoGas/" target="_blank" rel="noopener" aria-label="Facebook de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3H13.5V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21h3.1z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener" aria-label="TikTok de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.6-2.7 5.9-5.9 5.9-3.4 0-5.9-2.6-5.9-5.8 0-3.6 3.1-6.2 6.8-5.7v3.2c-1.8-.4-3.5.8-3.5 2.6 0 1.4 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.2z"/></svg>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <nav aria-label="Secciones del sitio">
+                    <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="../Inicio/inicio.html">Inicio</a></li>
+                        <li><a href="../Nosotros/nosotros.html">Nosotros</a></li>
+                        <li><a href="../Servicios/servicios.html">Servicios</a></li>
+                        <li><a href="../Sedes/sedes.html">Sedes</a></li>
+                        <li><a href="../Tienda/tienda.html">Tienda</a></li>
+                        <li><a href="../Contacto/contacto.html">Cotizar</a></li>
+                    </ul>
+                </nav>
+                <div>
+                    <h3>WhatsApp por sede</h3>
+                    <ul class="footer-2col">
+                        <li><a href="https://wa.me/51978421654" target="_blank" rel="noopener">Ica</a></li>
+                        <li><a href="https://wa.me/51942623696" target="_blank" rel="noopener">Lima</a></li>
+                        <li><a href="https://wa.me/51942867212" target="_blank" rel="noopener">Huancayo</a></li>
+                        <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener">Trujillo</a></li>
+                        <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener">Arequipa</a></li>
+                        <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener">Nasca</a></li>
+                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener">Chincha</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Legal</h3>
+                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
+                    <ul>
+                        <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
+                        <li><a href="../Legal/privacidad.html">Política de privacidad</a></li>
+                        <li><a href="../Legal/terminos.html">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <!-- PENDIENTE: RUC -->
+                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>Hecho en el Perú</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== CARRITO ==================== -->
+
+    <!-- Botón flotante -->
+    <button type="button" class="cart-fab" id="cartFab" data-accion="toggleCarrito" aria-label="Abrir carrito">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <path d="M16 10a4 4 0 01-8 0" />
+        </svg>
+        <span class="cart-count" id="cartCount" style="display:none">0</span>
+        <span class="cart-pulse-ring" id="cartPulseRing"></span>
+    </button>
+
+    <!-- Ventana del carrito -->
+    <div class="cart-overlay" id="cartOverlay" data-accion="cerrarCarritoOverlay" data-args='["$event"]'>
+        <div class="cart-modal" id="cartPanel" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+
+            <div class="cart-header">
+                <div>
+                    <span class="cart-eyebrow">AutoGas</span>
+                    <h2 class="cart-title" id="cartTitle">Tu pedido <span id="cartHeadCount"></span></h2>
+                </div>
+                <button type="button" class="cart-close" data-accion="toggleCarrito" aria-label="Cerrar carrito">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.4" stroke-linecap="round" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Estado vacío -->
+            <div class="cart-empty" id="cartEmpty">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    aria-hidden="true">
+                    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <path d="M16 10a4 4 0 01-8 0" />
+                </svg>
+                <p class="cart-empty-title">Tu carrito está vacío</p>
+                <p class="cart-empty-sub">Agrega productos para armar tu pedido.</p>
+                <button type="button" class="t-btn" data-accion="irACategorias">Ver categorías</button>
+            </div>
+
+            <!-- Con productos -->
+            <div class="cart-body" id="cartBody" style="display:none">
+
+                <div class="cart-left">
+                    <div class="cart-thead" aria-hidden="true">
+                        <span>Producto</span><span>Cantidad</span><span>Subtotal</span>
+                    </div>
+                    <div class="cart-items-list" id="cartItemsList"></div>
+                    <div class="cart-left-foot">
+                        <button type="button" class="cart-link-strong" data-accion="toggleCarrito">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M19 12H5M11 18l-6-6 6-6" />
+                            </svg>
+                            Seguir comprando
+                        </button>
+                        <button type="button" class="cart-link" data-accion="vaciarCarrito">Vaciar carrito</button>
+                    </div>
+                </div>
+
+                <div class="cart-right">
+                    <div class="cart-block">
+                        <p class="cart-step"><span>01</span> Tus datos</p>
+                        <div class="cart-row2">
+                            <div class="cart-field">
+                                <label for="cartNombre">Nombre</label>
+                                <input type="text" id="cartNombre" class="cart-input" autocomplete="given-name" />
+                            </div>
+                            <div class="cart-field">
+                                <label for="cartApellido">Apellido</label>
+                                <input type="text" id="cartApellido" class="cart-input"
+                                    autocomplete="family-name" />
+                            </div>
+                        </div>
+                        <div class="cart-field">
+                            <label for="cartVehiculo">Tu vehículo <span class="cart-optional">(opcional)</span></label>
+                            <input type="text" id="cartVehiculo" class="cart-input"
+                                placeholder="Ej.: Toyota Yaris 2019 1.5" autocomplete="off" />
+                            <span class="cart-help">Nos ayuda a confirmar que el producto es compatible.</span>
+                        </div>
+                    </div>
+
+                    <fieldset class="cart-block cart-fieldset" id="cartSedesBlock">
+                        <legend class="cart-step"><span>02</span> Elige tu sede</legend>
+                        <div class="cart-sedes-grid">
+                            <button type="button" class="cart-sede" data-id="1" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Ica</button>
+                            <button type="button" class="cart-sede" data-id="2" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Lima</button>
+                            <button type="button" class="cart-sede" data-id="3" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Trujillo</button>
+                            <button type="button" class="cart-sede" data-id="4" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Chincha</button>
+                            <button type="button" class="cart-sede" data-id="5" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Huancayo</button>
+                            <button type="button" class="cart-sede" data-id="6" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Nasca</button>
+                            <button type="button" class="cart-sede" data-id="7" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Arequipa</button>
+                        </div>
+                        <p class="cart-sede-info" id="cartSedeInfo" hidden></p>
+                    </fieldset>
+
+                    <div class="cart-summary">
+                        <p class="cart-step"><span>03</span> Resumen</p>
+                        <div class="cart-sum-row"><span id="cartSubLabel">Productos</span><span id="cartSubAmount">S/ 0.00</span></div>
+                        <div class="cart-sum-row"><span>Instalación en taller</span><span>Se coordina por WhatsApp</span></div>
+                        <div class="cart-total-row">
+                            <span>Total estimado</span>
+                            <span class="cart-total-amount" id="cartTotalAmount">S/ 0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="cart-cta">
+                        <button type="button" class="cart-btn-wsp" id="cartBtnWsp" data-accion="enviarCarritoWsp"
+                            aria-disabled="true" aria-describedby="cartHint">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                            </svg>
+                            <span id="cartBtnText">Enviar pedido por WhatsApp</span>
+                        </button>
+                        <p class="cart-legal">Al enviar tu pedido aceptas los <a href="../Legal/terminos.html">Términos</a> y la <a href="../Legal/privacidad.html">Política de privacidad</a>.</p>
+                        <p class="cart-hint" id="cartHint">Completa tus datos y elige una sede.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../Comun/comun.js?v=20261102-1" defer></script>
+    <script src="tienda.js?v=20261106-3" defer></script>
+</body>
+
+</html>

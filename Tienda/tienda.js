@@ -239,29 +239,29 @@ const CATEGORIAS_INFO = {
         desc: 'Liqui Moly, Castrol, Shell, Mobil, Vistony y más. Motor, caja y transmisión.',
         img: 'Imagenes/AceitesCaraEjemplo.webp'
     },
-    repuestos: {
-        num: '02', corto: 'Repuestos',
-        titulo: '<em>Repuestos</em>',
-        desc: 'Repuestos y accesorios para el mantenimiento de tu auto.',
-        img: 'Imagenes/ComponentesCaraEjemplo.webp'
-    },
-    refrigerantes: {
-        num: '03', corto: 'Refrigerantes',
-        titulo: '<em>Refrigerantes</em>',
-        desc: 'Fórmulas de larga duración para mantener tu motor a la temperatura correcta.',
-        img: 'Imagenes/PrestoneEjemploCara.webp'
-    },
     filtros: {
-        num: '04', corto: 'Filtros',
+        num: '02', corto: 'Filtros',
         titulo: 'Filtros y <em>Componentes</em>',
         desc: 'Filtros de aceite Millard, Hyundai, Maxfil, Bosch y más, para las marcas del mercado peruano.',
         img: 'Imagenes/RefrigeranteEjemplo.webp'
     },
     aditivos: {
-        num: '05', corto: 'Aditivos',
+        num: '03', corto: 'Aditivos',
         titulo: 'Aditivos y <em>Limpiadores</em>',
         desc: 'Limpiadores de inyectores, tapafugas, antifricción y más de Liqui Moly.',
-        img: 'Imagenes/LiquiMolyLogo-960.webp', logo: true /* TODO: cambiar por una foto de la categoría (y quitar logo: true) */
+        img: 'Imagenes/AceitesLubricantesCover.jpg'
+    },
+    refrigerantes: {
+        num: '04', corto: 'Refrigerantes',
+        titulo: '<em>Refrigerantes</em>',
+        desc: 'Fórmulas de larga duración para mantener tu motor a la temperatura correcta.',
+        img: 'Imagenes/PrestoneEjemploCara.webp'
+    },
+    repuestos: {
+        num: '05', corto: 'Repuestos',
+        titulo: '<em>Repuestos</em>',
+        desc: 'Repuestos y accesorios para el mantenimiento de tu auto.',
+        img: 'Imagenes/ComponentesCaraEjemplo.webp'
     }
 };
 
@@ -397,9 +397,9 @@ function htmlProducto(p, conDescripcion) {
 // =============================================
 function htmlCategoria(id, info, grande) {
     const n = CATALOGO[id].productos.length;
-    const cta = n ? 'Ver ' + n + (n === 1 ? ' producto ' : ' productos ') : 'Próximamente ';
+    const cta = n ? 'Ver productos ' : 'Muy pronto ';
     return `
-        <a class="t-cat${grande ? ' t-cat--big' : ''}" href="#${id}" data-cat="${id}">
+        <a class="t-cat${grande ? ' t-cat--big' : ''}${n ? '' : ' t-cat--pronto'}" href="#${id}" data-cat="${id}">
             <div class="t-cat-info">
                 <span class="t-cat-num">${info.num}</span>
                 <h3 class="t-cat-name">${CATALOGO[id].label}</h3>
