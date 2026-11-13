@@ -33,12 +33,13 @@
     <script>document.documentElement.classList.add('js');</script>
 
     <link rel="preload" as="image" href="../Inicio/Imagenes/peru-mapa.svg">
+    <link rel="preload" as="image" href="Imagenes/SedesHero-1440.webp" imagesrcset="Imagenes/SedesHero-480.webp 480w, Imagenes/SedesHero-960.webp 960w, Imagenes/SedesHero-1440.webp 1440w, Imagenes/SedesHero.webp 1600w" imagesizes="(max-width: 900px) 100vw, 62vw">
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
     <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
     <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
-    <link rel="stylesheet" href="sedes.css?v=20261112-1">
+    <link rel="stylesheet" href="sedes.css?v=20261113-1">
     <script type="application/ld+json">
 {
       "@context": "https://schema.org",
@@ -492,12 +493,14 @@
 
         <!-- ==================== PORTADA: mapa del Perú con las sedes ==================== -->
         <section class="sd-hero" aria-labelledby="heroTitulo">
+            <!-- Foto del taller detrás del texto; se funde a negro antes del mapa -->
+            <img class="sd-hero-foto" src="Imagenes/SedesHero-1440.webp" srcset="Imagenes/SedesHero-480.webp 480w, Imagenes/SedesHero-960.webp 960w, Imagenes/SedesHero-1440.webp 1440w, Imagenes/SedesHero.webp 1600w" sizes="(max-width: 900px) 100vw, 62vw" alt="" width="1600" height="900" fetchpriority="high">
+            <div class="sd-hero-shade" aria-hidden="true"></div>
             <div class="container sd-hero-in">
                 <div class="sd-hero-copy">
                     <nav class="sd-crumbs ig-in" aria-label="Estás aquí">
                         <a href="../Inicio/inicio.html">Inicio</a><span aria-hidden="true">/</span><span aria-current="page">Sedes</span>
                     </nav>
-                    <p class="ig-lbl sd-hero-lbl ig-in">6 ciudades · un solo estándar</p>
                     <h1 class="sd-hero-title ig-in ig-d1" id="heroTitulo">Nuestras sedes</h1>
                     <p class="sd-hero-text ig-in ig-d2">Talleres automotrices con atención especializada en GNV y GLP, cambio de aceite y mecánica general. Toca una ciudad del mapa para ir directo a su sede.</p>
                     <div class="ig-btns ig-in ig-d3">
