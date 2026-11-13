@@ -32,8 +32,12 @@
             video.src = hd ? video.dataset.hd : video.dataset.sd;
         };
 
-        ['waiting', 'loadstart'].forEach(ev => video.addEventListener(ev, () => { if (!video.paused || ev === 'loadstart') mostrarCarga(true); }));
-        ['playing', 'canplay', 'pause', 'error'].forEach(ev => video.addEventListener(ev, () => mostrarCarga(false)));
+        // "Cargando…" solo mientras de verdad falta video: se muestra al esperar datos
+        // y se oculta apenas hay imagen o el video avanza (readyState 3 = ya puede reproducir).
+        const revisarCarga = () => mostrarCarga(!video.paused && !video.ended && video.readyState < 3);
+        video.addEventListener('waiting', revisarCarga);
+        ['playing', 'timeupdate', 'canplay', 'canplaythrough', 'loadeddata', 'seeked', 'pause', 'ended', 'error']
+            .forEach(ev => video.addEventListener(ev, () => mostrarCarga(false)));
 
         const abrir = () => {
             ultimoFoco = document.activeElement;
@@ -42,7 +46,8 @@
             cargarFuente();
             cerrar.focus();
             const p = video.play();
-            if (p && p.catch) p.catch(() => mostrarCarga(false)); // sin autoplay: la persona usa los controles
+            revisarCarga();
+            if (p && p.then) p.then(revisarCarga, () => mostrarCarga(false)); // sin autoplay: la persona usa los controles
         };
 
         const cerrarModal = () => {
