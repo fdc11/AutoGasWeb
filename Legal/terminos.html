@@ -6,40 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#FFFFFF">
     <meta name="color-scheme" content="light">
-    <title>Términos y condiciones | AutoGas</title>
-    <meta name="description" content="Términos y condiciones de uso del sitio web de AutoGas, cotizaciones y pedidos de la tienda.">
+    <title>Términos y condiciones | AutoGas Perú</title>
+    <meta name="description" content="Condiciones de uso del sitio de AutoGas: cotizaciones, citas, pedidos de la tienda, financiamiento FISE, garantías y reclamos.">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://autogas-web.vercel.app/Legal/terminos.html">
+
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
     <meta property="og:site_name" content="AutoGas Perú">
-    <meta property="og:title" content="Términos y condiciones | AutoGas">
-    <meta property="og:description" content="Términos y condiciones de uso del sitio web de AutoGas, cotizaciones y pedidos de la tienda.">
+    <meta property="og:title" content="Términos y condiciones | AutoGas Perú">
+    <meta property="og:description" content="Condiciones de uso del sitio de AutoGas: cotizaciones, citas, pedidos de la tienda, financiamiento FISE, garantías y reclamos.">
     <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
     <meta property="og:url" content="https://autogas-web.vercel.app/Legal/terminos.html">
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
-    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="legal.css?v=20261106-1">
-    <script>document.documentElement.classList.add('js');</script>
+
+    <!-- Evita parpadeos: estilos mínimos antes de cargar el CSS -->
     <style>
-        html, body { margin: 0; padding: 0; background: #0A0A0A; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; background: #FFFFFF; }
         .site-header { height: 72px; }
         .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
     </style>
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
+    <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
+    <link rel="stylesheet" href="legal.css?v=20261113-1">
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://autogas-web.vercel.app/Inicio/inicio.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Términos y condiciones",
+              "item": "https://autogas-web.vercel.app/Legal/terminos.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
-<body>
-
+<!-- pg-corp + data-header="solid": menú blanco, igual que el resto del sitio -->
+<body class="pg-corp pg-legal" data-header="solid">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+    <!-- ==================== BARRA SUPERIOR ==================== -->
+    <div class="ig-topbar">
+        <div class="container ig-topbar-in">
+            <p>6 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
+            <a href="../Inicio/inicio.html#fise">Financia tu conversión con FISE
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+    </div>
+
     <!-- ==================== MENÚ ==================== -->
-    <header class="site-header">
+    <header class="site-header" id="siteHeader">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
-                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+                <img src="../Inicio/Imagenes/AutoGasLogoNegro.png" alt="AutoGas" width="600" height="142">
             </a>
 
             <ul class="nav-links">
@@ -49,7 +89,6 @@
                 <li><a href="../Sedes/sedes.html">Sedes</a></li>
                 <li><a href="../Tienda/tienda.html">Tienda</a></li>
             </ul>
-
             <a class="btn btn-red nav-cta" href="../Contacto/contacto.html">Cotizar</a>
 
             <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
@@ -58,7 +97,7 @@
         </nav>
     </header>
 
-    <!-- Menú de celular -->
+    <!-- Menú de celular (comportamiento en ../Comun/comun.js) -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
         <div class="mobile-menu-top">
             <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
@@ -75,31 +114,36 @@
     </div>
 
     <main id="contenido">
-        <section class="page-hero page-hero--compacta legal-hero" aria-labelledby="heroTitulo">
-            <div class="container page-hero-inner">
-                <p class="page-hero-eyebrow">Condiciones de uso</p>
-                <h1 class="page-hero-title" id="heroTitulo">
-                    <span class="page-hero-line">Términos y</span>
-                    <span class="page-hero-line l2">condiciones.</span>
-                </h1>
-                <p class="page-hero-sub">Las reglas para usar nuestro sitio, pedir cotizaciones y hacer pedidos en la tienda.</p>
+
+        <!-- ==================== PORTADA ==================== -->
+        <section class="lg-hero" aria-labelledby="heroTitulo">
+            <div class="container lg-hero-in">
+                <nav class="lg-crumbs ig-in" aria-label="Estás aquí">
+                    <a href="../Inicio/inicio.html">Inicio</a><span aria-hidden="true">/</span><span>Legal</span><span aria-hidden="true">/</span><span aria-current="page">Términos y condiciones</span>
+                </nav>
+                <h1 class="lg-hero-title ig-in ig-d1" id="heroTitulo">Términos y condiciones</h1>
+                <p class="lg-hero-text ig-in ig-d2">Las reglas para usar este sitio, pedir cotizaciones y hacer pedidos en la tienda.</p>
+                <ul class="lg-hero-meta ig-in ig-d3">
+                    <li><span>Última actualización</span><strong>13 de noviembre de 2026</strong></li>
+                    <li><span>Lectura</span><strong>4 min</strong></li>
+                    <li><a href="privacidad.html">Ver política de privacidad <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+                </ul>
             </div>
         </section>
 
-        <section class="legal">
-            <div class="container legal-grid">
-                <nav class="legal-indice" aria-label="Índice del documento">
-                    <p>Contenido</p>
-                    <ol><li><a href="#titular">Quiénes somos</a></li><li><a href="#uso">Uso del sitio</a></li><li><a href="#informacion">Información de servicios y productos</a></li><li><a href="#cotizaciones">Cotizaciones y citas</a></li><li><a href="#tienda">Pedidos de la tienda</a></li><li><a href="#fise">Financiamiento FISE</a></li><li><a href="#garantia">Garantía de los servicios</a></li><li><a href="#reclamos">Reclamos</a></li><li><a href="#propiedad">Propiedad intelectual</a></li><li><a href="#terceros">Enlaces y servicios de terceros</a></li><li><a href="#responsabilidad">Disponibilidad del sitio</a></li><li><a href="#datos">Datos personales</a></li><li><a href="#cambios">Cambios en estos términos</a></li><li><a href="#ley">Ley aplicable</a></li></ol>
+        <!-- ==================== DOCUMENTO ==================== -->
+        <section class="lg-body" aria-label="Contenido del documento">
+            <div class="container lg-grid">
+                <nav class="lg-indice" aria-label="Índice del documento">
+                    <p class="lg-indice-t">En esta página</p>
+                    <ol><li><a href="#titular">Quiénes somos</a></li><li><a href="#uso">Uso del sitio</a></li><li><a href="#informacion">Información de servicios y productos</a></li><li><a href="#cotizaciones">Cotizaciones y citas</a></li><li><a href="#tienda">Pedidos de la tienda</a></li><li><a href="#fise">Financiamiento FISE</a></li><li><a href="#garantia">Garantía de los servicios</a></li><li><a href="#reclamos">Quejas y reclamos</a></li><li><a href="#propiedad">Propiedad intelectual</a></li><li><a href="#terceros">Enlaces y servicios de terceros</a></li><li><a href="#disponibilidad">Disponibilidad del sitio</a></li><li><a href="#datos">Datos personales</a></li><li><a href="#cambios">Cambios en estos términos</a></li><li><a href="#ley">Ley aplicable</a></li></ol>
                 </nav>
-                <div>
-<article class="legal-doc">
-<p class="legal-meta">Última actualización: <strong>[FECHA DE PUBLICACIÓN]</strong></p>
-
-<p>Estos términos regulan el uso del sitio web de AutoGas y de los servicios de información, cotización y pedidos que ofrece. Al navegar o usar el sitio, aceptas estos términos. Si no estás de acuerdo con ellos, te pedimos no usar el sitio.</p>
+                <div class="lg-col">
+                    <article class="lg-doc">
+<p class="lg-lead">Estos términos regulan el uso del sitio web de AutoGas y de los servicios de información, cotización y pedidos que ofrece. Al navegar o usar el sitio, aceptas estos términos. Si no estás de acuerdo con ellos, te pedimos no usar el sitio. Nada de lo aquí dicho limita los derechos que te reconoce el <strong>Código de Protección y Defensa del Consumidor (Ley N.º 29571)</strong>.</p>
 
 <h2 id="titular">1. Quiénes somos</h2>
-<ul class="legal-datos">
+<ul class="lg-datos">
     <li><span>Razón social</span> <strong>[RAZÓN SOCIAL]</strong></li>
     <li><span>RUC</span> <strong>[RUC]</strong></li>
     <li><span>Domicilio</span> <strong>[DOMICILIO FISCAL]</strong></li>
@@ -108,7 +152,7 @@
 <p>AutoGas opera talleres de conversión vehicular a GNV y GLP, certificación y mecánica general en sus sedes del Perú, cuyas direcciones y horarios figuran en la sección <a href="../Sedes/sedes.html">Sedes</a>.</p>
 
 <h2 id="uso">2. Uso del sitio</h2>
-<p>Te comprometes a usar el sitio de forma lícita, sin dañarlo, sobrecargarlo ni afectar los derechos de AutoGas o de terceros, y a brindar información veraz en los formularios.</p>
+<p>Te comprometes a usar el sitio de forma lícita, sin dañarlo, sobrecargarlo, intentar acceder a zonas no públicas ni afectar los derechos de AutoGas o de terceros, y a brindar información veraz en los formularios.</p>
 
 <h2 id="informacion">3. Información de servicios y productos</h2>
 <p>La información de servicios, productos, beneficios y ahorros estimados es <strong>referencial</strong>. El ahorro real depende de tu vehículo, de tu forma de manejo y del precio del combustible. Las imágenes son ilustrativas.</p>
@@ -122,19 +166,19 @@
 
 <h2 id="tienda">5. Pedidos de la tienda</h2>
 <ul>
-    <li>La tienda del sitio funciona como un <strong>catálogo</strong>: al enviar tu pedido por WhatsApp, solicitas a la sede que lo prepare, pero <strong>la compra no se concreta en el sitio</strong>.</li>
+    <li>La tienda del sitio funciona como un <strong>catálogo</strong>: al enviar tu pedido por WhatsApp, solicitas a la sede que lo prepare, pero <strong>la compra no se concreta ni se paga en el sitio</strong>.</li>
     <li>La sede confirmará la disponibilidad, el precio final y la forma de pago antes de cerrar la venta. El pago y la entrega se realizan en la sede, salvo que acuerdes otra modalidad.</li>
-    <li>Los precios publicados pueden cambiar sin previo aviso. Prevalece el precio que te confirme la sede.</li>
+    <li>Los precios publicados pueden cambiar. Prevalece el precio que te confirme la sede antes de la compra.</li>
 </ul>
 
 <h2 id="fise">6. Financiamiento FISE</h2>
 <p>El financiamiento de conversiones a través del FISE está sujeto a los requisitos, la evaluación y la aprobación de dicho programa. AutoGas te orienta en el trámite, pero no garantiza su aprobación.</p>
 
 <h2 id="garantia">7. Garantía de los servicios</h2>
-<p>Los servicios y productos tienen la garantía que se informa por escrito en la orden de servicio o en el comprobante, de acuerdo con el <strong>Código de Protección y Defensa del Consumidor (Ley N.º 29571)</strong>. [PENDIENTE: detallar plazos y condiciones de garantía de la conversión, del kit y de la mano de obra].</p>
+<p>Los servicios y productos tienen la garantía que se informa por escrito en la orden de servicio o en el comprobante, de acuerdo con el Código de Protección y Defensa del Consumidor. [PENDIENTE: detallar plazos y condiciones de garantía de la conversión, del kit y de la mano de obra].</p>
 
-<h2 id="reclamos">8. Reclamos</h2>
-<p>Si no estás conforme con nuestro servicio, puedes registrar tu queja o reclamo en nuestro <strong>Libro de Reclamaciones</strong>, disponible en cada sede y [PENDIENTE: enlace al Libro de Reclamaciones virtual]. Te responderemos dentro del plazo legal. Esto no impide que acudas a Indecopi.</p>
+<h2 id="reclamos">8. Quejas y reclamos</h2>
+<p>Si no estás conforme con nuestro servicio, puedes registrar tu queja o reclamo en el <strong>Libro de Reclamaciones disponible en cada una de nuestras sedes</strong>. Te responderemos en un plazo máximo de <strong>15 días hábiles</strong>. También puedes escribirnos por WhatsApp a tu sede. Nada de esto impide que acudas al <strong>Indecopi</strong>.</p>
 
 <h2 id="propiedad">9. Propiedad intelectual</h2>
 <p>Los textos, fotografías, videos, logotipos y el diseño de este sitio pertenecen a AutoGas o se usan con autorización, y están protegidos por la normativa peruana de propiedad intelectual. No puedes reproducirlos sin autorización previa. Las marcas de vehículos, aceites, repuestos y kits que aparecen en el sitio pertenecen a sus respectivos titulares y se muestran solo con fines informativos.</p>
@@ -142,28 +186,33 @@
 <h2 id="terceros">10. Enlaces y servicios de terceros</h2>
 <p>El sitio enlaza a servicios de terceros, como WhatsApp, Google Maps, Waze y redes sociales. AutoGas no es responsable de sus contenidos ni de sus políticas, que se rigen por sus propias condiciones.</p>
 
-<h2 id="responsabilidad">11. Disponibilidad del sitio</h2>
+<h2 id="disponibilidad">11. Disponibilidad del sitio</h2>
 <p>Trabajamos para que el sitio funcione de forma continua y segura, pero pueden presentarse interrupciones por mantenimiento o por causas ajenas a nosotros. En esos casos puedes comunicarte directamente con tu sede por teléfono o WhatsApp.</p>
 
 <h2 id="datos">12. Datos personales</h2>
-<p>El tratamiento de tus datos personales se rige por nuestra <a href="privacidad.html">Política de privacidad</a>.</p>
+<p>El tratamiento de tus datos personales se rige por nuestra <a href="privacidad.html">Política de privacidad</a>, conforme a la Ley N.º 29733 y su Reglamento (Decreto Supremo N.º 016-2024-JUS).</p>
 
 <h2 id="cambios">13. Cambios en estos términos</h2>
-<p>Podemos modificar estos términos en cualquier momento. La versión vigente será siempre la publicada en esta página, con su fecha de actualización.</p>
+<p>Podemos modificar estos términos. La versión vigente será siempre la publicada en esta página, con su fecha de actualización, y se aplicará a las solicitudes que hagas desde su publicación.</p>
 
 <h2 id="ley">14. Ley aplicable</h2>
-<p>Estos términos se rigen por las leyes de la República del Perú. Cualquier controversia se someterá a las autoridades y los jueces competentes del Perú, sin perjuicio de tu derecho a acudir a Indecopi como consumidor.</p>
-</article>
+<p>Estos términos se rigen por las leyes de la República del Perú. Cualquier controversia se someterá a las autoridades y los jueces competentes del Perú, sin perjuicio de tu derecho a acudir al Indecopi como consumidor.</p>
 
-                    <div class="legal-ayuda">
-                        <p>¿Tienes dudas sobre este documento? Escríbenos y te ayudamos.</p>
-                        <a class="btn btn-red" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-                    </div>
+                    </article>
+
+                    <aside class="lg-ayuda" aria-label="Ayuda">
+                        <div>
+                            <h2>¿Tienes dudas sobre este documento?</h2>
+                            <p>Escríbenos y te respondemos en horario de atención.</p>
+                        </div>
+                        <a class="ig-btn ig-btn-red" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escribir por WhatsApp <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </aside>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- ==================== FOOTER (igual en todo el sitio) ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -184,11 +233,6 @@
                         <li>
                             <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener" aria-label="TikTok de AutoGas">
                                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.6-2.7 5.9-5.9 5.9-3.4 0-5.9-2.6-5.9-5.8 0-3.6 3.1-6.2 6.8-5.7v3.2c-1.8-.4-3.5.8-3.5 2.6 0 1.4 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.2z"/></svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
                             </a>
                         </li>
                     </ul>
@@ -213,22 +257,19 @@
                         <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener">Trujillo</a></li>
                         <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener">Arequipa</a></li>
                         <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener">Nasca</a></li>
-                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener">Chincha</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3>Legal</h3>
-                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
                     <ul>
-                        <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
-                        <li><a href="privacidad.html">Política de privacidad</a></li>
-                        <li><a href="terminos.html" aria-current="page">Términos y condiciones</a></li>
+                        <li><a href="../Legal/privacidad.html">Política de privacidad</a></li>
+                        <li><a href="../Legal/terminos.html" aria-current="page">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <!-- PENDIENTE: RUC -->
-                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>© <span id="anio">2026</span> AutoGas Perú </p>
                 <p>Hecho en el Perú</p>
             </div>
         </div>

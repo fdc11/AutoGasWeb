@@ -88,7 +88,8 @@
         const cel = valor('celular').replace(/\D/g, '');
         if (!/^9\d{8}$/.test(cel)) { error('celular', 'Escribe un celular de 9 dígitos que empiece con 9'); ok = false; }
         const sede = elegido('sede');
-        if (!sede) { error('sede', 'Elige una sede'); ok = false; }
+        // Solo números de WhatsApp de Perú (51 + 9 dígitos): evita que un valor alterado arme otra URL
+        if (!sede || !/^519\d{8}$/.test(sede.value)) { error('sede', 'Elige una sede'); ok = false; }
         if (!ok) { primerError(ids); return; }
 
         const mensaje = armarMensaje(cel);

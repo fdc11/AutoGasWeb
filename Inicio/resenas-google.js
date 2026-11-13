@@ -29,7 +29,7 @@ window.RESENAS_GOOGLE = {
         huancayo: { nombre: 'Huancayo', puntaje: 4.2, total: 39, maps: 'https://maps.app.goo.gl/npbMCgnDuciJp9Vi6' },
         trujillo: { nombre: 'Trujillo', puntaje: 4.7, total: 29, maps: 'https://maps.app.goo.gl/51nNhVFkDhbSYz3G8' },
         arequipa: { nombre: 'Arequipa', puntaje: 3.8, total: 12, maps: 'https://maps.app.goo.gl/pmEsLW2fEREyAEgY7' }
-        // Nasca y Chincha aún no tienen reseñas en Google: agrégalas aquí cuando tengan.
+        // Nasca aún no tiene reseñas en Google: agrégalas aquí cuando tengan.
     },
 
     resenas: [

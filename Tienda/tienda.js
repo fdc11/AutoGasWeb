@@ -5,7 +5,6 @@ const WSP_SEDES = {
     '1': '51978421654',   // Ica
     '2': '51942623696',   // Lima
     '3': '51937695830',   // Trujillo
-    '4': '51930210613',   // Chincha
     '5': '51942867212',   // Huancayo
     '6': '51939067488',   // Nasca
     '7': '51975338252',   // Arequipa
@@ -13,7 +12,7 @@ const WSP_SEDES = {
 
 const NOMBRES_SEDES = {
     '1': 'Ica', '2': 'Lima', '3': 'Trujillo',
-    '4': 'Chincha', '5': 'Huancayo', '6': 'Nasca', '7': 'Arequipa'
+    '5': 'Huancayo', '6': 'Nasca', '7': 'Arequipa'
 };
 
 // =============================================
@@ -311,9 +310,16 @@ let carritoSedeId = null;
 function cargarCarritoStorage() {
     try {
         const raw = localStorage.getItem('autogas_carrito');
-        if (raw) carritoItems = (JSON.parse(raw) || [])
-            .filter(i => buscarProducto(i.id))
-            .map(i => ({ ...i, img: buscarProducto(i.id).img })); // foto siempre al día
+        // Seguridad: del almacenamiento solo se confía en el id y la cantidad;
+        // nombre, marca, precio y foto se toman siempre del catálogo.
+        const guardados = JSON.parse(raw || '[]');
+        carritoItems = (Array.isArray(guardados) ? guardados : [])
+            .filter(i => i && typeof i.id === 'string' && buscarProducto(i.id))
+            .map(i => {
+                const p = buscarProducto(i.id);
+                const qty = Math.min(99, Math.max(1, parseInt(i.qty, 10) || 1));
+                return { id: p.id, sku: p.sku, marca: p.marca, nombre: p.nombre, precio: p.precio, img: p.img, qty };
+            });
         const sede = localStorage.getItem('autogas_sede');
         if (sede && WSP_SEDES[sede]) carritoSedeId = sede;
     } catch (e) { carritoItems = []; }

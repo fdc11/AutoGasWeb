@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /_*
+Disallow: /api/
+Disallow: /*.json$
 
 Sitemap: https://autogas-web.vercel.app/sitemap.xml

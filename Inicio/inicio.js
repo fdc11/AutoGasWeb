@@ -14,37 +14,62 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const ahorraDatos = !!(navigator.connection && navigator.connection.saveData);
 
-    /* ---------- 2. Video del taller ---------- */
+    /* ---------- 2. Video del taller: portada fija + ventana ----------
+       El video no se descarga hasta que la persona abre la ventana.
+       720p en computadora; 480p en celular o con "ahorro de datos". */
+    const modal = document.getElementById('videoModal');
     const video = document.getElementById('videoExpertos');
-    const play = document.getElementById('videoPlay');
-    if (video && play) {
-        const marco = video.closest('.ig-video');
-        // Con JS mostramos nuestro botón y ocultamos los controles hasta empezar
-        video.controls = false;
-        play.hidden = false;
+    const cerrar = document.getElementById('videoCerrar');
+    const carga = document.getElementById('videoCarga');
+    const abridores = document.querySelectorAll('[data-abrir-video]');
+    if (modal && video && cerrar && abridores.length) {
+        let ultimoFoco = null;
+        const mostrarCarga = (si) => { if (carga) carga.hidden = !si; };
 
-        const reproducir = () => {
-            play.hidden = true;
-            video.controls = true;
-            marco.classList.add('is-playing');
-            const p = video.play();
-            if (p && p.catch) p.catch(() => { play.hidden = false; marco.classList.remove('is-playing'); });
+        const cargarFuente = () => {
+            if (video.getAttribute('src')) return;
+            const hd = window.matchMedia('(min-width: 901px)').matches && !ahorraDatos;
+            video.src = hd ? video.dataset.hd : video.dataset.sd;
         };
-        play.addEventListener('click', reproducir);
 
-        video.addEventListener('ended', () => {
-            video.controls = false;
-            video.currentTime = 0;
-            play.hidden = false;
-            marco.classList.remove('is-playing');
+        ['waiting', 'loadstart'].forEach(ev => video.addEventListener(ev, () => { if (!video.paused || ev === 'loadstart') mostrarCarga(true); }));
+        ['playing', 'canplay', 'pause', 'error'].forEach(ev => video.addEventListener(ev, () => mostrarCarga(false)));
+
+        const abrir = () => {
+            ultimoFoco = document.activeElement;
+            modal.hidden = false;
+            document.body.style.overflow = 'hidden';
+            cargarFuente();
+            cerrar.focus();
+            const p = video.play();
+            if (p && p.catch) p.catch(() => mostrarCarga(false)); // sin autoplay: la persona usa los controles
+        };
+
+        const cerrarModal = () => {
+            video.pause();
+            mostrarCarga(false);
+            if (document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(() => {});
+            modal.hidden = true;
+            document.body.style.overflow = '';
+            if (ultimoFoco && ultimoFoco.focus) ultimoFoco.focus();
+        };
+
+        abridores.forEach(b => b.addEventListener('click', abrir));
+        cerrar.addEventListener('click', cerrarModal);
+        // Clic en el fondo oscuro cierra
+        modal.addEventListener('click', e => { if (e.target === modal) cerrarModal(); });
+        // Esc cierra; Tab no se sale de la ventana
+        modal.addEventListener('keydown', e => {
+            if (e.key === 'Escape') { e.preventDefault(); cerrarModal(); return; }
+            if (e.key !== 'Tab') return;
+            const f = [...modal.querySelectorAll('button, a[href], video')].filter(el => el.offsetParent !== null);
+            if (!f.length) return;
+            const primero = f[0], ultimo = f[f.length - 1];
+            if (e.shiftKey && document.activeElement === primero) { e.preventDefault(); ultimo.focus(); }
+            else if (!e.shiftKey && document.activeElement === ultimo) { e.preventDefault(); primero.focus(); }
         });
-
-        // Si la persona baja y el video queda fuera de pantalla, se pausa
-        if ('IntersectionObserver' in window) {
-            new IntersectionObserver(entries => {
-                entries.forEach(e => { if (!e.isIntersecting && !video.paused) video.pause(); });
-            }, { threshold: 0.2 }).observe(video);
-        }
+        // Al terminar, vuelve al inicio para verlo otra vez
+        video.addEventListener('ended', () => { video.currentTime = 0; });
     }
 
     /* ---------- 3. Sedes ---------- */

@@ -22,19 +22,62 @@
 .ig-svc p { font-size: 0.9375rem; line-height: 1.6; color: #555; }
 .ig-svc .ig-more { margin-top: auto; padding-top: 0.75rem; }
 
-/* ---------- Video ---------- */
-.ig-video { position: relative; margin: 0; aspect-ratio: 16 / 7.5; background: #000; overflow: hidden; }
-.ig-video video { display: block; width: 100%; height: 100%; object-fit: cover; }
-.ig-video.is-playing video { object-fit: contain; }
-.ig-play {
-    position: absolute; left: 50%; top: 50%; width: 6rem; height: 6rem; margin: -3rem 0 0 -3rem;
-    display: flex; align-items: center; justify-content: center; padding: 0 0 0 0.25rem;
-    border: 0; border-radius: 50%; background: var(--white); color: var(--ink); cursor: pointer;
-    transition: transform .3s ease, background-color .3s ease, color .3s ease;
+/* ---------- Video: portada fija 16:9 + ventana (sin saltos de tamaño) ---------- */
+.ig-vgrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.1fr); gap: clamp(2.5rem, 4.5vw, 4rem); align-items: center; }
+.ig-vtxt { display: flex; flex-direction: column; gap: 1.5rem; }
+.ig-vtxt .ig-h2 { font-size: clamp(2rem, 3vw, 2.75rem); }
+.ig-vpasos { display: flex; flex-direction: column; margin-top: 0.5rem; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.ig-vpasos li { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.14); }
+.ig-vpasos-n { flex: none; width: 2rem; font-size: 1rem; font-variant-numeric: tabular-nums; color: rgba(255, 255, 255, 0.6); }
+.ig-vpasos b { display: block; font-size: 1rem; font-weight: 500; }
+.ig-vpasos small { display: block; margin-top: 0.125rem; font-size: 0.875rem; line-height: 1.4; color: rgba(255, 255, 255, 0.6); }
+
+.ig-vposter {
+    position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; overflow: hidden;
+    border: 0; background: #000; color: var(--white); font: inherit; text-align: left; cursor: pointer;
 }
-.ig-play:hover, .ig-play:focus-visible { transform: scale(1.07); background: var(--red); color: var(--white); }
-.ig-video-tag { position: absolute; left: 2rem; bottom: 1.75rem; font-size: 0.9375rem; font-weight: 500; color: var(--white); text-shadow: 0 1px 8px rgba(0, 0, 0, .5); pointer-events: none; }
-.ig-video.is-playing .ig-video-tag { display: none; }
+.ig-vposter img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .9s cubic-bezier(.2, .7, .2, 1); }
+.ig-vposter::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,0) 45%, rgba(10,10,10,.78) 100%); }
+.ig-vposter:hover img { transform: scale(1.03); }
+.ig-vposter-play {
+    position: absolute; z-index: 1; left: 50%; top: 50%; width: 6rem; height: 6rem; margin: -3rem 0 0 -3rem; padding-left: 0.25rem;
+    display: flex; align-items: center; justify-content: center; border-radius: 50%;
+    background: var(--red); color: var(--white); box-shadow: 0 1.125rem 2.5rem -0.75rem rgba(0, 0, 0, .6);
+    transition: transform .3s ease, background-color .3s ease;
+}
+.ig-vposter:hover .ig-vposter-play, .ig-vposter:focus-visible .ig-vposter-play { transform: scale(1.07); background: var(--red-hover); }
+.ig-vposter-pie { position: absolute; z-index: 1; left: 2rem; right: 2rem; bottom: 1.75rem; display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; }
+.ig-vposter-pie b { display: block; font-size: 1.25rem; font-weight: 600; }
+.ig-vposter-pie small { display: block; margin-top: 0.25rem; font-size: 0.9375rem; color: rgba(255, 255, 255, 0.75); }
+.ig-vposter-dur { flex: none; padding: 0.375rem 0.75rem; background: rgba(0, 0, 0, 0.55); font-size: 0.875rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* Ventana del video */
+.ig-vmodal {
+    position: fixed; inset: 0; z-index: 200; display: flex; align-items: center; justify-content: center;
+    padding: 2rem var(--gutter); background: rgba(8, 8, 8, 0.92); color: var(--white); overflow-y: auto;
+}
+.ig-vmodal[hidden] { display: none; }
+.ig-vmodal-in { width: min(70rem, 100%, calc((100dvh - 14rem) * 16 / 9)); min-width: min(100%, 20rem); display: flex; flex-direction: column; gap: 1.25rem; }
+.ig-vmodal-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.ig-vmodal-top h2 span { font-weight: 400; color: rgba(255, 255, 255, 0.6); }
+.ig-vmodal-top h2 { font-size: clamp(1.25rem, 2vw, 1.625rem); font-weight: 600; line-height: 1.2; }
+.ig-vmodal-x {
+    flex: none; width: 3rem; height: 3rem; display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.35); background: transparent; color: var(--white); cursor: pointer;
+    transition: background-color .2s ease, color .2s ease;
+}
+.ig-vmodal-x:hover { background: var(--white); color: var(--ink); }
+.ig-vmodal-video { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.ig-vmodal-video video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.ig-vmodal-carga {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.875rem;
+    font-size: 0.9375rem; color: rgba(255, 255, 255, 0.85); pointer-events: none;
+}
+.ig-vmodal-carga span { width: 3.5rem; height: 3.5rem; border-radius: 50%; border: 4px solid rgba(255, 255, 255, 0.25); border-top-color: var(--white); animation: igGiro .9s linear infinite; }
+@keyframes igGiro { to { transform: rotate(360deg); } }
+.ig-vmodal-pie { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem 2rem; }
+.ig-vmodal-pie p { font-size: 1rem; color: rgba(255, 255, 255, 0.75); }
 
 /* ---------- Proceso ---------- */
 .ig-steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2.5rem; }
@@ -188,8 +231,15 @@
 @media (max-width: 900px) {
     .ig-sedes, .ig-faq { grid-template-columns: minmax(0, 1fr); }
     .ig-faq { gap: 3rem; }
-    .ig-video { aspect-ratio: 16 / 9; }
-    .ig-play { width: 4.5rem; height: 4.5rem; margin: -2.25rem 0 0 -2.25rem; }
+    .ig-vgrid { grid-template-columns: minmax(0, 1fr); }
+    .ig-vposter { order: 2; }
+    .ig-vposter-play { width: 4.25rem; height: 4.25rem; margin: -2.125rem 0 0 -2.125rem; }
+    .ig-vposter-play svg { width: 24px; height: 24px; }
+    .ig-vposter-pie { left: 1rem; right: 1rem; bottom: 0.875rem; }
+    .ig-vposter-pie b { font-size: 1rem; }
+    .ig-vposter-pie small { display: none; }
+    .ig-vmodal { padding: 1rem; background: #0A0A0A; }
+    .ig-vmodal-in { width: 100%; }
     .ig-gal { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; grid-auto-rows: 11rem; }
     .ig-gal-big { grid-row: span 2; }
     .ig-sede-img { height: 14rem; }
@@ -208,6 +258,8 @@
 
 /* ---------- Menos movimiento ---------- */
 @media (prefers-reduced-motion: reduce) {
+    .ig-vposter img, .ig-vposter-play { transition: none; }
+    .ig-vmodal-carga span { animation-duration: 2.5s; }
     .ig-mq-list { animation: none !important; }
     .ig-mq { flex-wrap: wrap; justify-content: center; -webkit-mask-image: none; mask-image: none; }
     .ig-svc-img img, .ig-gal img, .ig-sede-img img { transition: none; }

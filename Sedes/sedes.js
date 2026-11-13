@@ -23,7 +23,6 @@ const SEDES_MAPA = {
     trujillo: { ciudad: 'Trujillo', lat: -8.08931,  lng: -79.03844, address: 'Av. Túpac Amaru 1633, Urb. Alto Mochica', areas: ['Ventas', 'Soporte técnico'] },
     nasca:    { ciudad: 'Nasca',    lat: -14.82806, lng: -74.94569, address: 'Av. Los Incas N.º 201 — Ref. frente a la agencia Ormeño', areas: ['Ventas', 'Soporte técnico'] },
     arequipa: { ciudad: 'Arequipa', lat: -16.42856, lng: -71.49956, address: 'Av. Túpac Amaru N.º 714, Campo Marte, Paucarpata', areas: ['Ventas', 'Soporte técnico'] },
-    chincha:  { ciudad: 'Chincha',  lat: -13.45056, lng: -76.13681, address: 'Prolongación Lima N.º 636, Chincha Alta', areas: ['Ventas'] }
 };
 
 (function () {

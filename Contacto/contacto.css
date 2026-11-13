@@ -182,6 +182,11 @@
     .acciones { flex-direction: column-reverse; }
     .acciones .ig-btn { width: 100%; }
     .ct-faq summary { font-size: 1.0625rem; }
+    .opcion span { padding-inline: 0.75rem; gap: 0.5rem; font-size: 0.875rem; line-height: 1.3; overflow-wrap: anywhere; hyphens: auto; }
+}
+/* Celulares muy angostos (≤ 380 px): una opción por fila para que nada se corte */
+@media (max-width: 380px) {
+    .opciones:not(.opciones-sedes) { grid-template-columns: minmax(0, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) {
     .paso, .listo { animation: none; }

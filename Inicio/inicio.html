@@ -8,18 +8,21 @@
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <meta name="theme-color" content="#FFFFFF">
     <meta name="color-scheme" content="light">
-    <title>AutoGas | Conversión a GNV y GLP en Ica, Lima, Huancayo, Trujillo, Arequipa, Nasca y Chincha</title>
-    <meta name="description" content="Talleres de conversión vehicular a GNV y GLP con convenio FISE. Certificación anual y quinquenal, mecánica general y repuestos. 7 sedes en el Perú.">
+    <title>AutoGas Perú | Taller automotriz y conversión a GNV y GLP en Ica, Lima, Huancayo, Trujillo, Arequipa y Nasca</title>
+    <meta name="description" content="Taller automotriz y mecánico AutoGas: conversión vehicular a GNV y GLP con convenio FISE, certificación anual, cambio de aceite y mecánica general. 6 sedes en el Perú.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://autogas-web.vercel.app/Inicio/inicio.html">
 
     <!-- Vista previa al compartir (WhatsApp, Facebook) -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
     <meta property="og:site_name" content="AutoGas Perú">
-    <meta property="og:title" content="AutoGas | Convierte tu auto a GNV o GLP">
-    <meta property="og:description" content="Conversión a GNV y GLP, certificaciones y mecánica general. 7 sedes en el Perú y convenio FISE.">
+    <meta property="og:title" content="AutoGas Perú | Taller automotriz y conversión a GNV y GLP en Ica, Lima, Huancayo, Trujillo, Arequipa y Nasca">
+    <meta property="og:description" content="Taller automotriz y mecánico AutoGas: conversión vehicular a GNV y GLP con convenio FISE, certificación anual, cambio de aceite y mecánica general. 6 sedes en el Perú.">
     <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
     <meta property="og:url" content="https://autogas-web.vercel.app/Inicio/inicio.html">
+    <meta property="og:image:alt" content="Taller AutoGas Perú">
+    <meta name="twitter:card" content="summary_large_image">
 
     <!-- Evita parpadeos: estilos mínimos antes de cargar el CSS -->
     <style>
@@ -35,27 +38,395 @@
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
     <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
-    <link rel="stylesheet" href="inicio.css?v=20261109-2">
+    <link rel="stylesheet" href="inicio.css?v=20261113-1">
 
-    <!-- Datos estructurados para Google (negocio local con 7 sedes) -->
+    <!-- Datos estructurados para Google: empresa + sitio + 6 sedes (talleres) -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "AutoRepair",
-        "name": "AutoGas Perú",
-        "description": "Conversión vehicular a GNV y GLP, certificaciones y mecánica general.",
-        "url": "https://autogas-web.vercel.app/Inicio/inicio.html",
-        "image": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp",
-        "sameAs": ["https://www.instagram.com/autogasica", "https://www.facebook.com/IcaAutoGas/", "https://www.tiktok.com/@autogas_ica"],
-        "location": [
-            { "@type": "AutoRepair", "name": "AutoGas Ica", "telephone": "+51978421654", "address": { "@type": "PostalAddress", "streetAddress": "Av. Fernando León de Vivero 304", "addressLocality": "Ica", "addressCountry": "PE" } },
-            { "@type": "AutoRepair", "name": "AutoGas Lima", "telephone": "+51942623696", "address": { "@type": "PostalAddress", "streetAddress": "Jr. San Lino 6318, Los Olivos", "addressLocality": "Lima", "addressCountry": "PE" } },
-            { "@type": "AutoRepair", "name": "AutoGas Huancayo", "telephone": "+51942867212", "address": { "@type": "PostalAddress", "streetAddress": "Prol. Julio Sumar 698, El Tambo", "addressLocality": "Huancayo", "addressCountry": "PE" } },
-            { "@type": "AutoRepair", "name": "AutoGas Trujillo", "telephone": "+51937695830", "address": { "@type": "PostalAddress", "streetAddress": "Av. Túpac Amaru 1633, Urb. Alto Mochica", "addressLocality": "Trujillo", "addressCountry": "PE" } },
-            { "@type": "AutoRepair", "name": "AutoGas Arequipa", "telephone": "+51975338252", "address": { "@type": "PostalAddress", "streetAddress": "Av. Túpac Amaru 714, Campo Marte, Paucarpata", "addressLocality": "Arequipa", "addressCountry": "PE" } },
-            { "@type": "AutoRepair", "name": "AutoGas Nasca", "telephone": "+51939067488", "address": { "@type": "PostalAddress", "streetAddress": "Av. Los Incas 201", "addressLocality": "Nasca", "addressCountry": "PE" } },
-            { "@type": "AutoRepair", "name": "AutoGas Chincha", "telephone": "+51930210613", "address": { "@type": "PostalAddress", "streetAddress": "Prolongación Lima 636", "addressLocality": "Chincha Alta", "addressCountry": "PE" } }
-        ]
+{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://autogas-web.vercel.app/#organizacion",
+          "name": "AutoGas Perú",
+          "alternateName": [
+            "AutoGas",
+            "Auto Gas Perú"
+          ],
+          "url": "https://autogas-web.vercel.app/Inicio/inicio.html",
+          "logo": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasLogoNegro.png",
+          "image": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp",
+          "sameAs": [
+            "https://www.instagram.com/autogasica",
+            "https://www.facebook.com/IcaAutoGas/",
+            "https://www.tiktok.com/@autogas_ica"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://autogas-web.vercel.app/#web",
+          "url": "https://autogas-web.vercel.app/Inicio/inicio.html",
+          "name": "AutoGas Perú",
+          "inLanguage": "es-PE",
+          "publisher": {
+            "@id": "https://autogas-web.vercel.app/#organizacion"
+          }
+        },
+        {
+          "@type": "AutoRepair",
+          "@id": "https://autogas-web.vercel.app/Sedes/sedes.html#ica",
+          "name": "AutoGas Ica",
+          "url": "https://autogas-web.vercel.app/Sedes/sedes.html#ica",
+          "telephone": "+51978421654",
+          "image": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp",
+          
+          "parentOrganization": {
+            "@id": "https://autogas-web.vercel.app/#organizacion"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Fernando León de Vivero N.º 304",
+            "addressLocality": "Ica",
+            "addressRegion": "Ica",
+            "addressCountry": "PE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -14.05906,
+            "longitude": -75.74256
+          },
+          "hasMap": "https://maps.app.goo.gl/PZdiW36SM2awhmtSA",
+          "areaServed": "Ica",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "13:00"
+            }
+          ],
+          "knowsAbout": [
+            "Conversión vehicular a GNV",
+            "Conversión vehicular a GLP",
+            "Certificación anual de GNV y GLP",
+            "Revisión quinquenal de cilindros",
+            "Cambio de aceite",
+            "Mecánica general",
+            "Diagnóstico por escáner",
+            "Limpieza de inyectores",
+            "Afinamiento electrónico",
+            "Frenos, dirección y suspensión",
+            "Venta de aceites, filtros y repuestos"
+          ]
+        },
+        {
+          "@type": "AutoRepair",
+          "@id": "https://autogas-web.vercel.app/Sedes/sedes.html#lima",
+          "name": "AutoGas Lima",
+          "url": "https://autogas-web.vercel.app/Sedes/sedes.html#lima",
+          "telephone": "+51942623696",
+          "image": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp",
+          
+          "parentOrganization": {
+            "@id": "https://autogas-web.vercel.app/#organizacion"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Jr. San Lino N.º 6318, Los Olivos",
+            "addressLocality": "Lima",
+            "addressRegion": "Lima",
+            "addressCountry": "PE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -11.95456,
+            "longitude": -77.07081
+          },
+          "hasMap": "https://maps.app.goo.gl/c628PPCCC9cx2U5w5",
+          "areaServed": "Lima",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "13:00"
+            }
+          ],
+          "knowsAbout": [
+            "Conversión vehicular a GNV",
+            "Conversión vehicular a GLP",
+            "Certificación anual de GNV y GLP",
+            "Revisión quinquenal de cilindros",
+            "Cambio de aceite",
+            "Mecánica general",
+            "Diagnóstico por escáner",
+            "Limpieza de inyectores",
+            "Afinamiento electrónico",
+            "Frenos, dirección y suspensión",
+            "Venta de aceites, filtros y repuestos"
+          ]
+        },
+        {
+          "@type": "AutoRepair",
+          "@id": "https://autogas-web.vercel.app/Sedes/sedes.html#huancayo",
+          "name": "AutoGas Huancayo",
+          "url": "https://autogas-web.vercel.app/Sedes/sedes.html#huancayo",
+          "telephone": "+51942867212",
+          "image": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp",
+          
+          "parentOrganization": {
+            "@id": "https://autogas-web.vercel.app/#organizacion"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Prol. Julio Sumar N.º 698, El Tambo",
+            "addressLocality": "Huancayo",
+            "addressRegion": "Junín",
+            "addressCountry": "PE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -12.04594,
+            "longitude": -75.21781
+          },
+          "hasMap": "https://maps.app.goo.gl/GkT1hSnraskuAcUq9",
+          "areaServed": "Huancayo",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "13:00"
+            }
+          ],
+          "knowsAbout": [
+            "Conversión vehicular a GNV",
+            "Conversión vehicular a GLP",
+            "Certificación anual de GNV y GLP",
+            "Revisión quinquenal de cilindros",
+            "Cambio de aceite",
+            "Mecánica general",
+            "Diagnóstico por escáner",
+            "Limpieza de inyectores",
+            "Afinamiento electrónico",
+            "Frenos, dirección y suspensión",
+            "Venta de aceites, filtros y repuestos"
+          ]
+        },
+        {
+          "@type": "AutoRepair",
+          "@id": "https://autogas-web.vercel.app/Sedes/sedes.html#trujillo",
+          "name": "AutoGas Trujillo",
+          "url": "https://autogas-web.vercel.app/Sedes/sedes.html#trujillo",
+          "telephone": "+51937695830",
+          "image": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp",
+          
+          "parentOrganization": {
+            "@id": "https://autogas-web.vercel.app/#organizacion"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Túpac Amaru 1633, Urb. Alto Mochica",
+            "addressLocality": "Trujillo",
+            "addressRegion": "La Libertad",
+            "addressCountry": "PE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -8.08931,
+            "longitude": -79.03844
+          },
+          "hasMap": "https://maps.app.goo.gl/o6rotDnpewJ7Aiwq5",
+          "areaServed": "Trujillo",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "13:00"
+            }
+          ],
+          "knowsAbout": [
+            "Conversión vehicular a GNV",
+            "Conversión vehicular a GLP",
+            "Certificación anual de GNV y GLP",
+            "Revisión quinquenal de cilindros",
+            "Cambio de aceite",
+            "Mecánica general",
+            "Diagnóstico por escáner",
+            "Limpieza de inyectores",
+            "Afinamiento electrónico",
+            "Frenos, dirección y suspensión",
+            "Venta de aceites, filtros y repuestos"
+          ]
+        },
+        {
+          "@type": "AutoRepair",
+          "@id": "https://autogas-web.vercel.app/Sedes/sedes.html#arequipa",
+          "name": "AutoGas Arequipa",
+          "url": "https://autogas-web.vercel.app/Sedes/sedes.html#arequipa",
+          "telephone": "+51975338252",
+          "image": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp",
+          
+          "parentOrganization": {
+            "@id": "https://autogas-web.vercel.app/#organizacion"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Túpac Amaru N.º 714, Campo Marte, Paucarpata",
+            "addressLocality": "Arequipa",
+            "addressRegion": "Arequipa",
+            "addressCountry": "PE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -16.42856,
+            "longitude": -71.49956
+          },
+          "hasMap": "https://maps.app.goo.gl/qG2XawRA8xHF2MTb7",
+          "areaServed": "Arequipa",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "13:00"
+            }
+          ],
+          "knowsAbout": [
+            "Conversión vehicular a GNV",
+            "Conversión vehicular a GLP",
+            "Certificación anual de GNV y GLP",
+            "Revisión quinquenal de cilindros",
+            "Cambio de aceite",
+            "Mecánica general",
+            "Diagnóstico por escáner",
+            "Limpieza de inyectores",
+            "Afinamiento electrónico",
+            "Frenos, dirección y suspensión",
+            "Venta de aceites, filtros y repuestos"
+          ]
+        },
+        {
+          "@type": "AutoRepair",
+          "@id": "https://autogas-web.vercel.app/Sedes/sedes.html#nasca",
+          "name": "AutoGas Nasca",
+          "url": "https://autogas-web.vercel.app/Sedes/sedes.html#nasca",
+          "telephone": "+51939067488",
+          "image": "https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp",
+          
+          "parentOrganization": {
+            "@id": "https://autogas-web.vercel.app/#organizacion"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Los Incas N.º 201",
+            "addressLocality": "Nasca",
+            "addressRegion": "Ica",
+            "addressCountry": "PE"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -14.82806,
+            "longitude": -74.94569
+          },
+          "hasMap": "https://maps.app.goo.gl/V51hHVnhix8rHUdR6",
+          "areaServed": "Nasca",
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday"
+              ],
+              "opens": "08:00",
+              "closes": "18:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Saturday",
+              "opens": "08:00",
+              "closes": "13:00"
+            }
+          ],
+          "knowsAbout": [
+            "Conversión vehicular a GNV",
+            "Conversión vehicular a GLP",
+            "Certificación anual de GNV y GLP",
+            "Revisión quinquenal de cilindros",
+            "Cambio de aceite",
+            "Mecánica general",
+            "Diagnóstico por escáner",
+            "Limpieza de inyectores",
+            "Afinamiento electrónico",
+            "Frenos, dirección y suspensión",
+            "Venta de aceites, filtros y repuestos"
+          ]
+        }
+      ]
     }
     </script>
 </head>
@@ -67,7 +438,7 @@
     <!-- ==================== BARRA SUPERIOR ==================== -->
     <div class="ig-topbar">
         <div class="container ig-topbar-in">
-            <p>7 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
+            <p>6 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
             <a href="#fise">Financia tu conversión con FISE
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
@@ -119,9 +490,9 @@
             <img class="ig-hero-media" src="Imagenes/Taller4-1440.webp" srcset="Imagenes/Taller4-480.webp 480w, Imagenes/Taller4-960.webp 960w, Imagenes/Taller4-1440.webp 1440w, Imagenes/Taller4.webp 1920w" sizes="100vw" alt="" width="1440" height="1440" fetchpriority="high">
             <div class="ig-hero-shade" aria-hidden="true"></div>
             <div class="container ig-hero-in">
-                <p class="ig-lbl ig-lbl-light ig-in">Conversión vehicular a gas</p>
+                <p class="ig-lbl ig-lbl-light ig-in">Taller automotriz · Conversión GNV y GLP</p>
                 <h1 class="ig-hero-title ig-in ig-d1" id="heroTitulo">Convierte tu auto a GNV o GLP y gasta menos en cada kilómetro</h1>
-                <p class="ig-hero-text ig-in ig-d2">Conversión, certificación y mantenimiento en 7 talleres del Perú, con convenio FISE para financiar tu conversión.</p>
+                <p class="ig-hero-text ig-in ig-d2">Conversión, certificación, cambio de aceite y mecánica general en 6 talleres del Perú, con convenio FISE para financiar tu conversión.</p>
                 <div class="ig-btns ig-in ig-d3">
                     <a class="ig-btn ig-btn-red" href="../Contacto/contacto.html">Cotizar mi conversión
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -134,7 +505,7 @@
         <!-- ==================== CIFRAS (cuentan al aparecer: data-contar en comun.js) ==================== -->
         <section class="ig-stats" aria-label="AutoGas en cifras">
             <dl class="container ig-stats-grid">
-                <div class="ig-stat"><dt data-contar>7</dt><dd>Sedes en el Perú</dd></div>
+                <div class="ig-stat"><dt data-contar>6</dt><dd>Sedes en el Perú</dd></div>
                 <div class="ig-stat"><dt data-contar>+2 000</dt><dd>Conversiones realizadas</dd></div>
                 <div class="ig-stat"><dt data-contar>+15</dt><dd>Años de experiencia</dd></div>
                 <div class="ig-stat"><dt>FISE</dt><dd>Convenio · Taller autorizado MTC</dd></div>
@@ -211,27 +582,28 @@
         </section>
 
         <!-- ==================== VIDEO ==================== -->
-        <section class="ig-sec ig-bg-dark" aria-labelledby="videoTitulo">
-            <div class="container">
-                <div class="ig-head reveal">
-                    <div class="ig-head-t">
-                        <p class="ig-lbl">En el taller</p>
-                        <h2 class="ig-h2" id="videoTitulo">Así convertimos un vehículo con inyección directa</h2>
-                    </div>
-                    <p class="ig-txt ig-head-p">Un Jetour Dashing a GNV, paso a paso: kit Nevo Sky Direct, inyectores Fenix, filtro KME y tanques.</p>
+        <section class="ig-sec ig-bg-dark ig-vsec" aria-labelledby="videoTitulo">
+            <div class="container ig-vgrid">
+                <div class="ig-vtxt reveal">
+                    <p class="ig-lbl">En el taller</p>
+                    <h2 class="ig-h2" id="videoTitulo">Así convertimos un vehículo con inyección directa</h2>
+                    <p class="ig-txt">Un Jetour Dashing a GNV, paso a paso: kit Nevo Sky Direct, inyectores Fenix, filtro KME y tanques.</p>
+                    <ol class="ig-vpasos">
+                        <li><span class="ig-vpasos-n">01</span><span><b>Kit Nevo Sky Direct</b><small>Centralita que gestiona el gas en motores de inyección directa</small></span></li>
+                        <li><span class="ig-vpasos-n">02</span><span><b>Inyectores Fenix</b><small>Llevan el GNV a cada cilindro con precisión</small></span></li>
+                        <li><span class="ig-vpasos-n">03</span><span><b>Filtro KME</b><small>Retiene impurezas antes de que el gas llegue a los inyectores</small></span></li>
+                        <li><span class="ig-vpasos-n">04</span><span><b>Tanques y prueba final</b><small>Montaje de los cilindros y prueba en ruta</small></span></li>
+                    </ol>
                 </div>
-                <!-- El video no se descarga hasta que la persona le da play (preload="none"). -->
-                <figure class="ig-video reveal">
-                    <video id="videoExpertos" preload="none" playsinline controls poster="Imagenes/expertos-video-poster.webp" width="1280" height="720"
-                        aria-label="Video: conversión a GNV de un Jetour Dashing con inyección directa en AutoGas">
-                        <source src="Imagenes/expertos-video-720.mp4" type="video/mp4" media="(min-width: 901px)">
-                        <source src="Imagenes/expertos-video-480.mp4" type="video/mp4">
-                    </video>
-                    <button class="ig-play" id="videoPlay" type="button" aria-label="Reproducir el video" hidden>
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>
-                    </button>
-                    <span class="ig-video-tag" aria-hidden="true">Video · 1:10</span>
-                </figure>
+                <!-- Portada fija 16:9: el video solo se descarga al abrir la ventana (inicio.js) -->
+                <button class="ig-vposter reveal" type="button" data-abrir-video aria-haspopup="dialog" aria-label="Reproducir el video: conversión a GNV de un Jetour Dashing (1 minuto 10 segundos)">
+                    <img src="Imagenes/expertos-video-poster.webp" srcset="Imagenes/expertos-video-poster-640.webp 640w, Imagenes/expertos-video-poster.webp 1280w" sizes="(max-width: 900px) 92vw, 60vw" alt="" width="1280" height="720" loading="lazy" decoding="async">
+                    <span class="ig-vposter-play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5l12 7-12 7z"/></svg></span>
+                    <span class="ig-vposter-pie" aria-hidden="true">
+                        <span><b>Ver el proceso completo</b><small>Jetour Dashing · conversión a GNV</small></span>
+                        <span class="ig-vposter-dur">1:10</span>
+                    </span>
+                </button>
             </div>
         </section>
 
@@ -354,7 +726,7 @@
                 <div class="ig-head reveal">
                     <div class="ig-head-t">
                         <p class="ig-lbl">Sedes</p>
-                        <h2 class="ig-h2" id="sedesTitulo">Siete talleres a tu alcance</h2>
+                        <h2 class="ig-h2" id="sedesTitulo">Seis talleres a tu alcance</h2>
                     </div>
                     <!-- PENDIENTE: confirmar horario real -->
                     <p class="ig-txt ig-head-p">Lunes a viernes de 8:00 a 18:00 y sábados de 8:00 a 13:00.</p>
@@ -368,7 +740,6 @@
                         <button class="ig-sede-tab" type="button" role="tab" id="tab-trujillo" data-sede="trujillo" aria-controls="sede-trujillo" aria-selected="false" tabindex="-1"><span><b>AutoGas Trujillo</b><small>La Libertad</small></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
                         <button class="ig-sede-tab" type="button" role="tab" id="tab-arequipa" data-sede="arequipa" aria-controls="sede-arequipa" aria-selected="false" tabindex="-1"><span><b>AutoGas Arequipa</b><small>Paucarpata, Arequipa</small></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
                         <button class="ig-sede-tab" type="button" role="tab" id="tab-nasca" data-sede="nasca" aria-controls="sede-nasca" aria-selected="false" tabindex="-1"><span><b>AutoGas Nasca</b><small>Ica</small></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-                        <button class="ig-sede-tab" type="button" role="tab" id="tab-chincha" data-sede="chincha" aria-controls="sede-chincha" aria-selected="false" tabindex="-1"><span><b>AutoGas Chincha</b><small>Chincha Alta, Ica</small></span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
                     </div>
 
                     <div class="ig-sede-panels">
@@ -418,14 +789,6 @@
                                 <h3>AutoGas Nasca</h3>
                                 <p class="ig-sede-addr">Av. Los Incas N.º 201, frente a la agencia Ormeño</p>
                                 <div class="ig-btns"><a class="ig-btn ig-btn-red" href="https://wa.me/51939067488" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Nasca (se abre en una pestaña nueva)">Escribir por WhatsApp</a><a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/V51hHVnhix8rHUdR6" target="_blank" rel="noopener">Cómo llegar</a></div>
-                            </div>
-                        </article>
-                        <article class="ig-sede" role="tabpanel" id="sede-chincha" aria-labelledby="tab-chincha" hidden>
-                            <div class="ig-sede-img"><img src="../Sedes/Imagenes/Chincha.webp" alt="Fachada de la sede AutoGas Chincha" width="408" height="306" loading="lazy" decoding="async"></div>
-                            <div class="ig-sede-info">
-                                <h3>AutoGas Chincha</h3>
-                                <p class="ig-sede-addr">Prolongación Lima N.º 636, Chincha Alta</p>
-                                <div class="ig-btns"><a class="ig-btn ig-btn-red" href="https://wa.me/51930210613" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas Chincha (se abre en una pestaña nueva)">Escribir por WhatsApp</a><a class="ig-btn ig-btn-line" href="https://maps.app.goo.gl/Yd5pahYnQDLtYxWVA" target="_blank" rel="noopener">Cómo llegar</a></div>
                             </div>
                         </article>
                     </div>
@@ -551,6 +914,29 @@
         </section>
     </main>
 
+    <!-- ==================== VENTANA DEL VIDEO (inicio.js) ==================== -->
+    <div class="ig-vmodal" id="videoModal" role="dialog" aria-modal="true" aria-labelledby="videoModalTitulo" hidden>
+        <div class="ig-vmodal-in">
+            <div class="ig-vmodal-top">
+                <h2 id="videoModalTitulo">Conversión a GNV de un Jetour Dashing <span>· 1:10</span></h2>
+                <button class="ig-vmodal-x" type="button" id="videoCerrar" aria-label="Cerrar video">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+            <div class="ig-vmodal-video">
+                <!-- Las fuentes se agregan al abrir: 720p en computadora, 480p en celular o con ahorro de datos -->
+                <video id="videoExpertos" controls playsinline preload="none" poster="Imagenes/expertos-video-poster.webp"
+                    data-hd="Imagenes/expertos-video-720.mp4" data-sd="Imagenes/expertos-video-480.mp4"
+                    aria-label="Video: conversión a GNV de un Jetour Dashing con inyección directa en AutoGas"></video>
+                <p class="ig-vmodal-carga" id="videoCarga" hidden><span aria-hidden="true"></span>Cargando video…</p>
+            </div>
+            <div class="ig-vmodal-pie">
+                <p>¿Tienes un auto con inyección directa? Te decimos qué kit lleva.</p>
+                <a class="ig-btn ig-btn-red" href="../Contacto/contacto.html">Cotizar mi conversión <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+        </div>
+    </div>
+
     <!-- ==================== FOOTER (igual en todo el sitio) ==================== -->
     <footer class="footer">
         <div class="container">
@@ -596,14 +982,11 @@
                         <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener">Trujillo</a></li>
                         <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener">Arequipa</a></li>
                         <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener">Nasca</a></li>
-                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener">Chincha</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3>Legal</h3>
-                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
                     <ul>
-                        <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
                         <li><a href="../Legal/privacidad.html">Política de privacidad</a></li>
                         <li><a href="../Legal/terminos.html">Términos y condiciones</a></li>
                     </ul>
@@ -619,7 +1002,7 @@
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
     <script src="resenas-google.js?v=20261102-3" defer></script>
-    <script src="inicio.js?v=20261109-2" defer></script>
+    <script src="inicio.js?v=20261113-1" defer></script>
 </body>
 
 </html>

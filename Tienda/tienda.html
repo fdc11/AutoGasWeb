@@ -15,16 +15,19 @@
         .site-header { height: 72px; }
         .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
     </style>
-    <title>AutoGas | Tienda — Aceites, Aditivos, Filtros y Repuestos</title>
-    <meta name="description" content="Tienda AutoGas: aceites, refrigerantes, filtros y repuestos de marcas líderes. Arma tu pedido y envíalo por WhatsApp a tu sede más cercana.">
+    <title>Tienda | AutoGas — Aceites, filtros, aditivos y repuestos para tu auto</title>
+    <meta name="description" content="Aceites de motor, refrigerantes, aditivos, filtros y repuestos de marcas líderes en la tienda AutoGas. Arma tu pedido y recógelo en tu sede más cercana.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <link rel="canonical" href="https://autogas-web.vercel.app/Tienda/tienda.html">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
     <meta property="og:site_name" content="AutoGas Perú">
-    <meta property="og:title" content="Tienda | AutoGas">
-    <meta property="og:description" content="Aceites, aditivos, filtros y repuestos de marcas líderes. Pide por WhatsApp a tu sede.">
+    <meta property="og:title" content="Tienda | AutoGas — Aceites, filtros, aditivos y repuestos para tu auto">
+    <meta property="og:description" content="Aceites de motor, refrigerantes, aditivos, filtros y repuestos de marcas líderes en la tienda AutoGas. Arma tu pedido y recógelo en tu sede más cercana.">
     <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
     <meta property="og:url" content="https://autogas-web.vercel.app/Tienda/tienda.html">
+    <meta property="og:image:alt" content="Taller AutoGas Perú">
+    <meta name="twitter:card" content="summary_large_image">
 
     <link rel="preload" as="image" href="Imagenes/IMG_3214-1440.webp" imagesrcset="Imagenes/IMG_3214-480.webp 480w, Imagenes/IMG_3214-960.webp 960w, Imagenes/IMG_3214-1440.webp 1440w" imagesizes="100vw">
     <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
@@ -32,6 +35,30 @@
     <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
     <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
     <link rel="stylesheet" href="tienda.css?v=20261112-1">
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://autogas-web.vercel.app/Inicio/inicio.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Tienda",
+              "item": "https://autogas-web.vercel.app/Tienda/tienda.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
 <!-- pg-corp + data-header="solid": menú blanco (../Comun/corporativo.css y comun.js) -->
@@ -41,7 +68,7 @@
     <!-- ==================== BARRA SUPERIOR ==================== -->
     <div class="ig-topbar">
         <div class="container ig-topbar-in">
-            <p>7 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
+            <p>6 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
             <a href="../Inicio/inicio.html#fise">Financia tu conversión con FISE
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
@@ -154,7 +181,7 @@
                         <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Marcas líderes</strong><span>Liqui Moly, Castrol, Shell, Mobil, Bosch y más.</span></div></li>
                         <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Asesoría para tu auto</strong><span>Te decimos qué aceite o filtro lleva tu motor.</span></div></li>
                         <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>Pedido por WhatsApp</strong><span>Arma tu pedido y lo envías a tu sede.</span></div></li>
-                        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>7 sedes en el Perú</strong><span>Ica, Lima, Huancayo, Trujillo y más.</span></div></li>
+                        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><div><strong>6 sedes en el Perú</strong><span>Ica, Lima, Huancayo, Trujillo y más.</span></div></li>
                     </ul>
                 </div>
             </section>
@@ -196,7 +223,7 @@
                     </div>
                     <ol class="t-how">
                         <li><span>01</span><strong>Agrega tus productos</strong><p>Elige lo que necesitas y la cantidad. Tu pedido se guarda mientras navegas.</p></li>
-                        <li><span>02</span><strong>Completa tus datos y elige tu sede</strong><p>Tu nombre, tu vehículo y la sede más cercana entre nuestras 7 ciudades.</p></li>
+                        <li><span>02</span><strong>Completa tus datos y elige tu sede</strong><p>Tu nombre, tu vehículo y la sede más cercana entre nuestras 6 ciudades.</p></li>
                         <li><span>03</span><strong>Envía por WhatsApp</strong><p>Te llega el pedido listo y la sede te confirma precio, stock e instalación.</p></li>
                     </ol>
                 </div>
@@ -363,14 +390,11 @@
                         <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener">Trujillo</a></li>
                         <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener">Arequipa</a></li>
                         <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener">Nasca</a></li>
-                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener">Chincha</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3>Legal</h3>
-                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
                     <ul>
-                        <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
                         <li><a href="../Legal/privacidad.html">Política de privacidad</a></li>
                         <li><a href="../Legal/terminos.html">Términos y condiciones</a></li>
                     </ul>
@@ -476,7 +500,6 @@
                             <button type="button" class="cart-sede" data-id="1" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Ica</button>
                             <button type="button" class="cart-sede" data-id="2" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Lima</button>
                             <button type="button" class="cart-sede" data-id="3" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Trujillo</button>
-                            <button type="button" class="cart-sede" data-id="4" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Chincha</button>
                             <button type="button" class="cart-sede" data-id="5" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Huancayo</button>
                             <button type="button" class="cart-sede" data-id="6" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Nasca</button>
                             <button type="button" class="cart-sede" data-id="7" data-accion="elegirSedeCarrito" data-args='["$el"]' aria-pressed="false">Arequipa</button>
@@ -512,7 +535,7 @@
     </div>
 
     <script src="../Comun/comun.js?v=20261102-1" defer></script>
-    <script src="tienda.js?v=20261112-1" defer></script>
+    <script src="tienda.js?v=20261113-1" defer></script>
 </body>
 
 </html>

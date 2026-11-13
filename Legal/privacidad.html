@@ -6,40 +6,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="../favicon.ico" sizes="any">
     <link rel="apple-touch-icon" href="../apple-touch-icon.png">
-    <meta name="theme-color" content="#0A0A0A">
+    <meta name="theme-color" content="#FFFFFF">
     <meta name="color-scheme" content="light">
-    <title>Política de privacidad | AutoGas</title>
-    <meta name="description" content="Cómo AutoGas recoge, usa y protege tus datos personales conforme a la Ley N.º 29733 y su Reglamento.">
+    <title>Política de privacidad | AutoGas Perú</title>
+    <meta name="description" content="Cómo AutoGas recoge, usa y protege tus datos personales conforme a la Ley N.º 29733 y su Reglamento (D.S. N.º 016-2024-JUS).">
+    <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://autogas-web.vercel.app/Legal/privacidad.html">
+
     <meta property="og:type" content="website">
     <meta property="og:locale" content="es_PE">
     <meta property="og:site_name" content="AutoGas Perú">
-    <meta property="og:title" content="Política de privacidad | AutoGas">
-    <meta property="og:description" content="Cómo AutoGas recoge, usa y protege tus datos personales conforme a la Ley N.º 29733 y su Reglamento.">
+    <meta property="og:title" content="Política de privacidad | AutoGas Perú">
+    <meta property="og:description" content="Cómo AutoGas recoge, usa y protege tus datos personales conforme a la Ley N.º 29733 y su Reglamento (D.S. N.º 016-2024-JUS).">
     <meta property="og:image" content="https://autogas-web.vercel.app/Inicio/Imagenes/AutoGasBanner.webp">
     <meta property="og:url" content="https://autogas-web.vercel.app/Legal/privacidad.html">
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-condensed-v13-latin_latin-ext/barlow-condensed-v13-latin_latin-ext-800.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
-    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
-    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
-    <link rel="stylesheet" href="legal.css?v=20261106-1">
-    <script>document.documentElement.classList.add('js');</script>
+
+    <!-- Evita parpadeos: estilos mínimos antes de cargar el CSS -->
     <style>
-        html, body { margin: 0; padding: 0; background: #0A0A0A; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; background: #FFFFFF; }
         .site-header { height: 72px; }
         .mobile-menu:not(.is-open) { position: fixed; visibility: hidden; transform: translateX(100%); }
     </style>
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-regular.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="../barlow-v13-latin_latin-ext/barlow-v13-latin_latin-ext-600.woff2" crossorigin>
+    <link rel="stylesheet" href="../Comun/comun.css?v=20261106-2">
+    <link rel="stylesheet" href="../Comun/corporativo.css?v=20261109-1">
+    <link rel="stylesheet" href="legal.css?v=20261113-1">
+    <script type="application/ld+json">
+{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://autogas-web.vercel.app/Inicio/inicio.html"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Política de privacidad",
+              "item": "https://autogas-web.vercel.app/Legal/privacidad.html"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 
-<body>
-
+<!-- pg-corp + data-header="solid": menú blanco, igual que el resto del sitio -->
+<body class="pg-corp pg-legal" data-header="solid">
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
 
+    <!-- ==================== BARRA SUPERIOR ==================== -->
+    <div class="ig-topbar">
+        <div class="container ig-topbar-in">
+            <p>6 talleres en el Perú · Lun a vie 8:00–18:00 · Sáb 8:00–13:00</p>
+            <a href="../Inicio/inicio.html#fise">Financia tu conversión con FISE
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+        </div>
+    </div>
+
     <!-- ==================== MENÚ ==================== -->
-    <header class="site-header">
+    <header class="site-header" id="siteHeader">
         <nav class="nav container" aria-label="Principal">
             <a class="nav-logo" href="../Inicio/inicio.html" aria-label="AutoGas, ir al inicio">
-                <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="94" height="34">
+                <img src="../Inicio/Imagenes/AutoGasLogoNegro.png" alt="AutoGas" width="600" height="142">
             </a>
 
             <ul class="nav-links">
@@ -49,7 +89,6 @@
                 <li><a href="../Sedes/sedes.html">Sedes</a></li>
                 <li><a href="../Tienda/tienda.html">Tienda</a></li>
             </ul>
-
             <a class="btn btn-red nav-cta" href="../Contacto/contacto.html">Cotizar</a>
 
             <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Abrir menú">
@@ -58,7 +97,7 @@
         </nav>
     </header>
 
-    <!-- Menú de celular -->
+    <!-- Menú de celular (comportamiento en ../Comun/comun.js) -->
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación" inert>
         <div class="mobile-menu-top">
             <img loading="lazy" src="../Inicio/Imagenes/AutoGasLogo2.webp" alt="AutoGas" width="122" height="44">
@@ -75,47 +114,54 @@
     </div>
 
     <main id="contenido">
-        <section class="page-hero page-hero--compacta legal-hero" aria-labelledby="heroTitulo">
-            <div class="container page-hero-inner">
-                <p class="page-hero-eyebrow">Protección de datos personales</p>
-                <h1 class="page-hero-title" id="heroTitulo">
-                    <span class="page-hero-line">Política de</span>
-                    <span class="page-hero-line l2">privacidad.</span>
-                </h1>
-                <p class="page-hero-sub">Cómo usamos y protegemos tus datos personales, conforme a la Ley N.º 29733.</p>
+
+        <!-- ==================== PORTADA ==================== -->
+        <section class="lg-hero" aria-labelledby="heroTitulo">
+            <div class="container lg-hero-in">
+                <nav class="lg-crumbs ig-in" aria-label="Estás aquí">
+                    <a href="../Inicio/inicio.html">Inicio</a><span aria-hidden="true">/</span><span>Legal</span><span aria-hidden="true">/</span><span aria-current="page">Política de privacidad</span>
+                </nav>
+                <h1 class="lg-hero-title ig-in ig-d1" id="heroTitulo">Política de privacidad</h1>
+                <p class="lg-hero-text ig-in ig-d2">Cómo usamos y protegemos tus datos personales, conforme a la Ley N.º 29733 y su Reglamento.</p>
+                <ul class="lg-hero-meta ig-in ig-d3">
+                    <li><span>Última actualización</span><strong>13 de noviembre de 2026</strong></li>
+                    <li><span>Lectura</span><strong>6 min</strong></li>
+                    <li><a href="terminos.html">Ver términos y condiciones <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></li>
+                </ul>
             </div>
         </section>
 
-        <section class="legal">
-            <div class="container legal-grid">
-                <nav class="legal-indice" aria-label="Índice del documento">
-                    <p>Contenido</p>
+        <!-- ==================== DOCUMENTO ==================== -->
+        <section class="lg-body" aria-label="Contenido del documento">
+            <div class="container lg-grid">
+                <nav class="lg-indice" aria-label="Índice del documento">
+                    <p class="lg-indice-t">En esta página</p>
                     <ol><li><a href="#responsable">Quién es el responsable de tus datos</a></li><li><a href="#datos">Qué datos recogemos</a></li><li><a href="#finalidades">Para qué usamos tus datos</a></li><li><a href="#whatsapp">Cómo viajan tus datos: WhatsApp</a></li><li><a href="#terceros">Con quién compartimos tus datos</a></li><li><a href="#conservacion">Por cuánto tiempo guardamos tus datos</a></li><li><a href="#derechos">Tus derechos y cómo ejercerlos</a></li><li><a href="#seguridad">Cómo protegemos tus datos</a></li><li><a href="#cookies">Cookies y almacenamiento en tu navegador</a></li><li><a href="#cambios">Cambios en esta política</a></li></ol>
                 </nav>
-                <div>
-<article class="legal-doc">
-<p class="legal-meta">Última actualización: <strong>[FECHA DE PUBLICACIÓN]</strong></p>
-
-<p>En AutoGas protegemos los datos personales de nuestros clientes y de todas las personas que usan este sitio web. Esta política explica qué datos recogemos, para qué los usamos, con quién los compartimos y cómo puedes ejercer tus derechos, conforme a la <strong>Ley N.º 29733, Ley de Protección de Datos Personales</strong>, y su <strong>Reglamento aprobado por Decreto Supremo N.º 016-2024-JUS</strong>.</p>
+                <div class="lg-col">
+                    <article class="lg-doc">
+<p class="lg-lead">En AutoGas cuidamos los datos personales de nuestros clientes y de todas las personas que usan este sitio. Aquí te explicamos, en simple, qué datos recogemos, para qué los usamos, con quién los compartimos, cuánto tiempo los guardamos y cómo puedes ejercer tus derechos, conforme a la <strong>Ley N.º 29733, Ley de Protección de Datos Personales</strong>, y su <strong>Reglamento, aprobado por el Decreto Supremo N.º 016-2024-JUS</strong>.</p>
 
 <h2 id="responsable">1. Quién es el responsable de tus datos</h2>
 <p>El titular del banco de datos y responsable del tratamiento es:</p>
-<ul class="legal-datos">
+<ul class="lg-datos">
     <li><span>Razón social</span> <strong>[RAZÓN SOCIAL]</strong></li>
     <li><span>RUC</span> <strong>[RUC]</strong></li>
     <li><span>Domicilio</span> <strong>[DOMICILIO FISCAL]</strong></li>
     <li><span>Correo para temas de datos personales</span> <strong>[CORREO DE PRIVACIDAD]</strong></li>
+    <li><span>Oficial de Datos Personales</span> <strong>[NOMBRE Y CORREO, si la empresa está obligada a designarlo]</strong></li>
 </ul>
-<p>En adelante, “AutoGas”. Los datos que nos brindas se almacenan en el banco de datos <strong>“[NOMBRE DEL BANCO, p. ej. Clientes]”</strong>, inscrito en el Registro Nacional de Protección de Datos Personales con el código <strong>[CÓDIGO DE REGISTRO]</strong>.</p>
+<p>En adelante, “AutoGas”. Tus datos se almacenan en el banco de datos <strong>“[NOMBRE DEL BANCO, p. ej. Clientes]”</strong>, inscrito en el Registro Nacional de Protección de Datos Personales con el código <strong>[CÓDIGO DE REGISTRO]</strong>.</p>
 
 <h2 id="datos">2. Qué datos recogemos</h2>
 <p>Solo pedimos los datos necesarios para atenderte:</p>
 <ul>
-    <li><strong>Formulario de cotización:</strong> nombre, número de celular, sede de tu preferencia, marca, modelo y año de tu vehículo y, de forma opcional, placa, kilometraje y comentarios.</li>
+    <li><strong>Formulario de cotización:</strong> nombre, número de celular, sede de tu preferencia y marca, modelo y año de tu vehículo. De forma opcional: placa, kilometraje y comentarios.</li>
     <li><strong>Pedidos de la tienda:</strong> los productos y cantidades que eliges y la sede donde los recogerás.</li>
-    <li><strong>Atención en sede:</strong> los datos que nos des al recibir tu vehículo (por ejemplo, para la orden de servicio, el comprobante de pago o los trámites de certificación y del FISE).</li>
+    <li><strong>Atención en sede:</strong> los datos que nos des al recibir tu vehículo (por ejemplo, para la orden de servicio, el comprobante de pago o los trámites de certificación y de financiamiento).</li>
 </ul>
-<p>No pedimos datos sensibles a través de este sitio web. El sitio no está dirigido a menores de edad; si eres menor de 18 años, pide a tu padre, madre o tutor que se comunique con nosotros.</p>
+<p>Los campos marcados como obligatorios en los formularios son necesarios para poder responderte; <strong>si no los completas, no podremos atender tu solicitud</strong>. Los campos opcionales solo nos ayudan a darte una cotización más precisa.</p>
+<p>No pedimos datos sensibles a través de este sitio. El sitio no está dirigido a menores de edad: si eres menor de 18 años, pide a tu padre, madre o tutor que se comunique con nosotros.</p>
 
 <h2 id="finalidades">3. Para qué usamos tus datos</h2>
 <ul>
@@ -125,56 +171,74 @@
     <li>Cumplir obligaciones legales, tributarias y de certificación vehicular.</li>
     <li>Atender tus consultas, quejas y reclamos.</li>
 </ul>
-<p>Estas finalidades son necesarias para responder lo que tú nos pides o para ejecutar el servicio que contratas, por lo que no requieren un consentimiento adicional. <strong>No usamos tus datos para enviarte publicidad</strong> ni los vendemos a terceros. Si en el futuro quisiéramos hacerlo, te pediremos antes tu consentimiento expreso.</p>
+<p>Estas finalidades son necesarias para responder lo que tú nos pides o para ejecutar el servicio que contratas, por lo que no requieren un consentimiento adicional. <strong>No usamos tus datos para enviarte publicidad</strong> ni los vendemos a terceros. Si en el futuro quisiéramos hacerlo, te pediremos antes tu consentimiento previo, informado, expreso e inequívoco, que podrás revocar en cualquier momento.</p>
 
 <h2 id="whatsapp">4. Cómo viajan tus datos: WhatsApp</h2>
-<p>Cuando envías el formulario de cotización o un pedido de la tienda, este sitio <strong>no guarda tus datos en un servidor</strong>: arma un mensaje y lo abre en tu WhatsApp para que lo envíes a la sede que elegiste. A partir de ese momento la conversación se rige también por las condiciones y la política de privacidad de WhatsApp (Meta Platforms), que puede almacenar información fuera del Perú.</p>
+<p>Cuando envías el formulario de cotización o un pedido de la tienda, este sitio <strong>no guarda tus datos en ningún servidor</strong>: arma un mensaje y lo abre en tu WhatsApp para que tú lo envíes a la sede que elegiste. Desde ese momento, la conversación se rige también por las condiciones y la política de privacidad de WhatsApp (Meta Platforms), que puede almacenar información fuera del Perú.</p>
 
 <h2 id="terceros">5. Con quién compartimos tus datos</h2>
 <p>Solo compartimos datos cuando es necesario para atenderte o porque la ley lo exige, por ejemplo con:</p>
 <ul>
     <li>Entidades certificadoras y autoridades competentes (MTC, SUNAT y otras) para trámites de conversión y certificación.</li>
     <li>El FISE o la entidad que administre el financiamiento, solo si solicitas financiar tu conversión.</li>
-    <li>Proveedores tecnológicos que nos dan soporte, como el servicio de alojamiento del sitio web y WhatsApp.</li>
+    <li>Proveedores tecnológicos que nos dan soporte, como el servicio de alojamiento del sitio y WhatsApp.</li>
 </ul>
-<p>Algunos de estos proveedores están fuera del Perú, por lo que puede existir <strong>flujo transfronterizo</strong> de datos. En esos casos procuramos que cuenten con un nivel de protección adecuado, conforme a la Ley N.º 29733 y su Reglamento.</p>
+<p>Algunos de estos proveedores están fuera del Perú, por lo que puede existir <strong>flujo transfronterizo</strong> de datos. En esos casos procuramos que el destinatario ofrezca un nivel de protección adecuado, conforme a la Ley N.º 29733 y su Reglamento.</p>
 
 <h2 id="conservacion">6. Por cuánto tiempo guardamos tus datos</h2>
-<p>Conservamos tus datos mientras sean necesarios para la finalidad por la que los recogimos y, después, durante el plazo que exijan las normas tributarias, de consumo o de certificación vehicular. [PENDIENTE: indicar el plazo concreto, p. ej. “hasta 2 años desde la última atención”]. Pasado ese plazo, los eliminamos o anonimizamos.</p>
+<p>Conservamos tus datos mientras sean necesarios para la finalidad por la que los recogimos y, después, durante el plazo que exijan las normas tributarias, de protección al consumidor o de certificación vehicular. [PENDIENTE: indicar el plazo concreto, p. ej. “hasta 2 años desde la última atención”]. Pasado ese plazo, los eliminamos o anonimizamos.</p>
 
 <h2 id="derechos">7. Tus derechos y cómo ejercerlos</h2>
-<p>Como titular de tus datos puedes ejercer en cualquier momento tus derechos de:</p>
+<p>Como titular de tus datos puedes ejercer, de forma gratuita y en cualquier momento, tus derechos de:</p>
 <ul>
-    <li><strong>Información y acceso:</strong> saber qué datos tuyos tenemos y cómo los usamos.</li>
+    <li><strong>Información:</strong> saber para qué y cómo tratamos tus datos.</li>
+    <li><strong>Acceso:</strong> conocer qué datos tuyos tenemos.</li>
     <li><strong>Rectificación:</strong> corregir datos inexactos o incompletos.</li>
     <li><strong>Cancelación (supresión):</strong> pedir que eliminemos tus datos cuando ya no sean necesarios.</li>
-    <li><strong>Oposición:</strong> oponerte a un tratamiento determinado.</li>
+    <li><strong>Oposición:</strong> oponerte a un tratamiento determinado por un motivo legítimo.</li>
     <li><strong>Portabilidad:</strong> recibir tus datos en un formato estructurado, cuando sea técnicamente posible.</li>
     <li><strong>Revocar tu consentimiento</strong>, cuando el tratamiento se base en él.</li>
 </ul>
-<p>Para hacerlo, escríbenos a <strong>[CORREO DE PRIVACIDAD]</strong> o acércate a <strong>[DOMICILIO FISCAL]</strong>, indicando tu nombre completo, una copia de tu documento de identidad (o el de tu representante, con el poder correspondiente), el derecho que deseas ejercer y un medio para responderte. Te responderemos dentro de los plazos que establece el Reglamento de la Ley N.º 29733.</p>
-<p>Si consideras que no atendimos tu solicitud, puedes presentar una reclamación ante la <strong>Autoridad Nacional de Protección de Datos Personales</strong> del Ministerio de Justicia y Derechos Humanos.</p>
+<p>Para hacerlo, escríbenos a <strong>[CORREO DE PRIVACIDAD]</strong> o acércate a <strong>[DOMICILIO FISCAL]</strong> con tu nombre completo, una copia de tu documento de identidad (o el de tu representante, con el poder correspondiente), el derecho que deseas ejercer y un medio para responderte.</p>
+<div class="lg-tabla" role="region" aria-label="Plazos de respuesta" tabindex="0">
+    <table>
+        <caption>Plazos máximos de respuesta (días hábiles desde que recibimos tu solicitud completa)</caption>
+        <thead><tr><th scope="col">Derecho</th><th scope="col">Plazo</th></tr></thead>
+        <tbody>
+            <tr><td>Información</td><td>8 días hábiles</td></tr>
+            <tr><td>Acceso</td><td>20 días hábiles</td></tr>
+            <tr><td>Rectificación, cancelación y oposición</td><td>10 días hábiles</td></tr>
+            <tr><td>Portabilidad y revocatoria del consentimiento</td><td>15 días hábiles</td></tr>
+        </tbody>
+    </table>
+</div>
+<p>Si el caso lo justifica, el plazo puede ampliarse una sola vez por un periodo igual, y te avisaremos antes de que venza. Si consideras que no atendimos bien tu solicitud, puedes presentar una reclamación ante la <strong>Autoridad Nacional de Protección de Datos Personales</strong> del Ministerio de Justicia y Derechos Humanos.</p>
 
 <h2 id="seguridad">8. Cómo protegemos tus datos</h2>
-<p>Aplicamos medidas técnicas, organizativas y legales para proteger tus datos contra pérdida, uso indebido, acceso no autorizado o alteración, y limitamos el acceso a las personas de nuestro equipo que los necesitan para atenderte. Si ocurriera un incidente de seguridad que pueda afectarte, lo gestionaremos y te informaremos conforme lo exige el Reglamento.</p>
+<p>Aplicamos medidas técnicas, organizativas y legales para proteger tus datos contra pérdida, uso indebido, acceso no autorizado o alteración, y limitamos el acceso a las personas de nuestro equipo que los necesitan para atenderte. El sitio funciona con conexión cifrada (HTTPS) y no carga programas de seguimiento de terceros. Si ocurriera un incidente de seguridad que pueda afectarte, lo gestionaremos y lo comunicaremos conforme lo exige el Reglamento.</p>
 
 <h2 id="cookies">9. Cookies y almacenamiento en tu navegador</h2>
-<p>Este sitio <strong>no usa cookies publicitarias ni herramientas de seguimiento</strong>. Solo guarda en tu propio navegador (mediante <em>almacenamiento local</em>) el contenido de tu carrito de la tienda y la sede elegida, para que no se pierdan si cierras la página. Puedes borrarlos cuando quieras desde la configuración de tu navegador.</p>
-<p>Algunas secciones muestran contenido de terceros, como el mapa de sedes (OpenStreetMap) o las reseñas de Google, que pueden recibir datos técnicos de tu conexión, como tu dirección IP, según sus propias políticas.</p>
+<p>Este sitio <strong>no usa cookies publicitarias ni herramientas de analítica o seguimiento</strong>. Solo guarda en tu propio navegador (mediante <em>almacenamiento local</em>) el contenido de tu carrito de la tienda y la sede elegida, para que no se pierdan si cierras la página. Esa información no sale de tu equipo y puedes borrarla cuando quieras desde la configuración de tu navegador.</p>
+<p>La página de Sedes muestra un mapa de OpenStreetMap, cuyo servidor recibe datos técnicos de tu conexión (como tu dirección IP) para dibujar el mapa, según su propia política. Los enlaces a WhatsApp, Google Maps, Waze y redes sociales te llevan a esos servicios, que tratan tus datos según sus propias condiciones.</p>
 
 <h2 id="cambios">10. Cambios en esta política</h2>
 <p>Podemos actualizar esta política para reflejar cambios legales o en nuestros servicios. Publicaremos siempre la versión vigente en esta página, con su fecha de actualización.</p>
-</article>
 
-                    <div class="legal-ayuda">
-                        <p>¿Tienes dudas sobre este documento? Escríbenos y te ayudamos.</p>
-                        <a class="btn btn-red" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escribir por WhatsApp</a>
-                    </div>
+                    </article>
+
+                    <aside class="lg-ayuda" aria-label="Ayuda">
+                        <div>
+                            <h2>¿Tienes dudas sobre este documento?</h2>
+                            <p>Escríbenos y te respondemos en horario de atención.</p>
+                        </div>
+                        <a class="ig-btn ig-btn-red" href="https://wa.me/51978421654" target="_blank" rel="noopener">Escribir por WhatsApp <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+                    </aside>
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- ==================== FOOTER (igual en todo el sitio) ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -195,11 +259,6 @@
                         <li>
                             <a href="https://www.tiktok.com/@autogas_ica" target="_blank" rel="noopener" aria-label="TikTok de AutoGas">
                                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.3 2.1 1.6 3.6 3.9 3.8v3.1c-1.4.1-2.7-.3-3.9-1.1v6.1c0 3.6-2.7 5.9-5.9 5.9-3.4 0-5.9-2.6-5.9-5.8 0-3.6 3.1-6.2 6.8-5.7v3.2c-1.8-.4-3.5.8-3.5 2.6 0 1.4 1.1 2.6 2.6 2.6 1.6 0 2.7-1.1 2.7-3V3h3.2z"/></svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://wa.me/51978421654" target="_blank" rel="noopener" aria-label="WhatsApp de AutoGas">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.7l5-1.3A9.7 9.7 0 1 0 12 2.2zm0 17.7c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3c-.2.2-.8.8-.8 2s.9 2.4 1 2.5c.1.2 1.7 2.7 4.2 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2l-.4-.2z"/></svg>
                             </a>
                         </li>
                     </ul>
@@ -224,22 +283,19 @@
                         <li><a href="https://wa.me/51937695830" target="_blank" rel="noopener">Trujillo</a></li>
                         <li><a href="https://wa.me/51975338252" target="_blank" rel="noopener">Arequipa</a></li>
                         <li><a href="https://wa.me/51939067488" target="_blank" rel="noopener">Nasca</a></li>
-                        <li><a href="https://wa.me/51930210613" target="_blank" rel="noopener">Chincha</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3>Legal</h3>
-                    <!-- PENDIENTE: enlace al Libro de Reclamaciones virtual -->
                     <ul>
-                        <li><a href="#" data-pendiente>Libro de Reclamaciones</a></li>
-                        <li><a href="privacidad.html" aria-current="page">Política de privacidad</a></li>
-                        <li><a href="terminos.html">Términos y condiciones</a></li>
+                        <li><a href="../Legal/privacidad.html" aria-current="page">Política de privacidad</a></li>
+                        <li><a href="../Legal/terminos.html">Términos y condiciones</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <!-- PENDIENTE: RUC -->
-                <p>© <span id="anio">2026</span> AutoGas Perú · RUC [NÚMERO]</p>
+                <p>© <span id="anio">2026</span> AutoGas Perú </p>
                 <p>Hecho en el Perú</p>
             </div>
         </div>
